@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:food_delivery_app/app/app.dart';
 
 import 'package:food_delivery_app/main.dart';
 

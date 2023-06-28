@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  auto_route: ^5.0.4
+  auto_route: ^7.5.0
 
   core:
     path: ../core
@@ -17,11 +17,16 @@ dependencies:
     path: ../core_ui
   domain:
     path: ../domain
+  main_page_view:
+    path: ../features/main_page_view
 
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: 2.0.1
+  dart_code_metrics: ^5.7.5
+  auto_route_generator: ^7.1.1
+  build_runner: ^2.4.5
+
+
 
 flutter:
