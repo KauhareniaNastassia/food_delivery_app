@@ -1,0 +1,30 @@
+name: core
+version: 0.0.1
+publish_to: none
+description: Project core module
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  data:
+    path: ../data
+  domain:
+    path: ../domain
+  navigation:
+    path: ../navigation
+
+  cloud_firestore: ^4.8.1
+
+  get_it: ^7.6.0
+  flutter_bloc: ^8.1.2
+  auto_route_generator: ^7.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0

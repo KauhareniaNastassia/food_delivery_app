@@ -1,0 +1,25 @@
+name: domain
+version: 0.0.1
+publish_to: none
+description: Project domain module
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../core
+
+  freezed_annotation: ^2.2.0
+  json_annotation: ^4.8.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  json_serializable: ^6.7.0
+  build_runner: ^2.4.5
+  freezed: ^2.3.5
