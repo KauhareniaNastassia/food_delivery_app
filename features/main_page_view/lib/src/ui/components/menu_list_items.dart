@@ -1,15 +1,19 @@
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:flutter/material.dart';
 
-import '../../core_ui.dart';
+import 'menu_item.dart';
 
-class ListMenuItems extends StatelessWidget {
+class MenuListItems extends StatelessWidget {
   final List<MenuItemModel> menu;
 
-  const ListMenuItems({Key? key, required this.menu}) : super(key: key);
+  const MenuListItems({
+    Key? key,
+    required this.menu,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
@@ -18,7 +22,9 @@ class ListMenuItems extends StatelessWidget {
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
-          child: MenuItem(key: ValueKey(menu[index].id), menuItem: menu[index]),
+          child: MenuItem(
+              key: ValueKey(menu[index].id),
+              menuItemModel: menu[index]),
         );
       },
     );

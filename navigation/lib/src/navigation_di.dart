@@ -4,5 +4,8 @@ import 'package:domain/usecases/fetch_menu_items_usecase.dart';
 
 void setupNavigationDependencies() {
   instance.registerLazySingleton<FetchMenuItemsUseCase>(
-      () => FetchMenuItemsUseCase(menuRepository: MenuRepositoryImpl()));
+    () => FetchMenuItemsUseCase(
+      menuRepository: MenuRepositoryImpl(),
+    ),
+  );
 }

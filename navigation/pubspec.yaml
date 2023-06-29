@@ -26,7 +26,3 @@ dev_dependencies:
   dart_code_metrics: ^5.7.5
   auto_route_generator: ^7.1.1
   build_runner: ^2.4.5
-
-
-
-flutter:

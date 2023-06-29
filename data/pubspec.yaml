@@ -28,7 +28,3 @@ dev_dependencies:
   json_serializable: ^6.7.0
   build_runner: ^2.4.5
   freezed: ^2.3.5
-
-
-flutter:
-

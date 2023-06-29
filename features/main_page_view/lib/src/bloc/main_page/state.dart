@@ -17,4 +17,3 @@ class MenuErrorState extends MenuState {
 
   MenuErrorState({required this.errorMessage});
 }
-//new

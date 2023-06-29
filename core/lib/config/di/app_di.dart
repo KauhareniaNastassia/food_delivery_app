@@ -3,11 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:navigation/navigation.dart';
 
 final AppDI appDI = AppDI();
-final instance = GetIt.instance;
+final GetIt instance = GetIt.instance;
 
 class AppDI {
   void initDependencies() {
-    final fireStore = FirebaseFirestore.instance;
+    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
     instance.registerLazySingleton<FirebaseFirestore>(() => fireStore);
 
     setupNavigationDependencies();

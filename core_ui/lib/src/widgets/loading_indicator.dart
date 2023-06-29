@@ -8,20 +8,21 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
+        children: <Widget>[
           const SpinKitSpinningLines(
             color: AppColors.primaryColor,
-            size: 100,
           ),
           const SizedBox(height: 30),
           Text(
             'Loading',
-            style:
-                AppTextStyles.size22Weight600Text(AppColors.primaryDarkColor),
+            style: AppTextStyles.size22WeightSemiBoldText(
+              AppColors.primaryDarkColor,
+            ),
           )
         ],
       ),

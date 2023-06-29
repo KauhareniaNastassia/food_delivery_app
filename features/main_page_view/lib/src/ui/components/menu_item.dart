@@ -2,44 +2,50 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:flutter/material.dart';
 
-class MenuItem extends StatelessWidget {
-  final MenuItemModel menuItem;
+import 'item_list_button.dart';
 
-  const MenuItem({Key? key, required this.menuItem}) : super(key: key);
+class MenuItem extends StatelessWidget {
+  final MenuItemModel menuItemModel;
+
+  const MenuItem({
+    Key? key,
+    required this.menuItemModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
+    final Size size = MediaQuery.sizeOf(context);
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Stack(
-        children: [
+        children: <Widget>[
           Align(
             alignment: Alignment.centerRight,
             child: Container(
               height: size.height / 6,
-              width: size.width / 1.2,
+              width: size.width / 1.1,
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
                 borderRadius: AppStyles.largeBorderRadius,
                 color: AppColors.backgroundItemColor,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 120),
+              child: Align(
+                alignment: Alignment.center,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: <Widget>[
                     Text(
-                      menuItem.title,
-                      style: AppTextStyles.size18Weight600Text(
-                          AppColors.titleTextColor),
+                      menuItemModel.title,
+                      style: AppTextStyles.size18WeightSemiBoldText(
+                          AppColors.titleTextColor,
+                      ),
                     ),
                     const SizedBox(height: 60),
                     Text(
-                      "\$${menuItem.cost}",
-                      style: AppTextStyles.size22Weight600Text(
+                      "\$${menuItemModel.cost}",
+                      style: AppTextStyles.size22WeightSemiBoldText(
                         AppColors.primaryColor,
                       ),
                     ),
@@ -49,27 +55,24 @@ class MenuItem extends StatelessWidget {
             ),
           ),
           Container(
-            height: 145,
-            width: 140,
+            height: size.height / 6,
+            width: size.width / 2.8,
             decoration: BoxDecoration(
               color: AppColors.backgroundItemColor,
               borderRadius: BorderRadius.circular(100),
               boxShadow: [AppStyles.boxShadow],
             ),
             child: ClipOval(
-              child: menuItem.image == ''
+              child: menuItemModel.image == ''
                   ? const ImagePlaceholder(
-                      height: 145,
-                      width: 140,
                       iconData: Icons.fastfood_rounded,
                       iconSize: 50,
                     )
                   : Image.network(
-                      menuItem.image,
+                      menuItemModel.image,
                     ),
             ),
           ),
-          //ItemListButton(onTap: () {}),
           Positioned(
             right: 5,
             bottom: 0,

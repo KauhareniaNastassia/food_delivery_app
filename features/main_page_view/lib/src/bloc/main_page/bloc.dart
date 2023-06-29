@@ -8,40 +8,20 @@ part 'state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final FetchMenuItemsUseCase _fetchMenuItemsUseCase;
-  late List<MenuItemModel> menu = <MenuItemModel>[];
 
   MenuBloc({required FetchMenuItemsUseCase fetchMenuItemsUseCase})
       : _fetchMenuItemsUseCase = fetchMenuItemsUseCase,
         super(EmptyState()) {
-    on<InitEvent>(_initMenu);
+    on<InitEvent>(_onLoadMenu);
   }
 
-  void _initMenu(InitEvent event, Emitter<MenuState> emit) {
-    _loadMenu();
-  }
-
-  Future<void> _loadMenu() async {
+  Future<void> _onLoadMenu(InitEvent event, Emitter<MenuState> emit) async {
     emit(MenuLoadingState());
     try {
-      menu = await _fetchMenuItemsUseCase.execute(const NoParams());
+      final List<MenuItemModel> menu = await _fetchMenuItemsUseCase.execute(const NoParams());
       emit(MenuLoadedState(menu: menu));
     } catch (e, _) {
       emit(MenuErrorState(errorMessage: e.toString()));
     }
   }
 }
-
-//new
-
-/*
-MainPageBloc(
-{required FetchMenuItemsUseCase fetchMenuItemsUseCase}
-) : _fetchMenuItemsUseCase = fetchMenuItemsUseCase,
-super(EmptyState()) {
-try{
-on<InitEvent>(_init);
-}
-catch (e) {
-print('Exception during MainPageBloc initialization: $e');
-}
-}*/
