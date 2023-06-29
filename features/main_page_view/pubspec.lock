@@ -212,14 +212,14 @@ packages:
   core:
     dependency: "direct main"
     description:
-      path: core
+      path: "../../core"
       relative: true
     source: path
     version: "0.0.1"
   core_ui:
     dependency: "direct main"
     description:
-      path: core_ui
+      path: "../../core_ui"
       relative: true
     source: path
     version: "0.0.1"
@@ -231,14 +231,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      sha256: e35129dc44c9118cee2a5603506d823bab99c68393879edb440e0090d07586be
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.5"
   dart_style:
     dependency: transitive
     description:
@@ -250,7 +242,7 @@ packages:
   data:
     dependency: transitive
     description:
-      path: data
+      path: "../../data"
       relative: true
     source: path
     version: "0.0.1"
@@ -265,7 +257,7 @@ packages:
   domain:
     dependency: "direct main"
     description:
-      path: domain
+      path: "../../domain"
       relative: true
     source: path
     version: "0.0.1"
@@ -286,7 +278,7 @@ packages:
     source: hosted
     version: "7.0.0"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       sha256: a4a99204da264a0aa9d54a332ea0315ce7b0768075139c77abefe98093dd98be
@@ -452,13 +444,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  main_page_view:
-    dependency: transitive
-    description:
-      path: "features/main_page_view"
-      relative: true
-    source: path
-    version: "0.0.1"
   matcher:
     dependency: transitive
     description:
@@ -494,7 +479,7 @@ packages:
   navigation:
     dependency: "direct main"
     description:
-      path: navigation
+      path: "../../navigation"
       relative: true
     source: path
     version: "0.0.0"
