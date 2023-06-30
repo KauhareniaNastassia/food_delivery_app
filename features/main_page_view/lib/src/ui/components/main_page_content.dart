@@ -51,7 +51,7 @@ class _MainPageContentState extends State<MainPageContent> {
       ),
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: SingleChildScrollView(
             controller: _scrollController,
             child: Column(
