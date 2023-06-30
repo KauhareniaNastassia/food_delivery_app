@@ -28,8 +28,16 @@ class AppTextStyles {
 
   static TextStyle size22WeightSemiBoldText(Color color) {
     return TextStyle(
-      fontSize: 18,
+      fontSize: 22,
       fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle size24WeightBoldText(Color color) {
+    return TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
       color: color,
     );
   }

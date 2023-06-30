@@ -33,15 +33,11 @@ class ItemListButtonState extends State<ItemListButton> {
         child: CircleAvatar(
           minRadius: 13,
           backgroundColor: _isPressed
-              ? AppColors.backgroundItemColor
-              : AppColors.primaryColor,
+              ? Theme.of(context).canvasColor
+              : Theme.of(context).primaryColor,
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.primaryColor,
-                width: 2.0,
-              ),
             ),
             child: IconButton(
               onPressed: _toggleButton,
@@ -49,9 +45,7 @@ class ItemListButtonState extends State<ItemListButton> {
                 _isPressed
                     ? Icons.shopping_cart
                     : Icons.shopping_cart_outlined,
-                color: _isPressed
-                    ? AppColors.primaryColor
-                    : AppColors.primaryButtonTextColor,
+                color: AppColors.primaryButtonTextColor,
               ),
             ),
           ),
