@@ -39,7 +39,7 @@ class _MainPageContentState extends State<MainPageContent> {
               icon: Icon(
                 _isPressed
                     ? Icons.brightness_2_outlined
-                    : Icons.brightness_4_outlined,
+                    : Icons.brightness_4_rounded,
               ),
               color: AppColors.backgroundColor,
               onPressed: () {
