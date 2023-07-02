@@ -1,7 +1,7 @@
-name: main_page_view
-description: Main page view feature
+name: order_history
+description: Order history module
 version: 0.0.1
-publish_to: none
+publish_to: 'none'
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -10,14 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  core:
-    path: ../../core
-  domain:
-    path: ../../domain
   core_ui:
     path: ../../core_ui
-  navigation:
-    path: ../../navigation
 
 dev_dependencies:
   flutter_test:

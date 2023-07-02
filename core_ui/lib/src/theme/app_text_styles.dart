@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
-
   static TextStyle size14WeightNormalText(Color color) {
     return TextStyle(
       fontSize: 14,

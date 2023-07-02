@@ -1,16 +1,15 @@
 import 'package:core/core.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
-class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
-  SwitchBloc() : super(const SwitchInitial(switchValue: false)) {
-    on<SwitchOnEvents>((event, emit) {
-      emit(const SwitchState(switchValue: true));
+class AppThemeBloc extends Bloc<AppThemeEvent, AppThemeState> {
+  AppThemeBloc() : super(const AppInitialThemeState(appThemeIsChanged: false)) {
+    on<LightAppThemeEvent>((event, emit) {
+      emit(const AppThemeState(appThemeIsChanged: true));
     });
-    on<SwitchOffEvents>((event, emit) {
-      emit(const SwitchState(switchValue: false));
+    on<DarkAppThemeEvent>((event, emit) {
+      emit(const AppThemeState(appThemeIsChanged: false));
     });
   }
 }

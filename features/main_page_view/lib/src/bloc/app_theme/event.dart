@@ -1,7 +1,7 @@
 part of 'bloc.dart';
 
-abstract class SwitchEvent {}
+abstract class AppThemeEvent {}
 
-class SwitchOnEvents extends SwitchEvent {}
+class LightAppThemeEvent extends AppThemeEvent {}
 
-class SwitchOffEvents extends SwitchEvent {}
+class DarkAppThemeEvent extends AppThemeEvent {}

@@ -28,7 +28,7 @@ class MenuItem extends StatelessWidget {
               alignment: Alignment.centerLeft,
               decoration: BoxDecoration(
                 borderRadius: AppStyles.largeBorderRadius,
-                color: AppColors.backgroundItemColor,
+                color: Theme.of(context).cardColor,
               ),
               child: Align(
                 alignment: Alignment.center,
@@ -39,7 +39,7 @@ class MenuItem extends StatelessWidget {
                     Text(
                       menuItemModel.title,
                       style: AppTextStyles.size18WeightSemiBoldText(
-                          AppColors.titleTextColor,
+                        AppColors.titleTextColor,
                       ),
                     ),
                     const SizedBox(height: 60),

@@ -1,14 +1,14 @@
 part of 'bloc.dart';
 
-class SwitchState {
-  final bool switchValue;
+class AppThemeState {
+  final bool appThemeIsChanged;
 
-  const SwitchState({
-    required this.switchValue,
+  const AppThemeState({
+    required this.appThemeIsChanged,
   });
 }
 
-class SwitchInitial extends SwitchState {
-  const SwitchInitial({required bool switchValue})
-      : super(switchValue: switchValue);
+class AppInitialThemeState extends AppThemeState {
+  const AppInitialThemeState({required bool appThemeIsChanged})
+      : super(appThemeIsChanged: appThemeIsChanged);
 }

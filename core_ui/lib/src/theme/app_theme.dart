@@ -7,6 +7,7 @@ class AppTheme {
     useMaterial3: true,
     primaryColor: AppColors.primaryColor,
     canvasColor: AppColors.secondaryColor,
+    cardColor: AppColors.backgroundItemColor,
 
     /// app bar styles
     appBarTheme:  AppBarTheme(
@@ -16,18 +17,19 @@ class AppTheme {
     ),
 
     /// navigation bar styles
-    navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: AppColors.backgroundColor,
-      indicatorColor: AppColors.primaryColor.withOpacity(0.1),
-      surfaceTintColor: Colors.transparent,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.backgroundBottomNavigationBarColor,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: AppColors.unselectedItemColor,
     ),
   );
 
   ThemeData darkThemeData = ThemeData(
     scaffoldBackgroundColor: AppColors.backgroundDarkColor,
     useMaterial3: true,
-    primaryColor: AppColors.primaryDarkColor,
-    canvasColor: AppColors.secondaryDarkColor,
+    primaryColor: AppColors.primaryColor,
+    canvasColor: AppColors.secondaryColor,
+    cardColor: AppColors.backgroundItemDarkColor,
 
     /// app bar styles
     appBarTheme:  AppBarTheme(
@@ -37,10 +39,10 @@ class AppTheme {
     ),
 
     /// navigation bar styles
-    navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: AppColors.backgroundColor,
-      indicatorColor: AppColors.primaryColor.withOpacity(0.1),
-      surfaceTintColor: Colors.transparent,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.primaryDarkColor,
+      selectedItemColor: AppColors.primaryColor,
+      unselectedItemColor: AppColors.primaryButtonTextColor,
     ),
   );
 }
