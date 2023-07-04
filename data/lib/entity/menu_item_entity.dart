@@ -10,6 +10,8 @@ class MenuItemEntity with _$MenuItemEntity {
     required String title,
     required double cost,
     required String image,
+    required String description,
+    required List<String> ingredients,
   }) = _MenuItemEntity;
 
   factory MenuItemEntity.fromJson(Map<String, Object?> json) =>

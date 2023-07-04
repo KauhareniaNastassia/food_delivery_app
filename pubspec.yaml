@@ -22,7 +22,7 @@ dependencies:
   navigation:
     path: ./navigation
   main_page_view:
-      path: ./features/main_page_view
+    path: ./features/main_page_view
 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.14.0
@@ -41,3 +41,15 @@ flutter:
 
   assets:
     - assets/image/
+
+  fonts:
+    - family: Merriweather
+      fonts:
+        - asset: assets/fonts/Merriweather-Black.ttf
+        - asset: assets/fonts/Merriweather-BlackItalic.ttf
+        - asset: assets/fonts/Merriweather-Bold.ttf
+        - asset: assets/fonts/Merriweather-BoldItalic.ttf
+        - asset: assets/fonts/Merriweather-Italic.ttf
+        - asset: assets/fonts/Merriweather-Light.ttf
+        - asset: assets/fonts/Merriweather-LightItalic.ttf
+        - asset: assets/fonts/Merriweather-Regular.ttf

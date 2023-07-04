@@ -30,10 +30,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
-        MainRouteScreen(),
-        ShoppingCartRouteContent(),
-        OrderHistoryRouteContent(),
-        SettingsRouteContent(),
+        MainPageScreenRoute(),
+        ShoppingCartPageContentRoute(),
+        OrderHistoryPageContentRoute(),
+        SettingsPageContentRoute(),
       ],
       appBarBuilder: (_, tabsRouter) {
         return CustomAppBar(

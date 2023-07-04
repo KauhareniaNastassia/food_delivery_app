@@ -19,8 +19,8 @@ class OrderHistoryPageContent extends StatelessWidget {
           ),
           Text(
             'Order history coming soon',
-            style:
-                AppTextStyles.size18WeightSemiBoldText(AppColors.primaryColor),
+            style: AppTextStyles.size18WeightSemiBoldText(
+                Theme.of(context).primaryColor),
           ),
         ],
       ),

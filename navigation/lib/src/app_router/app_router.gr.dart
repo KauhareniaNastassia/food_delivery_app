@@ -17,31 +17,41 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    MainRoute.name: (routeData) {
+    MainPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const MainPage(),
       );
     },
-    MainRouteScreen.name: (routeData) {
+    MenuItemDetailsScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<MenuItemDetailsScreenRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: MenuItemDetailsScreen(
+          menuItem: args.menuItem,
+          key: args.key,
+        ),
+      );
+    },
+    MainPageScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const MainPageScreen(),
       );
     },
-    OrderHistoryRouteContent.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const OrderHistoryPageContent(),
-      );
-    },
-    ShoppingCartRouteContent.name: (routeData) {
+    ShoppingCartPageContentRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const ShoppingCartPageContent(),
       );
     },
-    SettingsRouteContent.name: (routeData) {
+    OrderHistoryPageContentRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const OrderHistoryPageContent(),
+      );
+    },
+    SettingsPageContentRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const SettingsPageContent(),
@@ -52,91 +62,130 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          MainRoute.name,
+          MainPageRoute.name,
           path: '/',
           children: [
             RouteConfig(
-              MainRouteScreen.name,
+              MainPageScreenRoute.name,
               path: '',
-              parent: MainRoute.name,
+              parent: MainPageRoute.name,
             ),
             RouteConfig(
-              OrderHistoryRouteContent.name,
-              path: 'order-history-page-content',
-              parent: MainRoute.name,
-            ),
-            RouteConfig(
-              ShoppingCartRouteContent.name,
+              ShoppingCartPageContentRoute.name,
               path: 'shopping-cart-page-content',
-              parent: MainRoute.name,
+              parent: MainPageRoute.name,
             ),
             RouteConfig(
-              SettingsRouteContent.name,
+              OrderHistoryPageContentRoute.name,
+              path: 'order-history-page-content',
+              parent: MainPageRoute.name,
+            ),
+            RouteConfig(
+              SettingsPageContentRoute.name,
               path: 'settings-page-content',
-              parent: MainRoute.name,
+              parent: MainPageRoute.name,
             ),
           ],
-        )
+        ),
+        RouteConfig(
+          MenuItemDetailsScreenRoute.name,
+          path: '/menu-item-details-screen',
+        ),
       ];
 }
 
 /// generated route for
 /// [MainPage]
-class MainRoute extends PageRouteInfo<void> {
-  const MainRoute({List<PageRouteInfo>? children})
+class MainPageRoute extends PageRouteInfo<void> {
+  const MainPageRoute({List<PageRouteInfo>? children})
       : super(
-          MainRoute.name,
+          MainPageRoute.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'MainRoute';
+  static const String name = 'MainPageRoute';
+}
+
+/// generated route for
+/// [MenuItemDetailsScreen]
+class MenuItemDetailsScreenRoute
+    extends PageRouteInfo<MenuItemDetailsScreenRouteArgs> {
+  MenuItemDetailsScreenRoute({
+    required MenuItemModel menuItem,
+    Key? key,
+  }) : super(
+          MenuItemDetailsScreenRoute.name,
+          path: '/menu-item-details-screen',
+          args: MenuItemDetailsScreenRouteArgs(
+            menuItem: menuItem,
+            key: key,
+          ),
+        );
+
+  static const String name = 'MenuItemDetailsScreenRoute';
+}
+
+class MenuItemDetailsScreenRouteArgs {
+  const MenuItemDetailsScreenRouteArgs({
+    required this.menuItem,
+    this.key,
+  });
+
+  final MenuItemModel menuItem;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'MenuItemDetailsScreenRouteArgs{menuItem: $menuItem, key: $key}';
+  }
 }
 
 /// generated route for
 /// [MainPageScreen]
-class MainRouteScreen extends PageRouteInfo<void> {
-  const MainRouteScreen()
+class MainPageScreenRoute extends PageRouteInfo<void> {
+  const MainPageScreenRoute()
       : super(
-          MainRouteScreen.name,
+          MainPageScreenRoute.name,
           path: '',
         );
 
-  static const String name = 'MainRouteScreen';
-}
-
-/// generated route for
-/// [OrderHistoryPageContent]
-class OrderHistoryRouteContent extends PageRouteInfo<void> {
-  const OrderHistoryRouteContent()
-      : super(
-          OrderHistoryRouteContent.name,
-          path: 'order-history-page-content',
-        );
-
-  static const String name = 'OrderHistoryRouteContent';
+  static const String name = 'MainPageScreenRoute';
 }
 
 /// generated route for
 /// [ShoppingCartPageContent]
-class ShoppingCartRouteContent extends PageRouteInfo<void> {
-  const ShoppingCartRouteContent()
+class ShoppingCartPageContentRoute extends PageRouteInfo<void> {
+  const ShoppingCartPageContentRoute()
       : super(
-          ShoppingCartRouteContent.name,
+          ShoppingCartPageContentRoute.name,
           path: 'shopping-cart-page-content',
         );
 
-  static const String name = 'ShoppingCartRouteContent';
+  static const String name = 'ShoppingCartPageContentRoute';
+}
+
+/// generated route for
+/// [OrderHistoryPageContent]
+class OrderHistoryPageContentRoute extends PageRouteInfo<void> {
+  const OrderHistoryPageContentRoute()
+      : super(
+          OrderHistoryPageContentRoute.name,
+          path: 'order-history-page-content',
+        );
+
+  static const String name = 'OrderHistoryPageContentRoute';
 }
 
 /// generated route for
 /// [SettingsPageContent]
-class SettingsRouteContent extends PageRouteInfo<void> {
-  const SettingsRouteContent()
+class SettingsPageContentRoute extends PageRouteInfo<void> {
+  const SettingsPageContentRoute()
       : super(
-          SettingsRouteContent.name,
+          SettingsPageContentRoute.name,
           path: 'settings-page-content',
         );
 
-  static const String name = 'SettingsRouteContent';
+  static const String name = 'SettingsPageContentRoute';
 }

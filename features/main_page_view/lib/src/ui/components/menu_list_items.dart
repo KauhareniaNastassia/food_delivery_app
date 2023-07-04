@@ -1,5 +1,6 @@
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:navigation/navigation.dart';
 
 import 'menu_item.dart';
 
@@ -13,7 +14,6 @@ class MenuListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
@@ -23,8 +23,16 @@ class MenuListItems extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: MenuItem(
-              key: ValueKey(menu[index].id),
-              menuItemModel: menu[index]),
+            key: ValueKey(menu[index].id),
+            menuItemModel: menu[index],
+            onTap: () {
+              context.navigateTo(
+                MenuItemDetailsScreenRoute(
+                  menuItem: menu[index],
+                ),
+              );
+            },
+          ),
         );
       },
     );

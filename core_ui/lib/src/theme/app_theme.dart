@@ -8,12 +8,28 @@ class AppTheme {
     primaryColor: AppColors.primaryColor,
     canvasColor: AppColors.secondaryColor,
     cardColor: AppColors.backgroundItemColor,
+    textTheme: TextTheme(
+      titleLarge: AppTextStyles.size20WeightSemiBoldText(
+        AppColors.titleTextColor,
+      ),
+      titleMedium: AppTextStyles.size18WeightSemiBoldText(
+        AppColors.secondaryColor,
+      ),
+      titleSmall: AppTextStyles.size16WeightMediumText(
+        AppColors.titleDarkGreyTextColor,
+      ),
+      bodyMedium: AppTextStyles.size16WeightSemiBoldText(
+        AppColors.secondaryColor,
+      ),
+    ),
 
     /// app bar styles
-    appBarTheme:  AppBarTheme(
+    appBarTheme: AppBarTheme(
       titleSpacing: 30,
       backgroundColor: AppColors.primaryColor,
-      titleTextStyle: AppTextStyles.size24WeightBoldText(AppColors.primaryButtonTextColor),
+      titleTextStyle: AppTextStyles.size24WeightBoldText(
+        AppColors.primaryButtonTextColor,
+      ),
     ),
 
     /// navigation bar styles
@@ -27,21 +43,37 @@ class AppTheme {
   ThemeData darkThemeData = ThemeData(
     scaffoldBackgroundColor: AppColors.backgroundDarkColor,
     useMaterial3: true,
-    primaryColor: AppColors.primaryColor,
+    primaryColor: AppColors.primaryLightColor,
     canvasColor: AppColors.secondaryColor,
     cardColor: AppColors.backgroundItemDarkColor,
+    textTheme: TextTheme(
+      titleLarge: AppTextStyles.size20WeightSemiBoldText(
+        AppColors.titleLightTextColor,
+      ),
+      titleMedium: AppTextStyles.size18WeightSemiBoldText(
+        AppColors.secondaryDarkColor,
+      ),
+      titleSmall: AppTextStyles.size16WeightMediumText(
+        AppColors.titleGreyTextColor,
+      ),
+      bodyMedium: AppTextStyles.size16WeightSemiBoldText(
+        AppColors.secondaryDarkColor,
+      ),
+    ),
 
     /// app bar styles
-    appBarTheme:  AppBarTheme(
+    appBarTheme: AppBarTheme(
       titleSpacing: 30,
       backgroundColor: AppColors.primaryDarkColor,
-      titleTextStyle: AppTextStyles.size24WeightBoldText(AppColors.primaryButtonTextColor),
+      titleTextStyle: AppTextStyles.size24WeightBoldText(
+        AppColors.primaryButtonTextColor,
+      ),
     ),
 
     /// navigation bar styles
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColors.primaryDarkColor,
-      selectedItemColor: AppColors.primaryColor,
+      selectedItemColor: AppColors.primaryLightColor,
       unselectedItemColor: AppColors.primaryButtonTextColor,
     ),
   );

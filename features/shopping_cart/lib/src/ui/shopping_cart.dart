@@ -20,7 +20,7 @@ class ShoppingCartPageContent extends StatelessWidget {
           Text(
             'Shopping cart coming soon',
             style: AppTextStyles.size18WeightSemiBoldText(
-              AppColors.primaryColor,
+              Theme.of(context).primaryColor,
             ),
           ),
         ],

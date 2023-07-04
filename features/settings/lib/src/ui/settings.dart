@@ -20,7 +20,7 @@ class SettingsPageContent extends StatelessWidget {
           Text(
             'Settings coming soon',
             style: AppTextStyles.size18WeightSemiBoldText(
-              AppColors.primaryColor,
+              Theme.of(context).primaryColor,
             ),
           ),
         ],
