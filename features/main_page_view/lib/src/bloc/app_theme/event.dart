@@ -4,4 +4,5 @@ abstract class AppThemeEvent {}
 
 class AppThemeChangingEvent extends AppThemeEvent {
   AppThemeChangingEvent();
+
 }
