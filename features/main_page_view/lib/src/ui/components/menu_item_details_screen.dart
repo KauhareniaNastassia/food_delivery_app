@@ -88,7 +88,7 @@ class MenuItemDetailsScreen extends StatelessWidget {
                 height: size.height * 0.6,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,7 +151,7 @@ class MenuItemDetailsScreen extends StatelessWidget {
                           )
                         : Center(
                             child: Text(
-                              "No ingredients available",
+                              'No ingredients available',
                               style: AppTextStyles.size14WeightNormalText(
                                 AppColors.primaryColor,
                               ),

@@ -52,7 +52,7 @@ class MenuItem extends StatelessWidget {
                           ),
                           const SizedBox(height: 40),
                           Text(
-                            "\$${menuItemModel.cost}",
+                            '\$${menuItemModel.cost}',
                             style: AppTextStyles.size22WeightSemiBoldText(
                               Theme.of(context).primaryColor,
                             ),
