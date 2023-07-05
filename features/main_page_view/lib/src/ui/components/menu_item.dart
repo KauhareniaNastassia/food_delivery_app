@@ -38,27 +38,22 @@ class MenuItem extends StatelessWidget {
                   ),
                   child: Align(
                     alignment: Alignment.center,
-                    child: Container(
-                      width: size.width / 2,
-                      padding: const EdgeInsets.only(left: 40),
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            menuItemModel.title,
-                            style: Theme.of(context).textTheme.titleLarge,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          menuItemModel.title,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 40),
+                        Text(
+                          "\$${menuItemModel.cost}",
+                          style: AppTextStyles.size22WeightSemiBoldText(
+                            Theme.of(context).primaryColor,
                           ),
-                          const SizedBox(height: 40),
-                          Text(
-                            "\$${menuItemModel.cost}",
-                            style: AppTextStyles.size22WeightSemiBoldText(
-                              Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
