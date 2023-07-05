@@ -30,7 +30,7 @@ class MenuItem extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: Container(
                   height: size.height / 6,
-                  width: size.width / 1.1,
+                  width: size.width / 1.2,
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     borderRadius: AppStyles.largeBorderRadius,
@@ -38,22 +38,27 @@ class MenuItem extends StatelessWidget {
                   ),
                   child: Align(
                     alignment: Alignment.center,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          menuItemModel.title,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                        const SizedBox(height: 40),
-                        Text(
-                          "\$${menuItemModel.cost}",
-                          style: AppTextStyles.size22WeightSemiBoldText(
-                            Theme.of(context).primaryColor,
+                    child: Container(
+                      width: size.width / 2,
+                      padding: const EdgeInsets.only(left: 40),
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            menuItemModel.title,
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 40),
+                          Text(
+                            "\$${menuItemModel.cost}",
+                            style: AppTextStyles.size22WeightSemiBoldText(
+                              Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

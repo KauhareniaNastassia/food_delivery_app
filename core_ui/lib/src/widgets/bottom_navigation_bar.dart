@@ -19,11 +19,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.shopping_cart_outlined),
-        label: 'Shopping Cart',
+        label: 'Cart',
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.history_outlined),
-        label: 'Orders history',
+        label: 'Orders',
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.settings),
