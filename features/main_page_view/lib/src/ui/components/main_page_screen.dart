@@ -1,4 +1,3 @@
-import 'package:core/config/di/app_di.dart';
 import 'package:core/core.dart';
 import 'package:domain/usecases/fetch_menu_items_usecase.dart';
 import 'package:flutter/cupertino.dart';

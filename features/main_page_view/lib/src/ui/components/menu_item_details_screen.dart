@@ -85,7 +85,7 @@ class MenuItemDetailsScreen extends StatelessWidget {
                   40,
                 ),
                 color: Theme.of(context).cardColor,
-                height: size.height * 0.5,
+                height: size.height * 0.6,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

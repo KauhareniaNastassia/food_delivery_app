@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:domain/usecases/fetch_menu_items_usecase.dart';
@@ -21,6 +23,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       final List<MenuItemModel> menu = await _fetchMenuItemsUseCase.execute(const NoParams());
       emit(MenuLoadedState(menu: menu));
     } catch (e, _) {
+      log(e.toString());
       emit(MenuErrorState(errorMessage: e.toString()));
     }
   }
