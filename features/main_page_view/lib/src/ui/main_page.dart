@@ -1,9 +1,6 @@
-import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
-
-import '../bloc/bloc.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,19 +10,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  bool _isPressed = false;
-
-  void _toggleButton() {
-    setState(() {
-      _isPressed = !_isPressed;
-    });
-    context.read<AppThemeBloc>().add(
-          context.read<AppThemeBloc>().state.appThemeIsChanged
-              ? DarkAppThemeEvent()
-              : LightAppThemeEvent(),
-        );
-  }
-
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
@@ -36,10 +20,7 @@ class _MainPageState extends State<MainPage> {
         SettingsPageContentRoute(),
       ],
       appBarBuilder: (_, tabsRouter) {
-        return CustomAppBar(
-          isPressed: _isPressed,
-          toggleButton: _toggleButton,
-        );
+        return const CustomAppBar();
       },
       bottomNavigationBuilder: (_, tabsRouter) {
         return CustomBottomNavigationBar(

@@ -17,17 +17,17 @@ class MenuItemDetailsScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Material(
-          color: Theme.of(context).cardColor, // Replace with desired color
+          color: Theme.of(context).cardColor,
           child: Container(
             padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
             child: PrimaryButton(
-              buttonTitle: "Add to cart",
+              buttonTitle: 'Add to cart',
               onTap: () {},
             ),
           ),
         ),
         body: CustomScrollView(
-          slivers: [
+          slivers: <Widget>[
             SliverAppBar(
               leading: IconButton(
                 onPressed: () {
@@ -39,9 +39,9 @@ class MenuItemDetailsScreen extends StatelessWidget {
               ),
               expandedHeight: size.height * 0.4,
               flexibleSpace: Stack(
-                children: [
+                children: <Widget>[
                   FlexibleSpaceBar(
-                    background: menuItem.image != ''
+                    background: menuItem.image.isNotEmpty
                         ? Image.network(
                             menuItem.image,
                             fit: BoxFit.cover,
@@ -93,7 +93,7 @@ class MenuItemDetailsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Expanded(
                           child: Text(
                             menuItem.title,
@@ -101,7 +101,7 @@ class MenuItemDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "\$${menuItem.cost}",
+                          '\$${menuItem.cost}',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ],
@@ -109,15 +109,14 @@ class MenuItemDetailsScreen extends StatelessWidget {
 
                     ///description
                     const SizedBox(height: 20),
-                    menuItem.description != '' &&
-                            menuItem.description.isNotEmpty
+                    menuItem.description.isNotEmpty
                         ? Text(
                             menuItem.description,
                             style: Theme.of(context).textTheme.titleSmall,
                           )
                         : Center(
                             child: Text(
-                              "No description available",
+                              'No description available',
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
                           ),

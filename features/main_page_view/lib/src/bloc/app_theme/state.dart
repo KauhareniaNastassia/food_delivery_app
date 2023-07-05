@@ -1,14 +1,15 @@
 part of 'bloc.dart';
 
 class AppThemeState {
-  final bool appThemeIsChanged;
+  final bool isLight;
 
   const AppThemeState({
-    required this.appThemeIsChanged,
+    required this.isLight,
   });
-}
 
-class AppInitialThemeState extends AppThemeState {
-  const AppInitialThemeState({required bool appThemeIsChanged})
-      : super(appThemeIsChanged: appThemeIsChanged);
+  AppThemeState copyWith({required bool isLight}) {
+    return AppThemeState(
+      isLight: isLight,
+    );
+  }
 }
