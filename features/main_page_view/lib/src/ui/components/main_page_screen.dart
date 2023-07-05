@@ -1,19 +1,13 @@
-import 'package:core/config/di/app_di.dart';
 import 'package:core/core.dart';
 import 'package:domain/usecases/fetch_menu_items_usecase.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:main_page_view/src/ui/components/main_page_content.dart';
 
-import '../bloc/bloc.dart';
-import 'components/main_page_content.dart';
+import '../../../main_page.dart';
 
-class MainPageScreen extends StatefulWidget {
+class MainPageScreen extends StatelessWidget {
   const MainPageScreen({Key? key}) : super(key: key);
 
-  @override
-  State<MainPageScreen> createState() => _MainPageScreenState();
-}
-
-class _MainPageScreenState extends State<MainPageScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<MenuBloc>(

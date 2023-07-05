@@ -17,6 +17,8 @@ dependencies:
     path: ../core
   domain:
     path: ../domain
+  main_page_view:
+    path: ../features/main_page_view
   navigation:
     path: ../navigation
 

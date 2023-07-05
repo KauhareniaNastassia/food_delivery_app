@@ -20,7 +20,7 @@ class _MainPageContentState extends State<MainPageContent> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           child: SingleChildScrollView(
             controller: _scrollController,
             child: Column(

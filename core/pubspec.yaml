@@ -18,10 +18,11 @@ dependencies:
     path: ../navigation
 
   cloud_firestore: ^4.8.1
+  firebase_core: ^2.14.0
 
   get_it: ^7.6.0
   flutter_bloc: ^8.1.2
-  auto_route_generator: ^7.1.1
+
 
 dev_dependencies:
   flutter_test:

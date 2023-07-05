@@ -9,14 +9,19 @@ abstract class MenuItemMapper {
       title: model.title,
       cost: model.cost,
       image: model.image,
+      description: model.description,
+      ingredients: model.ingredients,
     );
   }
 
   static MenuItemModel toModel(MenuItemEntity entity) {
     return MenuItemModel(
-        id: entity.id,
-        title: entity.title,
-        cost: entity.cost,
-        image: entity.image);
+      id: entity.id,
+      title: entity.title,
+      cost: entity.cost,
+      image: entity.image,
+      description: entity.description,
+      ingredients: entity.ingredients,
+    );
   }
 }

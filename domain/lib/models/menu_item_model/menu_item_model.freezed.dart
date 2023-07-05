@@ -20,6 +20,8 @@ mixin _$MenuItemModel {
   String get title => throw _privateConstructorUsedError;
   double get cost => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  List<String> get ingredients => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenuItemModelCopyWith<MenuItemModel> get copyWith =>
@@ -32,7 +34,13 @@ abstract class $MenuItemModelCopyWith<$Res> {
           MenuItemModel value, $Res Function(MenuItemModel) then) =
       _$MenuItemModelCopyWithImpl<$Res, MenuItemModel>;
   @useResult
-  $Res call({int id, String title, double cost, String image});
+  $Res call(
+      {int id,
+      String title,
+      double cost,
+      String image,
+      String description,
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -52,6 +60,8 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
     Object? title = null,
     Object? cost = null,
     Object? image = null,
+    Object? description = null,
+    Object? ingredients = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -70,6 +80,14 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value.ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -82,7 +100,13 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
       __$$_MenuItemModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, double cost, String image});
+  $Res call(
+      {int id,
+      String title,
+      double cost,
+      String image,
+      String description,
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -100,6 +124,8 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
     Object? title = null,
     Object? cost = null,
     Object? image = null,
+    Object? description = null,
+    Object? ingredients = null,
   }) {
     return _then(_$_MenuItemModel(
       id: null == id
@@ -118,6 +144,14 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
+          ? _value._ingredients
+          : ingredients // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -129,7 +163,10 @@ class _$_MenuItemModel implements _MenuItemModel {
       {required this.id,
       required this.title,
       required this.cost,
-      required this.image});
+      required this.image,
+      required this.description,
+      required final List<String> ingredients})
+      : _ingredients = ingredients;
 
   @override
   final int id;
@@ -139,10 +176,19 @@ class _$_MenuItemModel implements _MenuItemModel {
   final double cost;
   @override
   final String image;
+  @override
+  final String description;
+  final List<String> _ingredients;
+  @override
+  List<String> get ingredients {
+    if (_ingredients is EqualUnmodifiableListView) return _ingredients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_ingredients);
+  }
 
   @override
   String toString() {
-    return 'MenuItemModel(id: $id, title: $title, cost: $cost, image: $image)';
+    return 'MenuItemModel(id: $id, title: $title, cost: $cost, image: $image, description: $description, ingredients: $ingredients)';
   }
 
   @override
@@ -153,11 +199,16 @@ class _$_MenuItemModel implements _MenuItemModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.cost, cost) || other.cost == cost) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._ingredients, _ingredients));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, cost, image);
+  int get hashCode => Object.hash(runtimeType, id, title, cost, image,
+      description, const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +222,9 @@ abstract class _MenuItemModel implements MenuItemModel {
       {required final int id,
       required final String title,
       required final double cost,
-      required final String image}) = _$_MenuItemModel;
+      required final String image,
+      required final String description,
+      required final List<String> ingredients}) = _$_MenuItemModel;
 
   @override
   int get id;
@@ -181,6 +234,10 @@ abstract class _MenuItemModel implements MenuItemModel {
   double get cost;
   @override
   String get image;
+  @override
+  String get description;
+  @override
+  List<String> get ingredients;
   @override
   @JsonKey(ignore: true)
   _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>
