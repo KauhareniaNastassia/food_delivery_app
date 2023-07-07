@@ -16,6 +16,7 @@ _$_MenuItemEntity _$$_MenuItemEntityFromJson(Map<String, dynamic> json) =>
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      amount: json['amount'] as int,
     );
 
 Map<String, dynamic> _$$_MenuItemEntityToJson(_$_MenuItemEntity instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$_MenuItemEntityToJson(_$_MenuItemEntity instance) =>
       'image': instance.image,
       'description': instance.description,
       'ingredients': instance.ingredients,
+      'amount': instance.amount,
     };

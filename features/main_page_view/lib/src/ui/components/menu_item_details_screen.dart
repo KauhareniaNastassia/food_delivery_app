@@ -136,7 +136,7 @@ class MenuItemDetailsScreen extends StatelessWidget {
                             padding: const EdgeInsets.all(0),
                             itemBuilder: (context, index) {
                               return Row(
-                                children: [
+                                children: <Widget>[
                                   const SizedBox(width: 15),
                                   const CustomDotPoint(),
                                   const SizedBox(width: 10),

@@ -8,7 +8,6 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -17,7 +16,7 @@ class LoadingIndicator extends StatelessWidget {
           const SpinKitSpinningLines(
             color: AppColors.primaryColor,
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           Text(
             'Loading',
             style: AppTextStyles.size22WeightSemiBoldText(

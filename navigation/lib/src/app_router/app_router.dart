@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:main_page_view/main_page.dart';
 import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
-import 'package:shopping_cart/shopping_cart.dart';*/
+import 'package:shopping_cart/shopping_cart_content.dart';*/
 
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +29,7 @@ part 'app_router.gr.dart';
           initial: true,
         ),
         AutoRoute(
-          page:ShoppingCartPageContent,
+          page:ShoppingCartPageScreen,
         ),
         AutoRoute(
           page: OrderHistoryPageContent,

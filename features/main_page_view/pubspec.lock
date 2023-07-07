@@ -58,7 +58,7 @@ packages:
     source: hosted
     version: "1.1.1"
   cloud_firestore:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cloud_firestore
       sha256: "5bbc1f5bffa79af54ca035b92b57f81c6fb35ee5471ead67e29c8e12de8432f8"
@@ -322,7 +322,7 @@ packages:
     source: path
     version: "0.0.1"
   shopping_cart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../shopping_cart"
       relative: true

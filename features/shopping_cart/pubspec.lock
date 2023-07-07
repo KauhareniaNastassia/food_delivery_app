@@ -90,7 +90,7 @@ packages:
     source: hosted
     version: "1.17.1"
   core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../../core"
       relative: true
@@ -119,7 +119,7 @@ packages:
     source: hosted
     version: "4.0.6"
   domain:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../../domain"
       relative: true
@@ -245,7 +245,7 @@ packages:
     source: hosted
     version: "2.1.1"
   main_page_view:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../main_page_view"
       relative: true
@@ -276,7 +276,7 @@ packages:
     source: hosted
     version: "1.9.1"
   navigation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "../../navigation"
       relative: true

@@ -39,13 +39,13 @@ class PrimaryButtonState extends State<PrimaryButton> {
         },
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 14,
+            horizontal: 15,
+            vertical: 10,
           ),
           child: Text(
             widget.buttonTitle,
             textAlign: TextAlign.center,
-            style: AppTextStyles.size22WeightSemiBoldText(
+            style: AppTextStyles.size20WeightSemiBoldText(
               AppColors.primaryButtonTextColor,
             ),
           ),
