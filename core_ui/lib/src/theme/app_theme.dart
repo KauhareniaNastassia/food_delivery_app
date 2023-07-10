@@ -10,6 +10,7 @@ class AppTheme {
     cardColor: AppColors.backgroundItemColor,
     disabledColor: AppColors.unselectedItemColor,
 
+    /// text styles
     textTheme: TextTheme(
       titleLarge: AppTextStyles.size20WeightSemiBoldText(
         AppColors.titleTextColor,
@@ -53,6 +54,7 @@ class AppTheme {
     cardColor: AppColors.backgroundItemDarkColor,
     disabledColor: AppColors.titleDarkGreyTextColor,
 
+    /// text styles
     textTheme: TextTheme(
       titleLarge: AppTextStyles.size20WeightSemiBoldText(
         AppColors.titleLightTextColor,

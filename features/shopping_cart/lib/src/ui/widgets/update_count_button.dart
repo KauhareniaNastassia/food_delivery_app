@@ -2,14 +2,14 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class UpdateCountButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final IconData icon;
+
   const UpdateCountButton({
     super.key,
     required this.onPressed,
     required this.icon,
   });
-
-  final VoidCallback onPressed;
-  final IconData icon;
 
   @override
   Widget build(BuildContext context) {

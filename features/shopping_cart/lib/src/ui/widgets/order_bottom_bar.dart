@@ -18,39 +18,38 @@ class OrderBottomBar extends StatelessWidget {
           borderRadius: AppStyles.largeBorderRadius,
         ),
         child: Stack(
-          children: [
+          children: <Widget>[
             Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Total price',
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        Text(
-                          '\$${totalPrice.toStringAsFixed(2)}',
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: PrimaryButton(
-                          buttonTitle: 'Make an order',
-                          onPressed: () {},
-                        ),
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Total price',
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                      Text(
+                        '\$${totalPrice.toStringAsFixed(2)}',
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ],
-                  )
-                ],
-              ),
-
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: PrimaryButton(
+                        buttonTitle: 'Make an order',
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ],
         ),
       ),

@@ -23,5 +23,9 @@ class ShoppingCartModel {
     );
   }
 
-  List<Object?> get props => [shoppingCartItems, totalPrice, addCutlery];
+  List<Object?> get props => [
+        shoppingCartItems,
+        totalPrice,
+        addCutlery,
+      ];
 }

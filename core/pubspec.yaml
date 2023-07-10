@@ -23,7 +23,6 @@ dependencies:
   get_it: ^7.6.0
   flutter_bloc: ^8.1.2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

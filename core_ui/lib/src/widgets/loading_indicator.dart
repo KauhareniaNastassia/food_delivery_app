@@ -16,7 +16,7 @@ class LoadingIndicator extends StatelessWidget {
           const SpinKitSpinningLines(
             color: AppColors.primaryColor,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           Text(
             'Loading',
             style: AppTextStyles.size22WeightSemiBoldText(
