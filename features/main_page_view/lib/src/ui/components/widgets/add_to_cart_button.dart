@@ -1,13 +1,13 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryButton extends StatelessWidget {
+class AddToCartButton extends StatelessWidget {
   final VoidCallback onPressed;
-  final String buttonTitle;
+  final bool isItemInCart;
 
-  const PrimaryButton({
+  const AddToCartButton({
     required this.onPressed,
-    required this.buttonTitle,
+    required this.isItemInCart,
     super.key,
   });
 
@@ -16,14 +16,15 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-          primary: AppColors.primaryColor,
+          primary:
+              isItemInCart ? AppColors.secondaryColor : AppColors.primaryColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
           )),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Text(
-          buttonTitle,
+          isItemInCart ? 'Is in cart' : 'Add to cart',
           textAlign: TextAlign.center,
           style: AppTextStyles.size22WeightSemiBoldText(
             AppColors.primaryButtonTextColor,

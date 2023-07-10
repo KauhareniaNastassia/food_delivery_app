@@ -2,11 +2,13 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class ItemListButton extends StatefulWidget {
-  final VoidCallback onTap;
+  final VoidCallback onPressed;
+  final bool isItemInCart;
 
   const ItemListButton({
     Key? key,
-    required this.onTap,
+    required this.onPressed,
+    required this.isItemInCart,
   }) : super(key: key);
 
   @override
@@ -14,25 +16,15 @@ class ItemListButton extends StatefulWidget {
 }
 
 class ItemListButtonState extends State<ItemListButton> {
-  bool _isPressed = false;
-
-  void _toggleButton() {
-    setState(() {
-      _isPressed = !_isPressed;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Ink(
       child: InkWell(
-        onTap: () {
-          widget.onTap();
-          _toggleButton();
-        },
+        onTap: () {},
         child: CircleAvatar(
           minRadius: 13,
-          backgroundColor: _isPressed
+          backgroundColor: widget.isItemInCart
               ? Theme.of(context).canvasColor
               : Theme.of(context).primaryColor,
           child: Container(
@@ -40,9 +32,9 @@ class ItemListButtonState extends State<ItemListButton> {
               shape: BoxShape.circle,
             ),
             child: IconButton(
-              onPressed: _toggleButton,
+              onPressed: widget.onPressed,
               icon: Icon(
-                _isPressed
+                widget.isItemInCart
                     ? Icons.shopping_cart
                     : Icons.shopping_cart_outlined,
                 color: AppColors.primaryButtonTextColor,

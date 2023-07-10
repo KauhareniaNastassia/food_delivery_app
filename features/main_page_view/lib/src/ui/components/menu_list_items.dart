@@ -24,7 +24,7 @@ class MenuListItems extends StatelessWidget {
           padding: const EdgeInsets.only(bottom: 10),
           child: MenuItem(
             key: ValueKey(menu[index].id),
-            menuItemModel: menu[index],
+            menuItem: menu[index],
             onTap: () {
               context.navigateTo(
                 MenuItemDetailsScreenRoute(

@@ -23,6 +23,8 @@ dependencies:
     path: ./navigation
   main_page_view:
     path: ./features/main_page_view
+  shopping_cart:
+    path: ./features/shopping_cart
 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.14.0

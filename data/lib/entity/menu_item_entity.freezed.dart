@@ -26,7 +26,6 @@ mixin _$MenuItemEntity {
   String get image => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get ingredients => throw _privateConstructorUsedError;
-  int get amount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,8 +45,7 @@ abstract class $MenuItemEntityCopyWith<$Res> {
       double cost,
       String image,
       String description,
-      List<String> ingredients,
-      int amount});
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -69,7 +67,6 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
     Object? image = null,
     Object? description = null,
     Object? ingredients = null,
-    Object? amount = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -96,10 +93,6 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -118,8 +111,7 @@ abstract class _$$_MenuItemEntityCopyWith<$Res>
       double cost,
       String image,
       String description,
-      List<String> ingredients,
-      int amount});
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -139,7 +131,6 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
     Object? image = null,
     Object? description = null,
     Object? ingredients = null,
-    Object? amount = null,
   }) {
     return _then(_$_MenuItemEntity(
       id: null == id
@@ -166,10 +157,6 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -183,8 +170,7 @@ class _$_MenuItemEntity implements _MenuItemEntity {
       required this.cost,
       required this.image,
       required this.description,
-      required final List<String> ingredients,
-      required this.amount})
+      required final List<String> ingredients})
       : _ingredients = ingredients;
 
   factory _$_MenuItemEntity.fromJson(Map<String, dynamic> json) =>
@@ -209,11 +195,8 @@ class _$_MenuItemEntity implements _MenuItemEntity {
   }
 
   @override
-  final int amount;
-
-  @override
   String toString() {
-    return 'MenuItemEntity(id: $id, title: $title, cost: $cost, image: $image, description: $description, ingredients: $ingredients, amount: $amount)';
+    return 'MenuItemEntity(id: $id, title: $title, cost: $cost, image: $image, description: $description, ingredients: $ingredients)';
   }
 
   @override
@@ -228,14 +211,13 @@ class _$_MenuItemEntity implements _MenuItemEntity {
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality()
-                .equals(other._ingredients, _ingredients) &&
-            (identical(other.amount, amount) || other.amount == amount));
+                .equals(other._ingredients, _ingredients));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, cost, image,
-      description, const DeepCollectionEquality().hash(_ingredients), amount);
+      description, const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
   @override
@@ -258,8 +240,7 @@ abstract class _MenuItemEntity implements MenuItemEntity {
       required final double cost,
       required final String image,
       required final String description,
-      required final List<String> ingredients,
-      required final int amount}) = _$_MenuItemEntity;
+      required final List<String> ingredients}) = _$_MenuItemEntity;
 
   factory _MenuItemEntity.fromJson(Map<String, dynamic> json) =
       _$_MenuItemEntity.fromJson;
@@ -276,8 +257,6 @@ abstract class _MenuItemEntity implements MenuItemEntity {
   String get description;
   @override
   List<String> get ingredients;
-  @override
-  int get amount;
   @override
   @JsonKey(ignore: true)
   _$$_MenuItemEntityCopyWith<_$_MenuItemEntity> get copyWith =>

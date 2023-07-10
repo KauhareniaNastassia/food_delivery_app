@@ -2,54 +2,55 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class OrderBottomBar extends StatelessWidget {
-  const OrderBottomBar({super.key});
+  final double totalPrice;
 
+  const OrderBottomBar({
+    super.key,
+    required this.totalPrice,
+  });
 
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
       child: Container(
-        margin: const EdgeInsets.only(left: 10, right: 10),
+        margin: const EdgeInsets.fromLTRB(20, 5, 20, 15),
         decoration: BoxDecoration(
           borderRadius: AppStyles.largeBorderRadius,
         ),
         child: Stack(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
+            Column(
+                children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Total',
+                          'Total price',
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
-                          '\$',
+                          '\$${totalPrice.toStringAsFixed(2)}',
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 10),
                   Row(
                     children: [
                       Expanded(
                         child: PrimaryButton(
                           buttonTitle: 'Make an order',
-                          onTap: () {},
+                          onPressed: () {},
                         ),
                       ),
                     ],
                   )
                 ],
               ),
-            ),
+
           ],
         ),
       ),

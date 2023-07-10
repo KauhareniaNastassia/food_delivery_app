@@ -1,16 +1,15 @@
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_cart/src/ui/update_count_button.dart';
+import 'package:shopping_cart/src/ui/widgets/item_amount.dart';
 
 class ShoppingCartItem extends StatelessWidget {
-  final MenuItemModel shoppingCartItemModel;
+  final ShoppingCartItemModel shoppingCartItem;
   final VoidCallback onTap;
 
   const ShoppingCartItem({
     Key? key,
-    required this.shoppingCartItemModel,
+    required this.shoppingCartItem,
     required this.onTap,
   }) : super(key: key);
 
@@ -47,13 +46,13 @@ class ShoppingCartItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            shoppingCartItemModel.title,
-                            style: Theme.of(context).textTheme.titleLarge,
+                            shoppingCartItem.menuItem.title,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           const SizedBox(height: 20),
                           Text(
-                            '\$${shoppingCartItemModel.cost}',
-                            style: AppTextStyles.size22WeightSemiBoldText(
+                            '\$${shoppingCartItem.menuItem.cost}',
+                            style: AppTextStyles.size18WeightSemiBoldText(
                               Theme.of(context).primaryColor,
                             ),
                           ),
@@ -67,47 +66,26 @@ class ShoppingCartItem extends StatelessWidget {
                 height: size.height / 8,
                 width: size.width / 3.8,
                 decoration: BoxDecoration(
-                  //color: AppColors.backgroundItemColor,
                   borderRadius: BorderRadius.circular(100),
                   boxShadow: [AppStyles.boxShadow],
                 ),
                 child: ClipOval(
-                  child: shoppingCartItemModel.image == ''
+                  child: shoppingCartItem.menuItem.image.isEmpty
                       ? const ImagePlaceholder(
                           iconData: Icons.fastfood_rounded,
                           iconSize: 50,
                         )
                       : Image.network(
-                          shoppingCartItemModel.image,
+                          shoppingCartItem.menuItem.image,
                         ),
                 ),
               ),
               Positioned(
                 right: 25,
                 bottom: 15,
-                child: Row(
-
-                  children: <Widget>[
-                    const SizedBox(width: 10),
-                    UpdateCountButton(
-                      backgroundColor: AppColors.primaryColor,
-                      iconColor: Colors.white,
-                      icon: Icons.remove,
-                      onTap: () {},
-                    ),
-                    const SizedBox(width: 15),
-                    Text(
-                      '${shoppingCartItemModel.amount}',
-                      style:Theme.of(context).textTheme.titleMedium,
-                    ),
-                    const SizedBox(width: 15),
-                    UpdateCountButton(
-                      backgroundColor: AppColors.primaryColor,
-                      iconColor: Colors.white,
-                      icon: Icons.add,
-                      onTap: () {},
-                    ),
-                  ],
+                child: ItemAmount(
+                  shoppingCartItem: shoppingCartItem.menuItem,
+                  amount: shoppingCartItem.amount,
                 ),
               )
             ],

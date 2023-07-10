@@ -4,31 +4,27 @@ import 'package:flutter/material.dart';
 class UpdateCountButton extends StatelessWidget {
   const UpdateCountButton({
     super.key,
-    required this.onTap,
+    required this.onPressed,
     required this.icon,
-    required this.backgroundColor,
-    required this.iconColor,
   });
 
-  final VoidCallback onTap;
+  final VoidCallback onPressed;
   final IconData icon;
-  final Color backgroundColor;
-  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: onPressed,
       child: Container(
         height: 26,
         width: 26,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: backgroundColor,
+          color: AppColors.primaryColor,
         ),
         child: Icon(
           icon,
-          color: iconColor,
+          color: AppColors.titleLightTextColor,
           size: 16,
         ),
       ),

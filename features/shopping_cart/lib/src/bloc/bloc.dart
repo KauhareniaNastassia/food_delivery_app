@@ -1,61 +1,98 @@
+import 'dart:developer';
+
 import 'package:core/core.dart';
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
 import 'package:domain/models/shopping_cart_model/shopping_cart_model.dart';
-import 'package:domain/usecases/usecase.dart';
-import 'package:domain/usecases/fetch_shopping_cart_items_use_case.dart';
 
 part 'event.dart';
 
 part 'state.dart';
 
 class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
-  final FetchShoppingCartItemsUseCase _fetchShoppingCartItemsUseCase;
-
-  ShoppingCartBloc(
-      {required FetchShoppingCartItemsUseCase fetchShoppingCartItemsUseCase})
-      : _fetchShoppingCartItemsUseCase = fetchShoppingCartItemsUseCase,
-        super(InitShoppingCartState()) {
-    on<GetShoppingCartEvent>(_onLoadShoppingCart);
-    //on<CalculateTotalEvent>(_calculateTotal);
-
-    add(GetShoppingCartEvent());
+  ShoppingCartBloc() : super(const ShoppingCartState()) {
+    on<AddShoppingCartItemEvent>(_onAddItemToShoppingCart);
+    on<RemoveShoppingCartItemEvent>(_onRemoveItemToShoppingCart);
+    on<AddCutleryEvent>(_addCutleryEvent);
   }
 
-  Future<void> _onLoadShoppingCart(
-    GetShoppingCartEvent event,
-    Emitter<ShoppingCartState> emit,
-  ) async {
-    emit(ShoppingCartLoadingState());
-    final List<MenuItemModel> shoppingCartItems =
-        await _fetchShoppingCartItemsUseCase.execute(const NoParams());
-    emit(ShoppingCartLoadedState(shoppingCartItems: shoppingCartItems));
-  }
-
-  Future<void> _addItemToShoppingCart(
+  _onAddItemToShoppingCart(
     AddShoppingCartItemEvent event,
     Emitter<ShoppingCartState> emit,
-  ) async {
-    emit(ShoppingCartLoadingState());
+  ) {
+    final List<ShoppingCartItemModel> shoppingCartItems =
+        List.from(state.shoppingCart.shoppingCartItems);
 
-    final List<MenuItemModel> shoppingCartItems =
-        await _fetchShoppingCartItemsUseCase.execute(const NoParams());
-    emit(ShoppingCartLoadedState(shoppingCartItems: shoppingCartItems));
-  }
+    bool itemIsInCart = false;
 
-/*Future<double> _calculateTotal(
-    CalculateTotalEvent event,
-    Emitter<ShoppingCartState> emit,
-  ) async {
-    double total = 0.0;
-
-    if (state is! ShoppingCartLoadedState) {
-      return total;
+    for (int i = 0; i < shoppingCartItems.length; i++) {
+      if (shoppingCartItems[i].menuItem == event.menuItem) {
+        shoppingCartItems[i].amount++;
+        itemIsInCart = true;
+      }
     }
 
+    if (!itemIsInCart) {
+      shoppingCartItems.add(
+        ShoppingCartItemModel(
+          menuItem: event.menuItem,
+          amount: 1,
+        ),
+      );
+    }
 
+    emit(
+      state.copyWith(
+        shoppingCart: ShoppingCartModel(
+          shoppingCartItems: shoppingCartItems,
+          totalPrice: state.shoppingCart.totalPrice + event.menuItem.cost,
+          addCutlery: state.shoppingCart.addCutlery,
+        ),
+      ),
+    );
+  }
 
-    emit(CartTotalState(total: total));
+  _onRemoveItemToShoppingCart(
+    RemoveShoppingCartItemEvent event,
+    Emitter<ShoppingCartState> emit,
+  ) {
+    final List<ShoppingCartItemModel> shoppingCartItems =
+        List.from(state.shoppingCart.shoppingCartItems);
 
-     }*/
+    for (int i = 0; i < shoppingCartItems.length; i++) {
+      if (shoppingCartItems[i].menuItem == event.shoppingCartItem) {
+        shoppingCartItems[i].amount > 1
+            ? shoppingCartItems[i].amount--
+            : shoppingCartItems.removeAt(i);
+      }
+    }
+
+    emit(
+      state.copyWith(
+        shoppingCart: ShoppingCartModel(
+          shoppingCartItems: shoppingCartItems,
+          totalPrice:
+              state.shoppingCart.totalPrice - event.shoppingCartItem.cost,
+          addCutlery: state.shoppingCart.addCutlery,
+        ),
+      ),
+    );
+  }
+
+  _addCutleryEvent(
+    AddCutleryEvent event,
+    Emitter<ShoppingCartState> emit,
+  ) {
+    final newAddCutlery = !state.shoppingCart.addCutlery;
+    emit(
+      state.copyWith(
+        shoppingCart: state.shoppingCart.copyWith(
+          addCutlery: newAddCutlery,
+          totalPrice: newAddCutlery
+              ? state.shoppingCart.totalPrice + 2
+              : state.shoppingCart.totalPrice - 2,
+        ),
+      ),
+    );
+  }
 }

@@ -11,6 +11,5 @@ class MenuItemModel with _$MenuItemModel {
     required String image,
     required String description,
     required List<String> ingredients,
-    required int amount,
   }) = _MenuItemModel;
 }

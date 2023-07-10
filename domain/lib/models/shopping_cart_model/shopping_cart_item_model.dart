@@ -1,15 +1,26 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import '../menu_item_model/menu_item_model.dart';
 
-part 'shopping_cart_item_model.freezed.dart';
+class ShoppingCartItemModel {
+  final MenuItemModel menuItem;
+  int amount;
 
-@freezed
-class ShoppingCartItemModel with _$ShoppingCartItemModel {
-  factory ShoppingCartItemModel({
-    required int id,
-    required String title,
-    required double cost,
-    required String image,
-    required String description,
-    required List<String> ingredients,
-  }) = _ShoppingCartItemModel;
+  ShoppingCartItemModel({
+    required this.menuItem,
+    required this.amount,
+  });
+
+  ShoppingCartItemModel copyWith({
+    MenuItemModel? menuItem,
+    int? amount,
+  }) {
+    return ShoppingCartItemModel(
+      menuItem: menuItem ?? this.menuItem,
+      amount: amount ?? this.amount,
+    );
+  }
+
+  List<Object?> get props => [
+        menuItem,
+        amount,
+      ];
 }

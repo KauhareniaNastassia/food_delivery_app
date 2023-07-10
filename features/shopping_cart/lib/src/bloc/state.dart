@@ -1,27 +1,21 @@
-
 part of 'bloc.dart';
 
-abstract class ShoppingCartState {
-}
+class ShoppingCartState {
+  final ShoppingCartModel shoppingCart;
 
-class InitShoppingCartState extends ShoppingCartState {}
+  const ShoppingCartState({
+    this.shoppingCart = const ShoppingCartModel(
+      shoppingCartItems: [],
+      totalPrice: 0.0,
+      addCutlery: false,
+    ),
+  });
 
-class CartTotalState extends ShoppingCartState {
-  final double total;
-
-  CartTotalState({required this.total});
-}
-
-class ShoppingCartLoadingState extends ShoppingCartState {}
-
-class ShoppingCartLoadedState extends ShoppingCartState {
-  final List<MenuItemModel> shoppingCartItems;
-
-  ShoppingCartLoadedState({required this.shoppingCartItems});
-}
-
-class ShoppingCartErrorState extends ShoppingCartState {
-  final String errorMessage;
-
-  ShoppingCartErrorState({required this.errorMessage});
+  ShoppingCartState copyWith({
+    ShoppingCartModel? shoppingCart,
+  }) {
+    return ShoppingCartState(
+      shoppingCart: shoppingCart ?? this.shoppingCart,
+    );
+  }
 }
