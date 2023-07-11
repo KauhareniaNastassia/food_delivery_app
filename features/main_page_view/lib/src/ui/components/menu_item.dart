@@ -99,7 +99,7 @@ class _MenuItemState extends State<MenuItem> {
                   ),
                   Container(
                     height: size.height / 6,
-                    width: size.width / 2.8,
+                    width: size.width / 2.85,
                     decoration: BoxDecoration(
                       color: AppColors.backgroundItemColor,
                       borderRadius: BorderRadius.circular(100),

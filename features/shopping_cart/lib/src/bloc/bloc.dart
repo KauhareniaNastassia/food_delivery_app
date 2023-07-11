@@ -29,6 +29,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
       if (shoppingCartItems[i].menuItem == event.menuItem) {
         shoppingCartItems[i].amount++;
         itemIsInCart = true;
+        break;
       }
     }
 
@@ -64,6 +65,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
         shoppingCartItems[i].amount > 1
             ? shoppingCartItems[i].amount--
             : shoppingCartItems.removeAt(i);
+        break;
       }
     }
 
