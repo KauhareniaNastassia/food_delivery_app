@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:core/core.dart';
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
@@ -16,85 +14,103 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     on<AddCutleryEvent>(_addCutleryEvent);
   }
 
-  _onAddItemToShoppingCart(
+  Future<void> _onAddItemToShoppingCart(
     AddShoppingCartItemEvent event,
     Emitter<ShoppingCartState> emit,
-  ) {
-    final List<ShoppingCartItemModel> shoppingCartItems =
-        List.from(state.shoppingCart.shoppingCartItems);
+  ) async {
+    try {
+      final List<ShoppingCartItemModel> shoppingCartItems =
+          List.from(state.shoppingCart.shoppingCartItems);
 
-    bool itemIsInCart = false;
+      bool itemIsInCart = false;
 
-    for (int i = 0; i < shoppingCartItems.length; i++) {
-      if (shoppingCartItems[i].menuItem == event.menuItem) {
-        shoppingCartItems[i].amount++;
-        itemIsInCart = true;
-        break;
+      for (int i = 0; i < shoppingCartItems.length; i++) {
+        if (shoppingCartItems[i].menuItem == event.menuItem) {
+          shoppingCartItems[i].amount++;
+          itemIsInCart = true;
+          break;
+        }
       }
-    }
 
-    if (!itemIsInCart) {
-      shoppingCartItems.add(
-        ShoppingCartItemModel(
-          menuItem: event.menuItem,
-          amount: 1,
+      if (!itemIsInCart) {
+        shoppingCartItems.add(
+          ShoppingCartItemModel(
+            menuItem: event.menuItem,
+            amount: 1,
+          ),
+        );
+      }
+
+      emit(
+        state.copyWith(
+          shoppingCart: ShoppingCartModel(
+            shoppingCartItems: shoppingCartItems,
+            totalPrice: state.shoppingCart.totalPrice + event.menuItem.cost,
+            addCutlery: state.shoppingCart.addCutlery,
+          ),
         ),
       );
+    } catch (e, _) {
+      emit(
+        ShoppingCartErrorState(errorMessage: e.toString()),
+      );
     }
-
-    emit(
-      state.copyWith(
-        shoppingCart: ShoppingCartModel(
-          shoppingCartItems: shoppingCartItems,
-          totalPrice: state.shoppingCart.totalPrice + event.menuItem.cost,
-          addCutlery: state.shoppingCart.addCutlery,
-        ),
-      ),
-    );
   }
 
-  _onRemoveItemToShoppingCart(
+  Future<void> _onRemoveItemToShoppingCart(
     RemoveShoppingCartItemEvent event,
     Emitter<ShoppingCartState> emit,
-  ) {
-    final List<ShoppingCartItemModel> shoppingCartItems =
-        List.from(state.shoppingCart.shoppingCartItems);
+  ) async {
+    try {
+      final List<ShoppingCartItemModel> shoppingCartItems =
+          List.from(state.shoppingCart.shoppingCartItems);
 
-    for (int i = 0; i < shoppingCartItems.length; i++) {
-      if (shoppingCartItems[i].menuItem == event.shoppingCartItem) {
-        shoppingCartItems[i].amount > 1
-            ? shoppingCartItems[i].amount--
-            : shoppingCartItems.removeAt(i);
-        break;
+      for (int i = 0; i < shoppingCartItems.length; i++) {
+        if (shoppingCartItems[i].menuItem == event.shoppingCartItem) {
+          shoppingCartItems[i].amount > 1
+              ? shoppingCartItems[i].amount--
+              : shoppingCartItems.removeAt(i);
+          break;
+        }
       }
-    }
 
-    emit(
-      state.copyWith(
-        shoppingCart: ShoppingCartModel(
-          shoppingCartItems: shoppingCartItems,
-          totalPrice:
-              state.shoppingCart.totalPrice - event.shoppingCartItem.cost,
-          addCutlery: state.shoppingCart.addCutlery,
+      emit(
+        state.copyWith(
+          shoppingCart: ShoppingCartModel(
+            shoppingCartItems: shoppingCartItems,
+            totalPrice:
+                state.shoppingCart.totalPrice - event.shoppingCartItem.cost,
+            addCutlery: state.shoppingCart.addCutlery,
+          ),
         ),
-      ),
-    );
+      );
+    } catch (e, _) {
+      emit(
+        ShoppingCartErrorState(errorMessage: e.toString()),
+      );
+    }
   }
 
-  _addCutleryEvent(
+  Future<void> _addCutleryEvent(
     AddCutleryEvent event,
     Emitter<ShoppingCartState> emit,
-  ) {
-    final newAddCutlery = !state.shoppingCart.addCutlery;
-    emit(
-      state.copyWith(
-        shoppingCart: state.shoppingCart.copyWith(
-          addCutlery: newAddCutlery,
-          totalPrice: newAddCutlery
-              ? state.shoppingCart.totalPrice + 2
-              : state.shoppingCart.totalPrice - 2,
+  ) async {
+    try {
+      final newAddCutlery = !state.shoppingCart.addCutlery;
+      emit(
+        state.copyWith(
+          shoppingCart: state.shoppingCart.copyWith(
+            addCutlery: newAddCutlery,
+            totalPrice: newAddCutlery
+                ? state.shoppingCart.totalPrice + 2
+                : state.shoppingCart.totalPrice - 2,
+          ),
         ),
-      ),
-    );
+      );
+    } catch (e, _) {
+      emit(
+        ShoppingCartErrorState(errorMessage: e.toString()),
+      );
+    }
   }
 }

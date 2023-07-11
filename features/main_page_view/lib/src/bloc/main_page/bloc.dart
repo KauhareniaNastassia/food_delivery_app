@@ -4,6 +4,7 @@ import 'package:domain/usecases/fetch_menu_items_usecase.dart';
 import 'package:domain/usecases/usecase.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {

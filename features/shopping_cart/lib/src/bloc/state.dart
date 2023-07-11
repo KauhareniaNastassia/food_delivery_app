@@ -19,3 +19,9 @@ class ShoppingCartState {
     );
   }
 }
+
+class ShoppingCartErrorState extends ShoppingCartState {
+  final String errorMessage;
+
+  ShoppingCartErrorState({required this.errorMessage});
+}
