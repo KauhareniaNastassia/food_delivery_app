@@ -18,17 +18,18 @@ class ItemAmount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
 
     return Row(
       children: <Widget>[
         UpdateCountButton(
           icon: Icons.remove,
           onPressed: () {
-            context.read<ShoppingCartBloc>().add(
-                  (RemoveShoppingCartItemEvent(
-                    shoppingCartItem: shoppingCartItem,
-                  )),
-                );
+            shoppingCartBloc.add(
+              (RemoveShoppingCartItemEvent(
+                shoppingCartItem: shoppingCartItem,
+              )),
+            );
           },
         ),
         const SizedBox(width: 15),
@@ -46,11 +47,11 @@ class ItemAmount extends StatelessWidget {
         UpdateCountButton(
           icon: Icons.add,
           onPressed: () {
-            context.read<ShoppingCartBloc>().add(
-                  (AddShoppingCartItemEvent(
-                    menuItem: shoppingCartItem,
-                  )),
-                );
+            shoppingCartBloc.add(
+              (AddShoppingCartItemEvent(
+                menuItem: shoppingCartItem,
+              )),
+            );
           },
         ),
       ],

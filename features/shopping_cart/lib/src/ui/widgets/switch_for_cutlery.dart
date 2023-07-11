@@ -15,6 +15,7 @@ class SwitchForCutlery extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
 
     return Padding(
       padding: const EdgeInsets.only(left: 15),
@@ -31,9 +32,9 @@ class SwitchForCutlery extends StatelessWidget {
           inactiveThumbColor: Theme.of(context).disabledColor,
           inactiveTrackColor: AppColors.backgroundItemColor,
           onChanged: (bool newValue) {
-            context.read<ShoppingCartBloc>().add(
-                  AddCutleryEvent(),
-                );
+            shoppingCartBloc.add(
+              AddCutleryEvent(),
+            );
           },
         ),
       ),

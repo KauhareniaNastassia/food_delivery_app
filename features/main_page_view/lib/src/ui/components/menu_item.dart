@@ -45,6 +45,7 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
 
     return BlocConsumer<ShoppingCartBloc, ShoppingCartState>(
       listener: (context, state) {
@@ -121,10 +122,9 @@ class _MenuItemState extends State<MenuItem> {
                     child: ItemListButton(
                       isItemInCart: isItemInCart,
                       onPressed: () {
-                        context.read<ShoppingCartBloc>().add(
-                              (AddShoppingCartItemEvent(
-                                  menuItem: widget.menuItem)),
-                            );
+                        shoppingCartBloc.add(
+                          (AddShoppingCartItemEvent(menuItem: widget.menuItem)),
+                        );
                       },
                     ),
                   )
