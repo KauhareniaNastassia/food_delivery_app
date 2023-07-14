@@ -26,9 +26,9 @@ class ItemAmount extends StatelessWidget {
           icon: Icons.remove,
           onPressed: () {
             shoppingCartBloc.add(
-              (RemoveShoppingCartItemEvent(
+              RemoveShoppingCartItemEvent(
                 shoppingCartItem: shoppingCartItem,
-              )),
+              ),
             );
           },
         ),
@@ -48,9 +48,9 @@ class ItemAmount extends StatelessWidget {
           icon: Icons.add,
           onPressed: () {
             shoppingCartBloc.add(
-              (AddShoppingCartItemEvent(
+              AddShoppingCartItemEvent(
                 menuItem: shoppingCartItem.menuItem,
-              )),
+              ),
             );
           },
         ),
