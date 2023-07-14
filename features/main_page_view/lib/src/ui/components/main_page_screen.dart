@@ -17,13 +17,16 @@ class _MainPageScreenState extends State<MainPageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: Container(
+          height: size.height,
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Center(
+          child: Center(
+            child: SingleChildScrollView(
+              controller: _scrollController,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -36,7 +39,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
                   BlocBuilder<MenuBloc, MenuState>(
                     builder: (BuildContext context, MenuState state) {
                       if (state is MenuLoadingState) {
-                        return const Center(child: LoadingIndicator());
+                        return const LoadingIndicator();
                       }
                       if (state is MenuLoadedState) {
                         return MenuListItems(menu: state.menu);

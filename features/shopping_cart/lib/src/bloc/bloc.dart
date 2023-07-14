@@ -8,7 +8,7 @@ part 'event.dart';
 part 'state.dart';
 
 class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
-  ShoppingCartBloc() : super(const ShoppingCartState()) {
+  ShoppingCartBloc() : super(const ShoppingCartState.empty()) {
     on<AddShoppingCartItemEvent>(_onAddItemToShoppingCart);
     on<RemoveShoppingCartItemEvent>(_onRemoveItemToShoppingCart);
     on<AddCutleryEvent>(_addCutleryEvent);
@@ -21,15 +21,15 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     try {
       final List<ShoppingCartItemModel> shoppingCartItems =
           List.from(state.shoppingCart.shoppingCartItems);
-
       bool itemIsInCart = false;
+      int i = 0;
 
-      for (int i = 0; i < shoppingCartItems.length; i++) {
+      while (i < shoppingCartItems.length && !itemIsInCart) {
         if (shoppingCartItems[i].menuItem == event.menuItem) {
           shoppingCartItems[i].amount++;
           itemIsInCart = true;
-          break;
         }
+        i++;
       }
 
       if (!itemIsInCart) {
@@ -43,16 +43,15 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
 
       emit(
         state.copyWith(
-          shoppingCart: ShoppingCartModel(
+          shoppingCart: state.shoppingCart.copyWith(
             shoppingCartItems: shoppingCartItems,
             totalPrice: state.shoppingCart.totalPrice + event.menuItem.cost,
-            addCutlery: state.shoppingCart.addCutlery,
           ),
         ),
       );
     } catch (e, _) {
       emit(
-        ShoppingCartErrorState(errorMessage: e.toString()),
+        state.copyWith(exception: e),
       );
     }
   }
@@ -65,28 +64,22 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
       final List<ShoppingCartItemModel> shoppingCartItems =
           List.from(state.shoppingCart.shoppingCartItems);
 
-      for (int i = 0; i < shoppingCartItems.length; i++) {
-        if (shoppingCartItems[i].menuItem == event.shoppingCartItem) {
-          shoppingCartItems[i].amount > 1
-              ? shoppingCartItems[i].amount--
-              : shoppingCartItems.removeAt(i);
-          break;
-        }
-      }
+      event.shoppingCartItem.amount > 1
+          ? event.shoppingCartItem.amount--
+          : shoppingCartItems.remove(event.shoppingCartItem);
 
       emit(
         state.copyWith(
-          shoppingCart: ShoppingCartModel(
+          shoppingCart: state.shoppingCart.copyWith(
             shoppingCartItems: shoppingCartItems,
-            totalPrice:
-                state.shoppingCart.totalPrice - event.shoppingCartItem.cost,
-            addCutlery: state.shoppingCart.addCutlery,
+            totalPrice: state.shoppingCart.totalPrice -
+                event.shoppingCartItem.menuItem.cost,
           ),
         ),
       );
     } catch (e, _) {
       emit(
-        ShoppingCartErrorState(errorMessage: e.toString()),
+        state.copyWith(exception: e),
       );
     }
   }
@@ -102,14 +95,14 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
           shoppingCart: state.shoppingCart.copyWith(
             addCutlery: newAddCutlery,
             totalPrice: newAddCutlery
-                ? state.shoppingCart.totalPrice + 2
-                : state.shoppingCart.totalPrice - 2,
+                ? state.shoppingCart.totalPrice + 0.5
+                : state.shoppingCart.totalPrice - 0.5,
           ),
         ),
       );
     } catch (e, _) {
       emit(
-        ShoppingCartErrorState(errorMessage: e.toString()),
+        state.copyWith(exception: e),
       );
     }
   }

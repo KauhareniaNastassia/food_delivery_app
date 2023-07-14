@@ -11,7 +11,7 @@ class AddShoppingCartItemEvent extends ShoppingCartEvent {
 }
 
 class RemoveShoppingCartItemEvent extends ShoppingCartEvent {
-  final MenuItemModel shoppingCartItem;
+  final ShoppingCartItemModel shoppingCartItem;
 
   RemoveShoppingCartItemEvent({required this.shoppingCartItem});
 }

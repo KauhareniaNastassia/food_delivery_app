@@ -84,7 +84,7 @@ class ShoppingCartItem extends StatelessWidget {
                 right: 25,
                 bottom: 15,
                 child: ItemAmount(
-                  shoppingCartItem: shoppingCartItem.menuItem,
+                  shoppingCartItem: shoppingCartItem,
                   amount: shoppingCartItem.amount,
                 ),
               )

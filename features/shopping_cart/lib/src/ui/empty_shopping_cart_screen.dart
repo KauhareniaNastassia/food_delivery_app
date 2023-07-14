@@ -1,15 +1,19 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:navigation/navigation.dart';
 
 class EmptyShoppingCartScreen extends StatelessWidget {
-  const EmptyShoppingCartScreen({super.key});
+  final VoidCallback onPressed;
+
+  const EmptyShoppingCartScreen({
+    super.key,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final theme = Theme.of(context);
+    final Size size = MediaQuery.of(context).size;
+    final ThemeData theme = Theme.of(context);
 
     return Center(
       child: Column(
@@ -30,11 +34,7 @@ class EmptyShoppingCartScreen extends StatelessWidget {
           ),
           PrimaryButton(
             buttonTitle: 'Go to menu',
-            onPressed: () {
-              context.navigateTo(
-                const MainPageRoute(),
-              );
-            },
+            onPressed: onPressed,
           ),
         ],
       ),

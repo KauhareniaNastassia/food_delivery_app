@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 class AddToCartButton extends StatelessWidget {
   final VoidCallback onPressed;
-  final bool isItemInCart;
+  final int? amount;
 
   const AddToCartButton({
     required this.onPressed,
-    required this.isItemInCart,
+    required this.amount,
     super.key,
   });
 
@@ -16,15 +16,20 @@ class AddToCartButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-          primary:
-              isItemInCart ? AppColors.secondaryColor : AppColors.primaryColor,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-          )),
+        backgroundColor: amount != null
+                ? AppColors.secondaryColor
+                : AppColors.primaryColor,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+        ),
+      ),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+          vertical: 10,
+        ),
         child: Text(
-          isItemInCart ? 'Is in cart' : 'Add to cart',
+          amount != null ? '$amount in cart' : 'Add to cart',
           textAlign: TextAlign.center,
           style: AppTextStyles.size22WeightSemiBoldText(
             AppColors.primaryButtonTextColor,

@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:main_page_view/main_page.dart';
 import 'package:shopping_cart/src/ui/shopping_cart_list_items.dart';
 import 'package:shopping_cart/src/ui/widgets/switch_for_cutlery.dart';
 
@@ -19,6 +20,9 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final NavigateToPageBloc navigateToPageBloc =
+        context.read<NavigateToPageBloc>();
+
     return SafeArea(
       child: BlocBuilder<ShoppingCartBloc, ShoppingCartState>(
         builder: (BuildContext context, ShoppingCartState state) {
@@ -52,7 +56,15 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
               ),
             );
           } else {
-            return const EmptyShoppingCartScreen();
+            return EmptyShoppingCartScreen(
+              onPressed: () {
+                navigateToPageBloc.add(
+                  NavigateToMainPageEvent(
+                    context: context,
+                  ),
+                );
+              },
+            );
           }
         },
       ),

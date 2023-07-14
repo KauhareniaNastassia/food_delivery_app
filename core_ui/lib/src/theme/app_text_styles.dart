@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class AppTextStyles {
   static const String _merriweatherFamily = 'Merriweather';
 
-  static TextStyle size14WeightNormalText(Color color) {
+  static TextStyle size14WeightBoldText(Color color) {
     return TextStyle(
       fontFamily: _merriweatherFamily,
       fontSize: 14,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
       color: color,
     );
   }

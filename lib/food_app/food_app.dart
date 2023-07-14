@@ -14,7 +14,10 @@ class FoodApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AppThemeBloc>(
-          create: (context) => AppThemeBloc(),
+          create: (_) => AppThemeBloc(),
+        ),
+        BlocProvider<NavigateToPageBloc>(
+          create: (_) => NavigateToPageBloc(),
         ),
         BlocProvider<MenuBloc>(
           create: (_) => MenuBloc(

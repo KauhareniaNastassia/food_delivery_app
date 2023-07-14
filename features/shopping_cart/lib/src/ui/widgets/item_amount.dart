@@ -1,12 +1,12 @@
 import 'package:core/core.dart';
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
+import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_cart/src/ui/widgets/update_count_button.dart';
 
 import '../../../shopping_cart.dart';
 
 class ItemAmount extends StatelessWidget {
-  final MenuItemModel shoppingCartItem;
+  final ShoppingCartItemModel shoppingCartItem;
   final int amount;
 
   const ItemAmount({
@@ -49,7 +49,7 @@ class ItemAmount extends StatelessWidget {
           onPressed: () {
             shoppingCartBloc.add(
               (AddShoppingCartItemEvent(
-                menuItem: shoppingCartItem,
+                menuItem: shoppingCartItem.menuItem,
               )),
             );
           },

@@ -18,14 +18,20 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     add(InitEvent());
   }
 
-  Future<void> _onLoadMenu(InitEvent event, Emitter<MenuState> emit) async {
+  Future<void> _onLoadMenu(
+    InitEvent event,
+    Emitter<MenuState> emit,
+  ) async {
     emit(MenuLoadingState());
     try {
-      final List<MenuItemModel> menu =
-          await _fetchMenuItemsUseCase.execute(const NoParams());
+      final List<MenuItemModel> menu = await _fetchMenuItemsUseCase.execute(
+        const NoParams(),
+      );
       emit(MenuLoadedState(menu: menu));
     } catch (e, _) {
-      emit(MenuErrorState(errorMessage: e.toString()));
+      emit(
+        MenuErrorState(errorMessage: e.toString()),
+      );
     }
   }
 }
