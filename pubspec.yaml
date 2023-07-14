@@ -8,7 +8,6 @@ publish_to: 'none'
 environment:
   sdk: '>=3.0.0 <4.0.0'
 
-
 dependencies:
   flutter:
     sdk: flutter
@@ -23,18 +22,17 @@ dependencies:
     path: ./navigation
   main_page_view:
     path: ./features/main_page_view
+  shopping_cart:
+    path: ./features/shopping_cart
 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.14.0
-
-
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-
 
 flutter:
   uses-material-design: true

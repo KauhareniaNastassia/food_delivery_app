@@ -15,7 +15,7 @@ class _MainPageState extends State<MainPage> {
     return AutoTabsScaffold(
       routes: const [
         MainPageScreenRoute(),
-        ShoppingCartPageContentRoute(),
+        ShoppingCartPageScreenRoute(),
         OrderHistoryPageContentRoute(),
         SettingsPageContentRoute(),
       ],

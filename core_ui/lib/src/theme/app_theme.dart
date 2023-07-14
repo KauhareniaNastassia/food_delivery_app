@@ -8,6 +8,9 @@ class AppTheme {
     primaryColor: AppColors.primaryColor,
     canvasColor: AppColors.secondaryColor,
     cardColor: AppColors.backgroundItemColor,
+    disabledColor: AppColors.unselectedItemColor,
+
+    /// text styles
     textTheme: TextTheme(
       titleLarge: AppTextStyles.size20WeightSemiBoldText(
         AppColors.titleTextColor,
@@ -20,6 +23,9 @@ class AppTheme {
       ),
       bodyMedium: AppTextStyles.size16WeightSemiBoldText(
         AppColors.secondaryColor,
+      ),
+      bodyLarge: AppTextStyles.size18WeightSemiBoldText(
+        AppColors.titleTextColor,
       ),
     ),
 
@@ -46,6 +52,9 @@ class AppTheme {
     primaryColor: AppColors.primaryLightColor,
     canvasColor: AppColors.secondaryColor,
     cardColor: AppColors.backgroundItemDarkColor,
+    disabledColor: AppColors.titleDarkGreyTextColor,
+
+    /// text styles
     textTheme: TextTheme(
       titleLarge: AppTextStyles.size20WeightSemiBoldText(
         AppColors.titleLightTextColor,
@@ -58,6 +67,9 @@ class AppTheme {
       ),
       bodyMedium: AppTextStyles.size16WeightSemiBoldText(
         AppColors.secondaryDarkColor,
+      ),
+      bodyLarge: AppTextStyles.size18WeightSemiBoldText(
+        AppColors.titleLightTextColor,
       ),
     ),
 

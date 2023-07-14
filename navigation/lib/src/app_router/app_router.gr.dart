@@ -39,10 +39,10 @@ class _$AppRouter extends RootStackRouter {
         child: const MainPageScreen(),
       );
     },
-    ShoppingCartPageContentRoute.name: (routeData) {
+    ShoppingCartPageScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const ShoppingCartPageContent(),
+        child: const ShoppingCartPageScreen(),
       );
     },
     OrderHistoryPageContentRoute.name: (routeData) {
@@ -71,8 +71,8 @@ class _$AppRouter extends RootStackRouter {
               parent: MainPageRoute.name,
             ),
             RouteConfig(
-              ShoppingCartPageContentRoute.name,
-              path: 'shopping-cart-page-content',
+              ShoppingCartPageScreenRoute.name,
+              path: 'shopping-cart-page-screen',
               parent: MainPageRoute.name,
             ),
             RouteConfig(
@@ -155,15 +155,15 @@ class MainPageScreenRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ShoppingCartPageContent]
-class ShoppingCartPageContentRoute extends PageRouteInfo<void> {
-  const ShoppingCartPageContentRoute()
+/// [ShoppingCartPageScreen]
+class ShoppingCartPageScreenRoute extends PageRouteInfo<void> {
+  const ShoppingCartPageScreenRoute()
       : super(
-          ShoppingCartPageContentRoute.name,
-          path: 'shopping-cart-page-content',
+          ShoppingCartPageScreenRoute.name,
+          path: 'shopping-cart-page-screen',
         );
 
-  static const String name = 'ShoppingCartPageContentRoute';
+  static const String name = 'ShoppingCartPageScreenRoute';
 }
 
 /// generated route for

@@ -1,20 +1,61 @@
 import 'package:core/core.dart';
-import 'package:domain/usecases/fetch_menu_items_usecase.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:main_page_view/src/ui/components/main_page_content.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 
-import '../../../main_page.dart';
+import '../../bloc/bloc.dart';
+import 'menu_list_items.dart';
 
-class MainPageScreen extends StatelessWidget {
+class MainPageScreen extends StatefulWidget {
   const MainPageScreen({Key? key}) : super(key: key);
 
   @override
+  State<MainPageScreen> createState() => _MainPageScreenState();
+}
+
+class _MainPageScreenState extends State<MainPageScreen> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider<MenuBloc>(
-      create: (BuildContext context) => MenuBloc(
-        fetchMenuItemsUseCase: instance.get<FetchMenuItemsUseCase>(),
-      )..add(InitEvent()),
-      child: const MainPageContent(),
+    final Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          height: size.height,
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: Center(
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(height: 20),
+                    ],
+                  ),
+                  BlocBuilder<MenuBloc, MenuState>(
+                    builder: (BuildContext context, MenuState state) {
+                      if (state is MenuLoadingState) {
+                        return const LoadingIndicator();
+                      }
+                      if (state is MenuLoadedState) {
+                        return MenuListItems(menu: state.menu);
+                      } else {
+                        return const Center(
+                          child: Text('Error loading dishes'),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
