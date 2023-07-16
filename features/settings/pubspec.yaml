@@ -12,6 +12,13 @@ dependencies:
     sdk: flutter
   core_ui:
     path: ../../core_ui
+  core:
+    path: ../../core
+  main_page_view:
+    path: ../main_page_view
+
+  flutter_svg: ^2.0.6
+  url_launcher: ^6.0.3
 
 dev_dependencies:
   flutter_test:

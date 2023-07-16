@@ -25,8 +25,10 @@ class FoodApp extends StatelessWidget {
           ),
         ),
         BlocProvider<ShoppingCartBloc>(
-          create: (_) => ShoppingCartBloc(),
-        )
+          create: (_) => ShoppingCartBloc(
+           //shoppingCartUseCase: instance.get<ShoppingCartUseCase>(),
+          ),
+        ),
       ],
       child: BlocBuilder<AppThemeBloc, AppThemeState>(
         builder: (BuildContext context, AppThemeState state) {

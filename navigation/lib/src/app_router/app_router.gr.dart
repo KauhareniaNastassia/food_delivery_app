@@ -28,8 +28,8 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: MenuItemDetailsScreen(
-          menuItem: args.menuItem,
           key: args.key,
+          menuItem: args.menuItem,
         ),
       );
     },
@@ -112,14 +112,14 @@ class MainPageRoute extends PageRouteInfo<void> {
 class MenuItemDetailsScreenRoute
     extends PageRouteInfo<MenuItemDetailsScreenRouteArgs> {
   MenuItemDetailsScreenRoute({
-    required MenuItemModel menuItem,
     Key? key,
+    required MenuItemModel menuItem,
   }) : super(
           MenuItemDetailsScreenRoute.name,
           path: '/menu-item-details-screen',
           args: MenuItemDetailsScreenRouteArgs(
-            menuItem: menuItem,
             key: key,
+            menuItem: menuItem,
           ),
         );
 
@@ -128,17 +128,17 @@ class MenuItemDetailsScreenRoute
 
 class MenuItemDetailsScreenRouteArgs {
   const MenuItemDetailsScreenRouteArgs({
-    required this.menuItem,
     this.key,
+    required this.menuItem,
   });
-
-  final MenuItemModel menuItem;
 
   final Key? key;
 
+  final MenuItemModel menuItem;
+
   @override
   String toString() {
-    return 'MenuItemDetailsScreenRouteArgs{menuItem: $menuItem, key: $key}';
+    return 'MenuItemDetailsScreenRouteArgs{key: $key, menuItem: $menuItem}';
   }
 }
 
