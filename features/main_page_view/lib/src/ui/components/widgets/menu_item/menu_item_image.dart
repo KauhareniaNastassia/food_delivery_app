@@ -22,14 +22,9 @@ class MenuItemImage extends StatelessWidget {
         boxShadow: [AppStyles.boxShadow],
       ),
       child: ClipOval(
-        child: image.isEmpty
-            ? const ImagePlaceholder(
-                iconData: Icons.fastfood_rounded,
-                iconSize: 50,
-              )
-            : Image.network(
-                image,
-              ),
+        child: ItemImage(
+          image: image,
+        ),
       ),
     );
   }

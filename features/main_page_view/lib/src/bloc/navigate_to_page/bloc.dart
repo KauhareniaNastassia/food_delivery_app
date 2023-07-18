@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:navigation/navigation.dart';
 

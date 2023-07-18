@@ -1,5 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:data/entity/menu_item_entity.dart';
+import 'package:data/data.dart';
 
 class MenuDataProvider {
   final FirebaseFirestore _firestore;

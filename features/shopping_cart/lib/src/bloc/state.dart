@@ -9,13 +9,14 @@ class ShoppingCartState {
     this.exception,
   });
 
-  const ShoppingCartState.empty(
-      {this.shoppingCart = const ShoppingCartModel(
-        shoppingCartItems: [],
-        totalPrice: 0.0,
-        addCutlery: false,
-      ),
-      this.exception});
+  const ShoppingCartState.empty({
+    this.shoppingCart = const ShoppingCartModel(
+      shoppingCartItems: [],
+      totalPrice: 0.0,
+      addCutlery: false,
+    ),
+    this.exception,
+  });
 
   ShoppingCartState copyWith({
     ShoppingCartModel? shoppingCart,

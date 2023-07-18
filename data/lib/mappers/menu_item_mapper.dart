@@ -1,6 +1,5 @@
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
-
-import '../entity/menu_item_entity.dart';
+import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 
 abstract class MenuItemMapper {
   static MenuItemEntity toEntity(MenuItemModel model) {

@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 color: AppColors.backgroundColor,
                 onPressed: () {
                   context.read<AppThemeBloc>().add(
-                        (AppThemeChangingEvent()),
+                        AppThemeChangingEvent(),
                       );
                 },
               ),

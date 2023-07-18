@@ -1,17 +1,68 @@
 import 'package:core/core.dart';
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
-import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
-import 'package:domain/models/shopping_cart_model/shopping_cart_model.dart';
+import 'package:domain/domain.dart';
 
 part 'event.dart';
 
 part 'state.dart';
 
 class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
-  ShoppingCartBloc() : super(const ShoppingCartState.empty()) {
+  final GetShoppingCartUseCase _getShoppingCartUseCase;
+  final AddShoppingCartItemUseCase _addShoppingCartItemUseCase;
+  final RemoveShoppingCartItemUseCase _removeShoppingCartItemUseCase;
+
+  ShoppingCartBloc({
+    required GetShoppingCartUseCase getShoppingCartUseCase,
+    required AddShoppingCartItemUseCase addShoppingCartItemUseCase,
+    required RemoveShoppingCartItemUseCase removeShoppingCartItemUseCase,
+  })  : _getShoppingCartUseCase = getShoppingCartUseCase,
+        _addShoppingCartItemUseCase = addShoppingCartItemUseCase,
+        _removeShoppingCartItemUseCase = removeShoppingCartItemUseCase,
+        super(const ShoppingCartState.empty()) {
+    on<InitShoppingCartEvent>(_onGetShoppingCart);
     on<AddShoppingCartItemEvent>(_onAddItemToShoppingCart);
     on<RemoveShoppingCartItemEvent>(_onRemoveItemToShoppingCart);
     on<AddCutleryEvent>(_addCutleryEvent);
+
+    add(
+      InitShoppingCartEvent(),
+    );
+  }
+
+  Future<void> _onGetShoppingCart(
+    InitShoppingCartEvent event,
+    Emitter<ShoppingCartState> emit,
+  ) async {
+    try {
+      final List<ShoppingCartItemModel> shoppingCartItems =
+          await _getShoppingCartUseCase.execute(
+        const NoParams(),
+      );
+
+      if (shoppingCartItems.isEmpty) {
+        emit(
+          state.copyWith(shoppingCart: state.shoppingCart),
+        );
+      } else {
+        double totalPrice = 0.0;
+        for (final item in shoppingCartItems) {
+          totalPrice += item.menuItem.cost * item.amount;
+        }
+
+        emit(
+          state.copyWith(
+            shoppingCart: state.shoppingCart.copyWith(
+              shoppingCartItems: shoppingCartItems,
+              totalPrice: totalPrice,
+              addCutlery: false,
+            ),
+          ),
+        );
+      }
+    } catch (e, _) {
+      emit(
+        state.copyWith(exception: e),
+      );
+    }
   }
 
   Future<void> _onAddItemToShoppingCart(
@@ -19,27 +70,11 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     Emitter<ShoppingCartState> emit,
   ) async {
     try {
+      await _addShoppingCartItemUseCase.addShoppingCartItem(event.menuItem);
       final List<ShoppingCartItemModel> shoppingCartItems =
-          List.from(state.shoppingCart.shoppingCartItems);
-      bool itemIsInCart = false;
-      int i = 0;
-
-      while (i < shoppingCartItems.length && !itemIsInCart) {
-        if (shoppingCartItems[i].menuItem == event.menuItem) {
-          shoppingCartItems[i].amount++;
-          itemIsInCart = true;
-        }
-        i++;
-      }
-
-      if (!itemIsInCart) {
-        shoppingCartItems.add(
-          ShoppingCartItemModel(
-            menuItem: event.menuItem,
-            amount: 1,
-          ),
-        );
-      }
+          await _getShoppingCartUseCase.execute(
+        const NoParams(),
+      );
 
       emit(
         state.copyWith(
@@ -61,12 +96,12 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     Emitter<ShoppingCartState> emit,
   ) async {
     try {
+      await _removeShoppingCartItemUseCase
+          .removeShoppingCartItem(event.shoppingCartItem);
       final List<ShoppingCartItemModel> shoppingCartItems =
-          List.from(state.shoppingCart.shoppingCartItems);
-
-      event.shoppingCartItem.amount > 1
-          ? event.shoppingCartItem.amount--
-          : shoppingCartItems.remove(event.shoppingCartItem);
+          await _getShoppingCartUseCase.execute(
+        const NoParams(),
+      );
 
       emit(
         state.copyWith(

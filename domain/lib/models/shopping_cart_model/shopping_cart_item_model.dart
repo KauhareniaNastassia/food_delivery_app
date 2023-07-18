@@ -1,4 +1,4 @@
-import '../menu_item_model/menu_item_model.dart';
+import 'package:domain/domain.dart';
 
 class ShoppingCartItemModel {
   final MenuItemModel menuItem;

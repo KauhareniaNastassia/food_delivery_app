@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:data/providers/menu_provider.dart';
-import 'package:data/repositories/menu_repository_impl/menu_repository_impl.dart';
-import 'package:domain/repositories/menu_repository.dart';
-import 'package:domain/usecases/fetch_menu_items_usecase.dart';
+import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,6 +14,9 @@ class DataDI {
     _initFirebase();
     _initDataProvider();
     _initMenuItems();
+    _initShoppingCart();
+    _initHive();
+    _initAdapters();
   }
 
   void _initFirebaseOptions() {
@@ -25,9 +25,28 @@ class DataDI {
     );
   }
 
-  void _initFirebase() async {
+  Future<void> _initFirebase() async {
     await Firebase.initializeApp(
       options: instance<FirebaseOptions>(),
+    );
+  }
+
+  Future<void> _initHive() async {
+    await Hive.initFlutter();
+    Hive.registerAdapter(
+      instance.get<MenuItemEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      instance.get<ShoppingCartItemEntityAdapter>(),
+    );
+  }
+
+  void _initAdapters() {
+    instance.registerLazySingleton<MenuItemEntityAdapter>(
+      () => MenuItemEntityAdapter(),
+    );
+    instance.registerLazySingleton<ShoppingCartItemEntityAdapter>(
+      () => ShoppingCartItemEntityAdapter(),
     );
   }
 
@@ -37,18 +56,53 @@ class DataDI {
         FirebaseFirestore.instance,
       ),
     );
+
+    instance.registerLazySingleton<LocalMenuProvider>(
+      () => LocalMenuProvider(),
+    );
+
+    instance.registerLazySingleton<LocalShoppingCartProvider>(
+      () => LocalShoppingCartProvider(),
+    );
   }
 
   void _initMenuItems() {
     instance.registerLazySingleton<MenuRepository>(
       () => MenuRepositoryImpl(
         menuDataProvider: instance.get<MenuDataProvider>(),
+        localMenuProvider: instance.get<LocalMenuProvider>(),
       ),
     );
 
     instance.registerLazySingleton<FetchMenuItemsUseCase>(
       () => FetchMenuItemsUseCase(
         menuRepository: instance.get<MenuRepository>(),
+      ),
+    );
+  }
+
+  void _initShoppingCart() {
+    instance.registerLazySingleton<ShoppingCartRepository>(
+      () => ShoppingCartRepositoryImpl(
+        localShoppingCartProvider: instance.get<LocalShoppingCartProvider>(),
+      ),
+    );
+
+    instance.registerLazySingleton<GetShoppingCartUseCase>(
+      () => GetShoppingCartUseCase(
+        shoppingCartRepository: instance.get<ShoppingCartRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<AddShoppingCartItemUseCase>(
+      () => AddShoppingCartItemUseCase(
+        shoppingCartRepository: instance.get<ShoppingCartRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<RemoveShoppingCartItemUseCase>(
+      () => RemoveShoppingCartItemUseCase(
+        shoppingCartRepository: instance.get<ShoppingCartRepository>(),
       ),
     );
   }
