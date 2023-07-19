@@ -1,19 +1,30 @@
 part of 'bloc.dart';
 
-abstract class MenuState {}
-
-class EmptyState extends MenuState {}
-
-class MenuLoadingState extends MenuState {}
-
-class MenuLoadedState extends MenuState {
+class MenuState {
   final List<MenuItemModel> menu;
+  final String? exception;
+  final bool? isInternetConnectionAvailableState;
+  final bool isLoading;
 
-  MenuLoadedState({required this.menu});
-}
+  MenuState({
+    this.menu = const [],
+    this.exception,
+    this.isInternetConnectionAvailableState,
+    this.isLoading = true,
+  });
 
-class MenuErrorState extends MenuState {
-  final String errorMessage;
-
-  MenuErrorState({required this.errorMessage});
+  MenuState copyWith({
+    List<MenuItemModel>? menu,
+    String? exception,
+    bool? isInternetConnectionAvailableState,
+    bool? isLoading,
+  }) {
+    return MenuState(
+      menu: menu ?? this.menu,
+      exception: exception ?? this.exception,
+      isInternetConnectionAvailableState: isInternetConnectionAvailableState ??
+          this.isInternetConnectionAvailableState,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
 }

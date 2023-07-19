@@ -1,12 +1,8 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
-import 'package:shopping_cart/src/ui/shopping_cart_list_items.dart';
-import 'package:shopping_cart/src/ui/widgets/switch_for_cutlery.dart';
-
-import '../bloc/bloc.dart';
-import 'empty_shopping_cart_screen.dart';
-import 'widgets/order_bottom_bar.dart';
+import 'package:shopping_cart/shopping_cart.dart';
 
 class ShoppingCartPageScreen extends StatefulWidget {
   const ShoppingCartPageScreen({Key? key}) : super(key: key);
@@ -22,9 +18,30 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
   Widget build(BuildContext context) {
     final NavigateToPageBloc navigateToPageBloc =
         context.read<NavigateToPageBloc>();
+    final Size size = MediaQuery.of(context).size;
 
     return SafeArea(
-      child: BlocBuilder<ShoppingCartBloc, ShoppingCartState>(
+      child: BlocConsumer<ShoppingCartBloc, ShoppingCartState>(
+        listener: (BuildContext context, ShoppingCartState state) {
+          if (state.shoppingCart.addCutlery) {
+            MotionToast(
+              icon: Icons.expand_circle_down_outlined,
+              description: Text(
+                'The cost of cutlery is 0.5\$',
+                style: AppTextStyles.size18WeightSemiBoldText(
+                    AppColors.primaryColor),
+                textAlign: TextAlign.center,
+              ),
+              toastDuration: const Duration(seconds: 2),
+              width: size.width * 0.9,
+              height: size.height * 0.07,
+              displayBorder: true,
+              displaySideBar: false,
+              iconSize: size.width * 0.13,
+              primaryColor: AppColors.secondaryColor,
+            ).show(context);
+          }
+        },
         builder: (BuildContext context, ShoppingCartState state) {
           if (state.shoppingCart.shoppingCartItems.isNotEmpty) {
             return Scaffold(

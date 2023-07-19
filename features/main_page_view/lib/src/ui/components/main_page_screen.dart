@@ -21,39 +21,69 @@ class _MainPageScreenState extends State<MainPageScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          height: size.height,
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: Center(
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(height: 20),
-                    ],
+        child: BlocConsumer<MenuBloc, MenuState>(
+          listener: (BuildContext context, MenuState state) {
+            if (state.isInternetConnectionAvailableState!) {
+              MotionToast.success(
+                description: Text(
+                  'Internet connection is available',
+                  style: AppTextStyles.size18WeightSemiBoldText(
+                      AppColors.primaryColor),
+                ),
+                toastDuration: const Duration(seconds: 3),
+                width: size.width * 0.9,
+                height: size.height * 0.08,
+                displayBorder: true,
+                displaySideBar: false,
+                iconSize: size.width * 0.12,
+              ).show(context);
+            } else {
+              MotionToast.error(
+                description: Text(
+                  'Internet connection lost. Cached data is used.',
+                  style: AppTextStyles.size18WeightSemiBoldText(
+                      AppColors.primaryColor),
+                ),
+                toastDuration: const Duration(seconds: 3),
+                width: size.width * 0.9,
+                height: size.height * 0.09,
+                displayBorder: true,
+                displaySideBar: false,
+                iconSize: size.width * 0.12,
+              ).show(context);
+            }
+          },
+          builder: (BuildContext context, MenuState state) {
+            if (state.isLoading) {
+              return const LoadingIndicator();
+            }
+            if (state.menu.isNotEmpty) {
+              return Container(
+                height: size.height,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Center(
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(height: 20),
+                            ],
+                          ),
+                          MenuListItems(menu: state.menu),
+                        ]),
                   ),
-                  BlocBuilder<MenuBloc, MenuState>(
-                    builder: (BuildContext context, MenuState state) {
-                      if (state is MenuLoadingState) {
-                        return const LoadingIndicator();
-                      }
-                      if (state is MenuLoadedState) {
-                        return MenuListItems(menu: state.menu);
-                      } else {
-                        return const Center(
-                          child: Text('Error loading dishes'),
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ),
+                ),
+              );
+            } else {
+              return const Center(
+                child: Text('Error loading dishes'),
+              );
+            }
+          },
         ),
       ),
     );
