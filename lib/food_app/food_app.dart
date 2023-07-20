@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
 import 'package:navigation/navigation.dart';
+import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
 class FoodApp extends StatelessWidget {
@@ -13,8 +14,13 @@ class FoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AppThemeBloc>(
-          create: (_) => AppThemeBloc(),
+        BlocProvider<SettingsBloc>(
+          create: (_) => SettingsBloc(
+            getThemeUseCase: instance.get<GetThemeUseCase>(),
+            setThemeUseCase: instance.get<SetThemeUseCase>(),
+            getColorSchemeUseCase: instance.get<GetColorSchemeUseCase>(),
+            setColoSchemeUseCase: instance.get<SetColorSchemeUseCase>(),
+          ),
         ),
         BlocProvider<NavigateToPageBloc>(
           create: (_) => NavigateToPageBloc(),
@@ -34,12 +40,12 @@ class FoodApp extends StatelessWidget {
           ),
         ),
       ],
-      child: BlocBuilder<AppThemeBloc, AppThemeState>(
-        builder: (BuildContext context, AppThemeState state) {
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
             theme: state.isLight
-                ? AppTheme().lightThemeData
-                : AppTheme().darkThemeData,
+                ? AppTheme(isStandardColorScheme: state.isStandardColorScheme).lightThemeData
+                : AppTheme(isStandardColorScheme: state.isStandardColorScheme).darkThemeData,
             routerDelegate: instance.get<AppRouter>().delegate(),
             routeInformationParser:
                 instance.get<AppRouter>().defaultRouteParser(),

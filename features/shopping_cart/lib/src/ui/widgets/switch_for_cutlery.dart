@@ -16,6 +16,7 @@ class SwitchForCutlery extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
+    final ThemeData theme = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.only(left: 15),
@@ -26,10 +27,10 @@ class SwitchForCutlery extends StatelessWidget {
           value: switchValue,
           title: Text(
             'Do you need cutlery?',
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: theme.textTheme.bodyLarge,
           ),
-          activeColor: Theme.of(context).primaryColor,
-          inactiveThumbColor: Theme.of(context).disabledColor,
+          activeColor: theme.primaryColor,
+          inactiveThumbColor: theme.disabledColor,
           inactiveTrackColor: AppColors.backgroundItemColor,
           onChanged: (bool newValue) {
             shoppingCartBloc.add(

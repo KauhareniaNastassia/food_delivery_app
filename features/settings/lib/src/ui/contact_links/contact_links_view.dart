@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../bloc/bloc.dart';
+import '../../bloc/open_links_bloc/bloc.dart';
 
 class ContactLinksView extends StatelessWidget {
   const ContactLinksView({super.key});
@@ -62,7 +62,7 @@ class ContactLinksView extends StatelessWidget {
                       },
                       icon: SvgPicture.asset(
                         'assets/image/message_icon.svg',
-                        width: size.width / 9,
+                        width: size.width / 8,
                       ),
                     ),
                     IconButton(

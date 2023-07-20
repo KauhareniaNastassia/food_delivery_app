@@ -20,6 +20,8 @@ dependencies:
     path: ../../navigation
   shopping_cart:
     path: ../shopping_cart
+  settings:
+    path: ../settings
 
 dev_dependencies:
   flutter_test:

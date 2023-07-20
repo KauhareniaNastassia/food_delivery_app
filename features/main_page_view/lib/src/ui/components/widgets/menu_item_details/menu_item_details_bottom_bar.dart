@@ -14,8 +14,10 @@ class MenuItemDetailsBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Material(
-      color: Theme.of(context).cardColor,
+      color: theme.cardColor,
       child: Container(
         padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
         child: AddToCartButton(

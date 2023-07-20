@@ -40,7 +40,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
             } else {
               MotionToast.error(
                 description: Text(
-                  'Internet connection lost. Cached data is used.',
+                  'Internet connection lost. Cached data is using.',
                   style: AppTextStyles.size18WeightSemiBoldText(
                       AppColors.primaryColor),
                 ),

@@ -13,12 +13,13 @@ class AddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: amount != null
-                ? AppColors.secondaryColor
-                : AppColors.primaryColor,
+        backgroundColor:
+            amount != null ? theme.canvasColor : theme.primaryColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),

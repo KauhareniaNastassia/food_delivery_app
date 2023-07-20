@@ -19,17 +19,20 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
     final NavigateToPageBloc navigateToPageBloc =
         context.read<NavigateToPageBloc>();
     final Size size = MediaQuery.of(context).size;
+    final ThemeData theme = Theme.of(context);
+    bool previousAddCutleryState = false;
 
     return SafeArea(
       child: BlocConsumer<ShoppingCartBloc, ShoppingCartState>(
         listener: (BuildContext context, ShoppingCartState state) {
-          if (state.shoppingCart.addCutlery) {
+          if (state.shoppingCart.addCutlery && !previousAddCutleryState) {
+            previousAddCutleryState = true;
             MotionToast(
               icon: Icons.expand_circle_down_outlined,
               description: Text(
                 'The cost of cutlery is 0.5\$',
                 style: AppTextStyles.size18WeightSemiBoldText(
-                    AppColors.primaryColor),
+                    theme.primaryColor),
                 textAlign: TextAlign.center,
               ),
               toastDuration: const Duration(seconds: 2),
@@ -38,8 +41,10 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
               displayBorder: true,
               displaySideBar: false,
               iconSize: size.width * 0.13,
-              primaryColor: AppColors.secondaryColor,
+              primaryColor: theme.canvasColor,
             ).show(context);
+          } else if (!state.shoppingCart.addCutlery) {
+            previousAddCutleryState = false;
           }
         },
         builder: (BuildContext context, ShoppingCartState state) {

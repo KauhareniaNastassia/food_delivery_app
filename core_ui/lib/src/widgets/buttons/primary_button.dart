@@ -13,10 +13,12 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: theme.primaryColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(15),

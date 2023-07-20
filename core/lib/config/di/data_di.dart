@@ -13,10 +13,11 @@ class DataDI {
     _initFirebaseOptions();
     _initFirebase();
     _initDataProvider();
-    _initMenuItems();
-    _initShoppingCart();
     _initHive();
     _initAdapters();
+    _initMenuItems();
+    _initShoppingCart();
+    _initSettings();
   }
 
   void _initFirebaseOptions() {
@@ -64,6 +65,10 @@ class DataDI {
     instance.registerLazySingleton<LocalShoppingCartProvider>(
       () => LocalShoppingCartProvider(),
     );
+
+    instance.registerLazySingleton<SettingsLocalProvider>(
+      () => SettingsLocalProvider(),
+    );
   }
 
   void _initMenuItems() {
@@ -103,6 +108,38 @@ class DataDI {
     instance.registerLazySingleton<RemoveShoppingCartItemUseCase>(
       () => RemoveShoppingCartItemUseCase(
         shoppingCartRepository: instance.get<ShoppingCartRepository>(),
+      ),
+    );
+  }
+
+  _initSettings() {
+    instance.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        settingsLocalProvider: instance.get<SettingsLocalProvider>(),
+      ),
+    );
+
+    instance.registerLazySingleton<GetThemeUseCase>(
+      () => GetThemeUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SetThemeUseCase>(
+      () => SetThemeUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<GetColorSchemeUseCase>(
+          () => GetColorSchemeUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SetColorSchemeUseCase>(
+          () => SetColorSchemeUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
       ),
     );
   }
