@@ -84,7 +84,7 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
                   color: Theme.of(context).cardColor,
-                  height: size.height * 0.6,
+                  height: size.height * 0.7,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

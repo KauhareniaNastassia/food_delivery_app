@@ -20,6 +20,8 @@ class FoodApp extends StatelessWidget {
             setThemeUseCase: instance.get<SetThemeUseCase>(),
             getColorSchemeUseCase: instance.get<GetColorSchemeUseCase>(),
             setColoSchemeUseCase: instance.get<SetColorSchemeUseCase>(),
+            getFontSizeUseCase: instance.get<GetFontSizeUseCase>(),
+            setFontSizeUseCase: instance.get<SetFontSizeUseCase>(),
           ),
         ),
         BlocProvider<NavigateToPageBloc>(
@@ -44,8 +46,14 @@ class FoodApp extends StatelessWidget {
         builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
             theme: state.isLight
-                ? AppTheme(isStandardColorScheme: state.isStandardColorScheme).lightThemeData
-                : AppTheme(isStandardColorScheme: state.isStandardColorScheme).darkThemeData,
+                ? AppTheme(
+                    isStandardColorScheme: state.isStandardColorScheme,
+                    fontSize: state.fontSize,
+                  ).lightThemeData
+                : AppTheme(
+                    isStandardColorScheme: state.isStandardColorScheme,
+                    fontSize: state.fontSize,
+                  ).darkThemeData,
             routerDelegate: instance.get<AppRouter>().delegate(),
             routeInformationParser:
                 instance.get<AppRouter>().defaultRouteParser(),

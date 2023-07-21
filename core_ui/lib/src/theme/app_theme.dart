@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   final bool isStandardColorScheme;
+  final double fontSize;
 
-  AppTheme({required this.isStandardColorScheme});
+  AppTheme({
+    required this.isStandardColorScheme,
+    required this.fontSize,
+  });
 
   ThemeData get lightThemeData {
     return ThemeData(
@@ -24,23 +28,28 @@ class AppTheme {
       /// text styles
       textTheme: TextTheme(
         titleLarge: AppTextStyles.size20WeightSemiBoldText(
-          AppColors.titleTextColor,
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
         ),
         titleMedium: AppTextStyles.size18WeightSemiBoldText(
-          isStandardColorScheme
+          fontSize: fontSize,
+          color: isStandardColorScheme
               ? AppColors.secondaryColor
               : AppColors.alternativeSecondaryColor,
         ),
         titleSmall: AppTextStyles.size16WeightMediumText(
-          AppColors.titleDarkGreyTextColor,
+          fontSize: fontSize,
+          color: AppColors.titleDarkGreyTextColor,
         ),
         bodyMedium: AppTextStyles.size16WeightSemiBoldText(
-          isStandardColorScheme
+          fontSize: fontSize,
+          color: isStandardColorScheme
               ? AppColors.secondaryColor
               : AppColors.alternativeSecondaryColor,
         ),
         bodyLarge: AppTextStyles.size18WeightSemiBoldText(
-          AppColors.titleTextColor,
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
         ),
       ),
 
@@ -51,7 +60,8 @@ class AppTheme {
             ? AppColors.primaryColor
             : AppColors.alternativePrimaryColor,
         titleTextStyle: AppTextStyles.size24WeightBoldText(
-          AppColors.primaryButtonTextColor,
+          fontSize: fontSize,
+          color: AppColors.primaryButtonTextColor,
         ),
       ),
 
@@ -86,23 +96,28 @@ class AppTheme {
       /// text styles
       textTheme: TextTheme(
         titleLarge: AppTextStyles.size20WeightSemiBoldText(
-          AppColors.titleLightTextColor,
+          fontSize: fontSize,
+          color: AppColors.titleLightTextColor,
         ),
         titleMedium: AppTextStyles.size18WeightSemiBoldText(
-          isStandardColorScheme
+          fontSize: fontSize,
+          color: isStandardColorScheme
               ? AppColors.secondaryColor
               : AppColors.alternativeSecondaryDarkColor,
         ),
         titleSmall: AppTextStyles.size16WeightMediumText(
-          AppColors.titleGreyTextColor,
+          fontSize: fontSize,
+          color: AppColors.titleGreyTextColor,
         ),
         bodyMedium: AppTextStyles.size16WeightSemiBoldText(
-          isStandardColorScheme
+          fontSize: fontSize,
+          color: isStandardColorScheme
               ? AppColors.secondaryColor
               : AppColors.alternativeSecondaryDarkColor,
         ),
         bodyLarge: AppTextStyles.size18WeightSemiBoldText(
-          AppColors.titleLightTextColor,
+          fontSize: fontSize,
+          color: AppColors.titleLightTextColor,
         ),
       ),
 
@@ -113,7 +128,8 @@ class AppTheme {
             ? AppColors.primaryDarkColor
             : AppColors.alternativePrimaryDarkColor,
         titleTextStyle: AppTextStyles.size24WeightBoldText(
-          AppColors.primaryButtonTextColor,
+          fontSize: fontSize,
+          color: AppColors.primaryButtonTextColor,
         ),
       ),
 

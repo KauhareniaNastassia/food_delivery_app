@@ -1,5 +1,7 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class ItemListButton extends StatefulWidget {
   final VoidCallback onPressed;
@@ -19,7 +21,7 @@ class ItemListButtonState extends State<ItemListButton> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     return Ink(
       child: InkWell(
         child: CircleAvatar(
@@ -45,7 +47,7 @@ class ItemListButtonState extends State<ItemListButton> {
                             ),
                             Positioned(
                               right: 6,
-                              top: 1.5,
+                              top: 0.5,
                               child: Container(
                                 width: size.width * 0.05,
                                 padding: const EdgeInsets.all(0),
@@ -54,6 +56,7 @@ class ItemListButtonState extends State<ItemListButton> {
                                     widget.amount.toString(),
                                     style: AppTextStyles.size14WeightBoldText(
                                       AppColors.descriptionTextColor,
+                                      settingsBloc.state.fontSize,
                                     ),
                                   ),
                                 ),

@@ -142,5 +142,17 @@ class DataDI {
         settingsRepository: instance.get<SettingsRepository>(),
       ),
     );
+
+    instance.registerLazySingleton<GetFontSizeUseCase>(
+          () => GetFontSizeUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SetFontSizeUseCase>(
+          () => SetFontSizeUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
   }
 }

@@ -1,5 +1,7 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -14,6 +16,7 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return ElevatedButton(
       onPressed: onPressed,
@@ -34,7 +37,8 @@ class PrimaryButton extends StatelessWidget {
           buttonTitle,
           textAlign: TextAlign.center,
           style: AppTextStyles.size22WeightSemiBoldText(
-            AppColors.primaryButtonTextColor,
+            fontSize: settingsBloc.state.fontSize,
+            color: AppColors.primaryButtonTextColor,
           ),
         ),
       ),

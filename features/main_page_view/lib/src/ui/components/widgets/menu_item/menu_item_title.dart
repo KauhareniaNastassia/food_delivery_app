@@ -1,5 +1,7 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class MenuItemTitle extends StatelessWidget {
   final String title;
@@ -14,6 +16,7 @@ class MenuItemTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return Align(
       alignment: Alignment.centerRight,
@@ -43,7 +46,8 @@ class MenuItemTitle extends StatelessWidget {
                 Text(
                   '\$$cost',
                   style: AppTextStyles.size22WeightSemiBoldText(
-                    Theme.of(context).primaryColor,
+                    fontSize: settingsBloc.state.fontSize,
+                    color: Theme.of(context).primaryColor,
                   ),
                 ),
               ],

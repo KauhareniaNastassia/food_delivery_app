@@ -34,6 +34,10 @@ class SettingsPageContent extends StatelessWidget {
                         );
                   },
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+               const ChangeFontSizeSlider(),
               ],
             ),
           ),

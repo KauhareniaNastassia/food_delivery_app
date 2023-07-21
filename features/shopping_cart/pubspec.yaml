@@ -20,6 +20,8 @@ dependencies:
     path: ../../navigation
   main_page_view:
     path: ../main_page_view
+  settings:
+    path: ../settings
 
   flutter_svg: ^2.0.6
 

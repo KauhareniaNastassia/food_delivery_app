@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 import '../../bloc/bloc.dart';
 import 'menu_list_items.dart';
@@ -18,6 +19,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return Scaffold(
       body: SafeArea(
@@ -28,7 +30,9 @@ class _MainPageScreenState extends State<MainPageScreen> {
                 description: Text(
                   'Internet connection is available',
                   style: AppTextStyles.size18WeightSemiBoldText(
-                      AppColors.primaryColor),
+                    fontSize: settingsBloc.state.fontSize,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
                 toastDuration: const Duration(seconds: 3),
                 width: size.width * 0.9,
@@ -42,7 +46,9 @@ class _MainPageScreenState extends State<MainPageScreen> {
                 description: Text(
                   'Internet connection lost. Cached data is using.',
                   style: AppTextStyles.size18WeightSemiBoldText(
-                      AppColors.primaryColor),
+                    fontSize: settingsBloc.state.fontSize,
+                    color: AppColors.primaryColor,
+                  ),
                 ),
                 toastDuration: const Duration(seconds: 3),
                 width: size.width * 0.9,

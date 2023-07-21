@@ -31,7 +31,10 @@ class ChangeColorScheme extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: const LinearGradient(
-                  colors: [AppColors.primaryColor, AppColors.secondaryColor],
+                  colors: <Color>[
+                    AppColors.primaryColor,
+                    AppColors.secondaryColor,
+                  ],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -56,7 +59,7 @@ class ChangeColorScheme extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: const LinearGradient(
-                  colors: [
+                  colors: <Color>[
                     AppColors.alternativePrimaryColor,
                     AppColors.alternativeSecondaryColor
                   ],

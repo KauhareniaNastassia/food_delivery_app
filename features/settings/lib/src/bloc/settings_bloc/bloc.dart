@@ -9,20 +9,27 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   final SetThemeUseCase _setThemeUseCase;
   final GetColorSchemeUseCase _getColorSchemeUseCase;
   final SetColorSchemeUseCase _setColorSchemeUseCase;
+  final GetFontSizeUseCase _getFontSizeUseCase;
+  final SetFontSizeUseCase _setFontSizeUseCase;
 
   SettingsBloc({
     required GetThemeUseCase getThemeUseCase,
     required SetThemeUseCase setThemeUseCase,
     required GetColorSchemeUseCase getColorSchemeUseCase,
     required SetColorSchemeUseCase setColoSchemeUseCase,
+    required GetFontSizeUseCase getFontSizeUseCase,
+    required SetFontSizeUseCase setFontSizeUseCase,
   })  : _getThemeUseCase = getThemeUseCase,
         _setThemeUseCase = setThemeUseCase,
         _getColorSchemeUseCase = getColorSchemeUseCase,
         _setColorSchemeUseCase = setColoSchemeUseCase,
+        _getFontSizeUseCase = getFontSizeUseCase,
+        _setFontSizeUseCase = setFontSizeUseCase,
         super(const SettingsState.empty()) {
     on<InitAppSettings>(_initAppSettings);
     on<AppThemeChangingEvent>(_appThemeChanged);
     on<AppColorSchemeChangingEvent>(_appColorSchemeChanged);
+    on<AppFontSizeChangingEvent>(_appFontSizeChanged);
 
     add(InitAppSettings());
   }
@@ -35,12 +42,15 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final bool isStandardColorScheme = await _getColorSchemeUseCase.execute(
       const NoParams(),
     );
+    final double fontSize = await _getFontSizeUseCase.execute(
+      const NoParams(),
+    );
 
     emit(
       state.copyWith(
-        isLight: isLight,
-        isStandardColorScheme: isStandardColorScheme,
-      ),
+          isLight: isLight,
+          isStandardColorScheme: isStandardColorScheme,
+          fontSize: fontSize),
     );
   }
 
@@ -63,6 +73,19 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(
       state.copyWith(
         isStandardColorScheme: !state.isStandardColorScheme,
+      ),
+    );
+  }
+
+  Future<void> _appFontSizeChanged(
+    AppFontSizeChangingEvent event,
+    Emitter<SettingsState> emit,
+  ) async {
+    await _setFontSizeUseCase.execute(event.fontSize);
+
+    emit(
+      state.copyWith(
+        fontSize: event.fontSize,
       ),
     );
   }

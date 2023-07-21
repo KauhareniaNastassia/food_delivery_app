@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
+import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
 class ShoppingCartPageScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
         context.read<NavigateToPageBloc>();
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     bool previousAddCutleryState = false;
 
     return SafeArea(
@@ -32,7 +34,9 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
               description: Text(
                 'The cost of cutlery is 0.5\$',
                 style: AppTextStyles.size18WeightSemiBoldText(
-                    theme.primaryColor),
+                  fontSize: settingsBloc.state.fontSize,
+                  color: theme.primaryColor,
+                ),
                 textAlign: TextAlign.center,
               ),
               toastDuration: const Duration(seconds: 2),

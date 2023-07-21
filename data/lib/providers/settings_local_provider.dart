@@ -22,4 +22,15 @@ class SettingsLocalProvider {
     final Box colorScheme = await Hive.openBox('colorScheme');
     colorScheme.put('colorScheme', isStandard.toString());
   }
+
+  Future<double> getFontSizeFromLocal() async {
+    final Box colorScheme = await Hive.openBox('fontSize');
+    final fontSize = colorScheme.get('fontSize').toString();
+    return double.parse(fontSize);
+  }
+
+  Future<void> setFontSizeToLocal(double fontSize) async {
+    final Box colorScheme = await Hive.openBox('fontSize');
+    colorScheme.put('fontSize', fontSize.toString());
+  }
 }

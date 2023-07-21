@@ -1,5 +1,7 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class OrderHistoryPageContent extends StatelessWidget {
   const OrderHistoryPageContent({Key? key}) : super(key: key);
@@ -7,6 +9,7 @@ class OrderHistoryPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return Center(
       child: Column(
@@ -20,7 +23,8 @@ class OrderHistoryPageContent extends StatelessWidget {
           Text(
             'Order history coming soon',
             style: AppTextStyles.size18WeightSemiBoldText(
-                Theme.of(context).primaryColor),
+                fontSize: settingsBloc.state.fontSize,
+                color: Theme.of(context).primaryColor),
           ),
         ],
       ),

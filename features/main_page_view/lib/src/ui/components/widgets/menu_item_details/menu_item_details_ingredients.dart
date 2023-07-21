@@ -11,6 +11,8 @@ class MenuItemDetailsIngredients extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -42,9 +44,7 @@ class MenuItemDetailsIngredients extends StatelessWidget {
             : Center(
                 child: Text(
                   'No ingredients available',
-                  style: AppTextStyles.size14WeightBoldText(
-                    AppColors.primaryColor,
-                  ),
+                  style: theme.textTheme.bodyMedium,
                 ),
               ),
       ],

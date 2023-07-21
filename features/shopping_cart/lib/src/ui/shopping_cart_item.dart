@@ -1,6 +1,8 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 import 'package:shopping_cart/src/ui/widgets/widgets.dart';
 
 class ShoppingCartItem extends StatelessWidget {
@@ -16,6 +18,7 @@ class ShoppingCartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return Ink(
       child: InkWell(
@@ -43,17 +46,17 @@ class ShoppingCartItem extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           Text(
                             shoppingCartItem.menuItem.title,
                             style: Theme.of(context).textTheme.bodyLarge,
                           ),
-                          const SizedBox(height: 20),
                           Text(
                             '\$${shoppingCartItem.menuItem.cost}',
                             style: AppTextStyles.size18WeightSemiBoldText(
-                              Theme.of(context).primaryColor,
+                              fontSize: settingsBloc.state.fontSize,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                         ],
@@ -70,10 +73,9 @@ class ShoppingCartItem extends StatelessWidget {
                   boxShadow: [AppStyles.boxShadow],
                 ),
                 child: ClipOval(
-                  child: ItemImage(
-                    image: shoppingCartItem.menuItem.image,
-                  )
-                ),
+                    child: ItemImage(
+                  image: shoppingCartItem.menuItem.image,
+                )),
               ),
               Positioned(
                 right: 25,

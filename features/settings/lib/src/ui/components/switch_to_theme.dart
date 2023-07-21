@@ -17,7 +17,7 @@ class SwitchToTheme extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
+      children: <Widget>[
         Text(
           isLight ? 'Switch to dark theme' : 'Switch to light theme',
           style: theme.textTheme.titleLarge,

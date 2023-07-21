@@ -27,4 +27,14 @@ class SettingsRepositoryImpl implements SettingsRepository {
   Future<void> setColorScheme(bool isStandard) async {
     return _settingsLocalProvider.setColorSchemeToLocal(isStandard);
   }
+
+  @override
+  Future<double> getFontSize() async {
+    return _settingsLocalProvider.getFontSizeFromLocal();
+  }
+
+  @override
+  Future<void> setFontSize(double fontSize) async {
+    return _settingsLocalProvider.setFontSizeToLocal(fontSize);
+  }
 }
