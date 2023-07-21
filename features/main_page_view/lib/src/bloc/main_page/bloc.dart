@@ -4,12 +4,10 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final FetchMenuItemsUseCase _fetchMenuItemsUseCase;
-  StreamSubscription<ConnectivityResult>? streamSubscription;
 
   MenuBloc({required FetchMenuItemsUseCase fetchMenuItemsUseCase})
       : _fetchMenuItemsUseCase = fetchMenuItemsUseCase,

@@ -3,13 +3,13 @@ part of 'bloc.dart';
 class MenuState {
   final List<MenuItemModel> menu;
   final String? exception;
-  final bool? isInternetConnectionAvailableState;
+  final bool isInternetConnectionAvailableState;
   final bool isLoading;
 
   MenuState({
     this.menu = const [],
     this.exception,
-    this.isInternetConnectionAvailableState,
+    this.isInternetConnectionAvailableState = true,
     this.isLoading = true,
   });
 

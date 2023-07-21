@@ -25,23 +25,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
       body: SafeArea(
         child: BlocConsumer<MenuBloc, MenuState>(
           listener: (BuildContext context, MenuState state) {
-            if (state.isInternetConnectionAvailableState!) {
-              MotionToast.success(
-                description: Text(
-                  'Internet connection is available',
-                  style: AppTextStyles.size18WeightSemiBoldText(
-                    fontSize: settingsBloc.state.fontSize,
-                    color: AppColors.primaryColor,
-                  ),
-                ),
-                toastDuration: const Duration(seconds: 3),
-                width: size.width * 0.9,
-                height: size.height * 0.08,
-                displayBorder: true,
-                displaySideBar: false,
-                iconSize: size.width * 0.12,
-              ).show(context);
-            } else {
+            if (!state.isInternetConnectionAvailableState) {
               MotionToast.error(
                 description: Text(
                   'Internet connection lost. Cached data is using.',
@@ -64,23 +48,32 @@ class _MainPageScreenState extends State<MainPageScreen> {
               return const LoadingIndicator();
             }
             if (state.menu.isNotEmpty) {
-              return Container(
-                height: size.height,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: Center(
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SizedBox(height: 20),
-                          ],
+              return PageRefresher(
+                onRefresh: () {
+                  return Future<void>(
+                    () => context.read<MenuBloc>().add(
+                          InitEvent(),
                         ),
-                        MenuListItems(menu: state.menu),
-                      ],
+                  );
+                },
+                child: Container(
+                  height: size.height,
+                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  child: Center(
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              SizedBox(height: 20),
+                            ],
+                          ),
+                          MenuListItems(menu: state.menu),
+                        ],
+                      ),
                     ),
                   ),
                 ),
