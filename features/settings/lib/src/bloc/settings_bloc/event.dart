@@ -17,5 +17,5 @@ class AppColorSchemeChangingEvent extends SettingsEvent {
 class AppFontSizeChangingEvent extends SettingsEvent {
   final double fontSize;
 
-  AppFontSizeChangingEvent( {required this.fontSize});
+  AppFontSizeChangingEvent({required this.fontSize});
 }

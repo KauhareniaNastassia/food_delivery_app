@@ -55,8 +55,8 @@ class ItemListButtonState extends State<ItemListButton> {
                                   child: Text(
                                     widget.amount.toString(),
                                     style: AppTextStyles.size14WeightBoldText(
-                                      AppColors.descriptionTextColor,
-                                      settingsBloc.state.fontSize,
+                                      color: AppColors.descriptionTextColor,
+                                      fontSize: settingsBloc.state.fontSize,
                                     ),
                                   ),
                                 ),

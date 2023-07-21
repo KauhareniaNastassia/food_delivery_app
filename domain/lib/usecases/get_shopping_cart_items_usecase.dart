@@ -6,9 +6,9 @@ class GetShoppingCartUseCase
     implements FutureUseCase<NoParams, List<ShoppingCartItemModel>> {
   final ShoppingCartRepository _shoppingCartRepository;
 
-  const GetShoppingCartUseCase(
-      {required ShoppingCartRepository shoppingCartRepository})
-      : _shoppingCartRepository = shoppingCartRepository;
+  const GetShoppingCartUseCase({
+    required ShoppingCartRepository shoppingCartRepository
+  }) : _shoppingCartRepository = shoppingCartRepository;
 
   @override
   Future<List<ShoppingCartItemModel>> execute(NoParams input) async {

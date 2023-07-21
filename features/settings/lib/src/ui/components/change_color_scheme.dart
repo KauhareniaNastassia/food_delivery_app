@@ -18,7 +18,7 @@ class ChangeColorScheme extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
+      children: <Widget>[
         Text(
           'Change color scheme',
           style: theme.textTheme.titleLarge,

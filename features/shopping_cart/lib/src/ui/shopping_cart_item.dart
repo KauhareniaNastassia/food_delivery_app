@@ -73,9 +73,10 @@ class ShoppingCartItem extends StatelessWidget {
                   boxShadow: [AppStyles.boxShadow],
                 ),
                 child: ClipOval(
-                    child: ItemImage(
-                  image: shoppingCartItem.menuItem.image,
-                )),
+                  child: ItemImage(
+                    image: shoppingCartItem.menuItem.image,
+                  ),
+                ),
               ),
               Positioned(
                 right: 25,

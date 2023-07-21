@@ -4,6 +4,7 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
@@ -18,9 +19,13 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
 
     add(InitEvent());
 
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      add(IsInternetConnectionAvailableEvent());
-    });
+    Connectivity().onConnectivityChanged.listen(
+      (ConnectivityResult result) {
+        add(
+          IsInternetConnectionAvailableEvent(),
+        );
+      },
+    );
   }
 
   Future<void> _onLoadMenu(

@@ -24,7 +24,9 @@ class AddToCartButton extends StatelessWidget {
         backgroundColor:
             amount != null ? theme.canvasColor : theme.primaryColor,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
         ),
       ),
       child: Container(

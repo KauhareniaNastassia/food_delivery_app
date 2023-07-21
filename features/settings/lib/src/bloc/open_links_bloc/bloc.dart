@@ -22,7 +22,7 @@ class OpenContactLinksBloc
     Emitter<OpenContactLinksState> emit,
   ) async {
     try {
-      final Uri url = Uri.parse('https://www.facebook.com/');
+      final Uri url = Uri.parse('https://www.facebook.com');
       await launchUrl(url);
     } catch (e) {
       emit(
@@ -38,7 +38,7 @@ class OpenContactLinksBloc
     Emitter<OpenContactLinksState> emit,
   ) async {
     try {
-      final Uri url = Uri.parse('https://www.instagram.com/');
+      final Uri url = Uri.parse('https://www.instagram.com');
       await launchUrl(url);
     } catch (e) {
       emit(
@@ -58,7 +58,6 @@ class OpenContactLinksBloc
     try {
       await launchUrl(messageUrl);
     } catch (e) {
-      log(e.toString());
       emit(
         ErrorOpenLinkState(
           errorMessage: e.toString(),

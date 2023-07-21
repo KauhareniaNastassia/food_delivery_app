@@ -71,16 +71,17 @@ class _MainPageScreenState extends State<MainPageScreen> {
                   child: SingleChildScrollView(
                     controller: _scrollController,
                     child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              SizedBox(height: 20),
-                            ],
-                          ),
-                          MenuListItems(menu: state.menu),
-                        ]),
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        const Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(height: 20),
+                          ],
+                        ),
+                        MenuListItems(menu: state.menu),
+                      ],
+                    ),
                   ),
                 ),
               );

@@ -8,10 +8,10 @@ class AppTextStyles {
     required this.fontSize,
   });
 
-  static TextStyle size14WeightBoldText(
-    Color color,
-    double fontSize,
-  ) {
+  static TextStyle size14WeightBoldText({
+    required double fontSize,
+    required Color color,
+  }) {
     return TextStyle(
       fontFamily: _merriweatherFamily,
       fontSize: 14 * fontSize,
