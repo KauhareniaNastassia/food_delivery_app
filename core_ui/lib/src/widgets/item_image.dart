@@ -15,10 +15,10 @@ class ItemImage extends StatelessWidget {
     return CachedNetworkImage(
       fit: BoxFit.cover,
       imageUrl: image,
-      placeholder: (context, url) => const SizedBox(
+      placeholder: (_, __) => const SizedBox(
         child: LoadingIndicator(),
       ),
-      errorWidget: (context, url, error) => const ImagePlaceholder(
+      errorWidget: (_, __, ___) => const ImagePlaceholder(
         iconData: Icons.error_outline,
         iconSize: 50,
       ),

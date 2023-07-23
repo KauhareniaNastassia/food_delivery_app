@@ -7,7 +7,7 @@ class GetShoppingCartUseCase
   final ShoppingCartRepository _shoppingCartRepository;
 
   const GetShoppingCartUseCase({
-    required ShoppingCartRepository shoppingCartRepository
+    required ShoppingCartRepository shoppingCartRepository,
   }) : _shoppingCartRepository = shoppingCartRepository;
 
   @override

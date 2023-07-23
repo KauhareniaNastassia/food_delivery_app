@@ -10,7 +10,10 @@ class SettingsLocalProvider {
 
   Future<void> setThemeToLocal(bool isLight) async {
     final Box theme = await Hive.openBox('theme');
-    theme.put('isLight', isLight.toString());
+    theme.put(
+      'isLight',
+      isLight.toString(),
+    );
   }
 
   Future<bool> getColorSchemeFromLocal() async {
@@ -20,7 +23,10 @@ class SettingsLocalProvider {
 
   Future<void> setColorSchemeToLocal(bool isStandard) async {
     final Box colorScheme = await Hive.openBox('colorScheme');
-    colorScheme.put('colorScheme', isStandard.toString());
+    colorScheme.put(
+      'colorScheme',
+      isStandard.toString(),
+    );
   }
 
   Future<double> getFontSizeFromLocal() async {
@@ -31,6 +37,9 @@ class SettingsLocalProvider {
 
   Future<void> setFontSizeToLocal(double fontSize) async {
     final Box colorScheme = await Hive.openBox('fontSize');
-    colorScheme.put('fontSize', fontSize.toString());
+    colorScheme.put(
+      'fontSize',
+      fontSize.toString(),
+    );
   }
 }

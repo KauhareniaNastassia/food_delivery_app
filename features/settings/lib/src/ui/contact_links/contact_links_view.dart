@@ -1,8 +1,7 @@
 import 'package:core/core.dart';
+import 'package:settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../bloc/open_links_bloc/bloc.dart';
 
 class ContactLinksView extends StatelessWidget {
   const ContactLinksView({super.key});

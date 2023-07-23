@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
@@ -48,9 +49,10 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
     emit(
       state.copyWith(
-          isLight: isLight,
-          isStandardColorScheme: isStandardColorScheme,
-          fontSize: fontSize),
+        isLight: isLight,
+        isStandardColorScheme: isStandardColorScheme,
+        fontSize: fontSize,
+      ),
     );
   }
 
@@ -60,7 +62,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   ) async {
     await _setThemeUseCase.execute(!state.isLight);
     emit(
-      state.copyWith(isLight: !state.isLight),
+      state.copyWith(
+        isLight: !state.isLight,
+      ),
     );
   }
 

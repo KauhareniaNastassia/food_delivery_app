@@ -1,7 +1,5 @@
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
-
-import '../entity/shopping_cart_item/shopping_cart_item_entity.dart';
-import 'menu_item_mapper.dart';
 
 abstract class ShoppingCartItemMapper {
   static ShoppingCartItemEntity toEntity(ShoppingCartItemModel model) {

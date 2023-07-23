@@ -26,9 +26,9 @@ class ChangeFontSizeSlider extends StatelessWidget {
           activeColor: theme.primaryColor,
           inactiveColor: theme.canvasColor,
           onChanged: (value) {
-            context.read<SettingsBloc>().add(
-                  AppFontSizeChangingEvent(fontSize: value),
-                );
+            settingsBloc.add(
+              AppFontSizeChangingEvent(fontSize: value),
+            );
           },
         ),
       ],

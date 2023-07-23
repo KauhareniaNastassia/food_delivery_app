@@ -52,7 +52,6 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
             shoppingCart: state.shoppingCart.copyWith(
               shoppingCartItems: shoppingCartItems,
               totalPrice: totalPrice,
-              addCutlery: false,
             ),
           ),
         );
