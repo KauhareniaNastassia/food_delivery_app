@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
 class OpenContactLinksBloc
@@ -53,14 +52,19 @@ class OpenContactLinksBloc
   ) async {
     const String telephoneNumber = '+375291234567';
     final Uri messageUrl = Uri.parse('sms:$telephoneNumber');
-    try {
-      await launchUrl(messageUrl);
-    } catch (e) {
-      emit(
-        ErrorOpenLinkState(
-          errorMessage: e.toString(),
-        ),
-      );
+
+    PermissionStatus status = await Permission.sms.request();
+
+    if (status.isGranted) {
+      try {
+        await launchUrl(messageUrl);
+      } catch (e) {
+        emit(
+          ErrorOpenLinkState(
+            errorMessage: e.toString(),
+          ),
+        );
+      }
     }
   }
 
@@ -70,14 +74,19 @@ class OpenContactLinksBloc
   ) async {
     const String telephoneNumber = '+375291234567';
     final Uri telephoneUrl = Uri.parse('tel:$telephoneNumber');
-    try {
-      await launchUrl(telephoneUrl);
-    } catch (e) {
-      emit(
-        ErrorOpenLinkState(
-          errorMessage: e.toString(),
-        ),
-      );
+
+    PermissionStatus status = await Permission.phone.request();
+
+    if (status.isGranted) {
+      try {
+        await launchUrl(telephoneUrl);
+      } catch (e) {
+        emit(
+          ErrorOpenLinkState(
+            errorMessage: e.toString(),
+          ),
+        );
+      }
     }
   }
 
@@ -88,14 +97,19 @@ class OpenContactLinksBloc
     const String lat = '53.915629';
     const String lng = '27.569431';
     final Uri mapUrl = Uri.parse('geo:$lat,$lng');
-    try {
-      await launchUrl(mapUrl);
-    } catch (e) {
-      emit(
-        ErrorOpenLinkState(
-          errorMessage: e.toString(),
-        ),
-      );
+
+    PermissionStatus status = await Permission.location.request();
+
+    if (status.isGranted) {
+      try {
+        await launchUrl(mapUrl);
+      } catch (e) {
+        emit(
+          ErrorOpenLinkState(
+            errorMessage: e.toString(),
+          ),
+        );
+      }
     }
   }
 }

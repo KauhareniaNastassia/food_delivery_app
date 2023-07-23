@@ -9,3 +9,4 @@ export 'package:motion_toast/motion_toast.dart';
 export 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 export 'config/di/app_di.dart';
 export 'config/di/data_di.dart';
+export 'package:permission_handler/permission_handler.dart';

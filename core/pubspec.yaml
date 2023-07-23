@@ -26,6 +26,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   motion_toast: ^2.7.8
   liquid_pull_to_refresh: ^3.0.1
+  permission_handler: ^10.4.3
 
 dev_dependencies:
   flutter_test:
