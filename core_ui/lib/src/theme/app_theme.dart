@@ -51,6 +51,7 @@ class AppTheme {
           fontSize: fontSize,
           color: AppColors.titleTextColor,
         ),
+
       ),
 
       /// app bar styles

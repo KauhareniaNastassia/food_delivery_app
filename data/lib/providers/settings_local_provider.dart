@@ -31,7 +31,7 @@ class SettingsLocalProvider {
 
   Future<double> getFontSizeFromLocal() async {
     final Box colorScheme = await Hive.openBox('fontSize');
-    final fontSize = colorScheme.get('fontSize').toString();
+    final String fontSize = colorScheme.get('fontSize').toString();
     return double.parse(fontSize);
   }
 

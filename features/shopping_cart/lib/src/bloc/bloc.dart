@@ -43,7 +43,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
         );
       } else {
         double totalPrice = 0.0;
-        for (final item in shoppingCartItems) {
+        for (final ShoppingCartItemModel item in shoppingCartItems) {
           totalPrice += item.menuItem.cost * item.amount;
         }
 

@@ -36,7 +36,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   }
 
   Future<void> _initAppSettings(
-      InitAppSettings event, Emitter<SettingsState> emit) async {
+    InitAppSettings event,
+    Emitter<SettingsState> emit,
+  ) async {
     final bool isLight = await _getThemeUseCase.execute(
       const NoParams(),
     );

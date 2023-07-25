@@ -9,8 +9,9 @@ part 'state.dart';
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final FetchMenuItemsUseCase _fetchMenuItemsUseCase;
 
-  MenuBloc({required FetchMenuItemsUseCase fetchMenuItemsUseCase})
-      : _fetchMenuItemsUseCase = fetchMenuItemsUseCase,
+  MenuBloc({
+    required FetchMenuItemsUseCase fetchMenuItemsUseCase,
+  })  : _fetchMenuItemsUseCase = fetchMenuItemsUseCase,
         super(MenuState()) {
     on<InitEvent>(_onLoadMenu);
     on<IsInternetConnectionAvailableEvent>(_isInternetConnectionAvailable);
@@ -57,15 +58,12 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     IsInternetConnectionAvailableEvent event,
     Emitter<MenuState> emit,
   ) async {
-    final ConnectivityResult connectivityResult =
-        await Connectivity().checkConnectivity();
-
     final bool isInternetConnectionAvailable =
-        connectivityResult != ConnectivityResult.none;
+        await CheckInternetConnection.checkIsInternetConnectionAvailable();
 
     emit(
       state.copyWith(
-        isInternetConnectionAvailableState: isInternetConnectionAvailable,
+        isInternetConnectionAvailable: isInternetConnectionAvailable,
       ),
     );
   }

@@ -7,13 +7,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (BuildContext context, SettingsState state) {
         return AppBar(
           title: const Text('Food Delivery App'),
-          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-          titleSpacing: Theme.of(context).appBarTheme.titleSpacing,
-          titleTextStyle: Theme.of(context).appBarTheme.titleTextStyle,
+          backgroundColor: theme.appBarTheme.backgroundColor,
+          titleSpacing: theme.appBarTheme.titleSpacing,
+          titleTextStyle: theme.appBarTheme.titleTextStyle,
         );
       },
     );

@@ -7,6 +7,9 @@ class SettingsPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final ThemeData theme = Theme.of(context);
+
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (BuildContext context, SettingsState state) {
         return Scaffold(
@@ -18,9 +21,9 @@ class SettingsPageContent extends StatelessWidget {
                 SwitchToTheme(
                   isLight: state.isLight,
                   onTap: () {
-                    context.read<SettingsBloc>().add(
-                          AppThemeChangingEvent(),
-                        );
+                    settingsBloc.add(
+                      AppThemeChangingEvent(),
+                    );
                   },
                 ),
                 const SizedBox(
@@ -29,20 +32,20 @@ class SettingsPageContent extends StatelessWidget {
                 ChangeColorScheme(
                   isStandardColorScheme: state.isStandardColorScheme,
                   onTap: () {
-                    context.read<SettingsBloc>().add(
-                          AppColorSchemeChangingEvent(),
-                        );
+                    settingsBloc.add(
+                      AppColorSchemeChangingEvent(),
+                    );
                   },
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-               const ChangeFontSizeSlider(),
+                const ChangeFontSizeSlider(),
               ],
             ),
           ),
           bottomNavigationBar: Material(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: theme.scaffoldBackgroundColor,
             child: const ContactLinksView(),
           ),
         );

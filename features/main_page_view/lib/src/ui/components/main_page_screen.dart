@@ -18,14 +18,14 @@ class _MainPageScreenState extends State<MainPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<MenuBloc, MenuState>(
           listener: (BuildContext context, MenuState state) {
-            if (!state.isInternetConnectionAvailableState) {
+            if (!state.isInternetConnectionAvailable) {
               MotionToast.error(
                 description: Text(
                   'Internet connection lost. Cached data is using.',
@@ -35,11 +35,11 @@ class _MainPageScreenState extends State<MainPageScreen> {
                   ),
                 ),
                 toastDuration: const Duration(seconds: 3),
-                width: size.width * 0.9,
-                height: size.height * 0.09,
+                width: mediaQueryData.size.width * 0.9,
+                height: mediaQueryData.size.height * 0.09,
                 displayBorder: true,
                 displaySideBar: false,
-                iconSize: size.width * 0.12,
+                iconSize: mediaQueryData.size.width * 0.12,
               ).show(context);
             }
           },
@@ -49,15 +49,13 @@ class _MainPageScreenState extends State<MainPageScreen> {
             }
             if (state.menu.isNotEmpty) {
               return PageRefresher(
-                onRefresh: () {
-                  return Future<void>(
-                    () => context.read<MenuBloc>().add(
-                          InitEvent(),
-                        ),
-                  );
+                onRefresh: () async {
+                  context.read<MenuBloc>().add(
+                        InitEvent(),
+                      );
                 },
                 child: Container(
-                  height: size.height,
+                  height: mediaQueryData.size.height,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Center(
                     child: SingleChildScrollView(

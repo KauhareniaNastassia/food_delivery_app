@@ -1,17 +1,8 @@
 import 'package:core/core.dart';
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
-import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item_details/back_to_previous_page_button.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item_details/decoration_block.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item_details/menu_item_details_bottom_bar.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item_details/menu_item_details_description.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item_details/menu_item_details_image.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item_details/menu_item_details_ingredients.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item_details/menu_item_details_title.dart';
+import 'package:main_page_view/main_page.dart';
 import 'package:shopping_cart/shopping_cart.dart';
-
-import '../../../main_page.dart';
 
 class MenuItemDetailsScreen extends StatefulWidget {
   final MenuItemModel menuItem;
@@ -28,7 +19,8 @@ class MenuItemDetailsScreen extends StatefulWidget {
 class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final ThemeData theme = Theme.of(context);
     final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
     final NavigateToPageBloc navigateToPageBloc =
         context.read<NavigateToPageBloc>();
@@ -68,7 +60,7 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
                     );
                   },
                 ),
-                expandedHeight: size.height * 0.4,
+                expandedHeight: mediaQueryData.size.height * 0.4,
                 flexibleSpace: Stack(
                   children: <Widget>[
                     FlexibleSpaceBar(
@@ -83,8 +75,8 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
               SliverToBoxAdapter(
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
-                  color: Theme.of(context).cardColor,
-                  height: size.height * 0.7,
+                  color: theme.cardColor,
+                  height: mediaQueryData.size.height * 0.7,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

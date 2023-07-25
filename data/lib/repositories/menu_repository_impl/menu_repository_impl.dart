@@ -12,29 +12,27 @@ class MenuRepositoryImpl implements MenuRepository {
   MenuRepositoryImpl({
     required MenuDataProvider menuDataProvider,
     required LocalMenuProvider localMenuProvider,
-  })  : _menuDataProvider = menuDataProvider,
+  })
+      : _menuDataProvider = menuDataProvider,
         _localMenuProvider = localMenuProvider;
 
   @override
   Future<List<MenuItemModel>> fetchMenuItems() async {
-    final ConnectivityResult connectivityResult =
-        await Connectivity().checkConnectivity();
-
-    if (connectivityResult == ConnectivityResult.none) {
+    if (await CheckInternetConnection.checkIsInternetConnectionAvailable()) {
       final List<MenuItemEntity> menuItems =
-          await _localMenuProvider.getMenuItemsFromLocal();
+      await _localMenuProvider.getMenuItemsFromLocal();
       return menuItems
           .map(
             (MenuItemEntity e) => MenuItemMapper.toModel(e),
-          )
+      )
           .toList();
     } else {
       final List<MenuItemEntity> result =
-          await _menuDataProvider.fetchMenuItems();
+      await _menuDataProvider.fetchMenuItems();
       final List<MenuItemModel> menuItems = result
           .map(
             (MenuItemEntity e) => MenuItemMapper.toModel(e),
-          )
+      )
           .toList();
       await _localMenuProvider.saveMenuItemsToLocal(menuItems);
       return menuItems;
