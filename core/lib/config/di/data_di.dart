@@ -18,6 +18,7 @@ class DataDI {
     _initMenuItems();
     _initShoppingCart();
     _initSettings();
+    _initAuth();
   }
 
   void _initFirebaseOptions() {
@@ -40,6 +41,9 @@ class DataDI {
     Hive.registerAdapter(
       instance.get<ShoppingCartItemEntityAdapter>(),
     );
+    Hive.registerAdapter(
+      instance.get<UserInfoEntityAdapter>(),
+    );
   }
 
   void _initAdapters() {
@@ -48,6 +52,9 @@ class DataDI {
     );
     instance.registerLazySingleton<ShoppingCartItemEntityAdapter>(
       () => ShoppingCartItemEntityAdapter(),
+    );
+    instance.registerLazySingleton<UserInfoEntityAdapter>(
+      () => UserInfoEntityAdapter(),
     );
   }
 
@@ -68,6 +75,17 @@ class DataDI {
 
     instance.registerLazySingleton<SettingsLocalProvider>(
       () => SettingsLocalProvider(),
+    );
+
+    instance.registerLazySingleton<AuthProvider>(
+      () => AuthProvider(
+        FirebaseAuth.instance,
+        FirebaseFirestore.instance,
+      ),
+    );
+
+    instance.registerLazySingleton<LocalAuthProvider>(
+      () => LocalAuthProvider(),
     );
   }
 
@@ -132,26 +150,59 @@ class DataDI {
     );
 
     instance.registerLazySingleton<GetColorSchemeUseCase>(
-          () => GetColorSchemeUseCase(
+      () => GetColorSchemeUseCase(
         settingsRepository: instance.get<SettingsRepository>(),
       ),
     );
 
     instance.registerLazySingleton<SetColorSchemeUseCase>(
-          () => SetColorSchemeUseCase(
+      () => SetColorSchemeUseCase(
         settingsRepository: instance.get<SettingsRepository>(),
       ),
     );
 
     instance.registerLazySingleton<GetFontSizeUseCase>(
-          () => GetFontSizeUseCase(
+      () => GetFontSizeUseCase(
         settingsRepository: instance.get<SettingsRepository>(),
       ),
     );
 
     instance.registerLazySingleton<SetFontSizeUseCase>(
-          () => SetFontSizeUseCase(
+      () => SetFontSizeUseCase(
         settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
+  }
+
+  _initAuth() {
+    instance.registerLazySingleton<AuthRepository>(
+      () => AuthRepositoryImpl(
+        authProvider: instance.get<AuthProvider>(),
+        localAuthProvider: instance.get<LocalAuthProvider>(),
+      ),
+    );
+
+    instance.registerLazySingleton<CheckIsUserLoggedUseCase>(
+      () => CheckIsUserLoggedUseCase(
+        authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SignInUseCase>(
+      () => SignInUseCase(
+        authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SignUpUseCase>(
+      () => SignUpUseCase(
+        authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SignOutUseCase>(
+      () => SignOutUseCase(
+        authRepository: instance.get<AuthRepository>(),
       ),
     );
   }

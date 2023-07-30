@@ -17,6 +17,24 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    SplashScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SplashScreen(),
+      );
+    },
+    SignInPageScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignInPageScreen(),
+      );
+    },
+    SignUpPageScreenRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SignUpPageScreen(),
+      );
+    },
     MainPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -62,12 +80,24 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          MainPageRoute.name,
+          SplashScreenRoute.name,
           path: '/',
+        ),
+        RouteConfig(
+          SignInPageScreenRoute.name,
+          path: '/sign-in-page-screen',
+        ),
+        RouteConfig(
+          SignUpPageScreenRoute.name,
+          path: '/sign-up-page-screen',
+        ),
+        RouteConfig(
+          MainPageRoute.name,
+          path: '/main-page',
           children: [
             RouteConfig(
               MainPageScreenRoute.name,
-              path: '',
+              path: 'main-page-screen',
               parent: MainPageRoute.name,
             ),
             RouteConfig(
@@ -95,12 +125,48 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [SplashScreen]
+class SplashScreenRoute extends PageRouteInfo<void> {
+  const SplashScreenRoute()
+      : super(
+          SplashScreenRoute.name,
+          path: '/',
+        );
+
+  static const String name = 'SplashScreenRoute';
+}
+
+/// generated route for
+/// [SignInPageScreen]
+class SignInPageScreenRoute extends PageRouteInfo<void> {
+  const SignInPageScreenRoute()
+      : super(
+          SignInPageScreenRoute.name,
+          path: '/sign-in-page-screen',
+        );
+
+  static const String name = 'SignInPageScreenRoute';
+}
+
+/// generated route for
+/// [SignUpPageScreen]
+class SignUpPageScreenRoute extends PageRouteInfo<void> {
+  const SignUpPageScreenRoute()
+      : super(
+          SignUpPageScreenRoute.name,
+          path: '/sign-up-page-screen',
+        );
+
+  static const String name = 'SignUpPageScreenRoute';
+}
+
+/// generated route for
 /// [MainPage]
 class MainPageRoute extends PageRouteInfo<void> {
   const MainPageRoute({List<PageRouteInfo>? children})
       : super(
           MainPageRoute.name,
-          path: '/',
+          path: '/main-page',
           initialChildren: children,
         );
 
@@ -148,7 +214,7 @@ class MainPageScreenRoute extends PageRouteInfo<void> {
   const MainPageScreenRoute()
       : super(
           MainPageScreenRoute.name,
-          path: '',
+          path: 'main-page-screen',
         );
 
   static const String name = 'MainPageScreenRoute';

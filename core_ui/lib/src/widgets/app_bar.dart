@@ -16,6 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           backgroundColor: theme.appBarTheme.backgroundColor,
           titleSpacing: theme.appBarTheme.titleSpacing,
           titleTextStyle: theme.appBarTheme.titleTextStyle,
+          automaticallyImplyLeading: false,
         );
       },
     );

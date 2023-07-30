@@ -18,6 +18,8 @@ dependencies:
     path: ../../domain
   main_page_view:
     path: ../main_page_view
+  auth:
+    path: ../auth
 
   flutter_svg: ^2.0.6
   url_launcher: ^6.0.3

@@ -26,6 +26,8 @@ dependencies:
     path: ./features/shopping_cart
   settings:
     path: ./features/settings
+  auth:
+    path: ./features/auth
 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.14.0

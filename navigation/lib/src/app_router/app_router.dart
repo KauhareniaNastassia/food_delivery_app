@@ -1,11 +1,11 @@
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
+import 'package:auth/auth.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:main_page_view/main_page.dart';
+import 'package:navigation/navigation.dart';
 import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
-
-import '../../navigation.dart';
 
 part 'app_router.gr.dart';
 
@@ -13,12 +13,20 @@ part 'app_router.gr.dart';
   replaceInRouteName: 'Page, Screen, Route',
   routes: <AutoRoute>[
     AutoRoute(
-      path: "/",
+      page: SplashScreen,
+      initial: true,
+    ),
+    AutoRoute(
+      page: SignInPageScreen,
+    ),
+    AutoRoute(
+      page: SignUpPageScreen,
+    ),
+    AutoRoute(
       page: MainPage,
-      children: [
+      children: <AutoRoute>[
         AutoRoute(
           page: MainPageScreen,
-          initial: true,
         ),
         AutoRoute(
           page: ShoppingCartPageScreen,

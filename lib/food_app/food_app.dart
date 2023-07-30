@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
@@ -14,6 +15,14 @@ class FoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc(
+            checkIsUserLoggedUseCase: instance.get<CheckIsUserLoggedUseCase>(),
+            signInUseCase: instance.get<SignInUseCase>(),
+            signUpUseCase: instance.get<SignUpUseCase>(),
+            signOutUseCase: instance.get<SignOutUseCase>(),
+          ),
+        ),
         BlocProvider<SettingsBloc>(
           create: (_) => SettingsBloc(
             getThemeUseCase: instance.get<GetThemeUseCase>(),

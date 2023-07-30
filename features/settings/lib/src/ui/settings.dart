@@ -14,10 +14,14 @@ class SettingsPageContent extends StatelessWidget {
       builder: (BuildContext context, SettingsState state) {
         return Scaffold(
           body: Padding(
-            padding: const EdgeInsets.all(30),
+            padding: const EdgeInsets.fromLTRB(30, 20, 30, 30),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                const UserInfoBlock(),
+                const SizedBox(
+                  height: 30,
+                ),
                 SwitchToTheme(
                   isLight: state.isLight,
                   onTap: () {

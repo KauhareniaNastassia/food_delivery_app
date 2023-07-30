@@ -11,3 +11,5 @@ export 'config/di/app_di.dart';
 export 'config/di/data_di.dart';
 export 'package:permission_handler/permission_handler.dart';
 export 'config/internet_connection_check/connection_di.dart';
+export 'package:firebase_auth/firebase_auth.dart';
+export 'validation/validation.dart';

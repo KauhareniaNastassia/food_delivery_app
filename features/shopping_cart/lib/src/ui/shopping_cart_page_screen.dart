@@ -22,13 +22,12 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
-    bool previousAddCutleryState = false;
+
 
     return SafeArea(
       child: BlocConsumer<ShoppingCartBloc, ShoppingCartState>(
         listener: (BuildContext context, ShoppingCartState state) {
-          if (state.shoppingCart.addCutlery && !previousAddCutleryState) {
-            previousAddCutleryState = true;
+          if (state.shoppingCart.addCutlery ) {
             MotionToast(
               icon: Icons.expand_circle_down_outlined,
               description: Text(
@@ -47,9 +46,10 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
               iconSize: size.width * 0.13,
               primaryColor: theme.canvasColor,
             ).show(context);
-          } else if (!state.shoppingCart.addCutlery) {
-            previousAddCutleryState = false;
           }
+        },
+        listenWhen: (ShoppingCartState previous, ShoppingCartState current) {
+          return previous.shoppingCart.addCutlery != current.shoppingCart.addCutlery;
         },
         builder: (BuildContext context, ShoppingCartState state) {
           if (state.shoppingCart.shoppingCartItems.isNotEmpty) {
