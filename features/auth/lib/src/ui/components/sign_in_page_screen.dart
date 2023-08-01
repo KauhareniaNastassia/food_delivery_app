@@ -21,14 +21,14 @@ class _SignInPageScreenState extends State<SignInPageScreen> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const SignTitle(title: 'Sign In'),
                 const SizedBox(height: 20),
                 const SignInBlock(),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[

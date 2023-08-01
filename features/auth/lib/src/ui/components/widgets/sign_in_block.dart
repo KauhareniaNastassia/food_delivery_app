@@ -26,7 +26,7 @@ class _SignInBlockState extends State<SignInBlock> {
         if (state.signInFailedMessage != '') {
           MotionToast.error(
             description: Text(
-              'Wrong email or password.',
+              'Wrong email or password',
               style: AppTextStyles.size16WeightSemiBoldText(
                 fontSize: settingsBloc.state.fontSize,
                 color: AppColors.primaryColor,
@@ -71,7 +71,7 @@ class _SignInBlockState extends State<SignInBlock> {
                 ),
                 SizedBox( height: mediaQueryData.size.height * 0.05),
                 PrimaryButton(
-                  buttonTitle: 'Sign In',
+                  buttonTitle: 'Sign in',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       context.read<AuthBloc>().add(
@@ -81,6 +81,15 @@ class _SignInBlockState extends State<SignInBlock> {
                             ),
                           );
                     }
+                  },
+                ),
+                SizedBox( height: mediaQueryData.size.height * 0.05),
+                PrimaryButton(
+                  buttonTitle: 'Sign in via Google',
+                  onPressed: () {
+                    context.read<AuthBloc>().add(
+                      SignInViaGoogleEvent(),
+                    );
                   },
                 ),
               ],

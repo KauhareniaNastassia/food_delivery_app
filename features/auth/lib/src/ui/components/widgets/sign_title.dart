@@ -21,7 +21,7 @@ class SignTitle extends StatelessWidget {
       children: <Widget>[
         Center(
           child: Image.asset(
-            "assets/image/logo.png",
+            'assets/image/logo.png',
             width: mediaQueryData.size.width * 0.4,
           ),
         ),

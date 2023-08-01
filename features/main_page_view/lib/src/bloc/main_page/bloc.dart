@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
@@ -38,6 +39,8 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       final List<MenuItemModel> menu = await _fetchMenuItemsUseCase.execute(
         const NoParams(),
       );
+
+      log(menu.length.toString());
       emit(
         state.copyWith(
           menu: menu,
@@ -45,6 +48,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         ),
       );
     } catch (e, _) {
+      log(e.toString());
       emit(
         state.copyWith(
           exception: e.toString(),

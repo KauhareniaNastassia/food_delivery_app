@@ -12,6 +12,7 @@ class DataDI {
   Future<void> initDependencies() async {
     _initFirebaseOptions();
     _initFirebase();
+    _initGoogleSignIn();
     _initDataProvider();
     _initHive();
     _initAdapters();
@@ -30,6 +31,12 @@ class DataDI {
   Future<void> _initFirebase() async {
     await Firebase.initializeApp(
       options: instance<FirebaseOptions>(),
+    );
+  }
+
+  Future<void> _initGoogleSignIn() async {
+    instance.registerLazySingleton<GoogleSignIn>(
+      () => GoogleSignIn(),
     );
   }
 
@@ -58,7 +65,7 @@ class DataDI {
     );
   }
 
-  void _initDataProvider() {
+  Future<void> _initDataProvider() async {
     instance.registerLazySingleton<MenuDataProvider>(
       () => MenuDataProvider(
         FirebaseFirestore.instance,
@@ -81,6 +88,7 @@ class DataDI {
       () => AuthProvider(
         FirebaseAuth.instance,
         FirebaseFirestore.instance,
+        instance.get<GoogleSignIn>(),
       ),
     );
 
@@ -202,6 +210,12 @@ class DataDI {
 
     instance.registerLazySingleton<SignOutUseCase>(
       () => SignOutUseCase(
+        authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SignInViaGoogleUseCase>(
+      () => SignInViaGoogleUseCase(
         authRepository: instance.get<AuthRepository>(),
       ),
     );

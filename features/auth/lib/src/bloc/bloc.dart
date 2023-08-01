@@ -7,21 +7,25 @@ part 'state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CheckIsUserLoggedUseCase _checkIsUserLoggedUseCase;
   final SignInUseCase _signInUseCase;
+  final SignInViaGoogleUseCase _signInViaGoogleUseCase;
   final SignUpUseCase _signUpUseCase;
   final SignOutUseCase _signOutUseCase;
 
   AuthBloc({
     required CheckIsUserLoggedUseCase checkIsUserLoggedUseCase,
     required SignInUseCase signInUseCase,
+    required SignInViaGoogleUseCase signInViaGoogleUseCase,
     required SignUpUseCase signUpUseCase,
     required SignOutUseCase signOutUseCase,
   })  : _checkIsUserLoggedUseCase = checkIsUserLoggedUseCase,
         _signInUseCase = signInUseCase,
+        _signInViaGoogleUseCase = signInViaGoogleUseCase,
         _signUpUseCase = signUpUseCase,
         _signOutUseCase = signOutUseCase,
         super(const AuthState.initial()) {
     on<InitAuthEvent>(_onInitAuth);
     on<SignInEvent>(_onSignIn);
+    on<SignInViaGoogleEvent>(_signInViaGoogle);
     on<SignUpEvent>(_onSignUp);
     on<SignOutEvent>(_onSignOut);
 
@@ -34,6 +38,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     InitAuthEvent event,
     Emitter<AuthState> emit,
   ) async {
+    emit(
+      state.copyWith(
+        isDataProcessing: true,
+      ),
+    );
     try {
       final UserInfoModel userFromLocal =
           await _checkIsUserLoggedUseCase.execute(
@@ -46,6 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             )
           : emit(
               state.copyWith(
+                isDataProcessing: false,
                 isUserLoggedIn: true,
                 userId: userFromLocal.userId,
                 userName: userFromLocal.userName,
@@ -170,6 +180,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.copyWith(
           isDataProcessing: false,
           isUserLoggedIn: false,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isDataProcessing: false,
+          exception: e.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<void> _signInViaGoogle(
+    SignInViaGoogleEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isDataProcessing: true,
+      ),
+    );
+    try {
+      final UserInfoModel userInfo = await _signInViaGoogleUseCase.execute(
+        const NoParams(),
+      );
+
+      emit(
+        state.copyWith(
+          isUserLoggedIn: true,
+          isDataProcessing: false,
+          userName: userInfo.userName,
+          email: userInfo.email,
+          userId: userInfo.userId,
         ),
       );
     } catch (e) {

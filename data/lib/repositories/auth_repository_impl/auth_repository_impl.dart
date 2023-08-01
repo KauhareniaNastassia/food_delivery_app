@@ -39,6 +39,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<UserInfoModel> signInViaGoogle() async {
+    final UserInfoEntity userInfoEntity =
+        await _authProvider.signInWithGoogle();
+
+    final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
+    await _localAuthProvider.setUserToLocal(userInfoModel);
+
+    return userInfoModel;
+  }
+
+  @override
   Future<UserInfoModel> signUp({
     required String userName,
     required String email,

@@ -3,10 +3,12 @@ import 'package:data/data.dart';
 class AuthProvider {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _fireStore;
+  final GoogleSignIn _googleSignIn;
 
   AuthProvider(
     this._firebaseAuth,
     this._fireStore,
+    this._googleSignIn,
   );
 
   Future<UserInfoEntity> signInWithEmailAndPassword({
@@ -20,6 +22,29 @@ class AuthProvider {
     );
 
     return await getUserInfoFromDB(userId: userCredential.user!.uid);
+  }
+
+  Future<UserInfoEntity> signInWithGoogle() async {
+    final GoogleSignInAccount? googleSignInAccount =
+        await _googleSignIn.signIn();
+
+    final GoogleSignInAuthentication? googleSignInAuthentication =
+        await googleSignInAccount?.authentication;
+    final OAuthCredential authCredential = GoogleAuthProvider.credential(
+      idToken: googleSignInAuthentication?.idToken,
+      accessToken: googleSignInAuthentication?.accessToken,
+    );
+
+    UserCredential result =
+        await _firebaseAuth.signInWithCredential(authCredential);
+
+    await _fireStore.collection('usersInfo').doc(result.user?.uid).set({
+      'userId': result.user?.uid,
+      'userName': result.user?.displayName,
+      'email': result.user?.email,
+    });
+
+    return await getUserInfoFromDB(userId: result.user?.uid ?? '');
   }
 
   Future<UserInfoEntity> createUserWithEmailAndPassword({
@@ -44,15 +69,14 @@ class AuthProvider {
 
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
+    await _googleSignIn.signOut();
   }
 
   Future<UserInfoEntity> getUserInfoFromDB({
     required String userId,
   }) async {
-    final DocumentSnapshot<Map<String, dynamic>> doc = await _fireStore
-        .collection('usersInfo')
-        .doc(userId)
-        .get();
+    final DocumentSnapshot<Map<String, dynamic>> doc =
+        await _fireStore.collection('usersInfo').doc(userId).get();
 
     final Map<String, dynamic>? userData = doc.data();
     final UserInfoEntity userEntity = UserInfoEntity(

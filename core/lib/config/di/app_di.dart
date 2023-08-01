@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:core/core.dart';
 import 'package:navigation/navigation.dart';
-
-import 'data_di.dart';
 
 final AppDI appDI = AppDI();
 

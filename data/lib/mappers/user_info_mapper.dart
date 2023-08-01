@@ -1,5 +1,5 @@
-import 'package:domain/domain.dart';
 import 'package:data/data.dart';
+import 'package:domain/domain.dart';
 
 abstract class UserInfoMapper {
   static UserInfoEntity toEntity(UserInfoModel model) {

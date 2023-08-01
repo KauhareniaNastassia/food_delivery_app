@@ -21,6 +21,7 @@ class FoodApp extends StatelessWidget {
             signInUseCase: instance.get<SignInUseCase>(),
             signUpUseCase: instance.get<SignUpUseCase>(),
             signOutUseCase: instance.get<SignOutUseCase>(),
+            signInViaGoogleUseCase: instance.get<SignInViaGoogleUseCase>(),
           ),
         ),
         BlocProvider<SettingsBloc>(

@@ -14,5 +14,7 @@ abstract class AuthRepository {
     required String password,
   });
 
+  Future<UserInfoModel> signInViaGoogle();
+
   Future<void> signOut();
 }
