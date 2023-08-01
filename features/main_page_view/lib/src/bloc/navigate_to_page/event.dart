@@ -43,4 +43,3 @@ class NavigateToSignUpPageEvent extends NavigateToPageEvent {
     required this.context,
   });
 }
-

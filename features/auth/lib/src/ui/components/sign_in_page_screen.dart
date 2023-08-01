@@ -24,9 +24,7 @@ class _SignInPageScreenState extends State<SignInPageScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const SignTitle(),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 isSignInPage ? const SignInBlock() : const SignUpBlock(),
                 const SizedBox(height: 16),
                 ChangeSignPageSwitch(

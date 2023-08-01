@@ -21,7 +21,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: SizedBox(
-        height: mediaQueryData.size.height * 0.1,
+        height: mediaQueryData.size.height * 0.12,
         child: TextFormField(
           controller: textEditingController,
           validator: validation,

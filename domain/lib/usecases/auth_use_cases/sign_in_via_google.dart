@@ -11,7 +11,6 @@ class SignInViaGoogleUseCase implements FutureUseCase<NoParams, UserInfoModel> {
 
   @override
   Future<UserInfoModel> execute(NoParams input) {
-    log('SignInViaGoogleUseCase');
     return _authRepository.signInViaGoogle();
   }
 }

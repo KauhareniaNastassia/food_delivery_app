@@ -19,9 +19,7 @@ class SettingsPageContent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 const UserInfoBlock(),
-                const SizedBox(
-                  height: 30,
-                ),
+                const SizedBox(height: 30),
                 SwitchToTheme(
                   isLight: state.isLight,
                   onTap: () {

@@ -142,6 +142,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.copyWith(
           isUserLoggedIn: true,
           isDataProcessing: false,
+          isSignInPage:true,
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,

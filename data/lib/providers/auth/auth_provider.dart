@@ -38,7 +38,7 @@ class AuthProvider {
     UserCredential result =
         await _firebaseAuth.signInWithCredential(authCredential);
 
-    await _fireStore.collection('usersInfo').doc(result.user?.uid).set({
+    await _fireStore.collection('userInfo').doc(result.user?.uid).set({
       'userId': result.user?.uid,
       'userName': result.user?.displayName,
       'email': result.user?.email,
@@ -58,7 +58,7 @@ class AuthProvider {
       password: password,
     );
 
-    await _fireStore.collection('usersInfo').doc(userCredential.user!.uid).set({
+    await _fireStore.collection('userInfo').doc(userCredential.user!.uid).set({
       'userId': userCredential.user!.uid,
       'userName': userName,
       'email': email,
@@ -76,7 +76,7 @@ class AuthProvider {
     required String userId,
   }) async {
     final DocumentSnapshot<Map<String, dynamic>> doc =
-        await _fireStore.collection('usersInfo').doc(userId).get();
+        await _fireStore.collection('userInfo').doc(userId).get();
 
     final Map<String, dynamic>? userData = doc.data();
     final UserInfoEntity userEntity = UserInfoEntity(

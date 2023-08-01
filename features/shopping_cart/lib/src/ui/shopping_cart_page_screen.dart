@@ -23,11 +23,10 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
     final ThemeData theme = Theme.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
-
     return SafeArea(
       child: BlocConsumer<ShoppingCartBloc, ShoppingCartState>(
         listener: (BuildContext context, ShoppingCartState state) {
-          if (state.shoppingCart.addCutlery ) {
+          if (state.shoppingCart.addCutlery) {
             MotionToast(
               icon: Icons.expand_circle_down_outlined,
               description: Text(
@@ -49,7 +48,8 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
           }
         },
         listenWhen: (ShoppingCartState previous, ShoppingCartState current) {
-          return previous.shoppingCart.addCutlery != current.shoppingCart.addCutlery;
+          return previous.shoppingCart.addCutlery !=
+              current.shoppingCart.addCutlery;
         },
         builder: (BuildContext context, ShoppingCartState state) {
           if (state.shoppingCart.shoppingCartItems.isNotEmpty) {
@@ -85,9 +85,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
             return EmptyShoppingCartScreen(
               onPressed: () {
                 navigateToPageBloc.add(
-                  NavigateToMainPageEvent(
-                    context: context,
-                  ),
+                  NavigateToMainPageEvent( context: context),
                 );
               },
             );

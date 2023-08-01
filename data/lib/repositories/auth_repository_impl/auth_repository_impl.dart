@@ -17,7 +17,6 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<UserInfoModel> checkIsUserLogged() async {
     final UserInfoEntity userInfoEntity =
         await _localAuthProvider.checkIsUserInLocal();
-
     return UserInfoMapper.toModel(userInfoEntity);
   }
 
@@ -31,10 +30,8 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
-
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     await _localAuthProvider.setUserToLocal(userInfoModel);
-
     return userInfoModel;
   }
 
@@ -42,10 +39,8 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<UserInfoModel> signInViaGoogle() async {
     final UserInfoEntity userInfoEntity =
         await _authProvider.signInWithGoogle();
-
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     await _localAuthProvider.setUserToLocal(userInfoModel);
-
     return userInfoModel;
   }
 
@@ -61,10 +56,8 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
-
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     await _localAuthProvider.setUserToLocal(userInfoModel);
-
     return userInfoModel;
   }
 

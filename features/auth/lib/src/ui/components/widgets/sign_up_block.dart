@@ -86,7 +86,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
                       passwordValidation(password),
                   obscureText: true,
                 ),
-                SizedBox(height: mediaQueryData.size.height * 0.063),
+                SizedBox(height: mediaQueryData.size.height * 0.044),
                 PrimaryButton(
                   buttonTitle: 'Sign Up',
                   onPressed: () {
