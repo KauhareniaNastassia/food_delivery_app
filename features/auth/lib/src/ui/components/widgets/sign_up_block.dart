@@ -60,6 +60,13 @@ class _SignUpBlockState extends State<SignUpBlock> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Text(
+                  'Sign Up',
+                  style: AppTextStyles.size24WeightBoldText(
+                    fontSize: settingsBloc.state.fontSize,
+                    color: AppColors.secondaryColor,
+                  ),
+                ),
                 CustomTextField(
                   label: 'Name',
                   textEditingController: _userNameController,
@@ -79,7 +86,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
                       passwordValidation(password),
                   obscureText: true,
                 ),
-                SizedBox(height: mediaQueryData.size.height * 0.05),
+                SizedBox(height: mediaQueryData.size.height * 0.063),
                 PrimaryButton(
                   buttonTitle: 'Sign Up',
                   onPressed: () {

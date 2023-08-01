@@ -14,7 +14,6 @@ class NavigateToPageBloc
     on<NavigateToMenuItemEvent>(_onNavigateToMenuItem);
     on<NavigateToMainPageEvent>(_onNavigateToMainPage);
     on<NavigateToSignInPageEvent>(_onNavigateToSignInPage);
-    on<NavigateToSignUpPageEvent>(_onNavigateToSignUpPage);
   }
 
   void _onNavigateBack(
@@ -50,15 +49,6 @@ class NavigateToPageBloc
   ) {
     AutoRouter.of(event.context).push(
       const SignInPageScreenRoute(),
-    );
-  }
-
-  void _onNavigateToSignUpPage(
-      NavigateToSignUpPageEvent event,
-      Emitter<NavigateToPageState> emit,
-      ) {
-    AutoRouter.of(event.context).push(
-      const SignUpPageScreenRoute(),
     );
   }
 }

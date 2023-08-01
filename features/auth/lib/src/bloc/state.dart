@@ -3,6 +3,7 @@ part of 'bloc.dart';
 class AuthState {
   final bool isUserLoggedIn;
   final bool isDataProcessing;
+  final bool isSignInPage;
   final String userId;
   final String userName;
   final String email;
@@ -13,6 +14,7 @@ class AuthState {
   const AuthState({
     required this.isUserLoggedIn,
     required this.isDataProcessing,
+    required this.isSignInPage,
     required this.userId,
     required this.userName,
     required this.email,
@@ -24,6 +26,7 @@ class AuthState {
   const AuthState.initial({
     this.isUserLoggedIn = false,
     this.isDataProcessing = false,
+    this.isSignInPage = true,
     this.userId = '',
     this.userName = '',
     this.email = '',
@@ -35,6 +38,7 @@ class AuthState {
   AuthState copyWith({
     bool? isUserLoggedIn,
     bool? isDataProcessing,
+    bool? isSignInPage,
     String? userId,
     String? userName,
     String? email,
@@ -45,6 +49,7 @@ class AuthState {
     return AuthState(
       isUserLoggedIn: isUserLoggedIn ?? this.isUserLoggedIn,
       isDataProcessing: isDataProcessing ?? this.isDataProcessing,
+      isSignInPage: isSignInPage ?? this.isSignInPage,
       userId: userId ?? this.userId,
       userName: userName ?? this.userName,
       email: email ?? this.email,

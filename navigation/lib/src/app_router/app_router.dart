@@ -20,9 +20,6 @@ part 'app_router.gr.dart';
       page: SignInPageScreen,
     ),
     AutoRoute(
-      page: SignUpPageScreen,
-    ),
-    AutoRoute(
       page: MainPage,
       children: <AutoRoute>[
         AutoRoute(

@@ -1,7 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
 
 class SignInPageScreen extends StatefulWidget {
   const SignInPageScreen({super.key});
@@ -13,9 +12,8 @@ class SignInPageScreen extends StatefulWidget {
 class _SignInPageScreenState extends State<SignInPageScreen> {
   @override
   Widget build(BuildContext context) {
-    final NavigateToPageBloc navigateToPageBloc =
-        context.read<NavigateToPageBloc>();
-    final ThemeData theme = Theme.of(context);
+    final AuthBloc auhBloc = context.read<AuthBloc>();
+    final bool isSignInPage = auhBloc.state.isSignInPage;
 
     return Scaffold(
       body: Center(
@@ -25,29 +23,19 @@ class _SignInPageScreenState extends State<SignInPageScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                const SignTitle(title: 'Sign In'),
-                const SizedBox(height: 20),
-                const SignInBlock(),
+                const SignTitle(),
+                const SizedBox(
+                  height: 30,
+                ),
+                isSignInPage ? const SignInBlock() : const SignUpBlock(),
                 const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(
-                      'Don\'t have an account?',
-                      style: theme.textTheme.titleSmall,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        navigateToPageBloc.add(
-                          NavigateToSignUpPageEvent(context: context),
-                        );
-                      },
-                      child: Text(
-                        'Sign Up',
-                        style: theme.textTheme.titleMedium,
-                      ),
-                    ),
-                  ],
+                ChangeSignPageSwitch(
+                  onPressed: () {
+                    auhBloc.add(
+                      ChangeSignPageEvent(),
+                    );
+                  },
+                  isSignInPage: isSignInPage,
                 ),
               ],
             ),

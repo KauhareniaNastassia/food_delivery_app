@@ -29,12 +29,6 @@ class _$AppRouter extends RootStackRouter {
         child: const SignInPageScreen(),
       );
     },
-    SignUpPageScreenRoute.name: (routeData) {
-      return MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const SignUpPageScreen(),
-      );
-    },
     MainPageRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -86,10 +80,6 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           SignInPageScreenRoute.name,
           path: '/sign-in-page-screen',
-        ),
-        RouteConfig(
-          SignUpPageScreenRoute.name,
-          path: '/sign-up-page-screen',
         ),
         RouteConfig(
           MainPageRoute.name,
@@ -146,18 +136,6 @@ class SignInPageScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SignInPageScreenRoute';
-}
-
-/// generated route for
-/// [SignUpPageScreen]
-class SignUpPageScreenRoute extends PageRouteInfo<void> {
-  const SignUpPageScreenRoute()
-      : super(
-          SignUpPageScreenRoute.name,
-          path: '/sign-up-page-screen',
-        );
-
-  static const String name = 'SignUpPageScreenRoute';
 }
 
 /// generated route for

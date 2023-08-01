@@ -45,7 +45,7 @@ class SplashScreenState extends State<SplashScreen> {
                 right: 0,
                 child: Center(
                   child: Image.asset(
-                    "assets/image/logo.png",
+                    'assets/image/logo.png',
                     width: mediaQueryData.size.width * 0.5,
                   ),
                 ),

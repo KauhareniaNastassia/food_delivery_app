@@ -37,3 +37,7 @@ class SignOutEvent extends AuthEvent {
 class SignInViaGoogleEvent extends AuthEvent {
   SignInViaGoogleEvent();
 }
+
+class ChangeSignPageEvent extends AuthEvent {
+  ChangeSignPageEvent();
+}

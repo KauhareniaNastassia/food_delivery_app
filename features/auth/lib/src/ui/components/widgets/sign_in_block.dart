@@ -56,6 +56,13 @@ class _SignInBlockState extends State<SignInBlock> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Text(
+                  'Sign In',
+                  style: AppTextStyles.size24WeightBoldText(
+                    fontSize: settingsBloc.state.fontSize,
+                    color: AppColors.secondaryColor,
+                  ),
+                ),
                 CustomTextField(
                   label: 'Email',
                   textEditingController: _emailController,
