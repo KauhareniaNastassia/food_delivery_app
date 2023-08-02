@@ -19,7 +19,7 @@ class ItemImage extends StatelessWidget {
         child: LoadingIndicator(),
       ),
       errorWidget: (_, __, ___) => const ImagePlaceholder(
-        iconData: Icons.error_outline,
+        iconData: Icons.fastfood,
         iconSize: 50,
       ),
     );

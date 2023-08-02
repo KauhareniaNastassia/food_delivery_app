@@ -17,7 +17,7 @@ dependencies:
   navigation:
     path: ../navigation
 
-  cloud_firestore: ^4.8.1
+  cloud_firestore: ^4.8.4
   firebase_core: ^2.14.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -27,6 +27,8 @@ dependencies:
   motion_toast: ^2.7.8
   liquid_pull_to_refresh: ^3.0.1
   permission_handler: ^10.4.3
+  firebase_auth: ^4.7.2
+  google_sign_in: ^6.1.4
 
 dev_dependencies:
   flutter_test:

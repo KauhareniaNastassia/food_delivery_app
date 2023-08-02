@@ -27,7 +27,7 @@ class AppTheme {
 
       /// text styles
       textTheme: TextTheme(
-        titleLarge: AppTextStyles.size20WeightSemiBoldText(
+        titleLarge: AppTextStyles.size18WeightSemiBoldText(
           fontSize: fontSize,
           color: AppColors.titleTextColor,
         ),
@@ -51,7 +51,6 @@ class AppTheme {
           fontSize: fontSize,
           color: AppColors.titleTextColor,
         ),
-
       ),
 
       /// app bar styles
@@ -96,7 +95,7 @@ class AppTheme {
 
       /// text styles
       textTheme: TextTheme(
-        titleLarge: AppTextStyles.size20WeightSemiBoldText(
+        titleLarge: AppTextStyles.size18WeightSemiBoldText(
           fontSize: fontSize,
           color: AppColors.titleLightTextColor,
         ),

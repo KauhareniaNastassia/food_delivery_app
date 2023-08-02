@@ -38,6 +38,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       final List<MenuItemModel> menu = await _fetchMenuItemsUseCase.execute(
         const NoParams(),
       );
+
       emit(
         state.copyWith(
           menu: menu,

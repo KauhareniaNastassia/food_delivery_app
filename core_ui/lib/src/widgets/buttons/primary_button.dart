@@ -36,7 +36,7 @@ class PrimaryButton extends StatelessWidget {
         child: Text(
           buttonTitle,
           textAlign: TextAlign.center,
-          style: AppTextStyles.size22WeightSemiBoldText(
+          style: AppTextStyles.size18WeightSemiBoldText(
             fontSize: settingsBloc.state.fontSize,
             color: AppColors.primaryButtonTextColor,
           ),
