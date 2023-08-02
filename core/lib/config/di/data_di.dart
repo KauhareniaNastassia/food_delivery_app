@@ -86,9 +86,9 @@ class DataDI {
 
     instance.registerLazySingleton<AuthProvider>(
       () => AuthProvider(
-        FirebaseAuth.instance,
-        FirebaseFirestore.instance,
-        instance.get<GoogleSignIn>(),
+        firebaseAuth: FirebaseAuth.instance,
+        fireStore: FirebaseFirestore.instance,
+        googleSignIn: instance.get<GoogleSignIn>(),
       ),
     );
 
