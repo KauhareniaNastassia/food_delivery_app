@@ -1,3 +1,4 @@
+import 'package:core/constants/app_constants.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -11,11 +12,13 @@ class MenuItemDetailsIngredients extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Ingredients:',
+          AppConstants.ingredients,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 10),
@@ -41,10 +44,8 @@ class MenuItemDetailsIngredients extends StatelessWidget {
               )
             : Center(
                 child: Text(
-                  'No ingredients available',
-                  style: AppTextStyles.size14WeightBoldText(
-                    AppColors.primaryColor,
-                  ),
+                  AppConstants.noIngredients,
+                  style: theme.textTheme.bodyMedium,
                 ),
               ),
       ],

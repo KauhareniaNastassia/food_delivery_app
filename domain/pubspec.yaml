@@ -12,6 +12,8 @@ dependencies:
     sdk: flutter
   core:
     path: ../core
+  data:
+    path: ../data
 
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.1

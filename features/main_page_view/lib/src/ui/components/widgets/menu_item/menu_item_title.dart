@@ -1,5 +1,7 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class MenuItemTitle extends StatelessWidget {
   final String title;
@@ -13,22 +15,24 @@ class MenuItemTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final ThemeData theme = Theme.of(context);
 
     return Align(
       alignment: Alignment.centerRight,
       child: Container(
-        height: size.height / 6,
-        width: size.width / 1.2,
+        height: mediaQueryData.size.height / 6,
+        width: mediaQueryData.size.width / 1.2,
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
           borderRadius: AppStyles.largeBorderRadius,
-          color: Theme.of(context).cardColor,
+          color: theme.cardColor,
         ),
         child: Align(
           alignment: Alignment.center,
           child: Container(
-            width: size.width / 2,
+            width: mediaQueryData.size.width / 2,
             padding: const EdgeInsets.only(left: 40),
             alignment: Alignment.centerLeft,
             child: Column(
@@ -37,13 +41,14 @@ class MenuItemTitle extends StatelessWidget {
               children: <Widget>[
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: theme.textTheme.titleLarge,
                 ),
                 const SizedBox(height: 40),
                 Text(
                   '\$$cost',
                   style: AppTextStyles.size22WeightSemiBoldText(
-                    Theme.of(context).primaryColor,
+                    fontSize: settingsBloc.state.fontSize,
+                    color: theme.primaryColor,
                   ),
                 ),
               ],

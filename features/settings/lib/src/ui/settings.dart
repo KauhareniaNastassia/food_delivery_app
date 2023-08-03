@@ -1,30 +1,57 @@
-import 'package:core_ui/core_ui.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class SettingsPageContent extends StatelessWidget {
   const SettingsPageContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final ThemeData theme = Theme.of(context);
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.settings,
-            size: size.width * 0.15,
-            color: Theme.of(context).primaryColor,
-          ),
-          Text(
-            'Settings coming soon',
-            style: AppTextStyles.size18WeightSemiBoldText(
-              Theme.of(context).primaryColor,
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (BuildContext context, SettingsState state) {
+        return Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                const UserInfoBlock(),
+                const SizedBox(height: 30),
+                SwitchToTheme(
+                  isLight: state.isLight,
+                  onTap: () {
+                    settingsBloc.add(
+                      AppThemeChangingEvent(),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ChangeColorScheme(
+                  isStandardColorScheme: state.isStandardColorScheme,
+                  onTap: () {
+                    settingsBloc.add(
+                      AppColorSchemeChangingEvent(),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const ChangeFontSizeSlider(),
+              ],
             ),
           ),
-        ],
-      ),
+          bottomNavigationBar: Material(
+            color: theme.scaffoldBackgroundColor,
+            child: const ContactLinksView(),
+          ),
+        );
+      },
     );
   }
 }

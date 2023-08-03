@@ -1,3 +1,23 @@
 library data;
 
 export 'package:dio/dio.dart';
+export 'providers/menu_providers/menu_provider.dart';
+export 'providers/menu_providers/local_menu_provider.dart';
+export 'providers/shopping_cart_providers/local_shopping_cart_provider.dart';
+export 'providers/auth/local_auth_provider.dart';
+export 'providers/settings_provider/settings_local_provider.dart';
+export 'providers/auth/auth_provider.dart';
+export 'providers/service/check_internet_connection/check_internet_connection.dart';
+export 'entity/menu_item/menu_item_entity.dart';
+export 'entity/menu_item/menu_item_entity_adapter.dart';
+export 'entity/shopping_cart_item/shopping_cart_item_entity.dart';
+export 'entity/shopping_cart_item/shopping_cart_item_entity_adapter.dart';
+export 'entity/user_info/user_info_entity.dart';
+export 'entity/user_info/user_info_entity_adapter.dart';
+export 'repositories/menu_repository_impl/menu_repository_impl.dart';
+export 'repositories/shopping_cart_repository_impl/shopping_cart_repository_impl.dart';
+export 'repositories/settings_repository_impl/settings_repository_impl.dart';
+export 'repositories/auth_repository_impl/auth_repository_impl.dart';
+export 'mappers/menu_item_mapper.dart';
+export 'mappers/shopping_cart_item_mapper.dart';
+export 'mappers/user_info_mapper.dart';

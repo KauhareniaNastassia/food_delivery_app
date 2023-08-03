@@ -1,5 +1,7 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class ItemListButton extends StatefulWidget {
   final VoidCallback onPressed;
@@ -18,8 +20,8 @@ class ItemListButton extends StatefulWidget {
 class ItemListButtonState extends State<ItemListButton> {
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     return Ink(
       child: InkWell(
         child: CircleAvatar(
@@ -41,19 +43,20 @@ class ItemListButtonState extends State<ItemListButton> {
                             Icon(
                               Icons.shopping_cart,
                               color: AppColors.primaryButtonTextColor,
-                              size: size.width / 12,
+                              size: mediaQueryData.size.width / 12,
                             ),
                             Positioned(
                               right: 6,
-                              top: 1.5,
+                              top: 0.5,
                               child: Container(
-                                width: size.width * 0.05,
+                                width: mediaQueryData.size.width * 0.05,
                                 padding: const EdgeInsets.all(0),
                                 child: Center(
                                   child: Text(
                                     widget.amount.toString(),
                                     style: AppTextStyles.size14WeightBoldText(
-                                      AppColors.descriptionTextColor,
+                                      color: AppColors.descriptionTextColor,
+                                      fontSize: settingsBloc.state.fontSize,
                                     ),
                                   ),
                                 ),
@@ -64,7 +67,7 @@ class ItemListButtonState extends State<ItemListButton> {
                       : Icon(
                           Icons.shopping_cart_outlined,
                           color: AppColors.primaryButtonTextColor,
-                          size: size.width / 12,
+                          size: mediaQueryData.size.width / 12,
                         ),
                 ],
               ),

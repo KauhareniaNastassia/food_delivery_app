@@ -1,92 +1,151 @@
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
+import 'package:core_ui/core_ui.dart';
+
 class AppTheme {
-  ThemeData lightThemeData = ThemeData(
-    scaffoldBackgroundColor: AppColors.backgroundColor,
-    useMaterial3: true,
-    primaryColor: AppColors.primaryColor,
-    canvasColor: AppColors.secondaryColor,
-    cardColor: AppColors.backgroundItemColor,
-    disabledColor: AppColors.unselectedItemColor,
+  final bool isStandardColorScheme;
+  final double fontSize;
 
-    /// text styles
-    textTheme: TextTheme(
-      titleLarge: AppTextStyles.size20WeightSemiBoldText(
-        AppColors.titleTextColor,
-      ),
-      titleMedium: AppTextStyles.size18WeightSemiBoldText(
-        AppColors.secondaryColor,
-      ),
-      titleSmall: AppTextStyles.size16WeightMediumText(
-        AppColors.titleDarkGreyTextColor,
-      ),
-      bodyMedium: AppTextStyles.size16WeightSemiBoldText(
-        AppColors.secondaryColor,
-      ),
-      bodyLarge: AppTextStyles.size18WeightSemiBoldText(
-        AppColors.titleTextColor,
-      ),
-    ),
+  AppTheme({
+    required this.isStandardColorScheme,
+    required this.fontSize,
+  });
 
-    /// app bar styles
-    appBarTheme: AppBarTheme(
-      titleSpacing: 30,
-      backgroundColor: AppColors.primaryColor,
-      titleTextStyle: AppTextStyles.size24WeightBoldText(
-        AppColors.primaryButtonTextColor,
-      ),
-    ),
+  ThemeData get lightThemeData {
+    final primaryColor = isStandardColorScheme
+        ? AppColors.primaryColor
+        : AppColors.alternativePrimaryColor;
+    final secondaryColor = isStandardColorScheme
+        ? AppColors.secondaryColor
+        : AppColors.alternativeSecondaryColor;
+    final backgroundItemColor = isStandardColorScheme
+        ? AppColors.backgroundItemColor
+        : AppColors.alternativeBackgroundItemColor;
 
-    /// navigation bar styles
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: AppColors.backgroundBottomNavigationBarColor,
-      selectedItemColor: AppColors.primaryColor,
-      unselectedItemColor: AppColors.unselectedItemColor,
-    ),
-  );
+    return ThemeData(
+      scaffoldBackgroundColor: AppColors.backgroundColor,
+      useMaterial3: true,
+      primaryColor: primaryColor,
+      canvasColor: secondaryColor,
+      cardColor: backgroundItemColor,
+      disabledColor: AppColors.unselectedItemColor,
 
-  ThemeData darkThemeData = ThemeData(
-    scaffoldBackgroundColor: AppColors.backgroundDarkColor,
-    useMaterial3: true,
-    primaryColor: AppColors.primaryLightColor,
-    canvasColor: AppColors.secondaryColor,
-    cardColor: AppColors.backgroundItemDarkColor,
-    disabledColor: AppColors.titleDarkGreyTextColor,
+      /// text styles
+      textTheme: TextTheme(
+        titleLarge: AppTextStyles.size18WeightSemiBoldText(
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
+        ),
+        titleMedium: AppTextStyles.size18WeightSemiBoldText(
+          fontSize: fontSize,
+          color: secondaryColor,
+        ),
+        titleSmall: AppTextStyles.size16WeightMediumText(
+          fontSize: fontSize,
+          color: AppColors.titleDarkGreyTextColor,
+        ),
+        bodyMedium: AppTextStyles.size16WeightSemiBoldText(
+          fontSize: fontSize,
+          color: secondaryColor,
+        ),
+        bodyLarge: AppTextStyles.size18WeightSemiBoldText(
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
+        ),
+        bodySmall: AppTextStyles.size16WeightMediumText(
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
+        ),
+      ),
 
-    /// text styles
-    textTheme: TextTheme(
-      titleLarge: AppTextStyles.size20WeightSemiBoldText(
-        AppColors.titleLightTextColor,
+      /// app bar styles
+      appBarTheme: AppBarTheme(
+        titleSpacing: 30,
+        backgroundColor: primaryColor,
+        titleTextStyle: AppTextStyles.size24WeightBoldText(
+          fontSize: fontSize,
+          color: AppColors.primaryButtonTextColor,
+        ),
       ),
-      titleMedium: AppTextStyles.size18WeightSemiBoldText(
-        AppColors.secondaryDarkColor,
-      ),
-      titleSmall: AppTextStyles.size16WeightMediumText(
-        AppColors.titleGreyTextColor,
-      ),
-      bodyMedium: AppTextStyles.size16WeightSemiBoldText(
-        AppColors.secondaryDarkColor,
-      ),
-      bodyLarge: AppTextStyles.size18WeightSemiBoldText(
-        AppColors.titleLightTextColor,
-      ),
-    ),
 
-    /// app bar styles
-    appBarTheme: AppBarTheme(
-      titleSpacing: 30,
-      backgroundColor: AppColors.primaryDarkColor,
-      titleTextStyle: AppTextStyles.size24WeightBoldText(
-        AppColors.primaryButtonTextColor,
+      /// navigation bar styles
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: AppColors.backgroundBottomNavigationBarColor,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: AppColors.unselectedItemColor,
       ),
-    ),
+    );
+  }
 
-    /// navigation bar styles
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: AppColors.primaryDarkColor,
-      selectedItemColor: AppColors.primaryLightColor,
-      unselectedItemColor: AppColors.primaryButtonTextColor,
-    ),
-  );
+  ThemeData get darkThemeData {
+    final primaryColor = isStandardColorScheme
+        ? AppColors.primaryLightColor
+        : AppColors.alternativePrimaryLightColor;
+    final secondaryColor = isStandardColorScheme
+        ? AppColors.secondaryColor
+        : AppColors.alternativeSecondaryDarkColor;
+    final backgroundItemColor = isStandardColorScheme
+        ? AppColors.backgroundItemDarkColor
+        : AppColors.alternativeBackgroundItemDarkColor;
+    final scaffoldBackgroundColor = isStandardColorScheme
+        ? AppColors.backgroundDarkColor
+        : AppColors.alternativeBackgroundDarkColor;
+    final backgroundColor = isStandardColorScheme
+        ? AppColors.primaryDarkColor
+        : AppColors.alternativePrimaryDarkColor;
+
+    return ThemeData(
+      scaffoldBackgroundColor: scaffoldBackgroundColor,
+      useMaterial3: true,
+      primaryColor: primaryColor,
+      canvasColor: secondaryColor,
+      cardColor: backgroundItemColor,
+      disabledColor: AppColors.titleDarkGreyTextColor,
+
+      /// text styles
+      textTheme: TextTheme(
+        titleLarge: AppTextStyles.size18WeightSemiBoldText(
+          fontSize: fontSize,
+          color: AppColors.titleLightTextColor,
+        ),
+        titleMedium: AppTextStyles.size18WeightSemiBoldText(
+          fontSize: fontSize,
+          color: secondaryColor,
+        ),
+        titleSmall: AppTextStyles.size16WeightMediumText(
+          fontSize: fontSize,
+          color: AppColors.titleGreyTextColor,
+        ),
+        bodyMedium: AppTextStyles.size16WeightSemiBoldText(
+          fontSize: fontSize,
+          color: secondaryColor,
+        ),
+        bodyLarge: AppTextStyles.size18WeightSemiBoldText(
+          fontSize: fontSize,
+          color: AppColors.titleLightTextColor,
+        ),
+        bodySmall: AppTextStyles.size16WeightMediumText(
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
+        ),
+      ),
+
+      /// app bar styles
+      appBarTheme: AppBarTheme(
+        titleSpacing: 30,
+        backgroundColor: backgroundColor,
+        titleTextStyle: AppTextStyles.size24WeightBoldText(
+          fontSize: fontSize,
+          color: AppColors.primaryButtonTextColor,
+        ),
+      ),
+
+      /// navigation bar styles
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: backgroundColor,
+        selectedItemColor: primaryColor,
+        unselectedItemColor: AppColors.primaryButtonTextColor,
+      ),
+    );
+  }
 }

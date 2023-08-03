@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shopping_cart.dart';
+import 'package:shopping_cart/shopping_cart.dart';
 
 class SwitchForCutlery extends StatelessWidget {
   final bool switchValue;
@@ -16,6 +16,7 @@ class SwitchForCutlery extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
+    final ThemeData theme = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.only(left: 15),
@@ -25,11 +26,11 @@ class SwitchForCutlery extends StatelessWidget {
           dense: false,
           value: switchValue,
           title: Text(
-            'Do you need cutlery?',
-            style: Theme.of(context).textTheme.bodyLarge,
+            AppConstants.needCutlery,
+            style: theme.textTheme.bodyLarge,
           ),
-          activeColor: Theme.of(context).primaryColor,
-          inactiveThumbColor: Theme.of(context).disabledColor,
+          activeColor: theme.primaryColor,
+          inactiveThumbColor: theme.disabledColor,
           inactiveTrackColor: AppColors.backgroundItemColor,
           onChanged: (bool newValue) {
             shoppingCartBloc.add(

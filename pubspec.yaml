@@ -24,6 +24,10 @@ dependencies:
     path: ./features/main_page_view
   shopping_cart:
     path: ./features/shopping_cart
+  settings:
+    path: ./features/settings
+  auth:
+    path: ./features/auth
 
   cupertino_icons: ^1.0.2
   firebase_core: ^2.14.0
@@ -33,6 +37,12 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  image_path: 'assets/image/logo.png'
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true

@@ -66,6 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '903410526273',
     projectId: 'food-delivery-app-31f05',
     storageBucket: 'food-delivery-app-31f05.appspot.com',
+    androidClientId: '903410526273-airt70db6ngjcaflnhmo9hn6gpuuu9hk.apps.googleusercontent.com',
     iosClientId: '903410526273-fek7ks6tqskd8e6bpjrkc6a1pvkiuo58.apps.googleusercontent.com',
     iosBundleId: 'com.example.foodDeliveryApp',
   );

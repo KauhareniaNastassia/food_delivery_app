@@ -1,13 +1,9 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
-import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item/menu_item_image.dart';
-import 'package:main_page_view/src/ui/components/widgets/menu_item/menu_item_title.dart';
+import 'package:main_page_view/main_page.dart';
 import 'package:shopping_cart/shopping_cart.dart';
-
-import 'widgets/menu_item/item_list_button.dart';
 
 class MenuItem extends StatefulWidget {
   final MenuItemModel menuItem;

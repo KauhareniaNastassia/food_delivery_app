@@ -13,6 +13,8 @@ class UpdateCountButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return InkWell(
       onTap: onPressed,
       child: Container(
@@ -20,7 +22,7 @@ class UpdateCountButton extends StatelessWidget {
         width: 26,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: AppColors.primaryColor,
+          color: theme.primaryColor,
         ),
         child: Icon(
           icon,

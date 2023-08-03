@@ -1,4 +1,4 @@
-import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
+import 'package:domain/domain.dart';
 
 class ShoppingCartModel {
   final List<ShoppingCartItemModel> shoppingCartItems;

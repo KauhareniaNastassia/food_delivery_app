@@ -1,9 +1,11 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/usecases/fetch_menu_items_usecase.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
 import 'package:navigation/navigation.dart';
+import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
 class FoodApp extends StatelessWidget {
@@ -13,8 +15,24 @@ class FoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AppThemeBloc>(
-          create: (_) => AppThemeBloc(),
+        BlocProvider<AuthBloc>(
+          create: (_) => AuthBloc(
+            checkIsUserLoggedUseCase: instance.get<CheckIsUserLoggedUseCase>(),
+            signInUseCase: instance.get<SignInUseCase>(),
+            signUpUseCase: instance.get<SignUpUseCase>(),
+            signOutUseCase: instance.get<SignOutUseCase>(),
+            signInViaGoogleUseCase: instance.get<SignInViaGoogleUseCase>(),
+          ),
+        ),
+        BlocProvider<SettingsBloc>(
+          create: (_) => SettingsBloc(
+            getThemeUseCase: instance.get<GetThemeUseCase>(),
+            setThemeUseCase: instance.get<SetThemeUseCase>(),
+            getColorSchemeUseCase: instance.get<GetColorSchemeUseCase>(),
+            setColoSchemeUseCase: instance.get<SetColorSchemeUseCase>(),
+            getFontSizeUseCase: instance.get<GetFontSizeUseCase>(),
+            setFontSizeUseCase: instance.get<SetFontSizeUseCase>(),
+          ),
         ),
         BlocProvider<NavigateToPageBloc>(
           create: (_) => NavigateToPageBloc(),
@@ -25,15 +43,27 @@ class FoodApp extends StatelessWidget {
           ),
         ),
         BlocProvider<ShoppingCartBloc>(
-          create: (_) => ShoppingCartBloc(),
-        )
+          create: (_) => ShoppingCartBloc(
+            getShoppingCartUseCase: instance.get<GetShoppingCartUseCase>(),
+            addShoppingCartItemUseCase:
+                instance.get<AddShoppingCartItemUseCase>(),
+            removeShoppingCartItemUseCase:
+                instance.get<RemoveShoppingCartItemUseCase>(),
+          ),
+        ),
       ],
-      child: BlocBuilder<AppThemeBloc, AppThemeState>(
-        builder: (BuildContext context, AppThemeState state) {
+      child: BlocBuilder<SettingsBloc, SettingsState>(
+        builder: (BuildContext context, SettingsState state) {
           return MaterialApp.router(
             theme: state.isLight
-                ? AppTheme().lightThemeData
-                : AppTheme().darkThemeData,
+                ? AppTheme(
+                    isStandardColorScheme: state.isStandardColorScheme,
+                    fontSize: state.fontSize,
+                  ).lightThemeData
+                : AppTheme(
+                    isStandardColorScheme: state.isStandardColorScheme,
+                    fontSize: state.fontSize,
+                  ).darkThemeData,
             routerDelegate: instance.get<AppRouter>().delegate(),
             routeInformationParser:
                 instance.get<AppRouter>().defaultRouteParser(),

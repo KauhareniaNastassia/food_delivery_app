@@ -1,3 +1,22 @@
 library domain;
 
-export 'package:domain/repositories/menu_repository.dart';
+export 'repositories/menu_repository.dart';
+export 'repositories/shopping_cart_repository.dart';
+export 'repositories/settings_repository.dart';
+export 'repositories/auth_repository.dart';
+export 'usecases/menu_use_cases/fetch_menu_items_usecase.dart';
+export 'usecases/shopping_cart_use_cases/get_shopping_cart_items_usecase.dart';
+export 'usecases/shopping_cart_use_cases/add_shopping_cart_item_use_case.dart';
+export 'usecases/shopping_cart_use_cases/remove_shopping_cart_item_use_case.dart';
+export 'usecases/settings_use_cases/set_theme_use_case.dart';
+export 'usecases/settings_use_cases/set_color_scheme_use_case.dart';
+export 'usecases/settings_use_cases/set_font_size_use_case.dart';
+export 'usecases/settings_use_cases/get_theme_use_case.dart';
+export 'usecases/settings_use_cases/get_color_scheme_use_case.dart';
+export 'usecases/settings_use_cases/get_font_size_use_case.dart';
+export 'usecases/auth_use_cases/auth_use_cases.dart';
+export 'usecases/usecase.dart';
+export 'models/menu_item_model/menu_item_model.dart';
+export 'models/shopping_cart_model/shopping_cart_item_model.dart';
+export 'models/shopping_cart_model/shopping_cart_model.dart';
+export 'models/user_info_model/user_info_model.dart';

@@ -1,4 +1,5 @@
 import 'package:core_ui/core_ui.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class OrderBottomBar extends StatelessWidget {
@@ -27,7 +28,7 @@ class OrderBottomBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        'Total price',
+                        AppConstants.totalPrice,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
@@ -42,7 +43,7 @@ class OrderBottomBar extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: PrimaryButton(
-                        buttonTitle: 'Make an order',
+                        buttonTitle: AppConstants.makeAnOrder,
                         onPressed: () {},
                       ),
                     ),

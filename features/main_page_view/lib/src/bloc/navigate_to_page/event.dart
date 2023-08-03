@@ -27,3 +27,19 @@ class NavigateToMainPageEvent extends NavigateToPageEvent {
     required this.context,
   });
 }
+
+class NavigateToSignInPageEvent extends NavigateToPageEvent {
+  final BuildContext context;
+
+  NavigateToSignInPageEvent({
+    required this.context,
+  });
+}
+
+class NavigateToSignUpPageEvent extends NavigateToPageEvent {
+  final BuildContext context;
+
+  NavigateToSignUpPageEvent({
+    required this.context,
+  });
+}

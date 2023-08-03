@@ -11,22 +11,10 @@ class MenuItemDetailsImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-
     return FlexibleSpaceBar(
-      background: image.isNotEmpty
-          ? Image.network(
-              image,
-              fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => ImagePlaceholder(
-                iconData: Icons.fastfood,
-                iconSize: size.width * 0.3,
-              ),
-            )
-          : ImagePlaceholder(
-              iconData: Icons.fastfood,
-              iconSize: size.width * 0.3,
-            ),
+      background: ItemImage(
+        image: image,
+      ),
     );
   }
 }

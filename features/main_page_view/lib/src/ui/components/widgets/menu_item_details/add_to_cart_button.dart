@@ -1,5 +1,7 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:settings/settings.dart';
 
 class AddToCartButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -13,14 +15,18 @@ class AddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: amount != null
-                ? AppColors.secondaryColor
-                : AppColors.primaryColor,
+        backgroundColor:
+            amount != null ? theme.canvasColor : theme.primaryColor,
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
         ),
       ),
       child: Container(
@@ -29,10 +35,11 @@ class AddToCartButton extends StatelessWidget {
           vertical: 10,
         ),
         child: Text(
-          amount != null ? '$amount in cart' : 'Add to cart',
+          amount != null ? '$amount in cart' : AppConstants.addToCart,
           textAlign: TextAlign.center,
           style: AppTextStyles.size22WeightSemiBoldText(
-            AppColors.primaryButtonTextColor,
+            fontSize: settingsBloc.state.fontSize,
+            color: AppColors.primaryButtonTextColor,
           ),
         ),
       ),

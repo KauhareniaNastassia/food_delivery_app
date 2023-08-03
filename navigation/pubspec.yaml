@@ -27,6 +27,8 @@ dependencies:
     path: ../features/order_history
   shopping_cart:
     path: ../features/shopping_cart
+  auth:
+    path: ../features/auth
 
 dev_dependencies:
   flutter_lints: 2.0.1
