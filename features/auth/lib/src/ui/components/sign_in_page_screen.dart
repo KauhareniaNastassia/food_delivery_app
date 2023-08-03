@@ -27,7 +27,7 @@ class _SignInPageScreenState extends State<SignInPageScreen> {
                 const SizedBox(height: 30),
                 isSignInPage ? const SignInBlock() : const SignUpBlock(),
                 const SizedBox(height: 16),
-                ChangeSignPageSwitch(
+                AuthPageSwitcher(
                   onPressed: () {
                     auhBloc.add(
                       ChangeSignPageEvent(),

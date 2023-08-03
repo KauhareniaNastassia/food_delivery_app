@@ -1,3 +1,4 @@
+import 'package:core/constants/app_constants.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class ChangeColorScheme extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          'Change color scheme',
+          AppConstants.changeColorScheme,
           style: theme.textTheme.titleLarge,
         ),
         GestureDetector(
@@ -52,7 +53,7 @@ class ChangeColorScheme extends StatelessWidget {
                   : null),
         ),
         GestureDetector(
-          onTap: isStandardColorScheme ? onTap : () {},
+          onTap: isStandardColorScheme ? onTap : null,
           child: Container(
             width: size.width * 0.09,
             height: size.height * 0.09,

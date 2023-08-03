@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class SignOutButton extends StatelessWidget {
@@ -23,7 +24,7 @@ class SignOutButton extends StatelessWidget {
             size: mediaQueryData.size.width * 0.08,
           ),
           Text(
-            'Sign Out',
+            AppConstants.signOut,
             style: theme.textTheme.bodyMedium,
           ),
         ],

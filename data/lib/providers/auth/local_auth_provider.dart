@@ -2,7 +2,7 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class LocalAuthProvider {
-  LocalAuthProvider();
+  const LocalAuthProvider();
 
   Future<void> setUserToLocal(UserInfoModel userInfo) async {
     final Box<UserInfoEntity> userInfoBox = await Hive.openBox('userInfo');

@@ -1,10 +1,11 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
-class ChangeSignPageSwitch extends StatelessWidget {
+class AuthPageSwitcher extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isSignInPage;
 
-  const ChangeSignPageSwitch({
+  const AuthPageSwitcher({
     super.key,
     required this.isSignInPage,
     required this.onPressed,
@@ -18,13 +19,15 @@ class ChangeSignPageSwitch extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text(
-          isSignInPage ? 'Don\'t have an account?' : 'Already have an account?',
+          isSignInPage
+              ? AppConstants.doNotHaveAnAccount
+              : AppConstants.haveAnAccount,
           style: theme.textTheme.titleSmall,
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
-            isSignInPage ? 'Sign Up' : 'Sign In',
+            isSignInPage ? AppConstants.signUp : AppConstants.signIn,
             style: theme.textTheme.titleMedium,
           ),
         ),

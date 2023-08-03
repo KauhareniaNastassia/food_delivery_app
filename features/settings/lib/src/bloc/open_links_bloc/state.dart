@@ -7,5 +7,7 @@ class OpenContactLinksState {
 class ErrorOpenLinkState extends OpenContactLinksState {
   final String errorMessage;
 
-  ErrorOpenLinkState({required this.errorMessage});
+  ErrorOpenLinkState({
+    required this.errorMessage,
+  });
 }

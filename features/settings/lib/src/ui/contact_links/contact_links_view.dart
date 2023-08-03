@@ -22,7 +22,7 @@ class ContactLinksView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  'Do you need help? Contact us via links below',
+                  AppConstants.contactViaLinks,
                   style: theme.textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),

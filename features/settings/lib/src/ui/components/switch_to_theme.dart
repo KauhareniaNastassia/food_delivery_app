@@ -1,3 +1,4 @@
+import 'package:core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class SwitchToTheme extends StatelessWidget {
@@ -19,7 +20,7 @@ class SwitchToTheme extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          isLight ? 'Switch to dark theme' : 'Switch to light theme',
+          isLight ? AppConstants.toDarkTheme : AppConstants.toLightTheme,
           style: theme.textTheme.titleLarge,
         ),
         InkWell(

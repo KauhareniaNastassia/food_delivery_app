@@ -54,26 +54,26 @@ class _SignUpBlockState extends State<SignUpBlock> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Sign Up',
+                  AppConstants.signUp,
                   style: AppTextStyles.size24WeightBoldText(
                     fontSize: settingsBloc.state.fontSize,
                     color: AppColors.secondaryColor,
                   ),
                 ),
                 CustomTextField(
-                  label: 'Name',
+                  label: AppConstants.userName,
                   textEditingController: _userNameController,
                   validation: (String? name) => nameValidation(name),
                   obscureText: false,
                 ),
                 CustomTextField(
-                  label: 'Email',
+                  label: AppConstants.email,
                   textEditingController: _emailController,
                   validation: (String? email) => emailValidation(email),
                   obscureText: false,
                 ),
                 CustomTextField(
-                  label: 'Password',
+                  label: AppConstants.password,
                   textEditingController: _passwordController,
                   validation: (String? password) =>
                       passwordValidation(password),
@@ -81,7 +81,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
                 ),
                 SizedBox(height: mediaQueryData.size.height * 0.044),
                 PrimaryButton(
-                  buttonTitle: 'Sign Up',
+                  buttonTitle: AppConstants.signUp,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       authBloc.add(

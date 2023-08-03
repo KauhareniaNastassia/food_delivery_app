@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core_ui.dart';
+import 'package:core_ui/core_ui.dart';
 
 class ItemImage extends StatelessWidget {
   final String image;

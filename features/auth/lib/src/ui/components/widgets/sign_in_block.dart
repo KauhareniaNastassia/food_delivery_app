@@ -50,20 +50,20 @@ class _SignInBlockState extends State<SignInBlock> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Sign In',
+                  AppConstants.signIn,
                   style: AppTextStyles.size24WeightBoldText(
                     fontSize: settingsBloc.state.fontSize,
                     color: AppColors.secondaryColor,
                   ),
                 ),
                 CustomTextField(
-                  label: 'Email',
+                  label: AppConstants.email,
                   textEditingController: _emailController,
                   validation: (String? email) => emailValidation(email),
                   obscureText: false,
                 ),
                 CustomTextField(
-                  label: 'Password',
+                  label: AppConstants.password,
                   textEditingController: _passwordController,
                   validation: (String? password) =>
                       passwordValidation(password),
@@ -71,7 +71,7 @@ class _SignInBlockState extends State<SignInBlock> {
                 ),
                 SizedBox(height: mediaQueryData.size.height * 0.05),
                 PrimaryButton(
-                  buttonTitle: 'Sign in',
+                  buttonTitle: AppConstants.signIn,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       context.read<AuthBloc>().add(
@@ -85,7 +85,7 @@ class _SignInBlockState extends State<SignInBlock> {
                 ),
                 SizedBox(height: mediaQueryData.size.height * 0.05),
                 PrimaryButton(
-                  buttonTitle: 'Sign in via Google',
+                  buttonTitle: AppConstants.signInViaGoogle,
                   onPressed: () {
                     context.read<AuthBloc>().add(
                           SignInViaGoogleEvent(),

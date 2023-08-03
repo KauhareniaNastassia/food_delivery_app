@@ -14,7 +14,7 @@ class ChangeFontSizeSlider extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          'Change app font size',
+          AppConstants.changeFontSize,
           style: theme.textTheme.titleLarge,
         ),
         const SizedBox(height: 10),

@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shopping_cart.dart';
+import 'package:shopping_cart/shopping_cart.dart';
 
 class SwitchForCutlery extends StatelessWidget {
   final bool switchValue;
@@ -26,7 +26,7 @@ class SwitchForCutlery extends StatelessWidget {
           dense: false,
           value: switchValue,
           title: Text(
-            'Do you need cutlery?',
+            AppConstants.needCutlery,
             style: theme.textTheme.bodyLarge,
           ),
           activeColor: theme.primaryColor,

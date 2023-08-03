@@ -13,8 +13,8 @@ class DataDI {
     _initFirebaseOptions();
     _initFirebase();
     _initGoogleSignIn();
-    _initDataProvider();
     _initHive();
+    _initDataProvider();
     _initAdapters();
     _initMenuItems();
     _initShoppingCart();
@@ -93,7 +93,7 @@ class DataDI {
     );
 
     instance.registerLazySingleton<LocalAuthProvider>(
-      () => LocalAuthProvider(),
+      () => const LocalAuthProvider(),
     );
   }
 

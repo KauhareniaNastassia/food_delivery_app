@@ -1,11 +1,11 @@
-import '../../data.dart';
+import 'package:data/data.dart';
 
 class SettingsLocalProvider {
   SettingsLocalProvider();
 
   Future<bool> getThemeFromLocal() async {
     final Box theme = await Hive.openBox('theme');
-    return theme.get('isLight').toString() == 'true';
+    return theme.isEmpty ? true : theme.get('isLight').toString() == 'true';
   }
 
   Future<void> setThemeToLocal(bool isLight) async {
@@ -18,7 +18,9 @@ class SettingsLocalProvider {
 
   Future<bool> getColorSchemeFromLocal() async {
     final Box colorScheme = await Hive.openBox('colorScheme');
-    return colorScheme.get('colorScheme').toString() == 'true';
+    return colorScheme.isEmpty
+        ? true
+        : colorScheme.get('colorScheme').toString() == 'true';
   }
 
   Future<void> setColorSchemeToLocal(bool isStandard) async {
@@ -31,8 +33,12 @@ class SettingsLocalProvider {
 
   Future<double> getFontSizeFromLocal() async {
     final Box colorScheme = await Hive.openBox('fontSize');
-    final String fontSize = colorScheme.get('fontSize').toString();
-    return double.parse(fontSize);
+    if (colorScheme.isEmpty) {
+      return 1.0;
+    } else {
+      final String fontSize = colorScheme.get('fontSize').toString();
+      return double.parse(fontSize);
+    }
   }
 
   Future<void> setFontSizeToLocal(double fontSize) async {
