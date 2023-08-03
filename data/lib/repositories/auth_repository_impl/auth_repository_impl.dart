@@ -39,6 +39,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<UserInfoModel> signInViaGoogle() async {
     final UserInfoEntity userInfoEntity =
         await _authProvider.signInWithGoogle();
+
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     await _localAuthProvider.setUserToLocal(userInfoModel);
     return userInfoModel;

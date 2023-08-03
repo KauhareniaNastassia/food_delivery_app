@@ -26,21 +26,14 @@ class _MainPageScreenState extends State<MainPageScreen> {
         child: BlocConsumer<MenuBloc, MenuState>(
           listener: (BuildContext context, MenuState state) {
             if (!state.isInternetConnectionAvailable) {
-              MotionToast.error(
-                description: Text(
-                  'Internet connection lost. Cached data is using.',
-                  style: AppTextStyles.size18WeightSemiBoldText(
-                    fontSize: settingsBloc.state.fontSize,
-                    color: AppColors.primaryColor,
-                  ),
-                ),
-                toastDuration: const Duration(seconds: 3),
-                width: mediaQueryData.size.width * 0.9,
-                height: mediaQueryData.size.height * 0.09,
-                displayBorder: true,
-                displaySideBar: false,
-                iconSize: mediaQueryData.size.width * 0.12,
-              ).show(context);
+              NotificationToast.showNotification(
+                context,
+                ErrorConstants.internetConnectionIsNotAvailable,
+                mediaQueryData,
+                settingsBloc,
+                Icons.error_outline_rounded,
+                AppColors.errorBackgroundColor,
+              );
             }
           },
           builder: (BuildContext context, MenuState state) {
@@ -67,6 +60,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               SizedBox(height: 20),
+                              //TODO categories filter
                             ],
                           ),
                           MenuListItems(menu: state.menu),

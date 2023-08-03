@@ -1,12 +1,13 @@
 library data;
 
 export 'package:dio/dio.dart';
-export 'providers/menu_provider.dart';
-export 'providers/local_menu_provider.dart';
-export 'providers/local_shopping_cart_provider.dart';
+export 'providers/menu_providers/menu_provider.dart';
+export 'providers/menu_providers/local_menu_provider.dart';
+export 'providers/shopping_cart_providers/local_shopping_cart_provider.dart';
 export 'providers/auth/local_auth_provider.dart';
-export 'providers/settings_local_provider.dart';
+export 'providers/settings_provider/settings_local_provider.dart';
 export 'providers/auth/auth_provider.dart';
+export 'providers/service/check_internet_connection/check_internet_connection.dart';
 export 'entity/menu_item/menu_item_entity.dart';
 export 'entity/menu_item/menu_item_entity_adapter.dart';
 export 'entity/shopping_cart_item/shopping_cart_item_entity.dart';

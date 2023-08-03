@@ -73,11 +73,11 @@ class DataDI {
     );
 
     instance.registerLazySingleton<LocalMenuProvider>(
-      () => LocalMenuProvider(),
+      () => const LocalMenuProvider(),
     );
 
     instance.registerLazySingleton<LocalShoppingCartProvider>(
-      () => LocalShoppingCartProvider(),
+      () => const LocalShoppingCartProvider(),
     );
 
     instance.registerLazySingleton<SettingsLocalProvider>(
@@ -138,7 +138,7 @@ class DataDI {
     );
   }
 
-  _initSettings() {
+  void _initSettings() {
     instance.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
         settingsLocalProvider: instance.get<SettingsLocalProvider>(),
@@ -182,7 +182,7 @@ class DataDI {
     );
   }
 
-  _initAuth() {
+  void _initAuth() {
     instance.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
         authProvider: instance.get<AuthProvider>(),

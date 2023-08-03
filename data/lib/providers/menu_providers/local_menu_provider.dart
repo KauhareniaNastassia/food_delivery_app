@@ -2,18 +2,16 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class LocalMenuProvider {
-  LocalMenuProvider();
+  const LocalMenuProvider();
 
   Future<void> saveMenuItemsToLocal(List<MenuItemModel> menuItems) async {
     final Box<MenuItemEntity> menuItemsBox = await Hive.openBox('menuItems');
-    if (menuItemsBox.isEmpty) {
-      final List<MenuItemEntity> menuItemsEntity = menuItems
-          .map(
-            (MenuItemModel menuItem) => MenuItemMapper.toEntity(menuItem),
-          )
-          .toList();
-      await menuItemsBox.addAll(menuItemsEntity);
-    }
+    final List<MenuItemEntity> menuItemsEntity = menuItems
+        .map(
+          (MenuItemModel menuItem) => MenuItemMapper.toEntity(menuItem),
+        )
+        .toList();
+    await menuItemsBox.addAll(menuItemsEntity);
   }
 
   Future<List<MenuItemEntity>> getMenuItemsFromLocal() async {

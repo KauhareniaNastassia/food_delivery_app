@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
 
 class LocalShoppingCartProvider {
-  LocalShoppingCartProvider();
+  const LocalShoppingCartProvider();
 
   static final Box<ShoppingCartItemEntity> box = Hive.box('shoppingCartItems');
 
@@ -18,16 +18,20 @@ class LocalShoppingCartProvider {
   ) async {
     final List<ShoppingCartItemEntity> shoppingCartItemsEntity =
         box.values.toList();
-
     int i = 0;
     bool itemIsInCart = false;
 
     while (i < shoppingCartItemsEntity.length && !itemIsInCart) {
-      if (shoppingCartItemsEntity[i].menuItemEntity == menuItemEntity) {
-        shoppingCartItemsEntity[i].amount++;
+      if (shoppingCartItemsEntity[i].menuItemEntity.id == menuItemEntity.id) {
+        final ShoppingCartItemEntity updatedItem =
+            shoppingCartItemsEntity[i].copyWith(
+          amount: shoppingCartItemsEntity[i].amount + 1,
+        );
 
-        box.put(shoppingCartItemsEntity[i].menuItemEntity.id,
-            shoppingCartItemsEntity[i]);
+        box.put(
+          shoppingCartItemsEntity[i].menuItemEntity.id,
+          updatedItem,
+        );
 
         itemIsInCart = true;
       }
@@ -49,11 +53,14 @@ class LocalShoppingCartProvider {
     ShoppingCartItemEntity shoppingCartItemEntity,
   ) async {
     if (shoppingCartItemEntity.amount > 1) {
-      shoppingCartItemEntity.amount--;
+      final ShoppingCartItemEntity updatedItem =
+          shoppingCartItemEntity.copyWith(
+        amount: shoppingCartItemEntity.amount - 1,
+      );
 
       await box.put(
         shoppingCartItemEntity.menuItemEntity.id,
-        shoppingCartItemEntity,
+        updatedItem,
       );
     } else {
       await box.delete(shoppingCartItemEntity.menuItemEntity.id);

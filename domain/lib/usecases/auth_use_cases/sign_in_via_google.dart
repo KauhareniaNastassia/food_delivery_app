@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:domain/domain.dart';
 
 class SignInViaGoogleUseCase implements FutureUseCase<NoParams, UserInfoModel> {

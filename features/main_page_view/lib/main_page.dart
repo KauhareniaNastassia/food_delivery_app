@@ -11,3 +11,6 @@ export 'src/ui/components/widgets/menu_item_details/menu_item_details_descriptio
 export 'src/ui/components/widgets/menu_item_details/menu_item_details_image.dart';
 export 'src/ui/components/widgets/menu_item_details/menu_item_details_ingredients.dart';
 export 'src/ui/components/widgets/menu_item_details/menu_item_details_title.dart';
+export 'src/ui/components/widgets/menu_item/menu_item_title.dart';
+export 'src/ui/components/widgets/menu_item/item_list_button.dart';
+export 'src/ui/components/widgets/menu_item/menu_item_image.dart';

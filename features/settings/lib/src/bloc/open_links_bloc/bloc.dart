@@ -2,11 +2,15 @@ import 'package:core/core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class OpenContactLinksBloc
     extends Bloc<OpenContactLinksEvent, OpenContactLinksState> {
-  OpenContactLinksBloc() : super(OpenContactLinksState()) {
+  OpenContactLinksBloc()
+      : super(
+          OpenContactLinksState(),
+        ) {
     on<OpenFacebookEvent>(_openFacebookLink);
     on<OpenInstagramEvent>(_openInstagramLink);
     on<OpenMessengerEvent>(_openMessengerLink);
@@ -19,7 +23,7 @@ class OpenContactLinksBloc
     Emitter<OpenContactLinksState> emit,
   ) async {
     try {
-      final Uri url = Uri.parse('https://www.facebook.com');
+      final Uri url = Uri.parse(AppConstants.facebookLink);
       await launchUrl(url);
     } catch (e) {
       emit(
@@ -30,12 +34,12 @@ class OpenContactLinksBloc
     }
   }
 
-  void _openInstagramLink(
+  Future<void> _openInstagramLink(
     OpenInstagramEvent event,
     Emitter<OpenContactLinksState> emit,
   ) async {
     try {
-      final Uri url = Uri.parse('https://www.instagram.com');
+      final Uri url = Uri.parse(AppConstants.instagramLink);
       await launchUrl(url);
     } catch (e) {
       emit(
@@ -46,14 +50,13 @@ class OpenContactLinksBloc
     }
   }
 
-  void _openMessengerLink(
+  Future<void> _openMessengerLink(
     OpenMessengerEvent event,
     Emitter<OpenContactLinksState> emit,
   ) async {
-    const String telephoneNumber = '+375291234567';
-    final Uri messageUrl = Uri.parse('sms:$telephoneNumber');
+    final Uri messageUrl = Uri.parse('sms:${AppConstants.phoneNumber}');
 
-    PermissionStatus status = await Permission.sms.request();
+    final PermissionStatus status = await Permission.sms.request();
 
     if (status.isGranted) {
       try {
@@ -68,14 +71,13 @@ class OpenContactLinksBloc
     }
   }
 
-  void _makeAPhoneCall(
+  Future<void> _makeAPhoneCall(
     MakeAPhoneCallEvent event,
     Emitter<OpenContactLinksState> emit,
   ) async {
-    const String telephoneNumber = '+375291234567';
-    final Uri telephoneUrl = Uri.parse('tel:$telephoneNumber');
+    final Uri telephoneUrl = Uri.parse('tel:${AppConstants.phoneNumber}');
 
-    PermissionStatus status = await Permission.phone.request();
+    final PermissionStatus status = await Permission.phone.request();
 
     if (status.isGranted) {
       try {
@@ -90,15 +92,13 @@ class OpenContactLinksBloc
     }
   }
 
-  void _openLocationLink(
+  Future<void> _openLocationLink(
     OpenLocationLinkEvent event,
     Emitter<OpenContactLinksState> emit,
   ) async {
-    const String lat = '53.915629';
-    const String lng = '27.569431';
-    final Uri mapUrl = Uri.parse('geo:$lat,$lng');
+    final Uri mapUrl = Uri.parse(AppConstants.geoPosition);
 
-    PermissionStatus status = await Permission.location.request();
+    final PermissionStatus status = await Permission.location.request();
 
     if (status.isGranted) {
       try {

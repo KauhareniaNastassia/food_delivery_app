@@ -24,21 +24,14 @@ class _SignInBlockState extends State<SignInBlock> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
         if (state.signInFailedMessage != '') {
-          MotionToast.error(
-            description: Text(
-              'Wrong email or password',
-              style: AppTextStyles.size16WeightSemiBoldText(
-                fontSize: settingsBloc.state.fontSize,
-                color: AppColors.primaryColor,
-              ),
-            ),
-            toastDuration: const Duration(seconds: 1),
-            width: mediaQueryData.size.width * 0.9,
-            height: mediaQueryData.size.height * 0.07,
-            displayBorder: true,
-            displaySideBar: false,
-            iconSize: mediaQueryData.size.width * 0.12,
-          ).show(context);
+          NotificationToast.showNotification(
+            context,
+            state.signInFailedMessage!,
+            mediaQueryData,
+            settingsBloc,
+            Icons.error_outline_rounded,
+            AppColors.errorBackgroundColor,
+          );
         }
       },
       listenWhen: (AuthState previous, AuthState current) {
@@ -76,7 +69,7 @@ class _SignInBlockState extends State<SignInBlock> {
                       passwordValidation(password),
                   obscureText: true,
                 ),
-                SizedBox( height: mediaQueryData.size.height * 0.05),
+                SizedBox(height: mediaQueryData.size.height * 0.05),
                 PrimaryButton(
                   buttonTitle: 'Sign in',
                   onPressed: () {
@@ -90,13 +83,13 @@ class _SignInBlockState extends State<SignInBlock> {
                     }
                   },
                 ),
-                SizedBox( height: mediaQueryData.size.height * 0.05),
+                SizedBox(height: mediaQueryData.size.height * 0.05),
                 PrimaryButton(
                   buttonTitle: 'Sign in via Google',
                   onPressed: () {
                     context.read<AuthBloc>().add(
-                      SignInViaGoogleEvent(),
-                    );
+                          SignInViaGoogleEvent(),
+                        );
                   },
                 ),
               ],

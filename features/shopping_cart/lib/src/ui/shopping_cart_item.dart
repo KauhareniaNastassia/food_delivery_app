@@ -1,8 +1,6 @@
-import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:settings/settings.dart';
 import 'package:shopping_cart/src/ui/widgets/widgets.dart';
 
 class ShoppingCartItem extends StatelessWidget {
@@ -18,7 +16,6 @@ class ShoppingCartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return Ink(
       child: InkWell(
@@ -41,25 +38,13 @@ class ShoppingCartItem extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Container(
-                      width: size.width / 2,
+                      width: size.width / 1.8,
                       padding: const EdgeInsets.only(left: 10),
                       alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Text(
-                            shoppingCartItem.menuItem.title,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          Text(
-                            '\$${shoppingCartItem.menuItem.cost}',
-                            style: AppTextStyles.size18WeightSemiBoldText(
-                              fontSize: settingsBloc.state.fontSize,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ],
+                      child: ShoppingCartItemInfo(
+                        title: shoppingCartItem.menuItem.title,
+                        cost: shoppingCartItem.menuItem.cost,
+                        amount: shoppingCartItem.amount,
                       ),
                     ),
                   ),

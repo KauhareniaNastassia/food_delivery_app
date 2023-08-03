@@ -1,22 +1,22 @@
 import 'package:data/data.dart';
 
 class AuthProvider {
-  final FirebaseAuth _firebaseAuth;
-  final FirebaseFirestore _fireStore;
-  final GoogleSignIn _googleSignIn;
+  final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore fireStore;
+  final GoogleSignIn googleSignIn;
 
-  AuthProvider(
-    this._firebaseAuth,
-    this._fireStore,
-    this._googleSignIn,
-  );
+  AuthProvider({
+    required this.firebaseAuth,
+    required this.fireStore,
+    required this.googleSignIn,
+  });
 
   Future<UserInfoEntity> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     final UserCredential userCredential =
-        await _firebaseAuth.signInWithEmailAndPassword(
+        await firebaseAuth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -26,19 +26,20 @@ class AuthProvider {
 
   Future<UserInfoEntity> signInWithGoogle() async {
     final GoogleSignInAccount? googleSignInAccount =
-        await _googleSignIn.signIn();
+        await googleSignIn.signIn();
 
     final GoogleSignInAuthentication? googleSignInAuthentication =
         await googleSignInAccount?.authentication;
+
     final OAuthCredential authCredential = GoogleAuthProvider.credential(
       idToken: googleSignInAuthentication?.idToken,
       accessToken: googleSignInAuthentication?.accessToken,
     );
 
     UserCredential result =
-        await _firebaseAuth.signInWithCredential(authCredential);
+        await firebaseAuth.signInWithCredential(authCredential);
 
-    await _fireStore.collection('userInfo').doc(result.user?.uid).set({
+    await fireStore.collection('userInfo').doc(result.user?.uid).set({
       'userId': result.user?.uid,
       'userName': result.user?.displayName,
       'email': result.user?.email,
@@ -53,12 +54,11 @@ class AuthProvider {
     required String password,
   }) async {
     final UserCredential userCredential =
-        await _firebaseAuth.createUserWithEmailAndPassword(
+        await firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
-
-    await _fireStore.collection('userInfo').doc(userCredential.user!.uid).set({
+    await fireStore.collection('userInfo').doc(userCredential.user!.uid).set({
       'userId': userCredential.user!.uid,
       'userName': userName,
       'email': email,
@@ -68,15 +68,15 @@ class AuthProvider {
   }
 
   Future<void> signOut() async {
-    await _firebaseAuth.signOut();
-    await _googleSignIn.signOut();
+    await firebaseAuth.signOut();
+    await googleSignIn.signOut();
   }
 
   Future<UserInfoEntity> getUserInfoFromDB({
     required String userId,
   }) async {
     final DocumentSnapshot<Map<String, dynamic>> doc =
-        await _fireStore.collection('userInfo').doc(userId).get();
+        await fireStore.collection('userInfo').doc(userId).get();
 
     final Map<String, dynamic>? userData = doc.data();
     final UserInfoEntity userEntity = UserInfoEntity(

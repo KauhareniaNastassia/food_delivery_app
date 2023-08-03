@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:core/core.dart';
+import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
@@ -31,7 +31,6 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     InitEvent event,
     Emitter<MenuState> emit,
   ) async {
-    add(IsInternetConnectionAvailableEvent());
     emit(state.copyWith(isLoading: true));
 
     try {

@@ -28,21 +28,14 @@ class _SignUpBlockState extends State<SignUpBlock> {
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
         if (state.signUpFailedMessage != '') {
-          MotionToast.error(
-            description: Text(
-              'User with this email is already exist',
-              style: AppTextStyles.size16WeightSemiBoldText(
-                fontSize: settingsBloc.state.fontSize,
-                color: AppColors.primaryColor,
-              ),
-            ),
-            toastDuration: const Duration(seconds: 1),
-            width: mediaQueryData.size.width * 0.9,
-            height: mediaQueryData.size.height * 0.08,
-            displayBorder: true,
-            displaySideBar: false,
-            iconSize: mediaQueryData.size.width * 0.12,
-          ).show(context);
+          NotificationToast.showNotification(
+            context,
+            state.signUpFailedMessage!,
+            mediaQueryData,
+            settingsBloc,
+            Icons.error_outline_rounded,
+            AppColors.errorBackgroundColor,
+          );
         }
       },
       listenWhen: (AuthState previous, AuthState current) {
