@@ -1,7 +1,7 @@
 import 'package:data/data.dart';
 
 class ShoppingCartItemEntity {
-  MenuItemEntity menuItemEntity;
+  final MenuItemEntity menuItemEntity;
   final int amount;
 
   ShoppingCartItemEntity({

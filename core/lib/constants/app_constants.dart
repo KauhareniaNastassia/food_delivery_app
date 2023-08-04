@@ -34,4 +34,16 @@ class AppConstants {
   static String toDarkTheme = 'Switch to dark theme';
   static String toLightTheme = 'Switch to light theme';
   static String changeFontSize = 'Change app font size';
+
+  ///orders
+  static List<String> menuItemCategory = [
+    'All foods',
+    'Meet',
+    'Fish',
+    'Dessert',
+    'Vegetables',
+    'Breakfast',
+    'Lunch',
+    'For a company'
+  ];
 }

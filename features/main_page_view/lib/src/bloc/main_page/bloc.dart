@@ -15,6 +15,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         super(MenuState()) {
     on<InitEvent>(_onLoadMenu);
     on<IsInternetConnectionAvailableEvent>(_isInternetConnectionAvailable);
+    on<FilterMenuByCategoryEvent>(_filterMenu);
 
     add(InitEvent());
 
@@ -41,6 +42,8 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       emit(
         state.copyWith(
           menu: menu,
+          selectedCategory: 'All foods',
+          filteredMenu: [],
           isLoading: false,
         ),
       );
@@ -66,5 +69,29 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         isInternetConnectionAvailable: isInternetConnectionAvailable,
       ),
     );
+  }
+
+  void _filterMenu(
+    FilterMenuByCategoryEvent event,
+    Emitter<MenuState> emit,
+  ) {
+    if (event.category == 'All foods') {
+      emit(
+        state.copyWith(
+          filteredMenu: [],
+          selectedCategory: 'All foods',
+        ),
+      );
+    } else {
+      final List<MenuItemModel> filteredMenu =
+          state.menu.where((item) => item.category == event.category).toList();
+
+      emit(
+        state.copyWith(
+          filteredMenu: filteredMenu,
+          selectedCategory: event.category,
+        ),
+      );
+    }
   }
 }

@@ -57,7 +57,6 @@ class LocalShoppingCartProvider {
           shoppingCartItemEntity.copyWith(
         amount: shoppingCartItemEntity.amount - 1,
       );
-
       await box.put(
         shoppingCartItemEntity.menuItemEntity.id,
         updatedItem,

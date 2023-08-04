@@ -7,7 +7,6 @@ class MenuDataProvider {
 
   Future<List<MenuItemEntity>> fetchMenuItems() async {
     final querySnapshot = await _firestore.collection('menu').get();
-
     return querySnapshot.docs
         .map(
           (doc) => MenuItemEntity.fromJson(doc.data()),

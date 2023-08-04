@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
 
 class AppTheme {
   final bool isStandardColorScheme;
