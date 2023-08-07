@@ -37,4 +37,9 @@ class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
     await _localShoppingCartProvider
         .removeShoppingCartItemFromLocal(shoppingCartItemEntity);
   }
+
+  @override
+  Future<void> clearShoppingCart() async {
+    await _localShoppingCartProvider.clearShoppingCart();
+  }
 }

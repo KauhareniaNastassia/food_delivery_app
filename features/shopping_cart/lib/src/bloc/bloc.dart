@@ -2,25 +2,30 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
   final GetShoppingCartUseCase _getShoppingCartUseCase;
   final AddShoppingCartItemUseCase _addShoppingCartItemUseCase;
   final RemoveShoppingCartItemUseCase _removeShoppingCartItemUseCase;
+  final ClearShoppingCartUseCase _clearShoppingCartUseCase;
 
   ShoppingCartBloc({
     required GetShoppingCartUseCase getShoppingCartUseCase,
     required AddShoppingCartItemUseCase addShoppingCartItemUseCase,
     required RemoveShoppingCartItemUseCase removeShoppingCartItemUseCase,
+    required ClearShoppingCartUseCase clearShoppingCartUseCase,
   })  : _getShoppingCartUseCase = getShoppingCartUseCase,
         _addShoppingCartItemUseCase = addShoppingCartItemUseCase,
         _removeShoppingCartItemUseCase = removeShoppingCartItemUseCase,
+        _clearShoppingCartUseCase = clearShoppingCartUseCase,
         super(const ShoppingCartState.empty()) {
     on<InitShoppingCartEvent>(_onGetShoppingCart);
     on<AddShoppingCartItemEvent>(_onAddItemToShoppingCart);
     on<RemoveShoppingCartItemEvent>(_onRemoveItemToShoppingCart);
     on<AddCutleryEvent>(_addCutleryEvent);
+    on<ClearShoppingCartEvent>(_clearShoppingCart);
 
     add(
       InitShoppingCartEvent(),
@@ -138,5 +143,18 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
         state.copyWith(exception: e),
       );
     }
+  }
+
+  Future<void> _clearShoppingCart(
+    ClearShoppingCartEvent event,
+    Emitter<ShoppingCartState> emit,
+  ) async {
+    await _clearShoppingCartUseCase.execute(
+      const NoParams(),
+    );
+
+    emit(
+      const ShoppingCartState.empty(),
+    );
   }
 }

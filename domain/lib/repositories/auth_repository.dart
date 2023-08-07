@@ -17,4 +17,6 @@ abstract class AuthRepository {
   Future<UserInfoModel> signInViaGoogle();
 
   Future<void> signOut();
+
+  Future<String> getUserId();
 }

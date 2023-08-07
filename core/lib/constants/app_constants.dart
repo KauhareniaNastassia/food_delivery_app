@@ -44,6 +44,12 @@ class AppConstants {
     'Vegetables',
     'Breakfast',
     'Lunch',
-    'For a company'
+    'For a company',
   ];
+  static String addedCutlery = 'Add cutlery: yes';
+  static String notAddedCutlery = 'Add cutlery: no';
+  static String successfulOrder = 'Your order is accepted';
+  static String unSuccessfulOrder = 'Something went wrong. Try again later';
+  static String goToCart = 'Go to shopping cart';
+  static String noOrdersMessage = 'Oops, you haven\'t placed an order yet';
 }

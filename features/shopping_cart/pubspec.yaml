@@ -22,6 +22,8 @@ dependencies:
     path: ../main_page_view
   settings:
     path: ../settings
+  order_history:
+    path: ../order_history
 
   flutter_svg: ^2.0.6
 

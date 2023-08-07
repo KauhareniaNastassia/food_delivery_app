@@ -4,6 +4,7 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
@@ -33,7 +34,6 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     Emitter<MenuState> emit,
   ) async {
     emit(state.copyWith(isLoading: true));
-
     try {
       final List<MenuItemModel> menu = await _fetchMenuItemsUseCase.execute(
         const NoParams(),

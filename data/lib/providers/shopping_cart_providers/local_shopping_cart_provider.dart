@@ -65,4 +65,8 @@ class LocalShoppingCartProvider {
       await box.delete(shoppingCartItemEntity.menuItemEntity.id);
     }
   }
+
+  Future<void> clearShoppingCart() async {
+    await box.clear();
+  }
 }

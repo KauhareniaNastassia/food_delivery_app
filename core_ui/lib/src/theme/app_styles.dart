@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppStyles {
   static final defaultBorderRadius = BorderRadius.circular(15);
+  static final mediumBorderRadius = BorderRadius.circular(50);
   static final largeBorderRadius = BorderRadius.circular(80);
 
   static final boxShadow = BoxShadow(

@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final ThemeData theme = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -29,6 +30,7 @@ class CustomTextField extends StatelessWidget {
             labelText: label,
           ),
           obscureText: obscureText,
+          style: theme.textTheme.titleLarge,
         ),
       ),
     );

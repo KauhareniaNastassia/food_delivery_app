@@ -250,6 +250,12 @@ class _$_MenuItemEntity implements _MenuItemEntity {
       this,
     );
   }
+
+  @override
+  Map<String, dynamic> toMap() {
+    // TODO: implement toMap
+    throw UnimplementedError();
+  }
 }
 
 abstract class _MenuItemEntity implements MenuItemEntity {

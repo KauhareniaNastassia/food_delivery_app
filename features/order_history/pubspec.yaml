@@ -14,8 +14,14 @@ dependencies:
     path: ../../core
   core_ui:
     path: ../../core_ui
+  domain:
+    path: ../../domain
+  auth:
+    path: ../auth
   settings:
     path: ../settings
+  main_page_view:
+    path: ../main_page_view
 
 dev_dependencies:
   flutter_test:

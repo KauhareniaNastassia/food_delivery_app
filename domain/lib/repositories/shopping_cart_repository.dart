@@ -8,4 +8,6 @@ abstract class ShoppingCartRepository {
   Future<void> removeShoppingCartItem(
     ShoppingCartItemModel shoppingCartItemModel,
   );
+
+  Future<void> clearShoppingCart();
 }

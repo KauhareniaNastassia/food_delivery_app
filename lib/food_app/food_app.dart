@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
 import 'package:navigation/navigation.dart';
+import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
@@ -49,6 +50,14 @@ class FoodApp extends StatelessWidget {
                 instance.get<AddShoppingCartItemUseCase>(),
             removeShoppingCartItemUseCase:
                 instance.get<RemoveShoppingCartItemUseCase>(),
+            clearShoppingCartUseCase: instance.get<ClearShoppingCartUseCase>(),
+          ),
+        ),
+        BlocProvider<OrderHistoryBloc>(
+          create: (_) => OrderHistoryBloc(
+            fetchOrderHistoryUseCase: instance.get<FetchOrderHistoryUseCase>(),
+            getUserIdUseCase: instance.get<GetUserIdUseCase>(),
+            createOrderUseCase: instance.get<CreateOrderUseCase>(),
           ),
         ),
       ],

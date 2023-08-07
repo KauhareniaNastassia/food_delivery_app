@@ -49,7 +49,7 @@ class AppTheme {
         ),
         bodyLarge: AppTextStyles.size18WeightSemiBoldText(
           fontSize: fontSize,
-          color: AppColors.titleTextColor,
+          color: AppColors.primaryColor,
         ),
         bodySmall: AppTextStyles.size16WeightMediumText(
           fontSize: fontSize,

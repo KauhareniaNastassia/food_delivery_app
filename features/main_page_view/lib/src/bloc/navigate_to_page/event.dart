@@ -43,3 +43,11 @@ class NavigateToSignUpPageEvent extends NavigateToPageEvent {
     required this.context,
   });
 }
+
+class NavigateToShoppingCartPageEvent extends NavigateToPageEvent {
+  final BuildContext context;
+
+  NavigateToShoppingCartPageEvent({
+    required this.context,
+  });
+}

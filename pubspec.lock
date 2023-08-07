@@ -618,7 +618,7 @@ packages:
     source: hosted
     version: "1.0.2"
   order_history:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "features/order_history"
       relative: true

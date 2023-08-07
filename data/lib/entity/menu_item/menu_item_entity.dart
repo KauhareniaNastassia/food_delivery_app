@@ -15,6 +15,18 @@ class MenuItemEntity with _$MenuItemEntity {
     required String category,
   }) = _MenuItemEntity;
 
-  factory MenuItemEntity.fromJson(Map<String, Object?> json) =>
+  factory MenuItemEntity.fromJson(Map<String, dynamic> json) =>
       _$MenuItemEntityFromJson(json);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'cost': cost,
+      'image': image,
+      'description': description,
+      'ingredients': ingredients,
+      'category': category,
+    };
+  }
 }

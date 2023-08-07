@@ -20,6 +20,7 @@ class DataDI {
     _initShoppingCart();
     _initSettings();
     _initAuth();
+    _initOrderHistory();
   }
 
   void _initFirebaseOptions() {
@@ -95,6 +96,12 @@ class DataDI {
     instance.registerLazySingleton<LocalAuthProvider>(
       () => const LocalAuthProvider(),
     );
+
+    instance.registerLazySingleton<OrderHistoryProvider>(
+      () => OrderHistoryProvider(
+        firestore: FirebaseFirestore.instance,
+      ),
+    );
   }
 
   void _initMenuItems() {
@@ -133,6 +140,12 @@ class DataDI {
 
     instance.registerLazySingleton<RemoveShoppingCartItemUseCase>(
       () => RemoveShoppingCartItemUseCase(
+        shoppingCartRepository: instance.get<ShoppingCartRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<ClearShoppingCartUseCase>(
+      () => ClearShoppingCartUseCase(
         shoppingCartRepository: instance.get<ShoppingCartRepository>(),
       ),
     );
@@ -196,6 +209,12 @@ class DataDI {
       ),
     );
 
+    instance.registerLazySingleton<GetUserIdUseCase>(
+      () => GetUserIdUseCase(
+        authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+
     instance.registerLazySingleton<SignInUseCase>(
       () => SignInUseCase(
         authRepository: instance.get<AuthRepository>(),
@@ -217,6 +236,26 @@ class DataDI {
     instance.registerLazySingleton<SignInViaGoogleUseCase>(
       () => SignInViaGoogleUseCase(
         authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+  }
+
+  void _initOrderHistory() {
+    instance.registerLazySingleton<OrderHistoryRepository>(
+      () => OrderHistoryRepositoryImpl(
+        orderHistoryProvider: instance.get<OrderHistoryProvider>(),
+      ),
+    );
+
+    instance.registerLazySingleton<FetchOrderHistoryUseCase>(
+      () => FetchOrderHistoryUseCase(
+        orderHistoryRepository: instance.get<OrderHistoryRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<CreateOrderUseCase>(
+      () => CreateOrderUseCase(
+        orderHistoryRepository: instance.get<OrderHistoryRepository>(),
       ),
     );
   }
