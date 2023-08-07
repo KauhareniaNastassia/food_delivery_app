@@ -15,7 +15,8 @@ class MenuListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavigateToPageBloc navigateToPageBloc = context.read<NavigateToPageBloc>();
+    final NavigateToPageBloc navigateToPageBloc =
+        context.read<NavigateToPageBloc>();
 
     return ListView.builder(
       padding: EdgeInsets.zero,
@@ -31,7 +32,6 @@ class MenuListItems extends StatelessWidget {
             onTap: () {
               navigateToPageBloc.add(
                 NavigateToMenuItemEvent(
-                  context: context,
                   menuItem: menu[index],
                 ),
               );

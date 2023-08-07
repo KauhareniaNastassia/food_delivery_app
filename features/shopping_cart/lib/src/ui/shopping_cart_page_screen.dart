@@ -110,7 +110,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
             return EmptyShoppingCartScreen(
               onPressed: () {
                 navigateToPageBloc.add(
-                  NavigateToMainPageEvent(context: context),
+                  NavigateToMainPageEvent(),
                 );
               },
             );

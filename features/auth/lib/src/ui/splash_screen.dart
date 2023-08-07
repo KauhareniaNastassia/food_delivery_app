@@ -23,11 +23,11 @@ class SplashScreenState extends State<SplashScreen> {
         listener: (BuildContext context, AuthState state) {
           if (state.isUserLoggedIn) {
             navigateToPageBloc.add(
-              NavigateToMainPageEvent(context: context),
+              NavigateToMainPageEvent(),
             );
           } else {
             navigateToPageBloc.add(
-              NavigateToSignInPageEvent(context: context),
+              NavigateToSignInPageEvent(),
             );
           }
         },

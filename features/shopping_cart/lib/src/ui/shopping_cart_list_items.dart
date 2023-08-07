@@ -31,7 +31,6 @@ class ShoppingCartListItems extends StatelessWidget {
             onTap: () {
               navigateToPageBloc.add(
                 NavigateToMenuItemEvent(
-                  context: context,
                   menuItem: shoppingCart.shoppingCartItems[index].menuItem,
                 ),
               );

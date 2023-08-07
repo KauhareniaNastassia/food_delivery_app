@@ -1,7 +1,5 @@
-import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
 import 'package:navigation/navigation.dart';
@@ -36,7 +34,9 @@ class FoodApp extends StatelessWidget {
           ),
         ),
         BlocProvider<NavigateToPageBloc>(
-          create: (_) => NavigateToPageBloc(),
+          create: (_) => NavigateToPageBloc(
+            appRouter: instance.get<AppRouter>(),
+          ),
         ),
         BlocProvider<MenuBloc>(
           create: (_) => MenuBloc(

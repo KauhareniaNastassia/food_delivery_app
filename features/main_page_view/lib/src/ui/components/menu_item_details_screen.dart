@@ -54,9 +54,7 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
                 leading: BackToPreviousPageButton(
                   onPressed: () {
                     navigateToPageBloc.add(
-                      NavigateBackEvent(
-                        context: context,
-                      ),
+                      NavigateBackEvent(),
                     );
                   },
                 ),

@@ -31,7 +31,7 @@ class OrderHistoryPageContent extends StatelessWidget {
                 return EmptyOrderHistoryScreen(
                   onPressed: () {
                     navigateToPageBloc.add(
-                      NavigateToShoppingCartPageEvent(context: context),
+                      NavigateToShoppingCartPageEvent(),
                     );
                   },
                 );
