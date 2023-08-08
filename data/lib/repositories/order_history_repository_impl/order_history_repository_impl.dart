@@ -22,8 +22,14 @@ class OrderHistoryRepositoryImpl implements OrderHistoryRepository {
   }
 
   @override
-  Future<void> createOrderItem(OrderItemModel orderItem) async {
+  Future<void> createOrderItem(
+    String userId,
+    OrderItemModel orderItem,
+  ) async {
     final OrderItemEntity orderItemEntity = OrderItemMapper.toEntity(orderItem);
-    await _orderHistoryProvider.addOrderItem(orderItemEntity);
+    await _orderHistoryProvider.addOrderItem(
+      userId,
+      orderItemEntity,
+    );
   }
 }

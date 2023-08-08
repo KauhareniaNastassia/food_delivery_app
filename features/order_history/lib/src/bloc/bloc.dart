@@ -1,6 +1,5 @@
 import 'package:core/core.dart';
 import 'package:order_history/order_history.dart';
-
 export 'package:auth/auth.dart';
 export 'package:domain/domain.dart';
 
@@ -37,6 +36,8 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
       state.copyWith(
         isLoading: true,
         exception: '',
+        orderItems: [],
+        userId: '',
       ),
     );
     try {
@@ -50,7 +51,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
               state.copyWith(
                 orderItems: [],
                 isLoading: false,
-                userId: '',
+                userId: userId,
               ),
             )
           : emit(
@@ -81,7 +82,7 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
       ),
     );
     try {
-      await _createOrderUseCase.execute(event.orderItem);
+      await _createOrderUseCase.execute(state.userId, event.orderItem);
       emit(
         state.copyWith(
           orderItems: [event.orderItem, ...state.orderItems],

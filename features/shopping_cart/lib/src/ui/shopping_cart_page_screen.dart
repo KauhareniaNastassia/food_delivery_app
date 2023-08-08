@@ -23,7 +23,6 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
     final ThemeData theme = Theme.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final OrderHistoryBloc orderHistoryBloc = context.read<OrderHistoryBloc>();
-    final AuthBloc authBlocBloc = context.read<AuthBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
@@ -54,7 +53,6 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
                     CreateOrderEvent(
                       orderItem: OrderItemModel(
                         id: orderHistoryBloc.state.orderItems.length + 1,
-                        userId: authBlocBloc.state.userId,
                         shoppingCart: state.shoppingCart,
                         date: DateTime.now().toString(),
                       ),

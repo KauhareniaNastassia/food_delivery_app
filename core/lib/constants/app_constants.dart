@@ -20,6 +20,7 @@ class AppConstants {
   static String addToCart = 'Add to cart';
   static String noIngredients = 'No ingredients available';
   static String ingredients = 'Ingredients:';
+  static String nothingInCategory = 'There is nothing here yet';
 
   ///contact links
   static String contactViaLinks =

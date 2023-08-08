@@ -9,6 +9,15 @@ class MenuState {
   final bool isLoading;
 
   MenuState({
+    required this.menu,
+    required this.filteredMenu,
+    this.exception,
+    required this.isInternetConnectionAvailable,
+    required this.selectedCategory,
+    required this.isLoading,
+  });
+
+  MenuState.empty({
     this.menu = const [],
     this.filteredMenu = const [],
     this.exception,

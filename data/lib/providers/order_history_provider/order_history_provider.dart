@@ -20,17 +20,16 @@ class OrderHistoryProvider {
         .toList();
   }
 
-  Future<void> addOrderItem(OrderItemEntity orderItem) async {
+  Future<void> addOrderItem(String userId, OrderItemEntity orderItem) async {
     final CollectionReference orderItems = firestore
         .collection('userInfo')
-        .doc(orderItem.userId)
+        .doc(userId)
         .collection('ordersHistory');
 
     final DocumentReference<Object?> newOrderDocument = orderItems.doc();
 
     await newOrderDocument.set({
       'id': orderItem.id,
-      'userId': orderItem.userId,
       'shoppingCart': orderItem.shoppingCart.toJson(),
       'date': orderItem.date,
     });

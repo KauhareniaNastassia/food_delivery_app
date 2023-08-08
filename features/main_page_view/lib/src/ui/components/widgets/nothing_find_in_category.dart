@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class NothingFindInCategory extends StatelessWidget {
@@ -19,7 +20,7 @@ class NothingFindInCategory extends StatelessWidget {
             ),
           ),
           Text(
-            'There is nothing here yet',
+            AppConstants.nothingInCategory,
             style: theme.textTheme.titleMedium,
           ),
         ],

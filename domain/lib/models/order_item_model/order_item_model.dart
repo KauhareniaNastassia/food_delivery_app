@@ -7,7 +7,6 @@ part 'order_item_model.freezed.dart';
 class OrderItemModel with _$OrderItemModel {
   factory OrderItemModel({
     required int id,
-    required String userId,
     required ShoppingCartModel shoppingCart,
     required String date,
   }) = _OrderItemModel;

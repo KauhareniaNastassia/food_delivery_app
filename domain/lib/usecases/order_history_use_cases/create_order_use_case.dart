@@ -1,15 +1,19 @@
 import 'package:domain/domain.dart';
 
-class CreateOrderUseCase
-    implements FutureUseCase<OrderItemModel, void> {
+class CreateOrderUseCase {
   final OrderHistoryRepository _orderHistoryRepository;
 
   CreateOrderUseCase({
     required OrderHistoryRepository orderHistoryRepository,
   }) : _orderHistoryRepository = orderHistoryRepository;
 
-  @override
-  Future<void> execute(OrderItemModel orderItem) async {
-    return _orderHistoryRepository.createOrderItem(orderItem);
+  Future<void> execute(
+    String userId,
+    OrderItemModel orderItem,
+  ) async {
+    return _orderHistoryRepository.createOrderItem(
+      userId,
+      orderItem,
+    );
   }
 }

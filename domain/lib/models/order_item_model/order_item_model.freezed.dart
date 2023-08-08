@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OrderItemModel {
-  int get id => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError; //required String userId,
   ShoppingCartModel get shoppingCart => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
 
@@ -32,8 +31,7 @@ abstract class $OrderItemModelCopyWith<$Res> {
           OrderItemModel value, $Res Function(OrderItemModel) then) =
       _$OrderItemModelCopyWithImpl<$Res, OrderItemModel>;
   @useResult
-  $Res call(
-      {int id, String userId, ShoppingCartModel shoppingCart, String date});
+  $Res call({int id, ShoppingCartModel shoppingCart, String date});
 }
 
 /// @nodoc
@@ -50,7 +48,6 @@ class _$OrderItemModelCopyWithImpl<$Res, $Val extends OrderItemModel>
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
     Object? shoppingCart = null,
     Object? date = null,
   }) {
@@ -59,10 +56,6 @@ class _$OrderItemModelCopyWithImpl<$Res, $Val extends OrderItemModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
       shoppingCart: null == shoppingCart
           ? _value.shoppingCart
           : shoppingCart // ignore: cast_nullable_to_non_nullable
@@ -83,8 +76,7 @@ abstract class _$$_OrderItemModelCopyWith<$Res>
       __$$_OrderItemModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int id, String userId, ShoppingCartModel shoppingCart, String date});
+  $Res call({int id, ShoppingCartModel shoppingCart, String date});
 }
 
 /// @nodoc
@@ -99,7 +91,6 @@ class __$$_OrderItemModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? userId = null,
     Object? shoppingCart = null,
     Object? date = null,
   }) {
@@ -108,10 +99,6 @@ class __$$_OrderItemModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
       shoppingCart: null == shoppingCart
           ? _value.shoppingCart
           : shoppingCart // ignore: cast_nullable_to_non_nullable
@@ -128,15 +115,11 @@ class __$$_OrderItemModelCopyWithImpl<$Res>
 
 class _$_OrderItemModel implements _OrderItemModel {
   _$_OrderItemModel(
-      {required this.id,
-      required this.userId,
-      required this.shoppingCart,
-      required this.date});
+      {required this.id, required this.shoppingCart, required this.date});
 
   @override
   final int id;
-  @override
-  final String userId;
+//required String userId,
   @override
   final ShoppingCartModel shoppingCart;
   @override
@@ -144,7 +127,7 @@ class _$_OrderItemModel implements _OrderItemModel {
 
   @override
   String toString() {
-    return 'OrderItemModel(id: $id, userId: $userId, shoppingCart: $shoppingCart, date: $date)';
+    return 'OrderItemModel(id: $id, shoppingCart: $shoppingCart, date: $date)';
   }
 
   @override
@@ -153,14 +136,13 @@ class _$_OrderItemModel implements _OrderItemModel {
         (other.runtimeType == runtimeType &&
             other is _$_OrderItemModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.shoppingCart, shoppingCart) ||
                 other.shoppingCart == shoppingCart) &&
             (identical(other.date, date) || other.date == date));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, userId, shoppingCart, date);
+  int get hashCode => Object.hash(runtimeType, id, shoppingCart, date);
 
   @JsonKey(ignore: true)
   @override
@@ -172,15 +154,12 @@ class _$_OrderItemModel implements _OrderItemModel {
 abstract class _OrderItemModel implements OrderItemModel {
   factory _OrderItemModel(
       {required final int id,
-      required final String userId,
       required final ShoppingCartModel shoppingCart,
       required final String date}) = _$_OrderItemModel;
 
   @override
   int get id;
-  @override
-  String get userId;
-  @override
+  @override //required String userId,
   ShoppingCartModel get shoppingCart;
   @override
   String get date;

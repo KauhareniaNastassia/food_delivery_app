@@ -51,7 +51,6 @@ class ListOfOrderedMenuItems extends StatelessWidget {
           color: theme.unselectedWidgetColor,
           thickness: 1,
         ),
-        // const SizedBox(height: 5),
         Text(
           addedCutlery
               ? AppConstants.addedCutlery
