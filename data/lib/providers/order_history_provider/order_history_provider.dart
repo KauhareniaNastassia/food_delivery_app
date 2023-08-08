@@ -26,9 +26,9 @@ class OrderHistoryProvider {
         .doc(userId)
         .collection('ordersHistory');
 
-    final DocumentReference<Object?> newOrderDocument = orderItems.doc();
+    final DocumentReference<Object?> orderItemsDocument = orderItems.doc();
 
-    await newOrderDocument.set({
+    await orderItemsDocument.set({
       'id': orderItem.id,
       'shoppingCart': orderItem.shoppingCart.toJson(),
       'date': orderItem.date,

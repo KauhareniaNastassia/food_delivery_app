@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -28,7 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignInViaGoogleEvent>(_signInViaGoogle);
     on<SignUpEvent>(_onSignUp);
     on<SignOutEvent>(_onSignOut);
-    on<ChangeSignPageEvent>(_changeSignPage);
+    on<ChangeAuthPageEvent>(_changeAuthPage);
 
     add(
       InitAuthEvent(),
@@ -233,10 +234,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  Future<void> _changeSignPage(
-    ChangeSignPageEvent event,
+  void _changeAuthPage(
+    ChangeAuthPageEvent event,
     Emitter<AuthState> emit,
-  ) async {
+  ) {
     emit(
       state.copyWith(
         isSignInPage: !state.isSignInPage,

@@ -19,7 +19,9 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
   })  : _getUserIdUseCase = getUserIdUseCase,
         _fetchOrderHistoryUseCase = fetchOrderHistoryUseCase,
         _createOrderUseCase = createOrderUseCase,
-        super(OrderHistoryState.empty()) {
+        super(
+          OrderHistoryState.empty(),
+        ) {
     on<InitOrderHistoryEvent>(_initOrderHistory);
     on<CreateOrderEvent>(_createOrder);
 

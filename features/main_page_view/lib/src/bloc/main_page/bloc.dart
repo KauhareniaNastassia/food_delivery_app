@@ -13,7 +13,9 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
   MenuBloc({
     required FetchMenuItemsUseCase fetchMenuItemsUseCase,
   })  : _fetchMenuItemsUseCase = fetchMenuItemsUseCase,
-        super(MenuState.empty()) {
+        super(
+          MenuState.empty(),
+        ) {
     on<InitEvent>(_onLoadMenu);
     on<IsInternetConnectionAvailableEvent>(_isInternetConnectionAvailable);
     on<FilterMenuByCategoryEvent>(_filterMenu);

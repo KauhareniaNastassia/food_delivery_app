@@ -37,7 +37,9 @@ class ListOfOrderedMenuItems extends StatelessWidget {
                       style: theme.textTheme.bodySmall,
                     ),
                     Text(
-                      '${orderedItems[index].amount * orderedItems[index].menuItem.cost}',
+                      '\$${(orderedItems[index].amount
+                          * orderedItems[index].menuItem.cost)
+                          .toStringAsFixed(2)}',
                       style: theme.textTheme.bodySmall,
                     ),
                   ],
