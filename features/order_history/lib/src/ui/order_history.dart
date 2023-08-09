@@ -13,37 +13,23 @@ class OrderHistoryPageContent extends StatelessWidget {
         context.read<NavigateToPageBloc>();
 
     return Scaffold(
-      body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, authState) {
-          if (authState.isUserLoggedIn) {
-            context.read<OrderHistoryBloc>().add(
-                  InitOrderHistoryEvent(),
+      body: BlocBuilder<OrderHistoryBloc, OrderHistoryState>(
+        builder: (BuildContext context, OrderHistoryState state) {
+          if (state.orderItems.isEmpty) {
+            return EmptyOrderHistoryScreen(
+              onPressed: () {
+                navigateToPageBloc.add(
+                  NavigateToShoppingCartPageEvent(),
                 );
+              },
+            );
+          } else if (state.isLoading) {
+            return const LoadingIndicator();
+          } else {
+            return ListOfOrderItems(
+              orderItems: state.orderItems,
+            );
           }
-        },
-        listenWhen: (AuthState previous, AuthState current) {
-          return previous.isUserLoggedIn != current.isUserLoggedIn;
-        },
-        builder: (BuildContext context, AuthState authState) {
-          return BlocBuilder<OrderHistoryBloc, OrderHistoryState>(
-            builder: (BuildContext context, OrderHistoryState state) {
-              if (state.orderItems.isEmpty) {
-                return EmptyOrderHistoryScreen(
-                  onPressed: () {
-                    navigateToPageBloc.add(
-                      NavigateToShoppingCartPageEvent(),
-                    );
-                  },
-                );
-              } else if (state.isLoading) {
-                return const LoadingIndicator();
-              } else {
-                return ListOfOrderItems(
-                  orderItems: state.orderItems,
-                );
-              }
-            },
-          );
         },
       ),
     );

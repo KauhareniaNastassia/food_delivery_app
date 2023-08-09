@@ -1,7 +1,8 @@
-import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
+import 'package:order_history/order_history.dart';
+import 'package:shopping_cart/shopping_cart.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,6 +17,10 @@ class SplashScreenState extends State<SplashScreen> {
     final NavigateToPageBloc navigateToPageBloc =
         context.read<NavigateToPageBloc>();
     final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
+    final ShoppingCartBloc shoppingCartBloc =
+        BlocProvider.of<ShoppingCartBloc>(context);
+    final OrderHistoryBloc orderHistoryBloc =
+        BlocProvider.of<OrderHistoryBloc>(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Scaffold(
@@ -24,6 +29,12 @@ class SplashScreenState extends State<SplashScreen> {
           if (state.isUserLoggedIn) {
             navigateToPageBloc.add(
               NavigateToMainPageEvent(),
+            );
+            shoppingCartBloc.add(
+              InitShoppingCartEvent(),
+            );
+            orderHistoryBloc.add(
+              InitOrderHistoryEvent(),
             );
           } else {
             navigateToPageBloc.add(
