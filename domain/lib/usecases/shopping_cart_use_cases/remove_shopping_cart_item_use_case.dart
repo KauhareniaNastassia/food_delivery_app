@@ -8,9 +8,12 @@ class RemoveShoppingCartItemUseCase {
   }) : _shoppingCartRepository = shoppingCartRepository;
 
   Future<void> removeShoppingCartItem(
+    String userId,
     ShoppingCartItemModel shoppingCartItemModel,
   ) async {
-    return _shoppingCartRepository
-        .removeShoppingCartItem(shoppingCartItemModel);
+    return _shoppingCartRepository.removeShoppingCartItem(
+      userId,
+      shoppingCartItemModel,
+    );
   }
 }

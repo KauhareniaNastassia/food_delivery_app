@@ -51,6 +51,7 @@ class FoodApp extends StatelessWidget {
             removeShoppingCartItemUseCase:
                 instance.get<RemoveShoppingCartItemUseCase>(),
             clearShoppingCartUseCase: instance.get<ClearShoppingCartUseCase>(),
+            getUserIdUseCase: instance.get<GetUserIdUseCase>(),
           ),
         ),
         BlocProvider<OrderHistoryBloc>(

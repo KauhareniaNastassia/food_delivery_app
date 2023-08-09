@@ -12,33 +12,36 @@ class SignInPageScreen extends StatefulWidget {
 class _SignInPageScreenState extends State<SignInPageScreen> {
   @override
   Widget build(BuildContext context) {
-    final AuthBloc auhBloc = context.read<AuthBloc>();
-    final bool isSignInPage = auhBloc.state.isSignInPage;
-
     return Scaffold(
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const SignTitle(),
-                const SizedBox(height: 30),
-                isSignInPage ? const SignInBlock() : const SignUpBlock(),
-                const SizedBox(height: 16),
-                AuthPageSwitcher(
-                  onPressed: () {
-                    auhBloc.add(
-                      ChangeSignPageEvent(),
-                    );
-                  },
-                  isSignInPage: isSignInPage,
+      body: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          return Center(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const AuthTitle(),
+                    const SizedBox(height: 30),
+                    state.isSignInPage
+                        ? const SignInBlock()
+                        : const SignUpBlock(),
+                    const SizedBox(height: 16),
+                    AuthPageSwitcher(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(
+                              ChangeAuthPageEvent(),
+                            );
+                      },
+                      isSignInPage: state.isSignInPage,
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

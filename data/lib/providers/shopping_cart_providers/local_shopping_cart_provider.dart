@@ -3,19 +3,20 @@ import 'package:data/data.dart';
 class LocalShoppingCartProvider {
   const LocalShoppingCartProvider();
 
-  static final Box<ShoppingCartItemEntity> box = Hive.box('shoppingCartItems');
-
-  Future<List<ShoppingCartItemEntity>> getShoppingCartItemsFromLocal() async {
+  Future<List<ShoppingCartItemEntity>> getShoppingCartItemsFromLocal(
+      String userId) async {
     final Box<ShoppingCartItemEntity> shoppingCartItemsBox =
-        await Hive.openBox('shoppingCartItems');
+        await Hive.openBox(userId);
     final List<ShoppingCartItemEntity> shoppingCartItemsEntity =
         shoppingCartItemsBox.values.toList();
     return shoppingCartItemsEntity;
   }
 
   Future<void> addShoppingCartItemToLocal(
+    String userId,
     MenuItemEntity menuItemEntity,
   ) async {
+    final Box<ShoppingCartItemEntity> box = Hive.box(userId);
     final List<ShoppingCartItemEntity> shoppingCartItemsEntity =
         box.values.toList();
     int i = 0;
@@ -50,8 +51,11 @@ class LocalShoppingCartProvider {
   }
 
   Future<void> removeShoppingCartItemFromLocal(
+    String userId,
     ShoppingCartItemEntity shoppingCartItemEntity,
   ) async {
+    final Box<ShoppingCartItemEntity> box = Hive.box(userId);
+
     if (shoppingCartItemEntity.amount > 1) {
       final ShoppingCartItemEntity updatedItem =
           shoppingCartItemEntity.copyWith(
@@ -66,7 +70,8 @@ class LocalShoppingCartProvider {
     }
   }
 
-  Future<void> clearShoppingCart() async {
+  Future<void> clearShoppingCart(String userId) async {
+    final Box<ShoppingCartItemEntity> box = Hive.box(userId);
     await box.clear();
   }
 }

@@ -7,7 +7,7 @@ class ClearShoppingCartUseCase {
     required ShoppingCartRepository shoppingCartRepository,
   }) : _shoppingCartRepository = shoppingCartRepository;
 
-  Future<void> execute(NoParams input) async {
-    return _shoppingCartRepository.clearShoppingCart();
+  Future<void> execute(String userId) async {
+    return _shoppingCartRepository.clearShoppingCart(userId);
   }
 }

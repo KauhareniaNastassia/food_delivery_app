@@ -9,9 +9,11 @@ class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
   }) : _localShoppingCartProvider = localShoppingCartProvider;
 
   @override
-  Future<List<ShoppingCartItemModel>> getShoppingCartItems() async {
+  Future<List<ShoppingCartItemModel>> getShoppingCartItems(
+    String userId,
+  ) async {
     final List<ShoppingCartItemEntity> shoppingCartItems =
-        await _localShoppingCartProvider.getShoppingCartItemsFromLocal();
+        await _localShoppingCartProvider.getShoppingCartItemsFromLocal(userId);
 
     return shoppingCartItems
         .map(
@@ -21,25 +23,35 @@ class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
   }
 
   @override
-  Future<void> addShoppingCartItem(MenuItemModel menuItemModel) async {
+  Future<void> addShoppingCartItem(
+    String userId,
+    MenuItemModel menuItemModel,
+  ) async {
     final MenuItemEntity menuItemEntity =
         MenuItemMapper.toEntity(menuItemModel);
 
-    await _localShoppingCartProvider.addShoppingCartItemToLocal(menuItemEntity);
+    await _localShoppingCartProvider.addShoppingCartItemToLocal(
+      userId,
+      menuItemEntity,
+    );
   }
 
   @override
   Future<void> removeShoppingCartItem(
-      ShoppingCartItemModel shoppingCartItemModel) async {
+    String userId,
+    ShoppingCartItemModel shoppingCartItemModel,
+  ) async {
     final ShoppingCartItemEntity shoppingCartItemEntity =
         ShoppingCartItemMapper.toEntity(shoppingCartItemModel);
 
-    await _localShoppingCartProvider
-        .removeShoppingCartItemFromLocal(shoppingCartItemEntity);
+    await _localShoppingCartProvider.removeShoppingCartItemFromLocal(
+      userId,
+      shoppingCartItemEntity,
+    );
   }
 
   @override
-  Future<void> clearShoppingCart() async {
-    await _localShoppingCartProvider.clearShoppingCart();
+  Future<void> clearShoppingCart(String userId) async {
+    await _localShoppingCartProvider.clearShoppingCart(userId);
   }
 }
