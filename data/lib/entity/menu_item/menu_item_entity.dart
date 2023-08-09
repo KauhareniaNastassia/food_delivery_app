@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'menu_item_entity.freezed.dart';
+
 part 'menu_item_entity.g.dart';
 
 @freezed
@@ -15,8 +16,9 @@ class MenuItemEntity with _$MenuItemEntity {
     required String category,
   }) = _MenuItemEntity;
 
-  factory MenuItemEntity.fromJson(Map<String, dynamic> json) =>
-      _$MenuItemEntityFromJson(json);
+  factory MenuItemEntity.fromJson(Map<String, dynamic> json) {
+    return _$MenuItemEntityFromJson(json);
+  }
 
   Map<String, dynamic> toMap() {
     return {

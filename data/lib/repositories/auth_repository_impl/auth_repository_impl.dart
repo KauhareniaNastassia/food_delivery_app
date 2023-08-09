@@ -17,8 +17,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<UserInfoModel> checkIsUserLogged() async {
     final UserInfoEntity userInfoEntity =
         await _localAuthProvider.checkIsUserInLocal();
-    final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
-    return userInfoModel;
+    return UserInfoMapper.toModel(userInfoEntity);
   }
 
   @override
