@@ -13,7 +13,6 @@ class SplashScreen extends StatefulWidget {
 class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
     final ShoppingCartBloc shoppingCartBloc =
         BlocProvider.of<ShoppingCartBloc>(context);
     final OrderHistoryBloc orderHistoryBloc =
@@ -45,9 +44,7 @@ class SplashScreenState extends State<SplashScreen> {
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeInOut,
-                top: authBloc.state.isUserLoggedIn
-                    ? mediaQueryData.size.height
-                    : 0,
+                top: state.isUserLoggedIn ? mediaQueryData.size.height : 0,
                 bottom: 0,
                 left: 0,
                 right: 0,

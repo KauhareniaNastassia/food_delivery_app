@@ -18,7 +18,6 @@ class FirebaseAuthProvider {
       email: email,
       password: password,
     );
-    FirebaseFireStoreProvider;
 
     return userCredential.user!.uid;
   }

@@ -33,9 +33,10 @@ class ShoppingCartItemEntity {
   ShoppingCartItemEntity copyWith({
     MenuItemEntity? menuItemEntity,
     int? amount,
-  }) =>
-      ShoppingCartItemEntity(
-        menuItemEntity: menuItemEntity ?? this.menuItemEntity,
-        amount: amount ?? this.amount,
-      );
+  }) {
+    return ShoppingCartItemEntity(
+      menuItemEntity: menuItemEntity ?? this.menuItemEntity,
+      amount: amount ?? this.amount,
+    );
+  }
 }

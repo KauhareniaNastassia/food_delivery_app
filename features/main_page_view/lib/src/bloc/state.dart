@@ -22,7 +22,7 @@ class MenuState {
     this.filteredMenu = const [],
     this.exception = '',
     this.isInternetConnectionAvailable = true,
-    this.selectedCategory = 'all foods',
+    this.selectedCategory = 'All foods',
     this.isLoading = true,
   });
 
