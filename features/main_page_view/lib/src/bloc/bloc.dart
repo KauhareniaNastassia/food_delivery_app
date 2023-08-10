@@ -82,11 +82,11 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     FilterMenuByCategoryEvent event,
     Emitter<MenuState> emit,
   ) {
-    if (event.category == 'All foods') {
+    if (event.category == AppConstants.menuItemCategory[0]) {
       emit(
         state.copyWith(
           filteredMenu: [],
-          selectedCategory: 'All foods',
+          selectedCategory: AppConstants.menuItemCategory[0],
         ),
       );
     } else {

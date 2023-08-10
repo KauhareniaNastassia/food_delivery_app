@@ -20,7 +20,7 @@ class AppColors {
   ///text colors
   static const Color titleTextColor = Color(0xFF282828);
   static const Color titleLightTextColor = Color(0xFFE2E2E3);
-  static const Color titleGreyTextColor = Color(0xFFC5C5C9);
+  static const Color titleGreyTextColor = Color(0xFFA4A4AF);
   static const Color titleDarkGreyTextColor = Color(0xFF86868A);
   static const Color descriptionTextColor = Color(0xFF3B3B3B);
   static const Color primaryButtonTextColor = Color(0xFFF4F4F4);

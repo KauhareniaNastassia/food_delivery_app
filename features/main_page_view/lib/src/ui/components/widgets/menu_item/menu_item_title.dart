@@ -43,7 +43,6 @@ class MenuItemTitle extends StatelessWidget {
                   title,
                   style: theme.textTheme.titleLarge,
                 ),
-                //const SizedBox(height: 30),
                 Text(
                   '\$$cost',
                   style: AppTextStyles.size22WeightSemiBoldText(

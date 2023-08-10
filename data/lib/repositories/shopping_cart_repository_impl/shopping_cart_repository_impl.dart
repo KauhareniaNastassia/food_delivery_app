@@ -2,18 +2,18 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
-  final LocalShoppingCartProvider _localShoppingCartProvider;
+  final HiveProvider _hiveProvider;
 
   ShoppingCartRepositoryImpl({
-    required LocalShoppingCartProvider localShoppingCartProvider,
-  }) : _localShoppingCartProvider = localShoppingCartProvider;
+    required HiveProvider hiveProvider,
+  }) : _hiveProvider = hiveProvider;
 
   @override
   Future<List<ShoppingCartItemModel>> getShoppingCartItems(
     String userId,
   ) async {
     final List<ShoppingCartItemEntity> shoppingCartItems =
-        await _localShoppingCartProvider.getShoppingCartItemsFromLocal(userId);
+        await _hiveProvider.getShoppingCartItemsFromLocal(userId);
 
     return shoppingCartItems
         .map(
@@ -30,9 +30,9 @@ class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
     final MenuItemEntity menuItemEntity =
         MenuItemMapper.toEntity(menuItemModel);
 
-    await _localShoppingCartProvider.addShoppingCartItemToLocal(
-        userId: userId,
-        menuItemEntity: menuItemEntity,
+    await _hiveProvider.addShoppingCartItemToLocal(
+      userId: userId,
+      menuItemEntity: menuItemEntity,
     );
   }
 
@@ -44,14 +44,14 @@ class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
     final ShoppingCartItemEntity shoppingCartItemEntity =
         ShoppingCartItemMapper.toEntity(shoppingCartItemModel);
 
-    await _localShoppingCartProvider.removeShoppingCartItemFromLocal(
-        userId: userId,
-        shoppingCartItemEntity: shoppingCartItemEntity,
+    await _hiveProvider.removeShoppingCartItemFromLocal(
+      userId: userId,
+      shoppingCartItemEntity: shoppingCartItemEntity,
     );
   }
 
   @override
   Future<void> clearShoppingCart(String userId) async {
-    await _localShoppingCartProvider.clearShoppingCart(userId);
+    await _hiveProvider.clearShoppingCart(userId);
   }
 }

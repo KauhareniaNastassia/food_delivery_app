@@ -27,9 +27,7 @@ class ListOfOrderItems extends StatelessWidget {
                   OrderItem(
                     orderItem: orderItems[index],
                   ),
-                  SizedBox(
-                    height: mediaQueryData.size.height * 0.02,
-                  ),
+                  SizedBox(height: mediaQueryData.size.height * 0.02),
                 ],
               );
             },

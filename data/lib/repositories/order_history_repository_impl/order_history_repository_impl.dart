@@ -2,16 +2,16 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class OrderHistoryRepositoryImpl implements OrderHistoryRepository {
-  final OrderHistoryProvider _orderHistoryProvider;
+  final FirebaseFireStoreProvider _firebaseFireStoreProvider;
 
   const OrderHistoryRepositoryImpl({
-    required OrderHistoryProvider orderHistoryProvider,
-  }) : _orderHistoryProvider = orderHistoryProvider;
+    required FirebaseFireStoreProvider firebaseFireStoreProvider,
+  }) : _firebaseFireStoreProvider = firebaseFireStoreProvider;
 
   @override
   Future<List<OrderItemModel>> fetchOrderHistory(String userId) async {
     final List<OrderItemEntity> result =
-        await _orderHistoryProvider.fetchOrderHistory(userId);
+        await _firebaseFireStoreProvider.fetchOrderHistory(userId);
 
     final List<OrderItemModel> orderItems = result
         .map(
@@ -27,7 +27,7 @@ class OrderHistoryRepositoryImpl implements OrderHistoryRepository {
     required OrderItemModel orderItem,
   }) async {
     final OrderItemEntity orderItemEntity = OrderItemMapper.toEntity(orderItem);
-    await _orderHistoryProvider.addOrderItem(
+    await _firebaseFireStoreProvider.addOrderItem(
       userId: userId,
       orderItem: orderItemEntity,
     );

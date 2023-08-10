@@ -32,9 +32,7 @@ class EmptyOrderHistoryScreen extends StatelessWidget {
             AppConstants.noOrdersMessage,
             style: theme.textTheme.titleMedium,
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 10),
           PrimaryButton(
             buttonTitle: AppConstants.goToCart,
             onPressed: onPressed,

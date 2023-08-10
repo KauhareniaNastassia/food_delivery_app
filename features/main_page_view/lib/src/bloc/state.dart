@@ -4,14 +4,14 @@ class MenuState {
   final List<MenuItemModel> menu;
   final List<MenuItemModel> filteredMenu;
   final String selectedCategory;
-  final String? exception;
+  final String exception;
   final bool isInternetConnectionAvailable;
   final bool isLoading;
 
   MenuState({
     required this.menu,
     required this.filteredMenu,
-    this.exception,
+    required this.exception,
     required this.isInternetConnectionAvailable,
     required this.selectedCategory,
     required this.isLoading,
@@ -20,7 +20,7 @@ class MenuState {
   MenuState.empty({
     this.menu = const [],
     this.filteredMenu = const [],
-    this.exception,
+    this.exception = '',
     this.isInternetConnectionAvailable = true,
     this.selectedCategory = 'all foods',
     this.isLoading = true,

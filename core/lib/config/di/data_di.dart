@@ -14,7 +14,7 @@ class DataDI {
     _initFirebase();
     _initGoogleSignIn();
     _initHive();
-    _initDataProvider();
+    _initProviders();
     _initAdapters();
     _initMenuItems();
     _initShoppingCart();
@@ -66,40 +66,19 @@ class DataDI {
     );
   }
 
-  Future<void> _initDataProvider() async {
-    instance.registerLazySingleton<MenuDataProvider>(
-      () => MenuDataProvider(
-        FirebaseFirestore.instance,
-      ),
+  Future<void> _initProviders() async {
+    instance.registerLazySingleton<HiveProvider>(
+      () => HiveProvider(),
     );
-
-    instance.registerLazySingleton<LocalMenuProvider>(
-      () => const LocalMenuProvider(),
-    );
-
-    instance.registerLazySingleton<LocalShoppingCartProvider>(
-      () => const LocalShoppingCartProvider(),
-    );
-
-    instance.registerLazySingleton<SettingsLocalProvider>(
-      () => SettingsLocalProvider(),
-    );
-
-    instance.registerLazySingleton<AuthProvider>(
-      () => AuthProvider(
-        firebaseAuth: FirebaseAuth.instance,
+    instance.registerLazySingleton<FirebaseFireStoreProvider>(
+      () => FirebaseFireStoreProvider(
         fireStore: FirebaseFirestore.instance,
-        googleSignIn: instance.get<GoogleSignIn>(),
       ),
     );
-
-    instance.registerLazySingleton<LocalAuthProvider>(
-      () => const LocalAuthProvider(),
-    );
-
-    instance.registerLazySingleton<OrderHistoryProvider>(
-      () => OrderHistoryProvider(
-        firestore: FirebaseFirestore.instance,
+    instance.registerLazySingleton<FirebaseAuthProvider>(
+      () => FirebaseAuthProvider(
+        firebaseAuth: FirebaseAuth.instance,
+        googleSignIn: instance.get<GoogleSignIn>(),
       ),
     );
   }
@@ -107,8 +86,8 @@ class DataDI {
   void _initMenuItems() {
     instance.registerLazySingleton<MenuRepository>(
       () => MenuRepositoryImpl(
-        menuDataProvider: instance.get<MenuDataProvider>(),
-        localMenuProvider: instance.get<LocalMenuProvider>(),
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
@@ -122,7 +101,7 @@ class DataDI {
   void _initShoppingCart() {
     instance.registerLazySingleton<ShoppingCartRepository>(
       () => ShoppingCartRepositoryImpl(
-        localShoppingCartProvider: instance.get<LocalShoppingCartProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
@@ -154,7 +133,7 @@ class DataDI {
   void _initSettings() {
     instance.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
-        settingsLocalProvider: instance.get<SettingsLocalProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
@@ -198,8 +177,9 @@ class DataDI {
   void _initAuth() {
     instance.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
-        authProvider: instance.get<AuthProvider>(),
-        localAuthProvider: instance.get<LocalAuthProvider>(),
+        firebaseAuthProvider: instance.get<FirebaseAuthProvider>(),
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
@@ -243,7 +223,7 @@ class DataDI {
   void _initOrderHistory() {
     instance.registerLazySingleton<OrderHistoryRepository>(
       () => OrderHistoryRepositoryImpl(
-        orderHistoryProvider: instance.get<OrderHistoryProvider>(),
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
       ),
     );
 
