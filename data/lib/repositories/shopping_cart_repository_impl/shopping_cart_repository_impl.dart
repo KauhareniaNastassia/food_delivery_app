@@ -2,16 +2,18 @@ import 'package:data/data.dart';
 import 'package:domain/domain.dart';
 
 class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
-  final LocalShoppingCartProvider _localShoppingCartProvider;
+  final HiveProvider _hiveProvider;
 
   ShoppingCartRepositoryImpl({
-    required LocalShoppingCartProvider localShoppingCartProvider,
-  }) : _localShoppingCartProvider = localShoppingCartProvider;
+    required HiveProvider hiveProvider,
+  }) : _hiveProvider = hiveProvider;
 
   @override
-  Future<List<ShoppingCartItemModel>> getShoppingCartItems() async {
+  Future<List<ShoppingCartItemModel>> getShoppingCartItems(
+    String userId,
+  ) async {
     final List<ShoppingCartItemEntity> shoppingCartItems =
-        await _localShoppingCartProvider.getShoppingCartItemsFromLocal();
+        await _hiveProvider.getShoppingCartItemsFromLocal(userId);
 
     return shoppingCartItems
         .map(
@@ -21,20 +23,35 @@ class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
   }
 
   @override
-  Future<void> addShoppingCartItem(MenuItemModel menuItemModel) async {
+  Future<void> addShoppingCartItem({
+    required String userId,
+    required MenuItemModel menuItemModel,
+  }) async {
     final MenuItemEntity menuItemEntity =
         MenuItemMapper.toEntity(menuItemModel);
 
-    await _localShoppingCartProvider.addShoppingCartItemToLocal(menuItemEntity);
+    await _hiveProvider.addShoppingCartItemToLocal(
+      userId: userId,
+      menuItemEntity: menuItemEntity,
+    );
   }
 
   @override
-  Future<void> removeShoppingCartItem(
-      ShoppingCartItemModel shoppingCartItemModel) async {
+  Future<void> removeShoppingCartItem({
+    required String userId,
+    required ShoppingCartItemModel shoppingCartItemModel,
+  }) async {
     final ShoppingCartItemEntity shoppingCartItemEntity =
         ShoppingCartItemMapper.toEntity(shoppingCartItemModel);
 
-    await _localShoppingCartProvider
-        .removeShoppingCartItemFromLocal(shoppingCartItemEntity);
+    await _hiveProvider.removeShoppingCartItemFromLocal(
+      userId: userId,
+      shoppingCartItemEntity: shoppingCartItemEntity,
+    );
+  }
+
+  @override
+  Future<void> clearShoppingCart(String userId) async {
+    await _hiveProvider.clearShoppingCart(userId);
   }
 }

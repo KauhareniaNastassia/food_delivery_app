@@ -22,6 +22,10 @@ dependencies:
     path: ../main_page_view
   settings:
     path: ../settings
+  shopping_cart:
+    path: ../shopping_cart
+  order_history:
+    path: ../order_history
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
+import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
@@ -17,10 +17,9 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final NavigateToPageBloc navigateToPageBloc =
-        context.read<NavigateToPageBloc>();
     final ThemeData theme = Theme.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final OrderHistoryBloc orderHistoryBloc = context.read<OrderHistoryBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
@@ -46,6 +45,37 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
             return Scaffold(
               bottomNavigationBar: OrderBottomBar(
                 totalPrice: state.shoppingCart.totalPrice,
+                onPressed: () {
+                  orderHistoryBloc.add(
+                    CreateOrderEvent(
+                      orderItem: OrderItemModel(
+                        id: orderHistoryBloc.state.orderItems.length + 1,
+                        shoppingCart: state.shoppingCart,
+                        date: DateTime.now().toString(),
+                      ),
+                    ),
+                  );
+                  context.read<ShoppingCartBloc>().add(
+                        ClearShoppingCartEvent(),
+                      );
+                  orderHistoryBloc.state.exception == ''
+                      ? NotificationToast.showNotification(
+                          context,
+                          AppConstants.successfulOrder,
+                          mediaQueryData,
+                          settingsBloc,
+                          Icons.check_circle_outline,
+                          theme.canvasColor,
+                        )
+                      : NotificationToast.showNotification(
+                          context,
+                          AppConstants.unSuccessfulOrder,
+                          mediaQueryData,
+                          settingsBloc,
+                          Icons.error_outline_rounded,
+                          AppColors.errorBackgroundColor,
+                        );
+                },
               ),
               body: Container(
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -74,9 +104,9 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
           } else {
             return EmptyShoppingCartScreen(
               onPressed: () {
-                navigateToPageBloc.add(
-                  NavigateToMainPageEvent(context: context),
-                );
+                context.read<ShoppingCartBloc>().add(
+                      NavigateToMainPageEvent(),
+                    );
               },
             );
           }

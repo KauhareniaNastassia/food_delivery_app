@@ -6,14 +6,14 @@ import 'package:domain/domain.dart';
 export 'package:core/core.dart';
 
 class MenuRepositoryImpl implements MenuRepository {
-  final MenuDataProvider _menuDataProvider;
-  final LocalMenuProvider _localMenuProvider;
+  final FirebaseFireStoreProvider _firebaseFireStoreProvider;
+  final HiveProvider _hiveProvider;
 
   MenuRepositoryImpl({
-    required MenuDataProvider menuDataProvider,
-    required LocalMenuProvider localMenuProvider,
-  })  : _menuDataProvider = menuDataProvider,
-        _localMenuProvider = localMenuProvider;
+    required FirebaseFireStoreProvider firebaseFireStoreProvider,
+    required HiveProvider hiveProvider,
+  })  : _firebaseFireStoreProvider = firebaseFireStoreProvider,
+        _hiveProvider = hiveProvider;
 
   @override
   Future<List<MenuItemModel>> fetchMenuItems() async {
@@ -21,18 +21,18 @@ class MenuRepositoryImpl implements MenuRepository {
         await CheckInternetConnection.checkIsInternetConnectionAvailable();
 
     if (isInternetConnectionAvailable) {
-      final List<MenuItemEntity> result =
-          await _menuDataProvider.fetchMenuItems();
-      final List<MenuItemModel> menuItems = result
+      final List<MenuItemEntity> menuItemsFromDB =
+          await _firebaseFireStoreProvider.fetchMenuItems();
+      await _hiveProvider.saveMenuItemsToLocal(menuItemsFromDB);
+      final List<MenuItemModel> menuItems = menuItemsFromDB
           .map(
             (MenuItemEntity e) => MenuItemMapper.toModel(e),
           )
           .toList();
-      await _localMenuProvider.saveMenuItemsToLocal(menuItems);
       return menuItems;
     } else {
       final List<MenuItemEntity> menuItems =
-          await _localMenuProvider.getMenuItemsFromLocal();
+          await _hiveProvider.getMenuItemsFromLocal();
       return menuItems
           .map(
             (MenuItemEntity e) => MenuItemMapper.toModel(e),

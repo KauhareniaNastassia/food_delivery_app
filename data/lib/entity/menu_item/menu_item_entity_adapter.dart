@@ -13,6 +13,7 @@ class MenuItemEntityAdapter extends TypeAdapter<MenuItemEntity> {
       image: reader.read(),
       description: reader.read(),
       ingredients: reader.read(),
+      category: reader.read(),
     );
   }
 
@@ -24,5 +25,6 @@ class MenuItemEntityAdapter extends TypeAdapter<MenuItemEntity> {
     writer.write(obj.image);
     writer.write(obj.description);
     writer.write(obj.ingredients);
+    writer.write(obj.category);
   }
 }

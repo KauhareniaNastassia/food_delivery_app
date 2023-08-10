@@ -33,17 +33,16 @@ class MenuItemTitle extends StatelessWidget {
           alignment: Alignment.center,
           child: Container(
             width: mediaQueryData.size.width / 2,
-            padding: const EdgeInsets.only(left: 40),
+            padding: const EdgeInsets.fromLTRB(40, 10, 0, 10),
             alignment: Alignment.centerLeft,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   title,
                   style: theme.textTheme.titleLarge,
                 ),
-                const SizedBox(height: 40),
                 Text(
                   '\$$cost',
                   style: AppTextStyles.size22WeightSemiBoldText(

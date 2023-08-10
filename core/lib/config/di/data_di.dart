@@ -14,12 +14,13 @@ class DataDI {
     _initFirebase();
     _initGoogleSignIn();
     _initHive();
-    _initDataProvider();
+    _initProviders();
     _initAdapters();
     _initMenuItems();
     _initShoppingCart();
     _initSettings();
     _initAuth();
+    _initOrderHistory();
   }
 
   void _initFirebaseOptions() {
@@ -65,43 +66,28 @@ class DataDI {
     );
   }
 
-  Future<void> _initDataProvider() async {
-    instance.registerLazySingleton<MenuDataProvider>(
-      () => MenuDataProvider(
-        FirebaseFirestore.instance,
+  Future<void> _initProviders() async {
+    instance.registerLazySingleton<HiveProvider>(
+      () => HiveProvider(),
+    );
+    instance.registerLazySingleton<FirebaseFireStoreProvider>(
+      () => FirebaseFireStoreProvider(
+        fireStore: FirebaseFirestore.instance,
       ),
     );
-
-    instance.registerLazySingleton<LocalMenuProvider>(
-      () => const LocalMenuProvider(),
-    );
-
-    instance.registerLazySingleton<LocalShoppingCartProvider>(
-      () => const LocalShoppingCartProvider(),
-    );
-
-    instance.registerLazySingleton<SettingsLocalProvider>(
-      () => SettingsLocalProvider(),
-    );
-
-    instance.registerLazySingleton<AuthProvider>(
-      () => AuthProvider(
+    instance.registerLazySingleton<FirebaseAuthProvider>(
+      () => FirebaseAuthProvider(
         firebaseAuth: FirebaseAuth.instance,
-        fireStore: FirebaseFirestore.instance,
         googleSignIn: instance.get<GoogleSignIn>(),
       ),
-    );
-
-    instance.registerLazySingleton<LocalAuthProvider>(
-      () => const LocalAuthProvider(),
     );
   }
 
   void _initMenuItems() {
     instance.registerLazySingleton<MenuRepository>(
       () => MenuRepositoryImpl(
-        menuDataProvider: instance.get<MenuDataProvider>(),
-        localMenuProvider: instance.get<LocalMenuProvider>(),
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
@@ -115,7 +101,7 @@ class DataDI {
   void _initShoppingCart() {
     instance.registerLazySingleton<ShoppingCartRepository>(
       () => ShoppingCartRepositoryImpl(
-        localShoppingCartProvider: instance.get<LocalShoppingCartProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
@@ -136,12 +122,18 @@ class DataDI {
         shoppingCartRepository: instance.get<ShoppingCartRepository>(),
       ),
     );
+
+    instance.registerLazySingleton<ClearShoppingCartUseCase>(
+      () => ClearShoppingCartUseCase(
+        shoppingCartRepository: instance.get<ShoppingCartRepository>(),
+      ),
+    );
   }
 
   void _initSettings() {
     instance.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
-        settingsLocalProvider: instance.get<SettingsLocalProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
@@ -185,13 +177,20 @@ class DataDI {
   void _initAuth() {
     instance.registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
-        authProvider: instance.get<AuthProvider>(),
-        localAuthProvider: instance.get<LocalAuthProvider>(),
+        firebaseAuthProvider: instance.get<FirebaseAuthProvider>(),
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
+        hiveProvider: instance.get<HiveProvider>(),
       ),
     );
 
     instance.registerLazySingleton<CheckIsUserLoggedUseCase>(
       () => CheckIsUserLoggedUseCase(
+        authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<GetUserIdUseCase>(
+      () => GetUserIdUseCase(
         authRepository: instance.get<AuthRepository>(),
       ),
     );
@@ -217,6 +216,26 @@ class DataDI {
     instance.registerLazySingleton<SignInViaGoogleUseCase>(
       () => SignInViaGoogleUseCase(
         authRepository: instance.get<AuthRepository>(),
+      ),
+    );
+  }
+
+  void _initOrderHistory() {
+    instance.registerLazySingleton<OrderHistoryRepository>(
+      () => OrderHistoryRepositoryImpl(
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
+      ),
+    );
+
+    instance.registerLazySingleton<FetchOrderHistoryUseCase>(
+      () => FetchOrderHistoryUseCase(
+        orderHistoryRepository: instance.get<OrderHistoryRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<CreateOrderUseCase>(
+      () => CreateOrderUseCase(
+        orderHistoryRepository: instance.get<OrderHistoryRepository>(),
       ),
     );
   }

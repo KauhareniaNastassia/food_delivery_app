@@ -1,10 +1,8 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:main_page_view/main_page.dart';
 import 'package:settings/settings.dart';
-
-import '../../bloc/bloc.dart';
-import 'menu_list_items.dart';
 
 class MainPageScreen extends StatefulWidget {
   const MainPageScreen({Key? key}) : super(key: key);
@@ -50,22 +48,23 @@ class _MainPageScreenState extends State<MainPageScreen> {
                 child: Container(
                   height: mediaQueryData.size.height,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Center(
-                    child: SingleChildScrollView(
-                      controller: _scrollController,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          const Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              SizedBox(height: 20),
-                              //TODO categories filter
-                            ],
-                          ),
-                          MenuListItems(menu: state.menu),
-                        ],
-                      ),
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(height: mediaQueryData.size.height * 0.02),
+                        const CategoryFilter(),
+                        SizedBox(height: mediaQueryData.size.height * 0.02),
+                        (state.selectedCategory != 'All foods') &
+                                state.filteredMenu.isEmpty
+                            ? const NothingFindInCategory()
+                            : MenuListItems(
+                                menu: state.filteredMenu.isEmpty
+                                    ? state.menu
+                                    : state.filteredMenu,
+                              ),
+                      ],
                     ),
                   ),
                 ),

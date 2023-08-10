@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:domain/domain.dart';
 
 class GetShoppingCartUseCase
-    implements FutureUseCase<NoParams, List<ShoppingCartItemModel>> {
+    implements FutureUseCase<String, List<ShoppingCartItemModel>> {
   final ShoppingCartRepository _shoppingCartRepository;
 
   const GetShoppingCartUseCase({
@@ -11,7 +11,7 @@ class GetShoppingCartUseCase
   }) : _shoppingCartRepository = shoppingCartRepository;
 
   @override
-  Future<List<ShoppingCartItemModel>> execute(NoParams input) async {
-    return _shoppingCartRepository.getShoppingCartItems();
+  Future<List<ShoppingCartItemModel>> execute(String userId) async {
+    return _shoppingCartRepository.getShoppingCartItems(userId);
   }
 }

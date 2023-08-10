@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class OrderBottomBar extends StatelessWidget {
   final double totalPrice;
+  final VoidCallback onPressed;
 
   const OrderBottomBar({
     super.key,
     required this.totalPrice,
+    required this.onPressed,
   });
 
   @override
@@ -44,7 +46,7 @@ class OrderBottomBar extends StatelessWidget {
                     Expanded(
                       child: PrimaryButton(
                         buttonTitle: AppConstants.makeAnOrder,
-                        onPressed: () {},
+                        onPressed: onPressed,
                       ),
                     ),
                   ],

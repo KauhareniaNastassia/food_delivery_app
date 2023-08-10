@@ -10,6 +10,7 @@ abstract class MenuItemMapper {
       image: model.image,
       description: model.description,
       ingredients: model.ingredients,
+      category: model.category,
     );
   }
 
@@ -21,6 +22,7 @@ abstract class MenuItemMapper {
       image: entity.image,
       description: entity.description,
       ingredients: entity.ingredients,
+      category: entity.category,
     );
   }
 }

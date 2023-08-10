@@ -19,3 +19,11 @@ class RemoveShoppingCartItemEvent extends ShoppingCartEvent {
 class AddCutleryEvent extends ShoppingCartEvent {
   AddCutleryEvent();
 }
+
+class ClearShoppingCartEvent extends ShoppingCartEvent {
+  ClearShoppingCartEvent();
+}
+
+class NavigateToMainPageEvent extends ShoppingCartEvent {
+  NavigateToMainPageEvent();
+}

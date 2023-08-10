@@ -21,7 +21,7 @@ class ItemListButtonState extends State<ItemListButton> {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+
     return Ink(
       child: InkWell(
         child: CircleAvatar(
@@ -56,7 +56,7 @@ class ItemListButtonState extends State<ItemListButton> {
                                     widget.amount.toString(),
                                     style: AppTextStyles.size14WeightBoldText(
                                       color: AppColors.descriptionTextColor,
-                                      fontSize: settingsBloc.state.fontSize,
+                                      fontSize: 1,
                                     ),
                                   ),
                                 ),

@@ -22,6 +22,7 @@ mixin _$MenuItemModel {
   String get image => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   List<String> get ingredients => throw _privateConstructorUsedError;
+  String get category => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenuItemModelCopyWith<MenuItemModel> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $MenuItemModelCopyWith<$Res> {
       double cost,
       String image,
       String description,
-      List<String> ingredients});
+      List<String> ingredients,
+      String category});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
     Object? image = null,
     Object? description = null,
     Object? ingredients = null,
+    Object? category = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -88,6 +91,10 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -106,7 +113,8 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
       double cost,
       String image,
       String description,
-      List<String> ingredients});
+      List<String> ingredients,
+      String category});
 }
 
 /// @nodoc
@@ -126,6 +134,7 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
     Object? image = null,
     Object? description = null,
     Object? ingredients = null,
+    Object? category = null,
   }) {
     return _then(_$_MenuItemModel(
       id: null == id
@@ -152,6 +161,10 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -165,7 +178,8 @@ class _$_MenuItemModel implements _MenuItemModel {
       required this.cost,
       required this.image,
       required this.description,
-      required final List<String> ingredients})
+      required final List<String> ingredients,
+      required this.category})
       : _ingredients = ingredients;
 
   @override
@@ -187,8 +201,11 @@ class _$_MenuItemModel implements _MenuItemModel {
   }
 
   @override
+  final String category;
+
+  @override
   String toString() {
-    return 'MenuItemModel(id: $id, title: $title, cost: $cost, image: $image, description: $description, ingredients: $ingredients)';
+    return 'MenuItemModel(id: $id, title: $title, cost: $cost, image: $image, description: $description, ingredients: $ingredients, category: $category)';
   }
 
   @override
@@ -203,12 +220,14 @@ class _$_MenuItemModel implements _MenuItemModel {
             (identical(other.description, description) ||
                 other.description == description) &&
             const DeepCollectionEquality()
-                .equals(other._ingredients, _ingredients));
+                .equals(other._ingredients, _ingredients) &&
+            (identical(other.category, category) ||
+                other.category == category));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, title, cost, image,
-      description, const DeepCollectionEquality().hash(_ingredients));
+      description, const DeepCollectionEquality().hash(_ingredients), category);
 
   @JsonKey(ignore: true)
   @override
@@ -224,7 +243,8 @@ abstract class _MenuItemModel implements MenuItemModel {
       required final double cost,
       required final String image,
       required final String description,
-      required final List<String> ingredients}) = _$_MenuItemModel;
+      required final List<String> ingredients,
+      required final String category}) = _$_MenuItemModel;
 
   @override
   int get id;
@@ -238,6 +258,8 @@ abstract class _MenuItemModel implements MenuItemModel {
   String get description;
   @override
   List<String> get ingredients;
+  @override
+  String get category;
   @override
   @JsonKey(ignore: true)
   _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>

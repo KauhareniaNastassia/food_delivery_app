@@ -20,6 +20,7 @@ class AppConstants {
   static String addToCart = 'Add to cart';
   static String noIngredients = 'No ingredients available';
   static String ingredients = 'Ingredients:';
+  static String nothingInCategory = 'There is nothing here yet';
 
   ///contact links
   static String contactViaLinks =
@@ -34,4 +35,22 @@ class AppConstants {
   static String toDarkTheme = 'Switch to dark theme';
   static String toLightTheme = 'Switch to light theme';
   static String changeFontSize = 'Change app font size';
+
+  ///orders
+  static List<String> menuItemCategory = [
+    'All foods',
+    'Meet',
+    'Fish',
+    'Dessert',
+    'Vegetables',
+    'Breakfast',
+    'Lunch',
+    'For a company',
+  ];
+  static String addedCutlery = 'Add cutlery: yes';
+  static String notAddedCutlery = 'Add cutlery: no';
+  static String successfulOrder = 'Your order is accepted';
+  static String unSuccessfulOrder = 'Something went wrong. Try again later';
+  static String goToCart = 'Go to shopping cart';
+  static String noOrdersMessage = 'Oops, you haven\'t placed an order yet';
 }

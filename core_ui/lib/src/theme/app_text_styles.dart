@@ -8,6 +8,18 @@ class AppTextStyles {
     required this.fontSize,
   });
 
+  static TextStyle size13WeightSemiBoldText({
+    required double fontSize,
+    required Color color,
+  }) {
+    return TextStyle(
+      fontFamily: _merriweatherFamily,
+      fontSize: 13 * fontSize,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
   static TextStyle size14WeightBoldText({
     required double fontSize,
     required Color color,
@@ -15,6 +27,18 @@ class AppTextStyles {
     return TextStyle(
       fontFamily: _merriweatherFamily,
       fontSize: 14 * fontSize,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
+
+  static TextStyle size15WeightSemiBoldText({
+    required double fontSize,
+    required Color color,
+  }) {
+    return TextStyle(
+      fontFamily: _merriweatherFamily,
+      fontSize: 15 * fontSize,
       fontWeight: FontWeight.w600,
       color: color,
     );

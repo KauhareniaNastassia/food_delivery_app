@@ -14,9 +14,6 @@ class ShoppingCartListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavigateToPageBloc navigateToPageBloc =
-        context.read<NavigateToPageBloc>();
-
     return ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
@@ -29,12 +26,11 @@ class ShoppingCartListItems extends StatelessWidget {
             key: ValueKey(shoppingCart.shoppingCartItems[index].menuItem.id),
             shoppingCartItem: shoppingCart.shoppingCartItems[index],
             onTap: () {
-              navigateToPageBloc.add(
-                NavigateToMenuItemEvent(
-                  context: context,
-                  menuItem: shoppingCart.shoppingCartItems[index].menuItem,
-                ),
-              );
+              context.read<MenuBloc>().add(
+                    NavigateToMenuItemEvent(
+                      menuItem: shoppingCart.shoppingCartItems[index].menuItem,
+                    ),
+                  );
             },
           ),
         );

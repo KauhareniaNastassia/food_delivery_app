@@ -12,15 +12,18 @@ class EmptyShoppingCartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
 
     return Center(
       child: Column(
         children: <Widget>[
           SizedBox(
-            width: size.width / 2.5,
-            height: size.height / 2.5,
+            height: mediaQueryData.size.height / 11.5,
+          ),
+          SizedBox(
+            width: mediaQueryData.size.width / 2.5,
+            height: mediaQueryData.size.height / 2.5,
             child: SvgPicture.asset(
               'assets/image/nothing_founded_icon.svg',
             ),

@@ -80,6 +80,8 @@ class _SignInBlockState extends State<SignInBlock> {
                               password: _passwordController.text.trim(),
                             ),
                           );
+                      _emailController.clear();
+                      _passwordController.clear();
                     }
                   },
                 ),

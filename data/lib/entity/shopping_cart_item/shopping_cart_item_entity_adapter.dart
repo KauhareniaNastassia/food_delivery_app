@@ -9,7 +9,7 @@ class ShoppingCartItemEntityAdapter
   ShoppingCartItemEntity read(BinaryReader reader) {
     return ShoppingCartItemEntity(
       menuItemEntity: reader.read(),
-      amount: reader.read() as int,
+      amount: reader.read(),
     );
   }
 
