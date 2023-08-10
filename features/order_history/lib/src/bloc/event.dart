@@ -11,3 +11,7 @@ class CreateOrderEvent extends OrderHistoryEvent {
     required this.orderItem,
   });
 }
+
+class NavigateToShoppingCartPageEvent extends OrderHistoryEvent {
+  NavigateToShoppingCartPageEvent();
+}

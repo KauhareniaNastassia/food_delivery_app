@@ -7,13 +7,13 @@ class AddShoppingCartItemUseCase {
     required ShoppingCartRepository shoppingCartRepository,
   }) : _shoppingCartRepository = shoppingCartRepository;
 
-  Future<void> addShoppingCartItem(
-    String userId,
-    MenuItemModel menuItemModel,
-  ) async {
+  Future<void> addShoppingCartItem({
+    required String userId,
+    required MenuItemModel menuItemModel,
+  }) async {
     return _shoppingCartRepository.addShoppingCartItem(
-      userId,
-      menuItemModel,
+      userId:  userId,
+      menuItemModel: menuItemModel,
     );
   }
 }

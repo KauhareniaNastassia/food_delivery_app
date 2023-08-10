@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
 import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
@@ -18,8 +17,6 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final NavigateToPageBloc navigateToPageBloc =
-        context.read<NavigateToPageBloc>();
     final ThemeData theme = Theme.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final OrderHistoryBloc orderHistoryBloc = context.read<OrderHistoryBloc>();
@@ -107,9 +104,9 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
           } else {
             return EmptyShoppingCartScreen(
               onPressed: () {
-                navigateToPageBloc.add(
-                  NavigateToMainPageEvent(),
-                );
+                context.read<ShoppingCartBloc>().add(
+                      NavigateToMainPageEvent(),
+                    );
               },
             );
           }

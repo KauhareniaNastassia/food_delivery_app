@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:navigation/navigation.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -11,6 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignInViaGoogleUseCase _signInViaGoogleUseCase;
   final SignUpUseCase _signUpUseCase;
   final SignOutUseCase _signOutUseCase;
+  final AppRouter _appRouter;
 
   AuthBloc({
     required CheckIsUserLoggedUseCase checkIsUserLoggedUseCase,
@@ -18,11 +19,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     required SignInViaGoogleUseCase signInViaGoogleUseCase,
     required SignUpUseCase signUpUseCase,
     required SignOutUseCase signOutUseCase,
+    required AppRouter appRouter,
   })  : _checkIsUserLoggedUseCase = checkIsUserLoggedUseCase,
         _signInUseCase = signInUseCase,
         _signInViaGoogleUseCase = signInViaGoogleUseCase,
         _signUpUseCase = signUpUseCase,
         _signOutUseCase = signOutUseCase,
+        _appRouter = appRouter,
         super(const AuthState.initial()) {
     on<InitAuthEvent>(_onInitAuth);
     on<SignInEvent>(_onSignIn);
@@ -30,6 +33,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignUpEvent>(_onSignUp);
     on<SignOutEvent>(_onSignOut);
     on<ChangeAuthPageEvent>(_changeAuthPage);
+    on<NavigateToSignInPageEvent>(_onNavigateToSignInPage);
 
     add(
       InitAuthEvent(),
@@ -187,10 +191,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
 
       emit(
-        state.copyWith(
-          isDataProcessing: false,
-          isUserLoggedIn: false,
-        ),
+          const AuthState.initial(),
       );
     } catch (e) {
       emit(
@@ -242,6 +243,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       state.copyWith(
         isSignInPage: !state.isSignInPage,
       ),
+    );
+  }
+
+  void _onNavigateToSignInPage(
+    NavigateToSignInPageEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    _appRouter.navigate(
+      const SignInPageScreenRoute(),
     );
   }
 }

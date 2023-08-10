@@ -5,7 +5,7 @@ class OrderItemEntity {
   final ShoppingCartEntity shoppingCart;
   final String date;
 
-  OrderItemEntity({
+  const OrderItemEntity({
     required this.id,
     required this.shoppingCart,
     required this.date,
@@ -19,9 +19,11 @@ class OrderItemEntity {
     );
   }
 
-  Map<String, dynamic> toMap() => {
-        'id': id,
-        'shoppingCart': shoppingCart.toMap(),
-        'date': date,
-      };
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'shoppingCart': shoppingCart.toMap(),
+      'date': date,
+    };
+  }
 }

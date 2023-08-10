@@ -22,8 +22,6 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
     final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
-    final NavigateToPageBloc navigateToPageBloc =
-        context.read<NavigateToPageBloc>();
 
     ShoppingCartItemModel? findItemInShoppingCart(MenuItemModel menuItem) {
       for (final item
@@ -53,9 +51,9 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
               SliverAppBar(
                 leading: BackToPreviousPageButton(
                   onPressed: () {
-                    navigateToPageBloc.add(
-                      NavigateBackEvent(),
-                    );
+                    context.read<MenuBloc>().add(
+                          NavigateBackEvent(),
+                        );
                   },
                 ),
                 expandedHeight: mediaQueryData.size.height * 0.4,
@@ -74,7 +72,6 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
                 child: Container(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
                   color: theme.cardColor,
-                  height: mediaQueryData.size.height * 0.7,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[

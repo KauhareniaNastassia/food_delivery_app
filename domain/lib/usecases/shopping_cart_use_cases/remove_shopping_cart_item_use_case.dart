@@ -7,13 +7,13 @@ class RemoveShoppingCartItemUseCase {
     required ShoppingCartRepository shoppingCartRepository,
   }) : _shoppingCartRepository = shoppingCartRepository;
 
-  Future<void> removeShoppingCartItem(
-    String userId,
-    ShoppingCartItemModel shoppingCartItemModel,
-  ) async {
+  Future<void> removeShoppingCartItem({
+    required String userId,
+    required ShoppingCartItemModel shoppingCartItemModel,
+  }) async {
     return _shoppingCartRepository.removeShoppingCartItem(
-      userId,
-      shoppingCartItemModel,
+      userId: userId,
+      shoppingCartItemModel: shoppingCartItemModel,
     );
   }
 }

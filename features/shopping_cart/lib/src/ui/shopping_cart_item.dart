@@ -16,6 +16,7 @@ class ShoppingCartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
+    final ThemeData theme = Theme.of(context);
 
     return Ink(
       child: InkWell(
@@ -33,12 +34,12 @@ class ShoppingCartItem extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     borderRadius: AppStyles.largeBorderRadius,
-                    color: Theme.of(context).cardColor,
+                    color: theme.cardColor,
                   ),
                   child: Align(
                     alignment: Alignment.center,
                     child: Container(
-                      width: size.width / 1.8,
+                      width: size.width / 1.7,
                       padding: const EdgeInsets.only(left: 10),
                       alignment: Alignment.centerLeft,
                       child: ShoppingCartItemInfo(

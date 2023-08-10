@@ -22,6 +22,8 @@ dependencies:
     path: ../settings
   main_page_view:
     path: ../main_page_view
+  navigation:
+    path: ../../navigation
 
 dev_dependencies:
   flutter_test:

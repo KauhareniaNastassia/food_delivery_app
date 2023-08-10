@@ -21,6 +21,7 @@ class FoodApp extends StatelessWidget {
             signUpUseCase: instance.get<SignUpUseCase>(),
             signOutUseCase: instance.get<SignOutUseCase>(),
             signInViaGoogleUseCase: instance.get<SignInViaGoogleUseCase>(),
+            appRouter: instance.get<AppRouter>(),
           ),
         ),
         BlocProvider<SettingsBloc>(
@@ -33,14 +34,10 @@ class FoodApp extends StatelessWidget {
             setFontSizeUseCase: instance.get<SetFontSizeUseCase>(),
           ),
         ),
-        BlocProvider<NavigateToPageBloc>(
-          create: (_) => NavigateToPageBloc(
-            appRouter: instance.get<AppRouter>(),
-          ),
-        ),
         BlocProvider<MenuBloc>(
           create: (_) => MenuBloc(
             fetchMenuItemsUseCase: instance.get<FetchMenuItemsUseCase>(),
+            appRouter: instance.get<AppRouter>(),
           ),
         ),
         BlocProvider<ShoppingCartBloc>(
@@ -52,6 +49,7 @@ class FoodApp extends StatelessWidget {
                 instance.get<RemoveShoppingCartItemUseCase>(),
             clearShoppingCartUseCase: instance.get<ClearShoppingCartUseCase>(),
             getUserIdUseCase: instance.get<GetUserIdUseCase>(),
+            appRouter: instance.get<AppRouter>(),
           ),
         ),
         BlocProvider<OrderHistoryBloc>(
@@ -59,6 +57,7 @@ class FoodApp extends StatelessWidget {
             fetchOrderHistoryUseCase: instance.get<FetchOrderHistoryUseCase>(),
             getUserIdUseCase: instance.get<GetUserIdUseCase>(),
             createOrderUseCase: instance.get<CreateOrderUseCase>(),
+            appRouter: instance.get<AppRouter>(),
           ),
         ),
       ],

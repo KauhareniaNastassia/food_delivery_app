@@ -21,7 +21,7 @@ class ListOfOrderItems extends StatelessWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: orderItems.length,
-            itemBuilder: (_, index) {
+            itemBuilder: (_, int index) {
               return Column(
                 children: <Widget>[
                   OrderItem(

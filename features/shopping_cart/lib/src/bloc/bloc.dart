@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:navigation/navigation.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -10,6 +11,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
   final RemoveShoppingCartItemUseCase _removeShoppingCartItemUseCase;
   final ClearShoppingCartUseCase _clearShoppingCartUseCase;
   final GetUserIdUseCase _getUserIdUseCase;
+  final AppRouter _appRouter;
 
   ShoppingCartBloc({
     required GetShoppingCartUseCase getShoppingCartUseCase,
@@ -17,17 +19,22 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     required RemoveShoppingCartItemUseCase removeShoppingCartItemUseCase,
     required ClearShoppingCartUseCase clearShoppingCartUseCase,
     required GetUserIdUseCase getUserIdUseCase,
+    required AppRouter appRouter,
   })  : _getShoppingCartUseCase = getShoppingCartUseCase,
         _addShoppingCartItemUseCase = addShoppingCartItemUseCase,
         _removeShoppingCartItemUseCase = removeShoppingCartItemUseCase,
         _clearShoppingCartUseCase = clearShoppingCartUseCase,
         _getUserIdUseCase = getUserIdUseCase,
-        super(const ShoppingCartState.empty()) {
+        _appRouter = appRouter,
+        super(
+          const ShoppingCartState.empty(),
+        ) {
     on<InitShoppingCartEvent>(_onGetShoppingCart);
     on<AddShoppingCartItemEvent>(_onAddItemToShoppingCart);
     on<RemoveShoppingCartItemEvent>(_onRemoveItemToShoppingCart);
     on<AddCutleryEvent>(_addCutleryEvent);
     on<ClearShoppingCartEvent>(_clearShoppingCart);
+    on<NavigateToMainPageEvent>(_onNavigateToMainPage);
 
     add(
       InitShoppingCartEvent(),
@@ -88,8 +95,8 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     );
     try {
       await _addShoppingCartItemUseCase.addShoppingCartItem(
-        state.userId,
-        event.menuItem,
+        userId: state.userId,
+        menuItemModel: event.menuItem,
       );
       final List<ShoppingCartItemModel> shoppingCartItems =
           await _getShoppingCartUseCase.execute(
@@ -119,8 +126,8 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
     );
     try {
       await _removeShoppingCartItemUseCase.removeShoppingCartItem(
-        state.userId,
-        event.shoppingCartItem,
+        userId: state.userId,
+        shoppingCartItemModel: event.shoppingCartItem,
       );
       final List<ShoppingCartItemModel> shoppingCartItems =
           await _getShoppingCartUseCase.execute(state.userId);
@@ -190,5 +197,18 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, ShoppingCartState> {
         state.copyWith(exception: e),
       );
     }
+  }
+
+  void _onNavigateToMainPage(
+    NavigateToMainPageEvent event,
+    Emitter<ShoppingCartState> emit,
+  ) {
+    _appRouter.navigate(
+      const MainPageRoute(
+        children: <PageRouteInfo<dynamic>>[
+          MainPageScreenRoute(),
+        ],
+      ),
+    );
   }
 }

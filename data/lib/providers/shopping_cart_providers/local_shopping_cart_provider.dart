@@ -12,10 +12,10 @@ class LocalShoppingCartProvider {
     return shoppingCartItemsEntity;
   }
 
-  Future<void> addShoppingCartItemToLocal(
-    String userId,
-    MenuItemEntity menuItemEntity,
-  ) async {
+  Future<void> addShoppingCartItemToLocal({
+    required String userId,
+    required MenuItemEntity menuItemEntity,
+  }) async {
     final Box<ShoppingCartItemEntity> box = Hive.box(userId);
     final List<ShoppingCartItemEntity> shoppingCartItemsEntity =
         box.values.toList();
@@ -50,10 +50,10 @@ class LocalShoppingCartProvider {
     }
   }
 
-  Future<void> removeShoppingCartItemFromLocal(
-    String userId,
-    ShoppingCartItemEntity shoppingCartItemEntity,
-  ) async {
+  Future<void> removeShoppingCartItemFromLocal({
+    required String userId,
+    required ShoppingCartItemEntity shoppingCartItemEntity,
+  }) async {
     final Box<ShoppingCartItemEntity> box = Hive.box(userId);
 
     if (shoppingCartItemEntity.amount > 1) {

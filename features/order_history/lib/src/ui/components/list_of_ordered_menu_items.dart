@@ -24,7 +24,7 @@ class ListOfOrderedMenuItems extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: orderedItems.length,
-          itemBuilder: (_, index) {
+          itemBuilder: (_, int index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

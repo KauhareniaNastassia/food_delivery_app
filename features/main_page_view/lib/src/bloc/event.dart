@@ -15,3 +15,15 @@ class FilterMenuByCategoryEvent extends MenuEvent {
     required this.category,
   });
 }
+
+class NavigateBackEvent extends MenuEvent {
+  NavigateBackEvent();
+}
+
+class NavigateToMenuItemEvent extends MenuEvent {
+  final MenuItemModel menuItem;
+
+  NavigateToMenuItemEvent({
+    required this.menuItem,
+  });
+}

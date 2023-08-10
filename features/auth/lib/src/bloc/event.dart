@@ -41,3 +41,7 @@ class SignInViaGoogleEvent extends AuthEvent {
 class ChangeAuthPageEvent extends AuthEvent {
   ChangeAuthPageEvent();
 }
+
+class NavigateToSignInPageEvent extends AuthEvent {
+  NavigateToSignInPageEvent();
+}

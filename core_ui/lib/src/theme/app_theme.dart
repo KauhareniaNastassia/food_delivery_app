@@ -20,6 +20,9 @@ class AppTheme {
     final backgroundItemColor = isStandardColorScheme
         ? AppColors.backgroundItemColor
         : AppColors.alternativeBackgroundItemColor;
+    final titleTextColor = isStandardColorScheme
+        ? AppColors.titleDarkGreyTextColor
+        : AppColors.titleGreyTextColor;
 
     return ThemeData(
       scaffoldBackgroundColor: AppColors.backgroundColor,
@@ -41,7 +44,7 @@ class AppTheme {
         ),
         titleSmall: AppTextStyles.size16WeightMediumText(
           fontSize: fontSize,
-          color: AppColors.titleDarkGreyTextColor,
+          color: titleTextColor,
         ),
         bodyMedium: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
@@ -52,6 +55,14 @@ class AppTheme {
           color: AppColors.primaryColor,
         ),
         bodySmall: AppTextStyles.size16WeightMediumText(
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
+        ),
+        displaySmall: AppTextStyles.size14WeightBoldText(
+          fontSize: fontSize,
+          color: secondaryColor,
+        ),
+        displayMedium: AppTextStyles.size14WeightBoldText(
           fontSize: fontSize,
           color: AppColors.titleTextColor,
         ),
@@ -92,6 +103,9 @@ class AppTheme {
     final backgroundColor = isStandardColorScheme
         ? AppColors.primaryDarkColor
         : AppColors.alternativePrimaryDarkColor;
+    final titleTextColor = isStandardColorScheme
+        ? AppColors.titleDarkGreyTextColor
+        : AppColors.titleGreyTextColor;
 
     return ThemeData(
       scaffoldBackgroundColor: scaffoldBackgroundColor,
@@ -113,7 +127,7 @@ class AppTheme {
         ),
         titleSmall: AppTextStyles.size16WeightMediumText(
           fontSize: fontSize,
-          color: AppColors.titleGreyTextColor,
+          color: titleTextColor,
         ),
         bodyMedium: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
@@ -124,6 +138,14 @@ class AppTheme {
           color: AppColors.titleLightTextColor,
         ),
         bodySmall: AppTextStyles.size16WeightMediumText(
+          fontSize: fontSize,
+          color: AppColors.titleTextColor,
+        ),
+        displaySmall: AppTextStyles.size14WeightBoldText(
+          fontSize: fontSize,
+          color: secondaryColor,
+        ),
+        displayMedium: AppTextStyles.size14WeightBoldText(
           fontSize: fontSize,
           color: AppColors.titleTextColor,
         ),

@@ -20,7 +20,10 @@ class OrderHistoryProvider {
         .toList();
   }
 
-  Future<void> addOrderItem(String userId, OrderItemEntity orderItem) async {
+  Future<void> addOrderItem({
+    required String userId,
+    required OrderItemEntity orderItem,
+  }) async {
     final CollectionReference orderItems = firestore
         .collection('userInfo')
         .doc(userId)

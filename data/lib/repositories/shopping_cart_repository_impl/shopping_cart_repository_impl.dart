@@ -23,30 +23,30 @@ class ShoppingCartRepositoryImpl implements ShoppingCartRepository {
   }
 
   @override
-  Future<void> addShoppingCartItem(
-    String userId,
-    MenuItemModel menuItemModel,
-  ) async {
+  Future<void> addShoppingCartItem({
+    required String userId,
+    required MenuItemModel menuItemModel,
+  }) async {
     final MenuItemEntity menuItemEntity =
         MenuItemMapper.toEntity(menuItemModel);
 
     await _localShoppingCartProvider.addShoppingCartItemToLocal(
-      userId,
-      menuItemEntity,
+        userId: userId,
+        menuItemEntity: menuItemEntity,
     );
   }
 
   @override
-  Future<void> removeShoppingCartItem(
-    String userId,
-    ShoppingCartItemModel shoppingCartItemModel,
-  ) async {
+  Future<void> removeShoppingCartItem({
+    required String userId,
+    required ShoppingCartItemModel shoppingCartItemModel,
+  }) async {
     final ShoppingCartItemEntity shoppingCartItemEntity =
         ShoppingCartItemMapper.toEntity(shoppingCartItemModel);
 
     await _localShoppingCartProvider.removeShoppingCartItemFromLocal(
-      userId,
-      shoppingCartItemEntity,
+        userId: userId,
+        shoppingCartItemEntity: shoppingCartItemEntity,
     );
   }
 

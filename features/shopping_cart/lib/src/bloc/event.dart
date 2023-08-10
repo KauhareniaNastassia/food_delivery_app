@@ -23,3 +23,7 @@ class AddCutleryEvent extends ShoppingCartEvent {
 class ClearShoppingCartEvent extends ShoppingCartEvent {
   ClearShoppingCartEvent();
 }
+
+class NavigateToMainPageEvent extends ShoppingCartEvent {
+  NavigateToMainPageEvent();
+}

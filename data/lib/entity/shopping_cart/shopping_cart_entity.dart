@@ -5,7 +5,7 @@ class ShoppingCartEntity {
   final double totalPrice;
   final bool addCutlery;
 
-  ShoppingCartEntity({
+  const ShoppingCartEntity({
     required this.shoppingCartItems,
     required this.totalPrice,
     required this.addCutlery,
@@ -22,19 +22,23 @@ class ShoppingCartEntity {
     );
   }
 
-  Map<String, dynamic> toMap() => {
-        'shoppingCartItems': shoppingCartItems
-            .map((shoppingCartItem) => shoppingCartItem.toMap())
-            .toList(),
-        'totalPrice': totalPrice,
-        'addCutlery': addCutlery,
-      };
+  Map<String, dynamic> toMap() {
+    return {
+      'shoppingCartItems': shoppingCartItems
+          .map((shoppingCartItem) => shoppingCartItem.toMap())
+          .toList(),
+      'totalPrice': totalPrice,
+      'addCutlery': addCutlery,
+    };
+  }
 
-  Map<String, dynamic> toJson() => {
-        'shoppingCartItems': shoppingCartItems
-            .map((shoppingCartItem) => shoppingCartItem.toJson())
-            .toList(),
-        'totalPrice': totalPrice,
-        'addCutlery': addCutlery,
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'shoppingCartItems': shoppingCartItems
+          .map((shoppingCartItem) => shoppingCartItem.toJson())
+          .toList(),
+      'totalPrice': totalPrice,
+      'addCutlery': addCutlery,
+    };
+  }
 }

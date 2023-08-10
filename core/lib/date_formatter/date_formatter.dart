@@ -1,7 +1,7 @@
 class DateFormatter {
   String formatDateString(String dateString) {
-    DateTime dateTime = DateTime.parse(dateString);
-    String formattedDate =
+    final DateTime dateTime = DateTime.parse(dateString);
+    final String formattedDate =
         '${dateTime.year}/${dateTime.month.toString().padLeft(2, '0')}'
         '/${dateTime.day.toString().padLeft(2, '0')} '
         '${dateTime.hour.toString().padLeft(2, '0')}:'

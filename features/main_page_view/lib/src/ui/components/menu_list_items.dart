@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:domain/models/menu_item_model/menu_item_model.dart';
 import 'package:flutter/material.dart';
+import 'package:main_page_view/main_page.dart';
 
-import '../../../main_page.dart';
 import 'menu_item.dart';
 
 class MenuListItems extends StatelessWidget {
@@ -15,9 +15,6 @@ class MenuListItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavigateToPageBloc navigateToPageBloc =
-        context.read<NavigateToPageBloc>();
-
     return ListView.builder(
       padding: EdgeInsets.zero,
       shrinkWrap: true,
@@ -30,11 +27,11 @@ class MenuListItems extends StatelessWidget {
             key: ValueKey(menu[index].id),
             menuItem: menu[index],
             onTap: () {
-              navigateToPageBloc.add(
-                NavigateToMenuItemEvent(
-                  menuItem: menu[index],
-                ),
-              );
+              context.read<MenuBloc>().add(
+                    NavigateToMenuItemEvent(
+                      menuItem: menu[index],
+                    ),
+                  );
             },
           ),
         );

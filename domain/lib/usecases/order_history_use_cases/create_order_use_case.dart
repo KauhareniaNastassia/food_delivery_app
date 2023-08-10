@@ -7,13 +7,13 @@ class CreateOrderUseCase {
     required OrderHistoryRepository orderHistoryRepository,
   }) : _orderHistoryRepository = orderHistoryRepository;
 
-  Future<void> execute(
-    String userId,
-    OrderItemModel orderItem,
-  ) async {
+  Future<void> execute({
+    required String userId,
+    required OrderItemModel orderItem,
+  }) async {
     return _orderHistoryRepository.createOrderItem(
-      userId,
-      orderItem,
+      userId: userId,
+      orderItem: orderItem,
     );
   }
 }

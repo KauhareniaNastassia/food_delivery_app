@@ -18,6 +18,7 @@ class ShoppingCartItemInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final ThemeData theme = Theme.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,14 +28,18 @@ class ShoppingCartItemInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
-              title.length > 17 ? '${title.substring(0, 14)}...' : title,
-              style: Theme.of(context).textTheme.bodySmall,
+              settingsBloc.state.fontSize > 1 && title.length > 16
+                  ? '${title.substring(0, 13)}...'
+                  : settingsBloc.state.fontSize <= 1 && title.length > 19
+                      ? '${title.substring(0, 17)}...'
+                      : title,
+              style: theme.textTheme.bodySmall,
             ),
             Text(
               '\$$cost',
               style: AppTextStyles.size16WeightSemiBoldText(
                 fontSize: settingsBloc.state.fontSize,
-                color: Theme.of(context).primaryColor,
+                color: theme.primaryColor,
               ),
             ),
           ],
@@ -45,7 +50,7 @@ class ShoppingCartItemInfo extends StatelessWidget {
           )}',
           style: AppTextStyles.size16WeightSemiBoldText(
             fontSize: settingsBloc.state.fontSize,
-            color: Theme.of(context).primaryColor,
+            color: theme.primaryColor,
           ),
         ),
       ],

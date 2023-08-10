@@ -4,7 +4,7 @@ class ShoppingCartItemEntity {
   final MenuItemEntity menuItemEntity;
   final int amount;
 
-  ShoppingCartItemEntity({
+  const ShoppingCartItemEntity({
     required this.menuItemEntity,
     required this.amount,
   });
@@ -16,15 +16,19 @@ class ShoppingCartItemEntity {
     );
   }
 
-  Map<String, dynamic> toMap() => {
-        'menuItemEntity': menuItemEntity.toMap(),
-        'amount': amount,
-      };
+  Map<String, dynamic> toMap() {
+    return {
+      'menuItemEntity': menuItemEntity.toMap(),
+      'amount': amount,
+    };
+  }
 
-  Map<String, dynamic> toJson() => {
-        'menuItemEntity': menuItemEntity.toJson(),
-        'amount': amount,
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      'menuItemEntity': menuItemEntity.toJson(),
+      'amount': amount,
+    };
+  }
 
   ShoppingCartItemEntity copyWith({
     MenuItemEntity? menuItemEntity,

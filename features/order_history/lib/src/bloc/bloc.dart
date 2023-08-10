@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:order_history/order_history.dart';
 export 'package:auth/auth.dart';
 export 'package:domain/domain.dart';
+export 'package:navigation/navigation.dart';
 
 part 'event.dart';
 
@@ -11,19 +12,23 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
   final FetchOrderHistoryUseCase _fetchOrderHistoryUseCase;
   final GetUserIdUseCase _getUserIdUseCase;
   final CreateOrderUseCase _createOrderUseCase;
+  final AppRouter _appRouter;
 
   OrderHistoryBloc({
     required GetUserIdUseCase getUserIdUseCase,
     required FetchOrderHistoryUseCase fetchOrderHistoryUseCase,
+    required AppRouter appRouter,
     required CreateOrderUseCase createOrderUseCase,
   })  : _getUserIdUseCase = getUserIdUseCase,
         _fetchOrderHistoryUseCase = fetchOrderHistoryUseCase,
         _createOrderUseCase = createOrderUseCase,
+        _appRouter = appRouter,
         super(
           OrderHistoryState.empty(),
         ) {
     on<InitOrderHistoryEvent>(_initOrderHistory);
     on<CreateOrderEvent>(_createOrder);
+    on<NavigateToShoppingCartPageEvent>(_onNavigateToShoppingCartPage);
 
     add(
       InitOrderHistoryEvent(),
@@ -84,7 +89,10 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
       ),
     );
     try {
-      await _createOrderUseCase.execute(state.userId, event.orderItem);
+      await _createOrderUseCase.execute(
+        userId: state.userId,
+        orderItem: event.orderItem,
+      );
       emit(
         state.copyWith(
           orderItems: [event.orderItem, ...state.orderItems],
@@ -99,5 +107,18 @@ class OrderHistoryBloc extends Bloc<OrderHistoryEvent, OrderHistoryState> {
         ),
       );
     }
+  }
+
+  void _onNavigateToShoppingCartPage(
+    NavigateToShoppingCartPageEvent event,
+    Emitter<OrderHistoryState> emit,
+  ) {
+    _appRouter.navigate(
+      const MainPageRoute(
+        children: <PageRouteInfo<dynamic>>[
+          ShoppingCartPageScreenRoute(),
+        ],
+      ),
+    );
   }
 }

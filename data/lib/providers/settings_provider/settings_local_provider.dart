@@ -4,6 +4,9 @@ class SettingsLocalProvider {
   SettingsLocalProvider();
 
   Future<bool> getThemeFromLocal() async {
+    final appDocumentDir = await getApplicationDocumentsDirectory();
+    Hive.init(appDocumentDir.path);
+
     final Box theme = await Hive.openBox('theme');
     return theme.isEmpty ? true : theme.get('isLight').toString() == 'true';
   }
