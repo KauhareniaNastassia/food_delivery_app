@@ -28,15 +28,14 @@ class FoodApp extends StatelessWidget {
         ),
         BlocProvider<SettingsBloc>(
           create: (_) => SettingsBloc(
-            getThemeUseCase: instance.get<GetThemeUseCase>(),
-            setThemeUseCase: instance.get<SetThemeUseCase>(),
-            getColorSchemeUseCase: instance.get<GetColorSchemeUseCase>(),
-            setColoSchemeUseCase: instance.get<SetColorSchemeUseCase>(),
-            getFontSizeUseCase: instance.get<GetFontSizeUseCase>(),
-            setFontSizeUseCase: instance.get<SetFontSizeUseCase>(),
-            getLanguageUseCase: instance.get<GetLanguageUseCase>(),
-            setLanguageUseCase: instance.get<SetLanguageUseCase>()
-          ),
+              getThemeUseCase: instance.get<GetThemeUseCase>(),
+              setThemeUseCase: instance.get<SetThemeUseCase>(),
+              getColorSchemeUseCase: instance.get<GetColorSchemeUseCase>(),
+              setColoSchemeUseCase: instance.get<SetColorSchemeUseCase>(),
+              getFontSizeUseCase: instance.get<GetFontSizeUseCase>(),
+              setFontSizeUseCase: instance.get<SetFontSizeUseCase>(),
+              getLanguageUseCase: instance.get<GetLanguageUseCase>(),
+              setLanguageUseCase: instance.get<SetLanguageUseCase>()),
         ),
         BlocProvider<MenuBloc>(
           create: (_) => MenuBloc(
@@ -80,11 +79,11 @@ class FoodApp extends StatelessWidget {
             routerDelegate: instance.get<AppRouter>().delegate(),
             routeInformationParser:
                 instance.get<AppRouter>().defaultRouteParser(),
-            supportedLocales: const [
+            supportedLocales: const <Locale>[
               Locale('en'),
               Locale('es'),
             ],
-            localizationsDelegates: const [
+            localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,

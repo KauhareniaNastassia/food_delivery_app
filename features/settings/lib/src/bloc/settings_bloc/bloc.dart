@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
@@ -60,10 +61,11 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 
     emit(
       state.copyWith(
-          isLight: isLight,
-          isStandardColorScheme: isStandardColorScheme,
-          fontSize: fontSize,
-          isEnglishLanguage: isEnglishLanguage),
+        isLight: isLight,
+        isStandardColorScheme: isStandardColorScheme,
+        fontSize: fontSize,
+        isEnglishLanguage: isEnglishLanguage,
+      ),
     );
   }
 

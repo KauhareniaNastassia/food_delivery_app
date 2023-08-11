@@ -21,15 +21,21 @@ class CustomSwitcher extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     final MovieTween customTween = MovieTween()
-      ..scene(duration: const Duration(seconds: 1)).tween(
+      ..scene(
+        duration: const Duration(seconds: 1),
+      ).tween(
         CustomSwitcherEnum.paddingLeft,
         0.0.tweenTo(60.0),
       )
-      ..scene(duration: const Duration(seconds: 1)).tween(
+      ..scene(
+        duration: const Duration(seconds: 1),
+      ).tween(
         CustomSwitcherEnum.color,
         theme.primaryColor.tweenTo(theme.canvasColor),
       )
-      ..scene(duration: const Duration(milliseconds: 500))
+      ..scene(
+        duration: const Duration(milliseconds: 500),
+      )
           .tween(
             CustomSwitcherEnum.icon,
             ConstantTween('assets/image/spanish_flag.svg'),
@@ -39,7 +45,9 @@ class CustomSwitcher extends StatelessWidget {
             ConstantTween('assets/image/british_flag.svg'),
             duration: const Duration(milliseconds: 500),
           )
-      ..scene(duration: const Duration(seconds: 1)).tween(
+      ..scene(
+        duration: const Duration(seconds: 1),
+      ).tween(
         CustomSwitcherEnum.rotation,
         (-2 * pi).tweenTo(0.0),
       );
@@ -56,7 +64,9 @@ class CustomSwitcher extends StatelessWidget {
         builder: (_, value, __) {
           return Container(
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(30.0)),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(30),
+              ),
               border: Border.all(
                 width: 2,
                 color: value.get(CustomSwitcherEnum.color),
@@ -64,7 +74,7 @@ class CustomSwitcher extends StatelessWidget {
             ),
             width: mediaQueryData.size.width * 0.26,
             height: mediaQueryData.size.height * 0.055,
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4),
             child: Stack(
               children: <Widget>[
                 Positioned(
@@ -77,7 +87,7 @@ class CustomSwitcher extends StatelessWidget {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(
-                            Radius.circular(30.0),
+                            Radius.circular(30),
                           ),
                           color: value.get(CustomSwitcherEnum.color),
                         ),
