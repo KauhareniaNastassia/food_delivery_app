@@ -1,3 +1,4 @@
+import 'package:core/localization/app_localizations.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,6 +15,7 @@ class EmptyShoppingCartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Center(
       child: Column(
@@ -29,14 +31,14 @@ class EmptyShoppingCartScreen extends StatelessWidget {
             ),
           ),
           Text(
-            'Oops, there is nothing here yet',
+            appLocalization.translate('nothingInCart'),
             style: theme.textTheme.titleMedium,
           ),
           const SizedBox(
             height: 10,
           ),
           PrimaryButton(
-            buttonTitle: 'Go to menu',
+            buttonTitle: appLocalization.translate('goToMenu'),
             onPressed: onPressed,
           ),
         ],

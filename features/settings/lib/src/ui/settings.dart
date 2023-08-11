@@ -28,9 +28,7 @@ class SettingsPageContent extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 5),
                 ChangeColorScheme(
                   isStandardColorScheme: state.isStandardColorScheme,
                   onTap: () {
@@ -39,9 +37,9 @@ class SettingsPageContent extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 5),
+                const ChangeAppLanguage(),
+                const SizedBox(height: 25),
                 const ChangeFontSizeSlider(),
               ],
             ),

@@ -1,8 +1,6 @@
-
 import 'package:core/core.dart';
 import 'package:settings/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ContactLinksView extends StatelessWidget {
   const ContactLinksView({super.key});
@@ -11,6 +9,7 @@ class ContactLinksView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return BlocProvider<OpenContactLinksBloc>(
       create: (_) => OpenContactLinksBloc(),
@@ -22,7 +21,7 @@ class ContactLinksView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  AppConstants.contactViaLinks,
+                  appLocalization.translate('contactViaLinks'),
                   style: theme.textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),

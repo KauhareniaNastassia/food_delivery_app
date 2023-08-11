@@ -20,13 +20,20 @@ class _SignInBlockState extends State<SignInBlock> {
   Widget build(BuildContext context) {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
         if (state.signInFailedMessage != '') {
           NotificationToast.showNotification(
             context,
-            state.signInFailedMessage!,
+            state.signInFailedMessage! ==
+                    ErrorConstants.userNotFoundResponseError
+                ? appLocalization.translate('userNotFoundError')
+                : state.signInFailedMessage! ==
+                        ErrorConstants.wrongPasswordResponseError
+                    ? appLocalization.translate('wrongPasswordError')
+                    : appLocalization.translate('somethingWentWrongError'),
             mediaQueryData,
             settingsBloc,
             Icons.error_outline_rounded,
@@ -50,28 +57,33 @@ class _SignInBlockState extends State<SignInBlock> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  AppConstants.signIn,
+                  appLocalization.translate('signIn'),
                   style: AppTextStyles.size24WeightBoldText(
                     fontSize: settingsBloc.state.fontSize,
                     color: AppColors.secondaryColor,
                   ),
                 ),
                 CustomTextField(
-                  label: AppConstants.email,
+                  label: appLocalization.translate('email'),
                   textEditingController: _emailController,
-                  validation: (String? email) => emailValidation(email),
+                  validation: (String? email) => emailValidation(
+                    email: email,
+                    appLocalization: appLocalization,
+                  ),
                   obscureText: false,
                 ),
                 CustomTextField(
-                  label: AppConstants.password,
+                  label: appLocalization.translate('password'),
                   textEditingController: _passwordController,
-                  validation: (String? password) =>
-                      passwordValidation(password),
+                  validation: (String? password) => passwordValidation(
+                    password: password,
+                    appLocalization: appLocalization,
+                  ),
                   obscureText: true,
                 ),
                 SizedBox(height: mediaQueryData.size.height * 0.05),
                 PrimaryButton(
-                  buttonTitle: AppConstants.signIn,
+                  buttonTitle: appLocalization.translate('signIn'),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       context.read<AuthBloc>().add(
@@ -87,7 +99,7 @@ class _SignInBlockState extends State<SignInBlock> {
                 ),
                 SizedBox(height: mediaQueryData.size.height * 0.05),
                 PrimaryButton(
-                  buttonTitle: AppConstants.signInViaGoogle,
+                  buttonTitle: appLocalization.translate('signInViaGoogle'),
                   onPressed: () {
                     context.read<AuthBloc>().add(
                           SignInViaGoogleEvent(),

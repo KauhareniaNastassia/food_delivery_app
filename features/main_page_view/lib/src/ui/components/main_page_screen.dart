@@ -18,6 +18,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: SafeArea(
@@ -26,7 +27,7 @@ class _MainPageScreenState extends State<MainPageScreen> {
             if (!state.isInternetConnectionAvailable) {
               NotificationToast.showNotification(
                 context,
-                ErrorConstants.internetConnectionIsNotAvailable,
+                appLocalization.translate('internetConnectionIsNotAvailable'),
                 mediaQueryData,
                 settingsBloc,
                 Icons.error_outline_rounded,
@@ -56,7 +57,8 @@ class _MainPageScreenState extends State<MainPageScreen> {
                         SizedBox(height: mediaQueryData.size.height * 0.02),
                         const CategoryFilter(),
                         SizedBox(height: mediaQueryData.size.height * 0.02),
-                        (state.selectedCategory != 'All foods') &
+                        (state.selectedCategory !=
+                                    AppConstants.menuItemCategory[0]) &
                                 state.filteredMenu.isEmpty
                             ? const NothingFindInCategory()
                             : MenuListItems(
@@ -70,8 +72,10 @@ class _MainPageScreenState extends State<MainPageScreen> {
                 ),
               );
             } else {
-              return const Center(
-                child: Text('Error loading dishes'),
+              return Center(
+                child: Text(
+                  appLocalization.translate('errorLoadingDishes'),
+                ),
               );
             }
           },

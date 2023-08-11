@@ -16,6 +16,8 @@ export 'usecases/settings_use_cases/set_font_size_use_case.dart';
 export 'usecases/settings_use_cases/get_theme_use_case.dart';
 export 'usecases/settings_use_cases/get_color_scheme_use_case.dart';
 export 'usecases/settings_use_cases/get_font_size_use_case.dart';
+export 'usecases/settings_use_cases/get_language_use_case.dart';
+export 'usecases/settings_use_cases/set_language_use_case.dart';
 export 'usecases/auth_use_cases/auth_use_cases.dart';
 export 'usecases/order_history_use_cases/fetch_order_history_use_cases.dart';
 export 'usecases/order_history_use_cases/create_order_use_case.dart';

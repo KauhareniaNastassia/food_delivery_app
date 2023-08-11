@@ -1,4 +1,4 @@
-import 'package:core/constants/app_constants.dart';
+import 'package:core/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class SwitchToTheme extends StatelessWidget {
@@ -15,12 +15,15 @@ class SwitchToTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final ThemeData theme = Theme.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          isLight ? AppConstants.toDarkTheme : AppConstants.toLightTheme,
+          isLight
+              ? appLocalization.translate('toDarkTheme')
+              : appLocalization.translate('toLightTheme'),
           style: theme.textTheme.titleLarge,
         ),
         InkWell(

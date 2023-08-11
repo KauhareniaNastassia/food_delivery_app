@@ -15,6 +15,4 @@ final class ErrorConstants {
   static const wrongPasswordError = 'Wrong password';
   static const userAlreadyExistError = 'Wrong password';
   static const somethingWentWrongError = 'Wrong password';
-  static const internetConnectionIsNotAvailable =
-      'Internet connection lost. Cached data is using';
 }

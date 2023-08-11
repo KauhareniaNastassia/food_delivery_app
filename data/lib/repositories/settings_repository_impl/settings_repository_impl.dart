@@ -37,4 +37,14 @@ class SettingsRepositoryImpl implements SettingsRepository {
   Future<void> setFontSize(double fontSize) async {
     return _hiveProvider.setFontSizeToLocal(fontSize);
   }
+
+  @override
+  Future<bool> getLanguage() async {
+    return _hiveProvider.getLanguageFromLocal();
+  }
+
+  @override
+  Future<void> setLanguage(bool isEnglishLanguage) {
+    return _hiveProvider.setLanguageToLocal(isEnglishLanguage);
+  }
 }

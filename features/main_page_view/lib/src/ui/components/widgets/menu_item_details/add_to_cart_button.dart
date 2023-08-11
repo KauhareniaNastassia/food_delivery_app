@@ -17,6 +17,7 @@ class AddToCartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return ElevatedButton(
       onPressed: onPressed,
@@ -35,7 +36,9 @@ class AddToCartButton extends StatelessWidget {
           vertical: 10,
         ),
         child: Text(
-          amount != null ? '$amount in cart' : AppConstants.addToCart,
+          amount != null
+              ? '$amount' + ' ' + appLocalization.translate('inCart')
+              : appLocalization.translate('addToCart'),
           textAlign: TextAlign.center,
           style: AppTextStyles.size22WeightSemiBoldText(
             fontSize: settingsBloc.state.fontSize,

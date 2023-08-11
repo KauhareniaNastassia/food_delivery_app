@@ -14,20 +14,23 @@ class AuthPageSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text(
           isSignInPage
-              ? AppConstants.doNotHaveAnAccount
-              : AppConstants.haveAnAccount,
+              ? appLocalization.translate('doNotHaveAnAccount')
+              : appLocalization.translate('haveAnAccount'),
           style: theme.textTheme.titleSmall,
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
-            isSignInPage ? AppConstants.signUp : AppConstants.signIn,
+            isSignInPage
+                ? appLocalization.translate('signUp')
+                : appLocalization.translate('signIn'),
             style: theme.textTheme.titleMedium,
           ),
         ),

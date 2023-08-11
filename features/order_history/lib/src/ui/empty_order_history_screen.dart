@@ -14,6 +14,7 @@ class EmptyOrderHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Center(
       child: Column(
@@ -29,12 +30,12 @@ class EmptyOrderHistoryScreen extends StatelessWidget {
             ),
           ),
           Text(
-            AppConstants.noOrdersMessage,
+            appLocalization.translate('noOrdersMessage'),
             style: theme.textTheme.titleMedium,
           ),
           const SizedBox(height: 10),
           PrimaryButton(
-            buttonTitle: AppConstants.goToCart,
+            buttonTitle: appLocalization.translate('goToCart'),
             onPressed: onPressed,
           ),
         ],

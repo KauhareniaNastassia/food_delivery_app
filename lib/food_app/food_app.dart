@@ -1,11 +1,13 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:main_page_view/main_page.dart';
-import 'package:navigation/navigation.dart';
 import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
+
+// important
 
 class FoodApp extends StatelessWidget {
   const FoodApp({Key? key}) : super(key: key);
@@ -32,6 +34,8 @@ class FoodApp extends StatelessWidget {
             setColoSchemeUseCase: instance.get<SetColorSchemeUseCase>(),
             getFontSizeUseCase: instance.get<GetFontSizeUseCase>(),
             setFontSizeUseCase: instance.get<SetFontSizeUseCase>(),
+            getLanguageUseCase: instance.get<GetLanguageUseCase>(),
+            setLanguageUseCase: instance.get<SetLanguageUseCase>()
           ),
         ),
         BlocProvider<MenuBloc>(
@@ -76,6 +80,19 @@ class FoodApp extends StatelessWidget {
             routerDelegate: instance.get<AppRouter>().delegate(),
             routeInformationParser:
                 instance.get<AppRouter>().defaultRouteParser(),
+            supportedLocales: const [
+              Locale('en'),
+              Locale('es'),
+            ],
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            locale: state.isEnglishLanguage
+                ? const Locale('en')
+                : const Locale('es'),
           );
         },
       ),

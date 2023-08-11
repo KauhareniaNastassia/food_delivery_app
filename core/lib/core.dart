@@ -17,3 +17,8 @@ export 'constants/error_constants.dart';
 export 'constants/app_constants.dart';
 export 'date_formatter/date_formatter.dart';
 export 'package:path_provider/path_provider.dart';
+export 'package:intl_translation/generate_localized.dart';
+export 'package:core/localization/app_localizations.dart';
+export 'package:core/localization/app_localization_delegate.dart';
+export 'package:flutter_svg/svg.dart';
+export 'enums/enums.dart';

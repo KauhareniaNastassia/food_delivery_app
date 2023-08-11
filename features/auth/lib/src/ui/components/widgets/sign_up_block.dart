@@ -24,13 +24,17 @@ class _SignUpBlockState extends State<SignUpBlock> {
     final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
         if (state.signUpFailedMessage != '') {
           NotificationToast.showNotification(
             context,
-            state.signUpFailedMessage!,
+            state.signUpFailedMessage! ==
+                    ErrorConstants.userAlreadyExistResponseError
+                ? appLocalization.translate('userAlreadyExistError')
+                : appLocalization.translate('somethingWentWrongError'),
             mediaQueryData,
             settingsBloc,
             Icons.error_outline_rounded,
@@ -54,34 +58,42 @@ class _SignUpBlockState extends State<SignUpBlock> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  AppConstants.signUp,
+                  appLocalization.translate('signUp'),
                   style: AppTextStyles.size24WeightBoldText(
                     fontSize: settingsBloc.state.fontSize,
                     color: AppColors.secondaryColor,
                   ),
                 ),
                 CustomTextField(
-                  label: AppConstants.userName,
+                  label: appLocalization.translate('userName'),
                   textEditingController: _userNameController,
-                  validation: (String? name) => nameValidation(name),
+                  validation: (String? name) => nameValidation(
+                    name: name,
+                    appLocalization: appLocalization,
+                  ),
                   obscureText: false,
                 ),
                 CustomTextField(
-                  label: AppConstants.email,
+                  label: appLocalization.translate('email'),
                   textEditingController: _emailController,
-                  validation: (String? email) => emailValidation(email),
+                  validation: (String? email) => emailValidation(
+                    email: email,
+                    appLocalization: appLocalization,
+                  ),
                   obscureText: false,
                 ),
                 CustomTextField(
-                  label: AppConstants.password,
+                  label: appLocalization.translate('password'),
                   textEditingController: _passwordController,
-                  validation: (String? password) =>
-                      passwordValidation(password),
+                  validation: (String? password) => passwordValidation(
+                    password: password,
+                    appLocalization: appLocalization,
+                  ),
                   obscureText: true,
                 ),
                 SizedBox(height: mediaQueryData.size.height * 0.044),
                 PrimaryButton(
-                  buttonTitle: AppConstants.signUp,
+                  buttonTitle: appLocalization.translate('signUp'),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       authBloc.add(

@@ -10,3 +10,4 @@ export 'src/ui/user_info/user_name_block.dart';
 export 'src/ui/contact_links/contact_links_view.dart';
 export 'src/bloc/settings_bloc/bloc.dart';
 export 'src/bloc/open_links_bloc/bloc.dart';
+export 'src/ui/components/change_app_language.dart';

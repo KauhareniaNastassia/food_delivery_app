@@ -5,4 +5,6 @@ abstract class SettingsRepository {
   Future<void> setColorScheme(bool isStandard);
   Future<double> getFontSize();
   Future<void> setFontSize(double fontSize);
+  Future<bool> getLanguage();
+  Future<void> setLanguage(bool isEnglishLanguage);
 }

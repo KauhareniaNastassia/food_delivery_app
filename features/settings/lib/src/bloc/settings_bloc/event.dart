@@ -19,3 +19,7 @@ class AppFontSizeChangingEvent extends SettingsEvent {
 
   AppFontSizeChangingEvent({required this.fontSize});
 }
+
+class LanguageEvent extends SettingsEvent {
+  LanguageEvent();
+}

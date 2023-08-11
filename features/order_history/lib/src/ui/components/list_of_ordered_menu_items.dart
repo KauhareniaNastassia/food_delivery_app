@@ -16,6 +16,7 @@ class ListOfOrderedMenuItems extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,9 +38,7 @@ class ListOfOrderedMenuItems extends StatelessWidget {
                       style: theme.textTheme.bodySmall,
                     ),
                     Text(
-                      '\$${(orderedItems[index].amount
-                          * orderedItems[index].menuItem.cost)
-                          .toStringAsFixed(2)}',
+                      '\$${(orderedItems[index].amount * orderedItems[index].menuItem.cost).toStringAsFixed(2)}',
                       style: theme.textTheme.bodySmall,
                     ),
                   ],
@@ -55,8 +54,8 @@ class ListOfOrderedMenuItems extends StatelessWidget {
         ),
         Text(
           addedCutlery
-              ? AppConstants.addedCutlery
-              : AppConstants.notAddedCutlery,
+              ? appLocalization.translate('addedCutlery')
+              : appLocalization.translate('notAddedCutlery'),
           style: theme.textTheme.bodySmall,
         ),
       ],

@@ -172,6 +172,18 @@ class DataDI {
         settingsRepository: instance.get<SettingsRepository>(),
       ),
     );
+
+    instance.registerLazySingleton<GetLanguageUseCase>(
+          () => GetLanguageUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SetLanguageUseCase>(
+          () => SetLanguageUseCase(
+        settingsRepository: instance.get<SettingsRepository>(),
+      ),
+    );
   }
 
   void _initAuth() {

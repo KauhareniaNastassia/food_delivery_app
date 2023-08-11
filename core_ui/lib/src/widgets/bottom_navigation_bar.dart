@@ -1,3 +1,4 @@
+import 'package:core/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
@@ -12,22 +13,23 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
     final List<BottomNavigationBarItem> items = <BottomNavigationBarItem>[
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.home_outlined),
-        label: 'Home',
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.home_outlined),
+        label: appLocalization.translate('home'),
       ),
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_cart_outlined),
-        label: 'Cart',
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.shopping_cart_outlined),
+        label: appLocalization.translate('cart'),
       ),
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.history_outlined),
-        label: 'Orders',
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.history_outlined),
+        label: appLocalization.translate('orders'),
       ),
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.settings),
-        label: 'Settings',
+      BottomNavigationBarItem(
+        icon: const Icon(Icons.settings),
+        label: appLocalization.translate('settings'),
       )
     ];
 

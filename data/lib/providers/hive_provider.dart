@@ -9,7 +9,7 @@ class HiveProvider {
 
   Future<List<MenuItemEntity>> getMenuItemsFromLocal() async {
     final Box<MenuItemEntity> menuItemsBox = await Hive.openBox('menuItems');
-    return  menuItemsBox.values.toList();
+    return menuItemsBox.values.toList();
   }
 
   ///shopping cart
@@ -130,6 +130,21 @@ class HiveProvider {
     colorScheme.put(
       'fontSize',
       fontSize.toString(),
+    );
+  }
+
+  Future<bool> getLanguageFromLocal() async {
+    final Box language = await Hive.openBox('language');
+    return language.isEmpty
+        ? true
+        : language.get('language').toString() == 'true';
+  }
+
+  Future<void> setLanguageToLocal(bool isEnglishLanguage) async {
+    final Box language = await Hive.openBox('language');
+    language.put(
+      'language',
+      isEnglishLanguage.toString(),
     );
   }
 

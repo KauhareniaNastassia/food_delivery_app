@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   domain:
     path: ./domain
@@ -47,10 +49,13 @@ flutter_icons:
   ios: true
 
 flutter:
+  generate: true
   uses-material-design: true
 
   assets:
     - assets/image/
+    - assets/languages/en.json
+    - assets/languages/es.json
 
   fonts:
     - family: Merriweather

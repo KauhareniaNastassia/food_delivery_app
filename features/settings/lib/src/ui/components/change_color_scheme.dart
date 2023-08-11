@@ -1,4 +1,4 @@
-import 'package:core/constants/app_constants.dart';
+import 'package:core/localization/app_localizations.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -16,13 +16,18 @@ class ChangeColorScheme extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final ThemeData theme = Theme.of(context);
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Text(
-          AppConstants.changeColorScheme,
-          style: theme.textTheme.titleLarge,
+        SizedBox(
+          width: mediaQueryData.size.width * 0.55,
+          child: Text(
+            appLocalization.translate('changeColorScheme'),
+            style: theme.textTheme.titleLarge,
+          ),
         ),
         GestureDetector(
           onTap: isStandardColorScheme ? null : onTap,
