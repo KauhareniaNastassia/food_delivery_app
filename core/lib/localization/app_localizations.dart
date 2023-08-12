@@ -15,7 +15,7 @@ class AppLocalizations {
 
   static const LocalizationsDelegate<AppLocalizations> delegate =
       AppLocalizationsDelegate();
-  late final Map<String, String> _localizedStrings;
+   late final Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
     final String jsonString = await rootBundle

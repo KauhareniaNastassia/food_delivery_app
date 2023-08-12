@@ -6,9 +6,9 @@ class SignOutButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   const SignOutButton({
-    Key? key,
+    super.key,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class SignOutButton extends StatelessWidget {
     final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return SizedBox(
-      width:  mediaQueryData.size.width * 0.22,
+      width: mediaQueryData.size.width * 0.22,
       child: IconButton(
         onPressed: onPressed,
         icon: Column(
@@ -27,7 +27,9 @@ class SignOutButton extends StatelessWidget {
             Icon(
               Icons.logout,
               color: theme.canvasColor,
-              size: mediaQueryData.size.height * 0.04 * settingsBloc.state.fontSize,
+              size: mediaQueryData.size.height *
+                  0.04 *
+                  settingsBloc.state.fontSize,
             ),
             Text(
               appLocalization.translate('signOut'),
