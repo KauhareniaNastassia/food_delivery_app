@@ -6,3 +6,4 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:simple_animations/simple_animations.dart';
 export 'package:supercharged/supercharged.dart';
 export 'src/widgets/custom_switcher.dart';
+export 'package:animations/animations.dart';

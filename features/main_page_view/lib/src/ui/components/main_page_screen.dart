@@ -11,8 +11,35 @@ class MainPageScreen extends StatefulWidget {
   State<MainPageScreen> createState() => _MainPageScreenState();
 }
 
-class _MainPageScreenState extends State<MainPageScreen> {
+class _MainPageScreenState extends State<MainPageScreen>
+    with TickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
+  late final AnimationController _animationController;
+  late final Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..forward();
+    _animation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.linear,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,27 +73,39 @@ class _MainPageScreenState extends State<MainPageScreen> {
                         InitEvent(),
                       );
                 },
-                child: Container(
-                  height: mediaQueryData.size.height,
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(height: mediaQueryData.size.height * 0.02),
-                        const CategoryFilter(),
-                        SizedBox(height: mediaQueryData.size.height * 0.02),
-                        (state.selectedCategory !=
-                                    AppConstants.menuItemCategory[0]) &
-                                state.filteredMenu.isEmpty
-                            ? const NothingFindInCategory()
-                            : MenuListItems(
-                                menu: state.filteredMenu.isEmpty
-                                    ? state.menu
-                                    : state.filteredMenu,
-                              ),
-                      ],
+                child: FadeTransition(
+                  opacity: _animation,
+                  child: Container(
+                    height: mediaQueryData.size.height,
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(height: mediaQueryData.size.height * 0.01),
+                          const BannerBlock(),
+                          SizedBox(height: mediaQueryData.size.height * 0.02),
+                          const CategoryFilter(),
+                          SizedBox(height: mediaQueryData.size.height * 0.02),
+                          AnimatedCrossFade(
+                            firstCurve: Curves.easeOutBack,
+                            secondCurve: Curves.easeInBack,
+                            firstChild: MenuListItems(
+                              menu: state.filteredMenu.isEmpty
+                                  ? state.menu
+                                  : state.filteredMenu,
+                            ),
+                            secondChild: const NothingFindInCategory(),
+                            crossFadeState: (state.selectedCategory !=
+                                        AppConstants.menuItemCategory[0]) &
+                                    state.filteredMenu.isEmpty
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst,
+                            duration: const Duration(milliseconds: 500),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

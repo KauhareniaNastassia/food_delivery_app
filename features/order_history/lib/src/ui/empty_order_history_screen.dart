@@ -20,20 +20,17 @@ class EmptyOrderHistoryScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(
-            height: mediaQueryData.size.height / 11.5,
-          ),
-          SizedBox(
-            width: mediaQueryData.size.width / 2.5,
-            height: mediaQueryData.size.height / 2.5,
-            child: Image.asset(
-              'assets/image/empty_order_history.png',
+            width: mediaQueryData.size.width / 1.3,
+            height: mediaQueryData.size.height / 2.1,
+            child: const RiveAnimation.asset(
+              'assets/image/rive_icons/empty_order_history.riv',
             ),
           ),
           Text(
             appLocalization.translate('noOrdersMessage'),
             style: theme.textTheme.titleMedium,
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           PrimaryButton(
             buttonTitle: appLocalization.translate('goToCart'),
             onPressed: onPressed,

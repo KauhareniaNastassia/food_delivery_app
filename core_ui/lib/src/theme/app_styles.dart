@@ -14,4 +14,13 @@ class AppStyles {
       3,
     ),
   );
+
+  static final boxShadowForBottomBar = BoxShadow(
+    color: Colors.black.withOpacity(0.25),
+    blurRadius: 50,
+    offset: const Offset(
+      0,
+      15,
+    ),
+  );
 }

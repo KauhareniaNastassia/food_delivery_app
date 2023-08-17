@@ -1,7 +1,7 @@
-import 'package:core/localization/app_localizations.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+class CustomBottomNavigationBar extends StatefulWidget {
   final int currentIndex;
   final void Function(int) onTap;
 
@@ -12,38 +12,77 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CustomBottomNavigationBar> createState() =>
+      CustomBottomNavigationBarState();
+}
+
+class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  @override
   Widget build(BuildContext context) {
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
-    final List<BottomNavigationBarItem> items = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.home_outlined),
-        label: appLocalization.translate('home'),
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.shopping_cart_outlined),
-        label: appLocalization.translate('cart'),
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.history_outlined),
-        label: appLocalization.translate('orders'),
-      ),
-      BottomNavigationBarItem(
-        icon: const Icon(Icons.settings),
-        label: appLocalization.translate('settings'),
-      )
+    final ThemeData theme = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
+    final List<IconData> listOfIcons = <IconData>[
+      Icons.home_outlined,
+      Icons.shopping_cart_outlined,
+      Icons.history_outlined,
+      Icons.settings,
     ];
 
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onTap,
-      items: items,
-      type: BottomNavigationBarType.fixed,
-      backgroundColor:
-          Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-      selectedItemColor:
-          Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-      unselectedItemColor:
-          Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+    return Container(
+      margin: const EdgeInsets.fromLTRB(10, 1, 10, 5),
+      height: mediaQueryData.size.height * 0.08,
+      decoration: BoxDecoration(
+        color: theme.bottomNavigationBarTheme.backgroundColor!,
+        boxShadow: [AppStyles.boxShadowForBottomBar],
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: ListView.builder(
+        itemCount: listOfIcons.length,
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(
+          horizontal: mediaQueryData.size.width * 0.024,
+        ),
+        itemBuilder: (_, index) {
+          return InkWell(
+            onTap: () => widget.onTap(index),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 700),
+                  curve: Curves.decelerate,
+                  margin: EdgeInsets.only(
+                    bottom: index == widget.currentIndex
+                        ? 0
+                        : mediaQueryData.size.width * 0.029,
+                    right: mediaQueryData.size.width * 0.045,
+                    left: mediaQueryData.size.width * 0.05,
+                  ),
+                  width: mediaQueryData.size.width * 0.128,
+                  height: index == widget.currentIndex
+                      ? mediaQueryData.size.width * 0.014
+                      : 0,
+                  decoration: BoxDecoration(
+                    color: theme.bottomNavigationBarTheme.selectedItemColor,
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(10),
+                    ),
+                  ),
+                ),
+                Icon(
+                  listOfIcons[index],
+                  size: mediaQueryData.size.width * 0.08,
+                  color: index == widget.currentIndex
+                      ? theme.bottomNavigationBarTheme.selectedItemColor!
+                      : theme.bottomNavigationBarTheme.unselectedItemColor!,
+                ),
+                SizedBox(height: mediaQueryData.size.width * 0.03),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

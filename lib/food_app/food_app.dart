@@ -7,7 +7,6 @@ import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
-// important
 
 class FoodApp extends StatelessWidget {
   const FoodApp({Key? key}) : super(key: key);

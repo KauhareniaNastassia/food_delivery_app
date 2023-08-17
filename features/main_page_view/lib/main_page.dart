@@ -17,3 +17,4 @@ export 'src/ui/components/widgets/menu_item/item_list_button.dart';
 export 'src/ui/components/widgets/menu_item/menu_item_image.dart';
 export 'src/ui/components/widgets/category_filter.dart';
 export 'src/ui/components/widgets/nothing_find_in_category.dart';
+export 'src/ui/components/widgets/banner_block.dart';

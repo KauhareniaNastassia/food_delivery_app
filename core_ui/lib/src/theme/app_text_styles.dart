@@ -115,4 +115,15 @@ class AppTextStyles {
       color: color,
     );
   }
+
+  static TextStyle size40WeightBoldText({
+    required Color color,
+  }) {
+    return TextStyle(
+      fontFamily: _merriweatherFamily,
+      fontSize: 40,
+      fontWeight: FontWeight.w600,
+      color: color,
+    );
+  }
 }

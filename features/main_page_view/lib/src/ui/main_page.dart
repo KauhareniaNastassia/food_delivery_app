@@ -13,7 +13,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [
+      animationDuration: const Duration(milliseconds: 700),
+      routes: const <PageRouteInfo<dynamic>>[
         MainPageScreenRoute(),
         ShoppingCartPageScreenRoute(),
         OrderHistoryPageContentRoute(),
@@ -21,6 +22,21 @@ class _MainPageState extends State<MainPage> {
       ],
       appBarBuilder: (_, tabsRouter) {
         return const CustomAppBar();
+      },
+      builder: (
+        _,
+        Widget? child,
+        Animation<double> animation,
+      ) {
+        return FadeTransition(
+          opacity: animation.drive(
+            Tween<double>(
+              begin: 0,
+              end: 1,
+            ).curved(Curves.easeIn),
+          ),
+          child: child,
+        );
       },
       bottomNavigationBuilder: (_, tabsRouter) {
         return CustomBottomNavigationBar(
