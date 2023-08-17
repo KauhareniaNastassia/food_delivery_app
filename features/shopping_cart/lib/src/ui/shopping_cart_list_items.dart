@@ -19,11 +19,11 @@ class ShoppingCartListItems extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: shoppingCart.shoppingCartItems.length,
-      itemBuilder: (context, index) {
+      itemBuilder: (_, index) {
         return OpenContainer(
           closedElevation: 0.0,
           transitionDuration: const Duration(milliseconds: 600),
-          closedBuilder: (context, action) {
+          closedBuilder: (_, action) {
             return ShoppingCartItem(
               key: ValueKey(
                 shoppingCart.shoppingCartItems[index].menuItem.id,
@@ -32,7 +32,7 @@ class ShoppingCartListItems extends StatelessWidget {
               onTap: action,
             );
           },
-          openBuilder: (context, action) {
+          openBuilder: (_, __) {
             return MenuItemDetailsScreen(
               menuItem: shoppingCart.shoppingCartItems[index].menuItem,
             );

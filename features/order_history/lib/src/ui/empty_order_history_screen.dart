@@ -22,8 +22,8 @@ class EmptyOrderHistoryScreen extends StatelessWidget {
           SizedBox(
             width: mediaQueryData.size.width / 1.3,
             height: mediaQueryData.size.height / 2.1,
-            child: const RiveAnimation.asset(
-              'assets/image/rive_icons/empty_order_history.riv',
+            child: RiveAsset(
+              riveAnimationPath: AnimationPathConstants.emptyOrderHistoryPath,
             ),
           ),
           Text(

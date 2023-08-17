@@ -9,18 +9,12 @@ class AppStyles {
     color: const Color(0xFFC0C2BF).withOpacity(0.2),
     spreadRadius: 0,
     blurRadius: 50,
-    offset: const Offset(
-      0,
-      3,
-    ),
+    offset: const Offset(0, 3),
   );
 
   static final boxShadowForBottomBar = BoxShadow(
     color: Colors.black.withOpacity(0.25),
     blurRadius: 50,
-    offset: const Offset(
-      0,
-      15,
-    ),
+    offset: const Offset(0, 15),
   );
 }

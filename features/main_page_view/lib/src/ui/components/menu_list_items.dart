@@ -1,9 +1,10 @@
 import 'package:core/core.dart';
-import 'package:domain/models/menu_item_model/menu_item_model.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
 
 import 'menu_item.dart';
+
 
 class MenuListItems extends StatefulWidget {
   final List<MenuItemModel> menu;
@@ -67,18 +68,18 @@ class _MenuListItemsState extends State<MenuListItems>
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.menu.length,
-            itemBuilder: (context, index) {
+            itemBuilder: (_, index) {
               return OpenContainer(
                 closedElevation: 0.0,
                 transitionDuration: const Duration(milliseconds: 600),
-                closedBuilder: (context, action) {
+                closedBuilder: (_, action) {
                   return MenuItem(
                     key: ValueKey(widget.menu[index].id),
                     menuItem: widget.menu[index],
                     onTap: action,
                   );
                 },
-                openBuilder: (context, action) {
+                openBuilder: (_, __) {
                   return MenuItemDetailsScreen(
                     menuItem: widget.menu[index],
                   );

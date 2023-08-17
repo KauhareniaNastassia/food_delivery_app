@@ -36,12 +36,6 @@ class _MainPageScreenState extends State<MainPageScreen>
   }
 
   @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
@@ -121,5 +115,11 @@ class _MainPageScreenState extends State<MainPageScreen>
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

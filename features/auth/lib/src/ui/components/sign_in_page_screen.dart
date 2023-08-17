@@ -1,5 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class SignInPageScreen extends StatefulWidget {
@@ -33,13 +34,9 @@ class _SignInPageScreenState extends State<SignInPageScreen>
   }
 
   @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
     return Scaffold(
       body: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
@@ -53,25 +50,34 @@ class _SignInPageScreenState extends State<SignInPageScreen>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       const AuthTitle(),
-                      AnimatedCrossFade(
-                        firstCurve: Curves.easeOutBack,
-                        secondCurve: Curves.easeInBack,
-                        firstChild: const SignInBlock(),
-                        secondChild: const SignUpBlock(),
-                        crossFadeState: state.isSignInPage
-                            ? CrossFadeState.showFirst
-                            : CrossFadeState.showSecond,
-                        duration: const Duration(milliseconds: 900),
-                      ),
-                      const SizedBox(height: 16),
-                      AuthPageSwitcher(
-                        onPressed: () {
-                          context.read<AuthBloc>().add(
-                                ChangeAuthPageEvent(),
-                              );
-                        },
-                        isSignInPage: state.isSignInPage,
-                      ),
+                      state.isDataProcessing
+                          ? SizedBox(
+                              height: mediaQueryData.size.height * 0.6,
+                              child: const LoadingIndicator(),
+                            )
+                          : Column(
+                              children: <Widget>[
+                                AnimatedCrossFade(
+                                  firstCurve: Curves.easeOutBack,
+                                  secondCurve: Curves.easeInBack,
+                                  firstChild: const SignInBlock(),
+                                  secondChild: const SignUpBlock(),
+                                  crossFadeState: state.isSignInPage
+                                      ? CrossFadeState.showFirst
+                                      : CrossFadeState.showSecond,
+                                  duration: const Duration(milliseconds: 900),
+                                ),
+                                const SizedBox(height: 16),
+                                AuthPageSwitcher(
+                                  onPressed: () {
+                                    context.read<AuthBloc>().add(
+                                          ChangeAuthPageEvent(),
+                                        );
+                                  },
+                                  isSignInPage: state.isSignInPage,
+                                ),
+                              ],
+                            )
                     ],
                   ),
                 ),
@@ -81,5 +87,11 @@ class _SignInPageScreenState extends State<SignInPageScreen>
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

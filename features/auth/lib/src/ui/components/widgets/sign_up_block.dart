@@ -46,70 +46,63 @@ class _SignUpBlockState extends State<SignUpBlock> {
         return previous.signUpFailedMessage != current.signUpFailedMessage;
       },
       builder: (BuildContext context, AuthState state) {
-        if (state.isDataProcessing) {
-          return SizedBox(
-            height: mediaQueryData.size.height * 0.3,
-            child: const LoadingIndicator(),
-          );
-        } else {
-          return Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  appLocalization.translate('signUp'),
-                  style: AppTextStyles.size24WeightBoldText(
-                    fontSize: settingsBloc.state.fontSize,
-                    color: AppColors.secondaryColor,
-                  ),
+        return Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                appLocalization.translate('signUp'),
+                style: AppTextStyles.size24WeightBoldText(
+                  fontSize: settingsBloc.state.fontSize,
+                  color: AppColors.secondaryColor,
                 ),
-                CustomTextField(
-                  label: appLocalization.translate('userName'),
-                  textEditingController: _userNameController,
-                  validation: (String? name) => nameValidation(
-                    name: name,
-                    appLocalization: appLocalization,
-                  ),
-                  obscureText: false,
+              ),
+              CustomTextField(
+                label: appLocalization.translate('userName'),
+                textEditingController: _userNameController,
+                validation: (String? name) => nameValidation(
+                  name: name,
+                  appLocalization: appLocalization,
                 ),
-                CustomTextField(
-                  label: appLocalization.translate('email'),
-                  textEditingController: _emailController,
-                  validation: (String? email) => emailValidation(
-                    email: email,
-                    appLocalization: appLocalization,
-                  ),
-                  obscureText: false,
+                obscureText: false,
+              ),
+              CustomTextField(
+                label: appLocalization.translate('email'),
+                textEditingController: _emailController,
+                validation: (String? email) => emailValidation(
+                  email: email,
+                  appLocalization: appLocalization,
                 ),
-                CustomTextField(
-                  label: appLocalization.translate('password'),
-                  textEditingController: _passwordController,
-                  validation: (String? password) => passwordValidation(
-                    password: password,
-                    appLocalization: appLocalization,
-                  ),
-                  obscureText: true,
+                obscureText: false,
+              ),
+              CustomTextField(
+                label: appLocalization.translate('password'),
+                textEditingController: _passwordController,
+                validation: (String? password) => passwordValidation(
+                  password: password,
+                  appLocalization: appLocalization,
                 ),
-                SizedBox(height: mediaQueryData.size.height * 0.044),
-                PrimaryButton(
-                  buttonTitle: appLocalization.translate('signUp'),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      authBloc.add(
-                        SignUpEvent(
-                          userName: _userNameController.text.trim(),
-                          email: _emailController.text.trim(),
-                          password: _passwordController.text.trim(),
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-          );
-        }
+                obscureText: true,
+              ),
+              SizedBox(height: mediaQueryData.size.height * 0.044),
+              PrimaryButton(
+                buttonTitle: appLocalization.translate('signUp'),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    authBloc.add(
+                      SignUpEvent(
+                        userName: _userNameController.text.trim(),
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim(),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ],
+          ),
+        );
       },
     );
   }

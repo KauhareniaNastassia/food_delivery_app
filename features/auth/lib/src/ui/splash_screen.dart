@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:order_history/order_history.dart';
 import 'package:shopping_cart/shopping_cart.dart';
@@ -60,8 +61,8 @@ class SplashScreenState extends State<SplashScreen> {
             backgroundColor: theme.cardColor,
             body: Stack(
               children: <Widget>[
-                const RiveAnimation.asset(
-                  'assets/image/rive_icons/shapes.riv',
+                RiveAsset(
+                  riveAnimationPath: AnimationPathConstants.shapesPath,
                 ),
                 Positioned.fill(
                   child: BackdropFilter(

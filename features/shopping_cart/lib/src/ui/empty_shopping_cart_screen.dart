@@ -25,7 +25,7 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 800),
     )..forward();
     _animation = Tween<double>(
       begin: 0,
@@ -36,12 +36,6 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
         curve: Curves.linear,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   @override
@@ -58,8 +52,8 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
             SizedBox(
               width: mediaQueryData.size.width / 1.3,
               height: mediaQueryData.size.height / 2.1,
-              child: const RiveAnimation.asset(
-                'assets/image/rive_icons/empty_shopping_cart.riv',
+              child: RiveAsset(
+                riveAnimationPath: AnimationPathConstants.emptyShoppingCartPath,
               ),
             ),
             Text(
@@ -75,5 +69,11 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

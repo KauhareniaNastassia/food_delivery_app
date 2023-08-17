@@ -1,3 +1,4 @@
+import 'package:core/localization/app_localizations.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -21,24 +22,18 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-
-    final List<IconData> listOfIcons = <IconData>[
-      Icons.home_outlined,
-      Icons.shopping_cart_outlined,
-      Icons.history_outlined,
-      Icons.settings,
-    ];
+    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Container(
       margin: const EdgeInsets.fromLTRB(10, 1, 10, 5),
-      height: mediaQueryData.size.height * 0.08,
+      height: mediaQueryData.size.height * 0.085,
       decoration: BoxDecoration(
         color: theme.bottomNavigationBarTheme.backgroundColor!,
         boxShadow: [AppStyles.boxShadowForBottomBar],
         borderRadius: BorderRadius.circular(50),
       ),
       child: ListView.builder(
-        itemCount: listOfIcons.length,
+        itemCount: CustomBottomNavigationBarItems.listOfIcons.length,
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(
           horizontal: mediaQueryData.size.width * 0.024,
@@ -71,13 +66,23 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   ),
                 ),
                 Icon(
-                  listOfIcons[index],
-                  size: mediaQueryData.size.width * 0.08,
+                  CustomBottomNavigationBarItems.listOfIcons[index],
+                  size: mediaQueryData.size.width * 0.07,
                   color: index == widget.currentIndex
                       ? theme.bottomNavigationBarTheme.selectedItemColor!
                       : theme.bottomNavigationBarTheme.unselectedItemColor!,
                 ),
-                SizedBox(height: mediaQueryData.size.width * 0.03),
+                Text(
+                  appLocalization.translate(
+                    CustomBottomNavigationBarItems.listOfLabels[index],
+                  ),
+                  style: AppTextStyles.size12WeightSemiBoldText(
+                    index == widget.currentIndex
+                        ? theme.bottomNavigationBarTheme.selectedItemColor!
+                        : theme.bottomNavigationBarTheme.unselectedItemColor!,
+                  ),
+                ),
+                SizedBox(height: mediaQueryData.size.width * 0.01),
               ],
             ),
           );
