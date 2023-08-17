@@ -22,7 +22,7 @@ class _MainPageScreenState extends State<MainPageScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     )..forward();
     _animation = Tween<double>(
       begin: 0,
@@ -70,7 +70,6 @@ class _MainPageScreenState extends State<MainPageScreen>
                 child: FadeTransition(
                   opacity: _animation,
                   child: Container(
-                    height: mediaQueryData.size.height,
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: SingleChildScrollView(
                       controller: _scrollController,

@@ -11,9 +11,6 @@ class RiveAsset extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RiveAnimation.asset(
-      riveAnimationPath,
-      fit: BoxFit.contain,
-    );
+    return RiveAnimation.asset(riveAnimationPath);
   }
 }

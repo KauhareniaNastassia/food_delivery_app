@@ -5,7 +5,6 @@ import 'package:main_page_view/main_page.dart';
 
 import 'menu_item.dart';
 
-
 class MenuListItems extends StatefulWidget {
   final List<MenuItemModel> menu;
 
@@ -39,12 +38,6 @@ class _MenuListItemsState extends State<MenuListItems>
         curve: Curves.linear,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   @override
@@ -90,5 +83,11 @@ class _MenuListItemsState extends State<MenuListItems>
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 }

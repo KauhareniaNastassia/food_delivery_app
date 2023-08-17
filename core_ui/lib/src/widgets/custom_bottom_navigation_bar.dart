@@ -28,7 +28,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       margin: const EdgeInsets.fromLTRB(10, 1, 10, 5),
       height: mediaQueryData.size.height * 0.085,
       decoration: BoxDecoration(
-        color: theme.bottomNavigationBarTheme.backgroundColor!,
+        color: theme.bottomNavigationBarTheme.backgroundColor,
         boxShadow: [AppStyles.boxShadowForBottomBar],
         borderRadius: BorderRadius.circular(50),
       ),
@@ -69,8 +69,8 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   CustomBottomNavigationBarItems.listOfIcons[index],
                   size: mediaQueryData.size.width * 0.07,
                   color: index == widget.currentIndex
-                      ? theme.bottomNavigationBarTheme.selectedItemColor!
-                      : theme.bottomNavigationBarTheme.unselectedItemColor!,
+                      ? theme.bottomNavigationBarTheme.selectedItemColor
+                      : theme.bottomNavigationBarTheme.unselectedItemColor,
                 ),
                 Text(
                   appLocalization.translate(

@@ -33,8 +33,8 @@ class BannerBlock extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 10,
-            top: -23,
+            right: mediaQueryData.size.width * 0.03,
+            bottom: -mediaQueryData.size.height * 0.03,
             child: SizedBox(
               height: mediaQueryData.size.height * 0.2,
               width: mediaQueryData.size.width * 0.35,

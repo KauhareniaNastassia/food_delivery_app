@@ -97,6 +97,9 @@ class _SignUpBlockState extends State<SignUpBlock> {
                         password: _passwordController.text.trim(),
                       ),
                     );
+                    _userNameController.clear();
+                    _emailController.clear();
+                    _passwordController.clear();
                   }
                 },
               ),
