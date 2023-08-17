@@ -22,3 +22,4 @@ export 'package:core/localization/app_localization_delegate.dart';
 export 'package:flutter_svg/svg.dart';
 export 'enums/enums.dart';
 export 'package:rive/rive.dart';
+export 'package:animations/animations.dart';

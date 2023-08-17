@@ -1,4 +1,4 @@
-import 'package:core_ui/core_ui.dart';
+import 'package:core/core.dart';
 import 'package:domain/models/shopping_cart_model/shopping_cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';

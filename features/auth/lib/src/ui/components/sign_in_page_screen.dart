@@ -61,7 +61,7 @@ class _SignInPageScreenState extends State<SignInPageScreen>
                         crossFadeState: state.isSignInPage
                             ? CrossFadeState.showFirst
                             : CrossFadeState.showSecond,
-                        duration: const Duration(milliseconds:  900),
+                        duration: const Duration(milliseconds: 900),
                       ),
                       const SizedBox(height: 16),
                       AuthPageSwitcher(
@@ -82,42 +82,4 @@ class _SignInPageScreenState extends State<SignInPageScreen>
       ),
     );
   }
-
-/*@override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
-          return FadeTransition(
-            opacity: _animation,
-            child: Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      const AuthTitle(),
-                      state.isSignInPage
-                          ? const SignInBlock()
-                          : const SignUpBlock(),
-                      const SizedBox(height: 16),
-                      AuthPageSwitcher(
-                        onPressed: () {
-                          context.read<AuthBloc>().add(
-                                ChangeAuthPageEvent(),
-                              );
-                        },
-                        isSignInPage: state.isSignInPage,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }*/
 }

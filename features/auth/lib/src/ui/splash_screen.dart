@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:order_history/order_history.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
