@@ -1,6 +1,5 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-
-import '../../core_ui.dart';
 
 class ImagePlaceholder extends StatelessWidget {
   final IconData iconData;

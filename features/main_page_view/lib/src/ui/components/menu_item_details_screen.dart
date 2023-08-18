@@ -34,7 +34,7 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
     }
 
     return BlocBuilder<ShoppingCartBloc, ShoppingCartState>(
-      builder: (context, state) {
+      builder: (BuildContext context, ShoppingCartState state) {
         return Scaffold(
           bottomNavigationBar: MenuItemDetailsBottomBar(
             amount: findItemInShoppingCart(widget.menuItem)?.amount,

@@ -19,20 +19,24 @@ class ShoppingCartListItems extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: shoppingCart.shoppingCartItems.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: ShoppingCartItem(
-            key: ValueKey(shoppingCart.shoppingCartItems[index].menuItem.id),
-            shoppingCartItem: shoppingCart.shoppingCartItems[index],
-            onTap: () {
-              context.read<MenuBloc>().add(
-                    NavigateToMenuItemEvent(
-                      menuItem: shoppingCart.shoppingCartItems[index].menuItem,
-                    ),
-                  );
-            },
-          ),
+      itemBuilder: (_, index) {
+        return OpenContainer(
+          closedElevation: 0.0,
+          transitionDuration: const Duration(milliseconds: 600),
+          closedBuilder: (_, action) {
+            return ShoppingCartItem(
+              key: ValueKey(
+                shoppingCart.shoppingCartItems[index].menuItem.id,
+              ),
+              shoppingCartItem: shoppingCart.shoppingCartItems[index],
+              onTap: action,
+            );
+          },
+          openBuilder: (_, __) {
+            return MenuItemDetailsScreen(
+              menuItem: shoppingCart.shoppingCartItems[index].menuItem,
+            );
+          },
         );
       },
     );

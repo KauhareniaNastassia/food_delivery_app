@@ -45,71 +45,68 @@ class _SignInBlockState extends State<SignInBlock> {
         return previous.signInFailedMessage != current.signInFailedMessage;
       },
       builder: (BuildContext context, AuthState state) {
-        if (state.isDataProcessing) {
-          return SizedBox(
-            height: mediaQueryData.size.height * 0.3,
-            child: const LoadingIndicator(),
-          );
-        } else {
-          return Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  appLocalization.translate('signIn'),
-                  style: AppTextStyles.size24WeightBoldText(
-                    fontSize: settingsBloc.state.fontSize,
-                    color: AppColors.secondaryColor,
-                  ),
+        return Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                appLocalization.translate('signIn'),
+                style: AppTextStyles.size24WeightBoldText(
+                  fontSize: settingsBloc.state.fontSize,
+                  color: AppColors.secondaryColor,
                 ),
-                CustomTextField(
-                  label: appLocalization.translate('email'),
-                  textEditingController: _emailController,
-                  validation: (String? email) => emailValidation(
+              ),
+              CustomTextField(
+                label: appLocalization.translate('email'),
+                textEditingController: _emailController,
+                validation: (String? email) {
+                  return emailValidation(
                     email: email,
                     appLocalization: appLocalization,
-                  ),
-                  obscureText: false,
-                ),
-                CustomTextField(
-                  label: appLocalization.translate('password'),
-                  textEditingController: _passwordController,
-                  validation: (String? password) => passwordValidation(
+                  );
+                },
+                obscureText: false,
+              ),
+              CustomTextField(
+                label: appLocalization.translate('password'),
+                textEditingController: _passwordController,
+                validation: (String? password) {
+                  return passwordValidation(
                     password: password,
                     appLocalization: appLocalization,
-                  ),
-                  obscureText: true,
-                ),
-                SizedBox(height: mediaQueryData.size.height * 0.05),
-                PrimaryButton(
-                  buttonTitle: appLocalization.translate('signIn'),
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      context.read<AuthBloc>().add(
-                            SignInEvent(
-                              email: _emailController.text.trim(),
-                              password: _passwordController.text.trim(),
-                            ),
-                          );
-                      _emailController.clear();
-                      _passwordController.clear();
-                    }
-                  },
-                ),
-                SizedBox(height: mediaQueryData.size.height * 0.05),
-                PrimaryButton(
-                  buttonTitle: appLocalization.translate('signInViaGoogle'),
-                  onPressed: () {
+                  );
+                },
+                obscureText: true,
+              ),
+              SizedBox(height: mediaQueryData.size.height * 0.05),
+              PrimaryButton(
+                buttonTitle: appLocalization.translate('signIn'),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
                     context.read<AuthBloc>().add(
-                          SignInViaGoogleEvent(),
+                          SignInEvent(
+                            email: _emailController.text.trim(),
+                            password: _passwordController.text.trim(),
+                          ),
                         );
-                  },
-                ),
-              ],
-            ),
-          );
-        }
+                    _emailController.clear();
+                    _passwordController.clear();
+                  }
+                },
+              ),
+              SizedBox(height: mediaQueryData.size.height * 0.05),
+              PrimaryButton(
+                buttonTitle: appLocalization.translate('signInViaGoogle'),
+                onPressed: () {
+                  context.read<AuthBloc>().add(
+                        SignInViaGoogleEvent(),
+                      );
+                },
+              ),
+            ],
+          ),
+        );
       },
     );
   }

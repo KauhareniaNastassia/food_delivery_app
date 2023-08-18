@@ -35,10 +35,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignOutEvent>(_onSignOut);
     on<ChangeAuthPageEvent>(_changeAuthPage);
     on<NavigateToSignInPageEvent>(_onNavigateToSignInPage);
-
-    add(
-      InitAuthEvent(),
-    );
   }
 
   Future<void> _onInitAuth(

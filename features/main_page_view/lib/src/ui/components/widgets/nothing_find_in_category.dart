@@ -14,11 +14,10 @@ class NothingFindInCategory extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(
-            width: mediaQueryData.size.width / 2.5,
-            height: mediaQueryData.size.height / 2.5,
-            child: Image.asset(
-              'assets/image/nothing_in_category.png',
-            ),
+            width: mediaQueryData.size.width / 1.3,
+            height: mediaQueryData.size.height / 2.3,
+            child: RiveAnimation.asset(
+                AnimationPathConstants.nothingInCategoryPath),
           ),
           Text(
             appLocalization.translate('nothingInCategory'),

@@ -28,7 +28,7 @@ class AppColors {
   ///background colors
   static const Color backgroundColor = Color(0xFFFDFBFB);
   static const Color backgroundBottomNavigationBarColor = Color(0xFFFCFCFC);
-  static const Color backgroundItemColor = Color(0xFFDBE0CD);
+  static const Color backgroundItemColor = Color(0xFFEBEFE1);
   static const Color alternativeBackgroundItemColor = Color(0xFAE5DFE0);
   static const Color backgroundItemDarkColor = Color(0xFF707C6A);
   static const Color alternativeBackgroundItemDarkColor = Color(0xFF806D78);

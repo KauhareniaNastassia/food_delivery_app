@@ -35,7 +35,7 @@ class _MenuItemState extends State<MenuItem> {
     }
 
     return BlocBuilder<ShoppingCartBloc, ShoppingCartState>(
-      builder: (context, state) {
+      builder: (BuildContext context, ShoppingCartState state) {
         return Ink(
           child: InkWell(
             borderRadius: AppStyles.largeBorderRadius,
