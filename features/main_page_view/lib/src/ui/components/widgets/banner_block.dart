@@ -38,10 +38,8 @@ class BannerBlock extends StatelessWidget {
             child: SizedBox(
               height: mediaQueryData.size.height * 0.2,
               width: mediaQueryData.size.width * 0.35,
-              child: RiveAsset(
-                riveAnimationPath:
-                    AnimationPathConstants.shoppingCartBannerPath,
-              ),
+              child: RiveAnimation.asset(
+                  AnimationPathConstants.shoppingCartBannerPath),
             ),
           )
         ],

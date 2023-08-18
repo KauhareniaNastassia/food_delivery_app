@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:order_history/order_history.dart';
 import 'package:shopping_cart/shopping_cart.dart';
@@ -19,7 +18,7 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 4),
-      () {
+          () {
         final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
         authBloc.add(
           InitAuthEvent(),
@@ -31,9 +30,9 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final ShoppingCartBloc shoppingCartBloc =
-        BlocProvider.of<ShoppingCartBloc>(context);
+    BlocProvider.of<ShoppingCartBloc>(context);
     final OrderHistoryBloc orderHistoryBloc =
-        BlocProvider.of<OrderHistoryBloc>(context);
+    BlocProvider.of<OrderHistoryBloc>(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
 
@@ -52,8 +51,8 @@ class SplashScreenState extends State<SplashScreen> {
             );
           } else {
             context.read<AuthBloc>().add(
-                  NavigateToSignInPageEvent(),
-                );
+              NavigateToSignInPageEvent(),
+            );
           }
         },
         builder: (BuildContext context, AuthState state) {
@@ -61,9 +60,7 @@ class SplashScreenState extends State<SplashScreen> {
             backgroundColor: theme.cardColor,
             body: Stack(
               children: <Widget>[
-                RiveAsset(
-                  riveAnimationPath: AnimationPathConstants.shapesPath,
-                ),
+                RiveAnimation.asset(AnimationPathConstants.shapesPath),
                 Positioned.fill(
                   child: BackdropFilter(
                     filter: ImageFilter.blur(

@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class NothingFindInCategory extends StatelessWidget {
@@ -17,9 +16,8 @@ class NothingFindInCategory extends StatelessWidget {
           SizedBox(
             width: mediaQueryData.size.width / 1.3,
             height: mediaQueryData.size.height / 2.3,
-            child: RiveAsset(
-              riveAnimationPath: AnimationPathConstants.nothingInCategoryPath,
-            ),
+            child: RiveAnimation.asset(
+                AnimationPathConstants.nothingInCategoryPath),
           ),
           Text(
             appLocalization.translate('nothingInCategory'),

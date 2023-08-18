@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class AuthTitle extends StatelessWidget {
@@ -11,9 +10,7 @@ class AuthTitle extends StatelessWidget {
 
     return SizedBox(
       height: mediaQueryData.size.height * 0.3,
-      child: RiveAsset(
-        riveAnimationPath: AnimationPathConstants.logoPath,
-      ),
+      child: RiveAnimation.asset(AnimationPathConstants.logoPath),
     );
   }
 }

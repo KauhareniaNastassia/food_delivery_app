@@ -22,7 +22,7 @@ class _MainPageScreenState extends State<MainPageScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
     )..forward();
     _animation = Tween<double>(
       begin: 0,

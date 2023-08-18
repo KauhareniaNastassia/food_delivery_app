@@ -60,19 +60,23 @@ class _SignInBlockState extends State<SignInBlock> {
               CustomTextField(
                 label: appLocalization.translate('email'),
                 textEditingController: _emailController,
-                validation: (String? email) => emailValidation(
-                  email: email,
-                  appLocalization: appLocalization,
-                ),
+                validation: (String? email) {
+                  return emailValidation(
+                    email: email,
+                    appLocalization: appLocalization,
+                  );
+                },
                 obscureText: false,
               ),
               CustomTextField(
                 label: appLocalization.translate('password'),
                 textEditingController: _passwordController,
-                validation: (String? password) => passwordValidation(
-                  password: password,
-                  appLocalization: appLocalization,
-                ),
+                validation: (String? password) {
+                  return passwordValidation(
+                    password: password,
+                    appLocalization: appLocalization,
+                  );
+                },
                 obscureText: true,
               ),
               SizedBox(height: mediaQueryData.size.height * 0.05),

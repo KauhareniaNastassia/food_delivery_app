@@ -39,7 +39,7 @@ class _SignInPageScreenState extends State<SignInPageScreen>
 
     return Scaffold(
       body: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
+        builder: (BuildContext context, AuthState state) {
           return FadeTransition(
             opacity: _animation,
             child: Center(

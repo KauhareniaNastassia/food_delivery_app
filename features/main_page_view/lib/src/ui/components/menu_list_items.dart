@@ -53,7 +53,7 @@ class _MenuListItemsState extends State<MenuListItems>
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: _animationController,
-      builder: (context, _) {
+      builder: (BuildContext context, _) {
         return FadeTransition(
           opacity: _animation,
           child: ListView.builder(
@@ -61,7 +61,7 @@ class _MenuListItemsState extends State<MenuListItems>
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.menu.length,
-            itemBuilder: (_, index) {
+            itemBuilder: (_, int index) {
               return OpenContainer(
                 closedElevation: 0.0,
                 transitionDuration: const Duration(milliseconds: 600),

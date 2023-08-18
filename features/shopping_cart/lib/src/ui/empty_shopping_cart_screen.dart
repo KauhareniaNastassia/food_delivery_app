@@ -52,9 +52,8 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
             SizedBox(
               width: mediaQueryData.size.width / 1.3,
               height: mediaQueryData.size.height / 2.1,
-              child: RiveAsset(
-                riveAnimationPath: AnimationPathConstants.emptyShoppingCartPath,
-              ),
+              child: RiveAnimation.asset(
+                  AnimationPathConstants.emptyShoppingCartPath),
             ),
             Text(
               appLocalization.translate('nothingInCart'),

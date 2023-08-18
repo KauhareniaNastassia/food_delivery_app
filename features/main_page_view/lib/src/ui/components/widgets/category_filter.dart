@@ -15,7 +15,7 @@ class CategoryFilter extends StatelessWidget {
     final MenuBloc menuBloc = context.read<MenuBloc>();
 
     return BlocBuilder<MenuBloc, MenuState>(
-      builder: (context, state) {
+      builder: (BuildContext context, MenuState state) {
         return SizedBox(
           height: mediaQueryData.size.height * 0.05,
           child: ListView.builder(
