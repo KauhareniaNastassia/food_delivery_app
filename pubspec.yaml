@@ -54,6 +54,7 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/translations/
     - assets/image/
     - assets/image/rive_icons/home_icon.riv
     - assets/image/rive_icons/shapes.riv
@@ -62,8 +63,6 @@ flutter:
     - assets/image/rive_icons/empty_order_history.riv
     - assets/image/rive_icons/shopping_cart_banner.riv
     - assets/image/rive_icons/nothing_in_category.riv
-    - assets/languages/en.json
-    - assets/languages/es.json
 
   fonts:
     - family: Merriweather

@@ -7,7 +7,6 @@ import 'package:order_history/order_history.dart';
 import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
-
 class FoodApp extends StatelessWidget {
   const FoodApp({Key? key}) : super(key: key);
 
@@ -78,7 +77,10 @@ class FoodApp extends StatelessWidget {
             routerDelegate: instance.get<AppRouter>().delegate(),
             routeInformationParser:
                 instance.get<AppRouter>().defaultRouteParser(),
-            supportedLocales: const <Locale>[
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            /*supportedLocales: const <Locale>[
               Locale('en'),
               Locale('es'),
             ],
@@ -90,10 +92,11 @@ class FoodApp extends StatelessWidget {
             ],
             locale: state.isEnglishLanguage
                 ? const Locale('en')
-                : const Locale('es'),
+                : const Locale('es'),*/
           );
         },
       ),
     );
   }
 }
+

@@ -22,7 +22,15 @@ class ShoppingCartListItems extends StatelessWidget {
       itemBuilder: (_, index) {
         return OpenContainer(
           closedElevation: 0.0,
-          transitionDuration: const Duration(milliseconds: 600),
+          openElevation: 0.0,
+          transitionDuration: const Duration(milliseconds: 700),
+          transitionType: ContainerTransitionType.fade,
+          openColor: Colors.transparent,
+          closedColor: Colors.transparent,
+          middleColor: Colors.transparent,
+          closedShape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50.0)),
+          ),
           closedBuilder: (_, action) {
             return ShoppingCartItem(
               key: ValueKey(

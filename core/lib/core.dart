@@ -16,9 +16,12 @@ export 'package:motion_toast/motion_toast.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:permission_handler/permission_handler.dart';
 export 'package:rive/rive.dart';
+export 'package:easy_localization/easy_localization.dart';
+
 
 export 'config/di/app_di.dart';
 export 'config/di/data_di.dart';
+export 'config/di/firebase_options.dart';
 export 'constants/animation_path_constants.dart';
 export 'constants/app_constants.dart';
 export 'constants/error_constants.dart';

@@ -64,8 +64,16 @@ class _MenuListItemsState extends State<MenuListItems>
             itemBuilder: (_, int index) {
               return OpenContainer(
                 closedElevation: 0.0,
-                transitionDuration: const Duration(milliseconds: 600),
-                closedBuilder: (_, action) {
+                openElevation: 0.0,
+                transitionDuration: const Duration(milliseconds: 700),
+                transitionType: ContainerTransitionType.fade,
+                openColor: Colors.transparent,
+                closedColor: Colors.transparent,
+                middleColor: Colors.transparent,
+                closedShape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                ),
+                closedBuilder: (_, void Function() action) {
                   return MenuItem(
                     key: ValueKey(widget.menu[index].id),
                     menuItem: widget.menu[index],

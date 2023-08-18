@@ -51,6 +51,7 @@ class _SignInBlockState extends State<SignInBlock> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
+                //'authScreen.signIn'.tr(),
                 appLocalization.translate('signIn'),
                 style: AppTextStyles.size24WeightBoldText(
                   fontSize: settingsBloc.state.fontSize,

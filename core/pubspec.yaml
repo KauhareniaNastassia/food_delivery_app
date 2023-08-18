@@ -10,8 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
 
   data:
     path: ../data
@@ -33,10 +31,10 @@ dependencies:
   firebase_auth: ^4.7.2
   google_sign_in: ^6.1.4
   path_provider: ^2.1.0
-  intl: ^0.18.0
   flutter_svg: ^2.0.6
   animations: ^2.0.7
   rive: ^0.11.14
+  easy_localization: ^3.0.2
 
 dev_dependencies:
   flutter_test:
