@@ -77,10 +77,10 @@ class FoodApp extends StatelessWidget {
             routerDelegate: instance.get<AppRouter>().delegate(),
             routeInformationParser:
                 instance.get<AppRouter>().defaultRouteParser(),
-            localizationsDelegates: context.localizationDelegates,
+            /*localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            /*supportedLocales: const <Locale>[
+            locale: context.locale,*/
+            supportedLocales: const <Locale>[
               Locale('en'),
               Locale('es'),
             ],
@@ -92,7 +92,7 @@ class FoodApp extends StatelessWidget {
             ],
             locale: state.isEnglishLanguage
                 ? const Locale('en')
-                : const Locale('es'),*/
+                : const Locale('es'),
           );
         },
       ),
