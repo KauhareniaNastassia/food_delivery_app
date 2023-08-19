@@ -52,6 +52,18 @@ class DataDI {
     Hive.registerAdapter(
       instance.get<UserInfoEntityAdapter>(),
     );
+    Hive.registerAdapter(
+      instance.get<MenuItemTitleEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      instance.get<MenuItemDescriptionEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      instance.get<MenuItemIngredientsEntityAdapter>(),
+    );
+    Hive.registerAdapter(
+      instance.get<MenuItemCategoryEntityAdapter>(),
+    );
   }
 
   void _initAdapters() {
@@ -63,6 +75,18 @@ class DataDI {
     );
     instance.registerLazySingleton<UserInfoEntityAdapter>(
       () => UserInfoEntityAdapter(),
+    );
+    instance.registerLazySingleton<MenuItemTitleEntityAdapter>(
+      () => MenuItemTitleEntityAdapter(),
+    );
+    instance.registerLazySingleton<MenuItemDescriptionEntityAdapter>(
+      () => MenuItemDescriptionEntityAdapter(),
+    );
+    instance.registerLazySingleton<MenuItemIngredientsEntityAdapter>(
+          () => MenuItemIngredientsEntityAdapter(),
+    );
+    instance.registerLazySingleton<MenuItemCategoryEntityAdapter>(
+          () => MenuItemCategoryEntityAdapter(),
     );
   }
 

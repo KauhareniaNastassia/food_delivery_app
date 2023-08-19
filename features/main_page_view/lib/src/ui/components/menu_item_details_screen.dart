@@ -77,16 +77,19 @@ class _MenuItemDetailsScreenState extends State<MenuItemDetailsScreen> {
                     children: <Widget>[
                       const SizedBox(height: 20),
                       MenuItemDetailsTitle(
-                        title: widget.menuItem.title,
+                        //title: widget.menuItem.title,
+                        title: widget.menuItem.titles[0].title,
                         cost: widget.menuItem.cost,
                       ),
                       const SizedBox(height: 20),
                       MenuItemDetailsDescription(
-                        description: widget.menuItem.description,
+                        //description: widget.menuItem.description,
+                        description: widget.menuItem.descriptions[0].description,
                       ),
                       const SizedBox(height: 20),
                       MenuItemDetailsIngredients(
-                        ingredients: widget.menuItem.ingredients,
+                        //ingredients: widget.menuItem.ingredients,
+                        ingredients: widget.menuItem.ingredients[0].ingredientsList,
                       ),
                     ],
                   ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:data/data.dart';
 
 class FirebaseFireStoreProvider {
@@ -8,15 +10,41 @@ class FirebaseFireStoreProvider {
   });
 
   ///menu
-  Future<List<MenuItemEntity>> fetchMenuItems() async {
-    final querySnapshot = await fireStore.collection('menu').get();
+ /* Future<List<MenuItemEntity>> fetchMenuItems() async {
+    final querySnapshot = await fireStore.collection('newMenu').get();
 
+log('FirebaseFireStoreProvider');
+log(querySnapshot.docs
+    .map(
+      (doc) => MenuItemEntity.fromJson(doc.data()),
+)
+    .toList().toString());
     return querySnapshot.docs
         .map(
           (doc) => MenuItemEntity.fromJson(doc.data()),
         )
         .toList();
+  }*/
+
+  Future<List<MenuItemEntity>> fetchMenuItems() async {
+    try {
+      final querySnapshot = await fireStore.collection('newMenu').get();
+
+      //log('FirebaseFireStoreProvider');
+
+      return querySnapshot.docs
+          .map(
+            (doc) => MenuItemEntity.fromJson(doc.data()),
+      )
+          .toList();
+    } catch (e) {
+      // Handle the exception here
+      log('An error occurred while fetching menu items: $e');
+      return []; // Return an empty list or handle the error in an appropriate way
+    }
   }
+
+
 
   ///order history
   Future<List<OrderItemEntity>> fetchOrderHistory(String userId) async {

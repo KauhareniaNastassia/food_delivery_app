@@ -43,7 +43,8 @@ class ShoppingCartItem extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 10),
                       alignment: Alignment.centerLeft,
                       child: ShoppingCartItemInfo(
-                        title: shoppingCartItem.menuItem.title,
+                        //title: shoppingCartItem.menuItem.title,
+                        title: shoppingCartItem.menuItem.titles[0].title,
                         cost: shoppingCartItem.menuItem.cost,
                         amount: shoppingCartItem.amount,
                       ),

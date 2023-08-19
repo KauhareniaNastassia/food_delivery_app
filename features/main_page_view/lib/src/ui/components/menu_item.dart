@@ -3,6 +3,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
+import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
 class MenuItem extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     ShoppingCartItemModel? findItemInShoppingCart(MenuItemModel menuItem) {
       for (final item
@@ -45,7 +47,10 @@ class _MenuItemState extends State<MenuItem> {
               child: Stack(
                 children: <Widget>[
                   MenuItemTitle(
-                    title: widget.menuItem.title,
+                    //title: widget.menuItem.title,
+
+                    //title: widget.menuItem.titles[0].title,
+                    title:  widget.menuItem.getTitleByLanguage(settingsBloc.state.isEnglishLanguage ? 'en' : 'es'),
                     cost: widget.menuItem.cost,
                   ),
                   MenuItemImage(

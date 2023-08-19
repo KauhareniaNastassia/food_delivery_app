@@ -17,12 +17,15 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MenuItemModel {
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  List<MenuItemTitleModel> get titles => throw _privateConstructorUsedError;
   double get cost => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  List<String> get ingredients => throw _privateConstructorUsedError;
-  String get category => throw _privateConstructorUsedError;
+  List<MenuItemDescriptionModel> get descriptions =>
+      throw _privateConstructorUsedError;
+  List<MenuItemIngredientsModel> get ingredients =>
+      throw _privateConstructorUsedError;
+  List<MenuItemCategoryModel> get categories =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MenuItemModelCopyWith<MenuItemModel> get copyWith =>
@@ -37,12 +40,12 @@ abstract class $MenuItemModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
+      List<MenuItemTitleModel> titles,
       double cost,
       String image,
-      String description,
-      List<String> ingredients,
-      String category});
+      List<MenuItemDescriptionModel> descriptions,
+      List<MenuItemIngredientsModel> ingredients,
+      List<MenuItemCategoryModel> categories});
 }
 
 /// @nodoc
@@ -59,22 +62,22 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
+    Object? titles = null,
     Object? cost = null,
     Object? image = null,
-    Object? description = null,
+    Object? descriptions = null,
     Object? ingredients = null,
-    Object? category = null,
+    Object? categories = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      titles: null == titles
+          ? _value.titles
+          : titles // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemTitleModel>,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
@@ -83,18 +86,18 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      descriptions: null == descriptions
+          ? _value.descriptions
+          : descriptions // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemDescriptionModel>,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<MenuItemIngredientsModel>,
+      categories: null == categories
+          ? _value.categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemCategoryModel>,
     ) as $Val);
   }
 }
@@ -109,12 +112,12 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String title,
+      List<MenuItemTitleModel> titles,
       double cost,
       String image,
-      String description,
-      List<String> ingredients,
-      String category});
+      List<MenuItemDescriptionModel> descriptions,
+      List<MenuItemIngredientsModel> ingredients,
+      List<MenuItemCategoryModel> categories});
 }
 
 /// @nodoc
@@ -129,22 +132,22 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
+    Object? titles = null,
     Object? cost = null,
     Object? image = null,
-    Object? description = null,
+    Object? descriptions = null,
     Object? ingredients = null,
-    Object? category = null,
+    Object? categories = null,
   }) {
     return _then(_$_MenuItemModel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      titles: null == titles
+          ? _value._titles
+          : titles // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemTitleModel>,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
@@ -153,18 +156,18 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      descriptions: null == descriptions
+          ? _value._descriptions
+          : descriptions // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemDescriptionModel>,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<MenuItemIngredientsModel>,
+      categories: null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemCategoryModel>,
     ));
   }
 }
@@ -174,38 +177,58 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
 class _$_MenuItemModel implements _MenuItemModel {
   _$_MenuItemModel(
       {required this.id,
-      required this.title,
+      required final List<MenuItemTitleModel> titles,
       required this.cost,
       required this.image,
-      required this.description,
-      required final List<String> ingredients,
-      required this.category})
-      : _ingredients = ingredients;
+      required final List<MenuItemDescriptionModel> descriptions,
+      required final List<MenuItemIngredientsModel> ingredients,
+      required final List<MenuItemCategoryModel> categories})
+      : _titles = titles,
+        _descriptions = descriptions,
+        _ingredients = ingredients,
+        _categories = categories;
 
   @override
   final int id;
+  final List<MenuItemTitleModel> _titles;
   @override
-  final String title;
+  List<MenuItemTitleModel> get titles {
+    if (_titles is EqualUnmodifiableListView) return _titles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_titles);
+  }
+
   @override
   final double cost;
   @override
   final String image;
+  final List<MenuItemDescriptionModel> _descriptions;
   @override
-  final String description;
-  final List<String> _ingredients;
+  List<MenuItemDescriptionModel> get descriptions {
+    if (_descriptions is EqualUnmodifiableListView) return _descriptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_descriptions);
+  }
+
+  final List<MenuItemIngredientsModel> _ingredients;
   @override
-  List<String> get ingredients {
+  List<MenuItemIngredientsModel> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
   }
 
+  final List<MenuItemCategoryModel> _categories;
   @override
-  final String category;
+  List<MenuItemCategoryModel> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
 
   @override
   String toString() {
-    return 'MenuItemModel(id: $id, title: $title, cost: $cost, image: $image, description: $description, ingredients: $ingredients, category: $category)';
+    return 'MenuItemModel(id: $id, titles: $titles, cost: $cost, image: $image, descriptions: $descriptions, ingredients: $ingredients, categories: $categories)';
   }
 
   @override
@@ -214,20 +237,27 @@ class _$_MenuItemModel implements _MenuItemModel {
         (other.runtimeType == runtimeType &&
             other is _$_MenuItemModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._titles, _titles) &&
             (identical(other.cost, cost) || other.cost == cost) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._descriptions, _descriptions) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
-            (identical(other.category, category) ||
-                other.category == category));
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, cost, image,
-      description, const DeepCollectionEquality().hash(_ingredients), category);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(_titles),
+      cost,
+      image,
+      const DeepCollectionEquality().hash(_descriptions),
+      const DeepCollectionEquality().hash(_ingredients),
+      const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
@@ -238,28 +268,29 @@ class _$_MenuItemModel implements _MenuItemModel {
 
 abstract class _MenuItemModel implements MenuItemModel {
   factory _MenuItemModel(
-      {required final int id,
-      required final String title,
-      required final double cost,
-      required final String image,
-      required final String description,
-      required final List<String> ingredients,
-      required final String category}) = _$_MenuItemModel;
+          {required final int id,
+          required final List<MenuItemTitleModel> titles,
+          required final double cost,
+          required final String image,
+          required final List<MenuItemDescriptionModel> descriptions,
+          required final List<MenuItemIngredientsModel> ingredients,
+          required final List<MenuItemCategoryModel> categories}) =
+      _$_MenuItemModel;
 
   @override
   int get id;
   @override
-  String get title;
+  List<MenuItemTitleModel> get titles;
   @override
   double get cost;
   @override
   String get image;
   @override
-  String get description;
+  List<MenuItemDescriptionModel> get descriptions;
   @override
-  List<String> get ingredients;
+  List<MenuItemIngredientsModel> get ingredients;
   @override
-  String get category;
+  List<MenuItemCategoryModel> get categories;
   @override
   @JsonKey(ignore: true)
   _$$_MenuItemModelCopyWith<_$_MenuItemModel> get copyWith =>

@@ -28,3 +28,4 @@ export 'constants/error_constants.dart';
 export 'date_formatter/date_formatter.dart';
 export 'enums/enums.dart';
 export 'validation/validation.dart';
+export 'extensions/extensions.dart';

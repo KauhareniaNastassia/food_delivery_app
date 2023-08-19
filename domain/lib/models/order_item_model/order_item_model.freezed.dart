@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$OrderItemModel {
-  int get id => throw _privateConstructorUsedError; //required String userId,
+  int get id => throw _privateConstructorUsedError;
   ShoppingCartModel get shoppingCart => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
 
@@ -119,7 +119,6 @@ class _$_OrderItemModel implements _OrderItemModel {
 
   @override
   final int id;
-//required String userId,
   @override
   final ShoppingCartModel shoppingCart;
   @override
@@ -159,7 +158,7 @@ abstract class _OrderItemModel implements OrderItemModel {
 
   @override
   int get id;
-  @override //required String userId,
+  @override
   ShoppingCartModel get shoppingCart;
   @override
   String get date;

@@ -1,3 +1,4 @@
+/*
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -14,21 +15,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MenuItemEntity _$MenuItemEntityFromJson(Map<String, dynamic> json) {
-  return _MenuItemEntity.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MenuItemEntity {
   int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  List<MenuItemTitleEntity> get titles => throw _privateConstructorUsedError;
   double get cost => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  List<String> get ingredients => throw _privateConstructorUsedError;
+  List<MenuItemDescriptionEntity> get descriptions =>
+      throw _privateConstructorUsedError;
+  List<MenuItemIngredientsEntity> get ingredients =>
+      throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MenuItemEntityCopyWith<MenuItemEntity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -42,11 +40,11 @@ abstract class $MenuItemEntityCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String title,
+      List<MenuItemTitleEntity> titles,
       double cost,
       String image,
-      String description,
-      List<String> ingredients,
+      List<MenuItemDescriptionEntity> descriptions,
+      List<MenuItemIngredientsEntity> ingredients,
       String category});
 }
 
@@ -64,10 +62,10 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
+    Object? titles = null,
     Object? cost = null,
     Object? image = null,
-    Object? description = null,
+    Object? descriptions = null,
     Object? ingredients = null,
     Object? category = null,
   }) {
@@ -76,10 +74,10 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      titles: null == titles
+          ? _value.titles
+          : titles // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemTitleEntity>,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
@@ -88,14 +86,14 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      descriptions: null == descriptions
+          ? _value.descriptions
+          : descriptions // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemDescriptionEntity>,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<MenuItemIngredientsEntity>,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -114,11 +112,11 @@ abstract class _$$_MenuItemEntityCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      String title,
+      List<MenuItemTitleEntity> titles,
       double cost,
       String image,
-      String description,
-      List<String> ingredients,
+      List<MenuItemDescriptionEntity> descriptions,
+      List<MenuItemIngredientsEntity> ingredients,
       String category});
 }
 
@@ -134,10 +132,10 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? title = null,
+    Object? titles = null,
     Object? cost = null,
     Object? image = null,
-    Object? description = null,
+    Object? descriptions = null,
     Object? ingredients = null,
     Object? category = null,
   }) {
@@ -146,10 +144,10 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      titles: null == titles
+          ? _value._titles
+          : titles // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemTitleEntity>,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
@@ -158,14 +156,14 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      descriptions: null == descriptions
+          ? _value._descriptions
+          : descriptions // ignore: cast_nullable_to_non_nullable
+              as List<MenuItemDescriptionEntity>,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<MenuItemIngredientsEntity>,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -175,34 +173,45 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_MenuItemEntity implements _MenuItemEntity {
   _$_MenuItemEntity(
       {required this.id,
-      required this.title,
+      required final List<MenuItemTitleEntity> titles,
       required this.cost,
       required this.image,
-      required this.description,
-      required final List<String> ingredients,
+      required final List<MenuItemDescriptionEntity> descriptions,
+      required final List<MenuItemIngredientsEntity> ingredients,
       required this.category})
-      : _ingredients = ingredients;
-
-  factory _$_MenuItemEntity.fromJson(Map<String, dynamic> json) =>
-      _$$_MenuItemEntityFromJson(json);
+      : _titles = titles,
+        _descriptions = descriptions,
+        _ingredients = ingredients;
 
   @override
   final int id;
+  final List<MenuItemTitleEntity> _titles;
   @override
-  final String title;
+  List<MenuItemTitleEntity> get titles {
+    if (_titles is EqualUnmodifiableListView) return _titles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_titles);
+  }
+
   @override
   final double cost;
   @override
   final String image;
+  final List<MenuItemDescriptionEntity> _descriptions;
   @override
-  final String description;
-  final List<String> _ingredients;
+  List<MenuItemDescriptionEntity> get descriptions {
+    if (_descriptions is EqualUnmodifiableListView) return _descriptions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_descriptions);
+  }
+
+  final List<MenuItemIngredientsEntity> _ingredients;
   @override
-  List<String> get ingredients {
+  List<MenuItemIngredientsEntity> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_ingredients);
@@ -213,7 +222,7 @@ class _$_MenuItemEntity implements _MenuItemEntity {
 
   @override
   String toString() {
-    return 'MenuItemEntity(id: $id, title: $title, cost: $cost, image: $image, description: $description, ingredients: $ingredients, category: $category)';
+    return 'MenuItemEntity(id: $id, titles: $titles, cost: $cost, image: $image, descriptions: $descriptions, ingredients: $ingredients, category: $category)';
   }
 
   @override
@@ -222,34 +231,33 @@ class _$_MenuItemEntity implements _MenuItemEntity {
         (other.runtimeType == runtimeType &&
             other is _$_MenuItemEntity &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
+            const DeepCollectionEquality().equals(other._titles, _titles) &&
             (identical(other.cost, cost) || other.cost == cost) &&
             (identical(other.image, image) || other.image == image) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._descriptions, _descriptions) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
             (identical(other.category, category) ||
                 other.category == category));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, cost, image,
-      description, const DeepCollectionEquality().hash(_ingredients), category);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      const DeepCollectionEquality().hash(_titles),
+      cost,
+      image,
+      const DeepCollectionEquality().hash(_descriptions),
+      const DeepCollectionEquality().hash(_ingredients),
+      category);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_MenuItemEntityCopyWith<_$_MenuItemEntity> get copyWith =>
       __$$_MenuItemEntityCopyWithImpl<_$_MenuItemEntity>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_MenuItemEntityToJson(
-      this,
-    );
-  }
 
   @override
   Map<String, dynamic> toMap() {
@@ -261,28 +269,25 @@ class _$_MenuItemEntity implements _MenuItemEntity {
 abstract class _MenuItemEntity implements MenuItemEntity {
   factory _MenuItemEntity(
       {required final int id,
-      required final String title,
+      required final List<MenuItemTitleEntity> titles,
       required final double cost,
       required final String image,
-      required final String description,
-      required final List<String> ingredients,
+      required final List<MenuItemDescriptionEntity> descriptions,
+      required final List<MenuItemIngredientsEntity> ingredients,
       required final String category}) = _$_MenuItemEntity;
-
-  factory _MenuItemEntity.fromJson(Map<String, dynamic> json) =
-      _$_MenuItemEntity.fromJson;
 
   @override
   int get id;
   @override
-  String get title;
+  List<MenuItemTitleEntity> get titles;
   @override
   double get cost;
   @override
   String get image;
   @override
-  String get description;
+  List<MenuItemDescriptionEntity> get descriptions;
   @override
-  List<String> get ingredients;
+  List<MenuItemIngredientsEntity> get ingredients;
   @override
   String get category;
   @override
@@ -290,3 +295,4 @@ abstract class _MenuItemEntity implements MenuItemEntity {
   _$$_MenuItemEntityCopyWith<_$_MenuItemEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
+*/

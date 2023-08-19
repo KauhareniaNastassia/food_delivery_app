@@ -1,10 +1,24 @@
+import 'dart:developer';
+
 import 'package:data/data.dart';
 
 class HiveProvider {
   ///menu
   Future<void> saveMenuItemsToLocal(List<MenuItemEntity> menuItems) async {
-    final Box<MenuItemEntity> menuItemsBox = await Hive.openBox('menuItems');
-    await menuItemsBox.addAll(menuItems);
+    log("saveMenuItemsToLocal");
+    log(menuItems[0].cost.toString());
+    try{
+      final Box<MenuItemEntity> menuItemsBox = await Hive.openBox('menuItems');
+      log(menuItemsBox.toString());
+      log("saveMenuItemsToLocal");
+      await menuItemsBox.addAll(menuItems);
+      log("saveMenuItemsToLocal");
+    }catch(e) {
+      log(e.toString());
+    }
+
+
+
   }
 
   Future<List<MenuItemEntity>> getMenuItemsFromLocal() async {

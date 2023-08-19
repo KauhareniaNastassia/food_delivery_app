@@ -34,7 +34,7 @@ class ListOfOrderedMenuItems extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       '${orderedItems[index].amount} x '
-                      '${orderedItems[index].menuItem.title}',
+                      '${/*orderedItems[index].menuItem.title*/orderedItems[index].menuItem.titles[0].title}',
                       style: theme.textTheme.bodySmall,
                     ),
                     Text(

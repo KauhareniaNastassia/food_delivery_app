@@ -91,7 +91,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       );
     } else {
       final List<MenuItemModel> filteredMenu =
-          state.menu.where((item) => item.category == event.category).toList();
+          state.menu.where((item) => item.categories[0].category == event.category).toList();
 
       emit(
         state.copyWith(
