@@ -6,7 +6,9 @@ import '../entities.dart';
 part 'menu_item_entity.freezed.dart';
 part 'menu_item_entity.g.dart';
 
-@freezed
+
+
+/*@freezed
 @HiveType(typeId: 0, adapterName: 'MenuItemEntityAdapter')
 class MenuItemEntity extends HiveObject with _$MenuItemEntity {
 
@@ -36,9 +38,9 @@ class MenuItemEntity extends HiveObject with _$MenuItemEntity {
       'categories': categories,
     };
   }
-}
+}*/
 
-/*class MenuItemEntity {
+class MenuItemEntity {
   final int id;
   final List<MenuItemTitleEntity> titles;
   final double cost;
@@ -115,5 +117,5 @@ class MenuItemEntity extends HiveObject with _$MenuItemEntity {
       'categories': categories.map((category) => category.toMap()).toList(),
     };
   }
-}*/
+}
 

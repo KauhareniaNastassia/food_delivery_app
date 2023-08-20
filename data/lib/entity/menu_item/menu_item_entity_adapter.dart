@@ -2,6 +2,62 @@ import 'dart:developer';
 
 import 'package:data/data.dart';
 
+class MenuItemEntityAdapter extends TypeAdapter<MenuItemEntity> {
+  @override
+  final int typeId = 0; // Unique identifier for the adapter
+
+  @override
+  MenuItemEntity read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+
+    return MenuItemEntity(
+      id: fields[0] as int,
+      titles: (fields[1] as List<dynamic>)
+          .map((titleItemJson) => MenuItemTitleEntity.fromJson(titleItemJson))
+          .toList(),
+      cost: fields[2] as double,
+      image: fields[3] as String,
+      descriptions: (fields[4] as List<dynamic>)
+          .map((descriptionItemJson) =>
+          MenuItemDescriptionEntity.fromJson(descriptionItemJson))
+          .toList(),
+      ingredients: (fields[5] as List<dynamic>)
+          .map((ingredientItemJson) =>
+          MenuItemIngredientsEntity.fromJson(ingredientItemJson))
+          .toList(),
+      categories: (fields[6] as List<dynamic>)
+          .map((categoryItemJson) =>
+          MenuItemCategoryEntity.fromJson(categoryItemJson))
+          .toList(),
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, MenuItemEntity obj) {
+    writer
+      ..writeByte(7) // Number of fields in the object
+      ..writeByte(0) // Field index 0
+      ..write(obj.id)
+      ..writeByte(1) // Field index 1
+      ..write(obj.titles)
+      ..writeByte(2) // Field index 2
+      ..write(obj.cost)
+      ..writeByte(3) // Field index 3
+      ..write(obj.image)
+      ..writeByte(4) // Field index 4
+      ..write(obj.descriptions)
+      ..writeByte(5) // Field index 5
+      ..write(obj.ingredients)
+      ..writeByte(6) // Field index 6
+      ..write(obj.categories);
+  }
+}
+
+
+
 /*class MenuItemEntityAdapter extends TypeAdapter<MenuItemEntity> {
   @override
   final int typeId = 0;

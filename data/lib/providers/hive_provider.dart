@@ -10,7 +10,9 @@ class HiveProvider {
     try{
       log("saveMenuItemsToLocal");
       log(menuItems[0].id.toString());
+
       final Box<MenuItemEntity> menuItemsBox = await Hive.openBox('menuItems');
+      await menuItemsBox.clear();
       log(menuItemsBox.toString());
       log("saveMenuItemsToLocal");
       await menuItemsBox.addAll(menuItems);
