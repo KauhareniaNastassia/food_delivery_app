@@ -27,21 +27,12 @@ log(querySnapshot.docs
   }*/
 
   Future<List<MenuItemEntity>> fetchMenuItems() async {
-    try {
-      final querySnapshot = await fireStore.collection('newMenu').get();
-
-      //log('FirebaseFireStoreProvider');
-
-      return querySnapshot.docs
-          .map(
-            (doc) => MenuItemEntity.fromJson(doc.data()),
-      )
-          .toList();
-    } catch (e) {
-      // Handle the exception here
-      log('An error occurred while fetching menu items: $e');
-      return []; // Return an empty list or handle the error in an appropriate way
-    }
+    final querySnapshot = await fireStore.collection('newMenu').get();
+    return querySnapshot.docs
+        .map(
+          (doc) => MenuItemEntity.fromJson(doc.data()),
+    )
+        .toList();
   }
 
 

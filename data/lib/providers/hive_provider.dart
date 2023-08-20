@@ -6,8 +6,10 @@ class HiveProvider {
   ///menu
   Future<void> saveMenuItemsToLocal(List<MenuItemEntity> menuItems) async {
     log("saveMenuItemsToLocal");
-    log(menuItems[0].cost.toString());
+    log(menuItems[0].id.toString());
     try{
+      log("saveMenuItemsToLocal");
+      log(menuItems[0].id.toString());
       final Box<MenuItemEntity> menuItemsBox = await Hive.openBox('menuItems');
       log(menuItemsBox.toString());
       log("saveMenuItemsToLocal");

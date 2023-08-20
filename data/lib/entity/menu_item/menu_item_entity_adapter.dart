@@ -12,8 +12,8 @@ import 'package:data/data.dart';
     return MenuItemEntity(
       id: reader.read(),
       titles: reader.readList().cast<MenuItemTitleEntity>(),
-      cost: reader.read() ?? 0.0,
-      image: reader.read() ?? '',
+      cost: reader.read(),
+      image: reader.read(),
       descriptions: reader.readList().cast<MenuItemDescriptionEntity>(),
       ingredients: reader.readList().cast<MenuItemIngredientsEntity>(),
       categories: reader.readList().cast<MenuItemCategoryEntity>(),
@@ -39,7 +39,7 @@ import 'package:data/data.dart';
   }
 }*/
 
-class MenuItemEntityAdapter extends TypeAdapter<MenuItemEntity> {
+/*class MenuItemEntityAdapter extends TypeAdapter<MenuItemEntity> {
   @override
   final int typeId = 0;
 
@@ -94,10 +94,10 @@ class MenuItemEntityAdapter extends TypeAdapter<MenuItemEntity> {
     writer.writeInt(obj.categories.length);
     obj.categories.forEach((category) => writer.writeMap(category.toMap()));
   }
-}
+}*/
 
 
-class MenuItemTitleEntityAdapter extends TypeAdapter<MenuItemTitleEntity> {
+/*class MenuItemTitleEntityAdapter extends TypeAdapter<MenuItemTitleEntity> {
   @override
   final int typeId = 3; // Assign a unique ID for this adapter
 
@@ -181,4 +181,4 @@ class MenuItemCategoryEntityAdapter extends TypeAdapter<MenuItemCategoryEntity> 
     writer.write(obj.category);
     writer.write(obj.languageCode);
   }
-}
+}*/

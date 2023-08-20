@@ -3,7 +3,45 @@ import 'dart:developer';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-class MenuItemEntity {
+import '../../data.dart';
+import '../entities.dart';
+
+part 'menu_item_entity.freezed.dart';
+part 'menu_item_entity.g.dart';
+
+@freezed
+@HiveType(typeId: 0, adapterName: 'MenuItemEntityAdapter')
+class MenuItemEntity extends HiveObject with _$MenuItemEntity {
+
+  MenuItemEntity._();
+
+  factory MenuItemEntity({
+    @HiveField(0) required int id,
+    @HiveField(1) required List<MenuItemTitleEntity> titles,
+    @HiveField(2) required double cost,
+    @HiveField(3) required String image,
+    @HiveField(4) required List<MenuItemDescriptionEntity> descriptions,
+    @HiveField(5) required List<MenuItemIngredientsEntity> ingredients,
+    @HiveField(6) required List<MenuItemCategoryEntity> categories,
+  }) = _MenuItemEntity;
+
+  factory MenuItemEntity.fromJson(Map<String, dynamic> json) =>
+      _$MenuItemEntityFromJson(json);
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'titles': titles,
+      'cost': cost,
+      'image': image,
+      'descriptions': descriptions,
+      'ingredients': ingredients,
+      'categories': categories,
+    };
+  }
+}
+
+/*class MenuItemEntity {
   final int id;
   final List<MenuItemTitleEntity> titles;
   final double cost;
@@ -80,109 +118,5 @@ class MenuItemEntity {
       'categories': categories.map((category) => category.toMap()).toList(),
     };
   }
-}
+}*/
 
-class MenuItemTitleEntity {
-  final String title;
-  final String languageCode;
-
-  const MenuItemTitleEntity({
-    required this.title,
-    required this.languageCode,
-  });
-
-  factory MenuItemTitleEntity.fromJson(Map<String, dynamic> json) {
-    return MenuItemTitleEntity(
-      title: json['title'],
-      languageCode: json['languageCode'],
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'title': title,
-      'languageCode': languageCode,
-    };
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'title': title,
-      'languageCode': languageCode,
-    };
-  }
-}
-
-class MenuItemDescriptionEntity {
-  final String description;
-  final String languageCode;
-
-  const MenuItemDescriptionEntity({
-    required this.description,
-    required this.languageCode,
-  });
-
-  factory MenuItemDescriptionEntity.fromJson(Map<String, dynamic> json) {
-    /*log('MenuItemDescriptionEntity.fromJson');
-    log(json.toString());*/
-    return MenuItemDescriptionEntity(
-      description: json['description'],
-      languageCode: json['languageCode'],
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'description': description,
-      'languageCode': languageCode,
-    };
-  }
-}
-
-class MenuItemIngredientsEntity {
-  final List<String> ingredientsList;
-  final String languageCode;
-
-  const MenuItemIngredientsEntity({
-    required this.ingredientsList,
-    required this.languageCode,
-  });
-
-  factory MenuItemIngredientsEntity.fromJson(Map<String, dynamic> json) {
-    return MenuItemIngredientsEntity(
-      ingredientsList: List<String>.from(json['ingredientsList']),
-      languageCode: json['languageCode'],
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'ingredientsList': ingredientsList,
-      'languageCode': languageCode,
-    };
-  }
-}
-
-class MenuItemCategoryEntity {
-  final String category;
-  final String languageCode;
-
-  const MenuItemCategoryEntity({
-    required this.category,
-    required this.languageCode,
-  });
-
-  factory MenuItemCategoryEntity.fromJson(Map<String, dynamic> json) {
-    return MenuItemCategoryEntity(
-      category: json['category'],
-      languageCode: json['languageCode'],
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'category': category,
-      'languageCode': languageCode,
-    };
-  }
-}

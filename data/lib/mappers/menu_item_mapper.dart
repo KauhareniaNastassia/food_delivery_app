@@ -1,5 +1,6 @@
 import 'package:data/data.dart';
 import 'package:domain/domain.dart';
+import '../entity/entities.dart';
 
 /*abstract class MenuItemMapper {
   static MenuItemEntity toEntity(MenuItemModel model) {

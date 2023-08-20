@@ -3,8 +3,6 @@ import 'package:domain/domain.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 
-import 'firebase_options.dart';
-
 final DataDI dataDI = DataDI();
 final GetIt instance = GetIt.instance;
 
@@ -52,7 +50,8 @@ class DataDI {
     Hive.registerAdapter(
       instance.get<UserInfoEntityAdapter>(),
     );
-    Hive.registerAdapter(
+
+    /* Hive.registerAdapter(
       instance.get<MenuItemTitleEntityAdapter>(),
     );
     Hive.registerAdapter(
@@ -63,7 +62,7 @@ class DataDI {
     );
     Hive.registerAdapter(
       instance.get<MenuItemCategoryEntityAdapter>(),
-    );
+    );*/
   }
 
   void _initAdapters() {
@@ -76,7 +75,7 @@ class DataDI {
     instance.registerLazySingleton<UserInfoEntityAdapter>(
       () => UserInfoEntityAdapter(),
     );
-    instance.registerLazySingleton<MenuItemTitleEntityAdapter>(
+    /*instance.registerLazySingleton<MenuItemTitleEntityAdapter>(
       () => MenuItemTitleEntityAdapter(),
     );
     instance.registerLazySingleton<MenuItemDescriptionEntityAdapter>(
@@ -87,7 +86,7 @@ class DataDI {
     );
     instance.registerLazySingleton<MenuItemCategoryEntityAdapter>(
           () => MenuItemCategoryEntityAdapter(),
-    );
+    );*/
   }
 
   Future<void> _initProviders() async {
@@ -198,13 +197,13 @@ class DataDI {
     );
 
     instance.registerLazySingleton<GetLanguageUseCase>(
-          () => GetLanguageUseCase(
+      () => GetLanguageUseCase(
         settingsRepository: instance.get<SettingsRepository>(),
       ),
     );
 
     instance.registerLazySingleton<SetLanguageUseCase>(
-          () => SetLanguageUseCase(
+      () => SetLanguageUseCase(
         settingsRepository: instance.get<SettingsRepository>(),
       ),
     );

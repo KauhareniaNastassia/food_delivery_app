@@ -56,7 +56,8 @@ class MenuRepositoryImpl implements MenuRepository {
         final List<MenuItemEntity> menuItemsFromDB =
         await _firebaseFireStoreProvider.fetchMenuItems();
 
-        //log(menuItemsFromDB[0].cost.toString());
+        log(menuItemsFromDB[0].toString());
+
 
         await _hiveProvider.saveMenuItemsToLocal(menuItemsFromDB);
 
