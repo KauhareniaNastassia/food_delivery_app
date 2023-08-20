@@ -10,8 +10,7 @@
   "toDarkTheme": "Switch to dark theme",
   "toLightTheme": "Switch to light theme",
   "changeFontSize": "Change app font size",
-  "changeToEnglish": "Change to English",
-  "changeToSpanish": "Change to Spanish",
+  "changeLanguage": "Change to Spanish",
   "contactViaLinks": "Do you need help? Contact us via links below",
 
   "addToCart": "Add to cart",
@@ -19,6 +18,7 @@
   "noIngredients": "No ingredients available",
   "ingredients": "Ingredients:",
   "nothingInCategory": "There is nothing here yet",
+  "noDescription": "No description available",
 
   "needCutlery": "Do you need cutlery?",
   "totalPrice": "Total price",

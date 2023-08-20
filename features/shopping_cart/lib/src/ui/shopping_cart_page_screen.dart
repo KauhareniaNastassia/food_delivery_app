@@ -21,7 +21,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final OrderHistoryBloc orderHistoryBloc = context.read<OrderHistoryBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
+    //final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return SafeArea(
       child: BlocConsumer<ShoppingCartBloc, ShoppingCartState>(
@@ -29,7 +29,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
           if (state.shoppingCart.addCutlery) {
             NotificationToast.showNotification(
               context,
-              appLocalization.translate('addCutleryToCart'),
+              'addCutleryToCart'.tr(),
               mediaQueryData,
               settingsBloc,
               Icons.expand_circle_down_outlined,
@@ -62,7 +62,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
                   orderHistoryBloc.state.exception == ''
                       ? NotificationToast.showNotification(
                           context,
-                          appLocalization.translate('successfulOrder'),
+                          'successfulOrder'.tr(),
                           mediaQueryData,
                           settingsBloc,
                           Icons.check_circle_outline,
@@ -70,7 +70,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
                         )
                       : NotificationToast.showNotification(
                           context,
-                          appLocalization.translate('unSuccessfulOrder'),
+                          'unSuccessfulOrder'.tr(),
                           mediaQueryData,
                           settingsBloc,
                           Icons.error_outline_rounded,

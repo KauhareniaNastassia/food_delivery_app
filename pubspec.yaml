@@ -11,8 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
 
   domain:
     path: ./domain
@@ -34,8 +32,6 @@ dependencies:
     path: ./features/order_history
 
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.14.0
-  rive: ^0.11.14
 
 dev_dependencies:
   flutter_test:

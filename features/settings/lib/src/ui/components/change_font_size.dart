@@ -9,13 +9,12 @@ class ChangeFontSizeSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          appLocalization.translate('changeFontSize'),
+          'changeFontSize'.tr(),
           style: theme.textTheme.titleLarge,
         ),
         const SizedBox(height: 10),

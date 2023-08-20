@@ -1,3 +1,5 @@
+import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
@@ -5,6 +7,8 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final String? Function(String?) validation;
   final bool obscureText;
+  final VoidCallback? onPressed;
+  final bool? obscurePassword;
 
   const CustomTextField({
     super.key,
@@ -12,6 +16,8 @@ class CustomTextField extends StatelessWidget {
     required this.textEditingController,
     required this.validation,
     required this.obscureText,
+    this.onPressed,
+    this.obscurePassword,
   });
 
   @override
@@ -28,6 +34,19 @@ class CustomTextField extends StatelessWidget {
           validator: validation,
           decoration: InputDecoration(
             labelText: label,
+            suffixIcon: onPressed != null
+                ? IconButton(
+                    onPressed: onPressed,
+                    icon: SvgPicture.asset(
+                      obscureText
+                          ? 'assets/image/close_eye_icon.svg'
+                          : 'assets/image/open_eye_icon.svg',
+                      color: AppColors.unselectedItemColor,
+                      alignment: Alignment.bottomRight,
+                      height: mediaQueryData.size.height * 0.026,
+                    ),
+                  )
+                : null,
           ),
           obscureText: obscureText,
           style: theme.textTheme.titleLarge,

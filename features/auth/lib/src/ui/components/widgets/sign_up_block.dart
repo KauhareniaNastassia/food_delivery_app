@@ -18,13 +18,13 @@ class _SignUpBlockState extends State<SignUpBlock> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool obscurePassword = false;
 
   @override
   Widget build(BuildContext context) {
     final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
@@ -33,8 +33,8 @@ class _SignUpBlockState extends State<SignUpBlock> {
             context,
             state.signUpFailedMessage! ==
                     ErrorConstants.userAlreadyExistResponseError
-                ? appLocalization.translate('userAlreadyExistError')
-                : appLocalization.translate('somethingWentWrongError'),
+                ? 'userAlreadyExistError'.tr()
+                : 'somethingWentWrongError'.tr(),
             mediaQueryData,
             settingsBloc,
             Icons.error_outline_rounded,
@@ -52,48 +52,46 @@ class _SignUpBlockState extends State<SignUpBlock> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                appLocalization.translate('signUp'),
+                'signUp'.tr(),
                 style: AppTextStyles.size24WeightBoldText(
                   fontSize: settingsBloc.state.fontSize,
                   color: AppColors.secondaryColor,
                 ),
               ),
               CustomTextField(
-                label: appLocalization.translate('userName'),
+                label: 'userName'.tr(),
                 textEditingController: _userNameController,
                 validation: (String? name) {
-                  return nameValidation(
-                    name: name,
-                    appLocalization: appLocalization,
-                  );
+                  return nameValidation(name: name);
                 },
                 obscureText: false,
               ),
               CustomTextField(
-                label: appLocalization.translate('email'),
+                label: 'email'.tr(),
                 textEditingController: _emailController,
                 validation: (String? email) {
-                  return emailValidation(
-                    email: email,
-                    appLocalization: appLocalization,
-                  );
+                  return emailValidation(email: email);
                 },
                 obscureText: false,
               ),
               CustomTextField(
-                label: appLocalization.translate('password'),
+                label: 'password'.tr(),
                 textEditingController: _passwordController,
                 validation: (String? password) {
-                  return passwordValidation(
-                    password: password,
-                    appLocalization: appLocalization,
+                  return passwordValidation(password: password);
+                },
+                obscureText: obscurePassword,
+                onPressed: () {
+                  setState(
+                    () {
+                      obscurePassword = !obscurePassword;
+                    },
                   );
                 },
-                obscureText: true,
               ),
               SizedBox(height: mediaQueryData.size.height * 0.044),
               PrimaryButton(
-                buttonTitle: appLocalization.translate('signUp'),
+                buttonTitle: 'signUp'.tr(),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     authBloc.add(

@@ -8,13 +8,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (BuildContext context, SettingsState state) {
         return AppBar(
           title: Text(
-            appLocalization.translate('appTitle'),
+            'appTitle'.tr(),
           ),
           backgroundColor: theme.appBarTheme.backgroundColor,
           titleSpacing: theme.appBarTheme.titleSpacing,

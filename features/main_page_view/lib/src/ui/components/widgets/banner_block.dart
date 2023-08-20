@@ -9,7 +9,6 @@ class BannerBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Ink(
       width: mediaQueryData.size.width * 0.95,
@@ -26,7 +25,7 @@ class BannerBlock extends StatelessWidget {
             child: SizedBox(
               width: mediaQueryData.size.width * 0.5,
               child: Text(
-                appLocalization.translate('delivery'),
+                'delivery'.tr(),
                 style: theme.textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),

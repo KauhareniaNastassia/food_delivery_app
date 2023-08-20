@@ -15,12 +15,12 @@ class _SignInBlockState extends State<SignInBlock> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool obscurePassword = false;
 
   @override
   Widget build(BuildContext context) {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (BuildContext context, AuthState state) {
@@ -28,12 +28,12 @@ class _SignInBlockState extends State<SignInBlock> {
           NotificationToast.showNotification(
             context,
             state.signInFailedMessage! ==
-                    ErrorConstants.userNotFoundResponseError
-                ? appLocalization.translate('userNotFoundError')
+                ErrorConstants.userNotFoundResponseError
+                ? 'userNotFoundError'.tr()
                 : state.signInFailedMessage! ==
-                        ErrorConstants.wrongPasswordResponseError
-                    ? appLocalization.translate('wrongPasswordError')
-                    : appLocalization.translate('somethingWentWrongError'),
+                ErrorConstants.wrongPasswordResponseError
+                ? 'wrongPasswordError'.tr()
+                : 'somethingWentWrongError'.tr(),
             mediaQueryData,
             settingsBloc,
             Icons.error_outline_rounded,
@@ -51,46 +51,46 @@ class _SignInBlockState extends State<SignInBlock> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                //'authScreen.signIn'.tr(),
-                appLocalization.translate('signIn'),
+                'signIn'.tr(),
                 style: AppTextStyles.size24WeightBoldText(
                   fontSize: settingsBloc.state.fontSize,
                   color: AppColors.secondaryColor,
                 ),
               ),
               CustomTextField(
-                label: appLocalization.translate('email'),
+                label: 'email'.tr(),
                 textEditingController: _emailController,
                 validation: (String? email) {
-                  return emailValidation(
-                    email: email,
-                    appLocalization: appLocalization,
-                  );
+                  return emailValidation(email: email);
                 },
                 obscureText: false,
               ),
               CustomTextField(
-                label: appLocalization.translate('password'),
+                label: 'password'.tr(),
                 textEditingController: _passwordController,
                 validation: (String? password) {
-                  return passwordValidation(
-                    password: password,
-                    appLocalization: appLocalization,
+                  return passwordValidation(password: password);
+                },
+                obscureText: obscurePassword,
+                onPressed: () {
+                  setState(
+                        () {
+                      obscurePassword = !obscurePassword;
+                    },
                   );
                 },
-                obscureText: true,
               ),
               SizedBox(height: mediaQueryData.size.height * 0.05),
               PrimaryButton(
-                buttonTitle: appLocalization.translate('signIn'),
+                buttonTitle: 'signIn'.tr(),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     context.read<AuthBloc>().add(
-                          SignInEvent(
-                            email: _emailController.text.trim(),
-                            password: _passwordController.text.trim(),
-                          ),
-                        );
+                      SignInEvent(
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim(),
+                      ),
+                    );
                     _emailController.clear();
                     _passwordController.clear();
                   }
@@ -98,11 +98,11 @@ class _SignInBlockState extends State<SignInBlock> {
               ),
               SizedBox(height: mediaQueryData.size.height * 0.05),
               PrimaryButton(
-                buttonTitle: appLocalization.translate('signInViaGoogle'),
+                buttonTitle: 'signInViaGoogle'.tr(),
                 onPressed: () {
                   context.read<AuthBloc>().add(
-                        SignInViaGoogleEvent(),
-                      );
+                    SignInViaGoogleEvent(),
+                  );
                 },
               ),
             ],

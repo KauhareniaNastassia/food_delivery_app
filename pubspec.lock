@@ -341,7 +341,7 @@ packages:
     source: hosted
     version: "5.6.3"
   firebase_core:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: firebase_core
       sha256: c78132175edda4bc532a71e01a32964e4b4fcf53de7853a422d96dac3725f389
@@ -410,7 +410,7 @@ packages:
     source: hosted
     version: "2.0.2"
   flutter_localizations:
-    dependency: "direct main"
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -822,7 +822,7 @@ packages:
     source: hosted
     version: "3.2.1"
   rive:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: rive
       sha256: b7780ebdc56320da1f02a39a18f050a6079cad60c0cb92003c0801cc4eec6673

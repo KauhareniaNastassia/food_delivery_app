@@ -15,13 +15,15 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   runApp(
-    /*EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('es')],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en'),
-        assetLoader: CodegenLoader(),
-        child: const FoodApp()
-    ),*/
-    const FoodApp(),
+    EasyLocalization(
+      supportedLocales: const <Locale>[
+        Locale('en'),
+        Locale('es'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      assetLoader: const CodegenLoader(),
+      child: const FoodApp(),
+    ),
   );
 }

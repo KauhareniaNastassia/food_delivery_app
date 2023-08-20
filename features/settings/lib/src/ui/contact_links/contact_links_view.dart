@@ -9,7 +9,6 @@ class ContactLinksView extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return BlocProvider<OpenContactLinksBloc>(
       create: (_) => OpenContactLinksBloc(),
@@ -21,7 +20,7 @@ class ContactLinksView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  appLocalization.translate('contactViaLinks'),
+                  'contactViaLinks'.tr(),
                   style: theme.textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),

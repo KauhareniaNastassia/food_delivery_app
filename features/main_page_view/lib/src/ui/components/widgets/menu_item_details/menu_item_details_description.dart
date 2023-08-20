@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class MenuItemDetailsDescription extends StatelessWidget {
@@ -19,7 +20,7 @@ class MenuItemDetailsDescription extends StatelessWidget {
               )
             : Center(
                 child: Text(
-                  'No description available',
+                  'noDescription'.tr(),
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),

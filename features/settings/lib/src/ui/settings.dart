@@ -31,6 +31,7 @@ class SettingsPageContent extends StatelessWidget {
                 const SizedBox(height: 5),
                 ChangeColorScheme(
                   isStandardColorScheme: state.isStandardColorScheme,
+                  title: 'changeColorScheme'.tr(),
                   onTap: () {
                     settingsBloc.add(
                       AppColorSchemeChangingEvent(),
@@ -38,7 +39,9 @@ class SettingsPageContent extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 5),
-                const ChangeAppLanguage(),
+                ChangeAppLanguage(
+                  title: 'changeLanguage'.tr(),
+                ),
                 const SizedBox(height: 25),
                 const ChangeFontSizeSlider(),
               ],

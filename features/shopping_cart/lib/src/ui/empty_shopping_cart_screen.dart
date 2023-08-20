@@ -42,7 +42,7 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
+    //final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return FadeTransition(
       opacity: _animation,
@@ -56,12 +56,12 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
                   AnimationPathConstants.emptyShoppingCartPath),
             ),
             Text(
-              appLocalization.translate('nothingInCart'),
+              'nothingInCart'.tr(),
               style: theme.textTheme.titleMedium,
             ),
             const SizedBox(height: 20),
             PrimaryButton(
-              buttonTitle: appLocalization.translate('goToMenu'),
+              buttonTitle: 'goToMenu'.tr(),
               onPressed: widget.onPressed,
             ),
           ],

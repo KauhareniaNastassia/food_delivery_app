@@ -21,8 +21,6 @@ dependencies:
   auth:
     path: ../auth
 
-  url_launcher: ^6.0.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

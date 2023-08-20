@@ -8,7 +8,6 @@ class NothingFindInCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Center(
       child: Column(
@@ -20,7 +19,7 @@ class NothingFindInCategory extends StatelessWidget {
                 AnimationPathConstants.nothingInCategoryPath),
           ),
           Text(
-            appLocalization.translate('nothingInCategory'),
+            'nothingInCategory'.tr(),
             style: theme.textTheme.titleMedium,
           ),
         ],

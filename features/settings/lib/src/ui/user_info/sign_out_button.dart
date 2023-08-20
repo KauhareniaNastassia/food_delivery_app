@@ -15,7 +15,6 @@ class SignOutButton extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return SizedBox(
       width: mediaQueryData.size.width * 0.22,
@@ -32,7 +31,7 @@ class SignOutButton extends StatelessWidget {
                   settingsBloc.state.fontSize,
             ),
             Text(
-              appLocalization.translate('signOut'),
+             'signOut'.tr(),
               style: theme.textTheme.displaySmall,
             ),
           ],

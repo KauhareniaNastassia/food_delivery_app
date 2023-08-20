@@ -16,7 +16,6 @@ class ListOfOrderedMenuItems extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,8 +55,8 @@ class ListOfOrderedMenuItems extends StatelessWidget {
         ),
         Text(
           addedCutlery
-              ? appLocalization.translate('addedCutlery')
-              : appLocalization.translate('notAddedCutlery'),
+              ? 'addedCutlery'.tr()
+              : 'notAddedCutlery'.tr(),
           style: theme.textTheme.bodySmall,
         ),
       ],

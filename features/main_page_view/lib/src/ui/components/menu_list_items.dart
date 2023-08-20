@@ -71,7 +71,9 @@ class _MenuListItemsState extends State<MenuListItems>
                 closedColor: Colors.transparent,
                 middleColor: Colors.transparent,
                 closedShape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50.0),
+                  ),
                 ),
                 closedBuilder: (_, void Function() action) {
                   return MenuItem(

@@ -39,7 +39,6 @@ class _MainPageScreenState extends State<MainPageScreen>
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: SafeArea(
@@ -48,7 +47,7 @@ class _MainPageScreenState extends State<MainPageScreen>
             if (!state.isInternetConnectionAvailable) {
               NotificationToast.showNotification(
                 context,
-                appLocalization.translate('internetConnectionIsNotAvailable'),
+                'internetConnectionIsNotAvailable'.tr(),
                 mediaQueryData,
                 settingsBloc,
                 Icons.error_outline_rounded,
@@ -106,7 +105,7 @@ class _MainPageScreenState extends State<MainPageScreen>
             } else {
               return Center(
                 child: Text(
-                  appLocalization.translate('errorLoadingDishes'),
+                  'errorLoadingDishes'.tr(),
                 ),
               );
             }

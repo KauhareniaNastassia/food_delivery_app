@@ -1,14 +1,17 @@
-import 'package:core/localization/app_localizations.dart';
+
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
+
 class ChangeColorScheme extends StatelessWidget {
   final bool isStandardColorScheme;
+  final String title;
   final VoidCallback onTap;
 
   const ChangeColorScheme({
     super.key,
     required this.isStandardColorScheme,
+    required this.title,
     required this.onTap,
   });
 
@@ -16,7 +19,6 @@ class ChangeColorScheme extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
     final ThemeData theme = Theme.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Row(
@@ -25,7 +27,7 @@ class ChangeColorScheme extends StatelessWidget {
         SizedBox(
           width: mediaQueryData.size.width * 0.55,
           child: Text(
-            appLocalization.translate('changeColorScheme'),
+              title,
             style: theme.textTheme.titleLarge,
           ),
         ),

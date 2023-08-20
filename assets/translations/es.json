@@ -10,8 +10,7 @@
   "toDarkTheme": "Cambiar a tema oscuro",
   "toLightTheme": "Cambiar a tema claro",
   "changeFontSize": "Cambia tamaño de fuente",
-  "changeToEnglish": "Cambiar a Inglés",
-  "changeToSpanish": "Cambiar a Español",
+  "changeLanguage": "Cambiar a Inglés",
   "contactViaLinks": "¿Necesitas ayuda? Contáctanos a través de los siguientes enlaces",
 
   "addToCart": "Agregar al carrito",
@@ -19,6 +18,7 @@
   "noIngredients": "No hay ingredientes disponibles",
   "ingredients": "Ingredientes:",
   "nothingInCategory": "Todavía no hay nada aquí",
+  "noDescription": "No hay descripción disponible",
 
   "needCutlery": "¿Necesitas cubiertos?",
   "totalPrice": "Precio total",

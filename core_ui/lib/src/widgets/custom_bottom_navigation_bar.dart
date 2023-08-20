@@ -1,4 +1,4 @@
-import 'package:core/localization/app_localizations.dart';
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -22,10 +22,9 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Container(
-      margin: const EdgeInsets.fromLTRB(10, 1, 10, 5),
+      margin: const EdgeInsets.fromLTRB(10, 0, 10, 5),
       height: mediaQueryData.size.height * 0.085,
       decoration: BoxDecoration(
         color: theme.bottomNavigationBarTheme.backgroundColor,
@@ -73,9 +72,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                       : theme.bottomNavigationBarTheme.unselectedItemColor,
                 ),
                 Text(
-                  appLocalization.translate(
-                    CustomBottomNavigationBarItems.listOfLabels[index],
-                  ),
+                  CustomBottomNavigationBarItems.listOfLabels[index].tr(),
                   style: AppTextStyles.size12WeightSemiBoldText(
                     index == widget.currentIndex
                         ? theme.bottomNavigationBarTheme.selectedItemColor!

@@ -133,21 +133,6 @@ class HiveProvider {
     );
   }
 
-  Future<bool> getLanguageFromLocal() async {
-    final Box language = await Hive.openBox('language');
-    return language.isEmpty
-        ? true
-        : language.get('language').toString() == 'true';
-  }
-
-  Future<void> setLanguageToLocal(bool isEnglishLanguage) async {
-    final Box language = await Hive.openBox('language');
-    language.put(
-      'language',
-      isEnglishLanguage.toString(),
-    );
-  }
-
   ///auth
   Future<String> getUserIdFromLocal() async {
     final Box<UserInfoEntity> userInfoBox = await Hive.openBox('userInfo');

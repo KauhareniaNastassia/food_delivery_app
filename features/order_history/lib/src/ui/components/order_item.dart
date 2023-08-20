@@ -15,7 +15,6 @@ class OrderItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Ink(
       decoration: BoxDecoration(
@@ -32,7 +31,7 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  '${appLocalization.translate('numberOfOrder')}'
+                  '${'numberOfOrder'.tr()}'
                   '${orderItem.id}',
                   style: theme.textTheme.bodyLarge,
                 ),
@@ -49,7 +48,7 @@ class OrderItem extends StatelessWidget {
             ),
             SizedBox(height: mediaQueryData.size.height * 0.01),
             Text(
-              '${appLocalization.translate('orderedOn')} '
+              '${'orderedOn'.tr()} '
               '${DateFormatter().formatDateString(orderItem.date)}',
               style: theme.textTheme.titleSmall,
             ),

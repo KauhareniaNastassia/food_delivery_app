@@ -14,7 +14,7 @@ class OrderBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppLocalizations appLocalization = AppLocalizations.of(context)!;
+    //final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return IntrinsicHeight(
       child: Container(
@@ -32,7 +32,7 @@ class OrderBottomBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        appLocalization.translate('totalPrice'),
+                        'totalPrice'.tr(),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
@@ -47,7 +47,7 @@ class OrderBottomBar extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: PrimaryButton(
-                        buttonTitle: appLocalization.translate('makeAnOrder'),
+                        buttonTitle: 'makeAnOrder'.tr(),
                         onPressed: onPressed,
                       ),
                     ),
