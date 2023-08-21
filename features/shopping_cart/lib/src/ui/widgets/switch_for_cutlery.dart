@@ -26,7 +26,7 @@ class SwitchForCutlery extends StatelessWidget {
           dense: false,
           value: switchValue,
           title: Text(
-            AppConstants.needCutlery,
+            'needCutlery'.tr(),
             style: theme.textTheme.titleLarge,
           ),
           activeColor: theme.primaryColor,

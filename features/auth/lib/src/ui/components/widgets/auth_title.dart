@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class AuthTitle extends StatelessWidget {
@@ -7,11 +8,9 @@ class AuthTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
-    return Center(
-      child: Image.asset(
-        'assets/image/logo.png',
-        width: mediaQueryData.size.width * 0.4,
-      ),
+    return SizedBox(
+      height: mediaQueryData.size.height * 0.3,
+      child: RiveAnimation.asset(AnimationPathConstants.logoPath),
     );
   }
 }

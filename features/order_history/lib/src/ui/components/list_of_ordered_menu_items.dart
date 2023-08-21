@@ -55,8 +55,8 @@ class ListOfOrderedMenuItems extends StatelessWidget {
         ),
         Text(
           addedCutlery
-              ? AppConstants.addedCutlery
-              : AppConstants.notAddedCutlery,
+              ? 'addedCutlery'.tr()
+              : 'notAddedCutlery'.tr(),
           style: theme.textTheme.bodySmall,
         ),
       ],

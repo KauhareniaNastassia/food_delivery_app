@@ -1,5 +1,3 @@
-import 'package:core/config/di/app_di.dart';
-import 'package:core/config/di/firebase_options.dart';
 import 'package:core/core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +12,18 @@ Future<void> main() async {
   );
 
   appDI.initDependencies();
+  await EasyLocalization.ensureInitialized();
 
   runApp(
-    const FoodApp(),
+    EasyLocalization(
+      supportedLocales: const <Locale>[
+        Locale('en'),
+        Locale('es'),
+      ],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      assetLoader: const CodegenLoader(),
+      child: const FoodApp(),
+    ),
   );
 }

@@ -35,7 +35,9 @@ class AddToCartButton extends StatelessWidget {
           vertical: 10,
         ),
         child: Text(
-          amount != null ? '$amount in cart' : AppConstants.addToCart,
+          amount != null
+              ? '$amount ${'inCart'.tr()}'
+              :'addToCart'.tr(),
           textAlign: TextAlign.center,
           style: AppTextStyles.size22WeightSemiBoldText(
             fontSize: settingsBloc.state.fontSize,

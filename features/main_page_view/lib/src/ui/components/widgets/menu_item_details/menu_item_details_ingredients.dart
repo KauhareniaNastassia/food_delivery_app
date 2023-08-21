@@ -1,4 +1,4 @@
-import 'package:core/constants/app_constants.dart';
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class MenuItemDetailsIngredients extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          AppConstants.ingredients,
+          'ingredients'.tr(),
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: 10),
@@ -44,7 +44,7 @@ class MenuItemDetailsIngredients extends StatelessWidget {
               )
             : Center(
                 child: Text(
-                  AppConstants.noIngredients,
+                  'noIngredients'.tr(),
                   style: theme.textTheme.bodyMedium,
                 ),
               ),

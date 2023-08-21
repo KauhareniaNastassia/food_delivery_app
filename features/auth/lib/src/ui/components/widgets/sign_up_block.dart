@@ -18,6 +18,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool obscurePassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,10 @@ class _SignUpBlockState extends State<SignUpBlock> {
         if (state.signUpFailedMessage != '') {
           NotificationToast.showNotification(
             context,
-            state.signUpFailedMessage!,
+            state.signUpFailedMessage! ==
+                    ErrorConstants.userAlreadyExistResponseError
+                ? 'userAlreadyExistError'.tr()
+                : 'somethingWentWrongError'.tr(),
             mediaQueryData,
             settingsBloc,
             Icons.error_outline_rounded,
@@ -42,62 +46,70 @@ class _SignUpBlockState extends State<SignUpBlock> {
         return previous.signUpFailedMessage != current.signUpFailedMessage;
       },
       builder: (BuildContext context, AuthState state) {
-        if (state.isDataProcessing) {
-          return SizedBox(
-            height: mediaQueryData.size.height * 0.3,
-            child: const LoadingIndicator(),
-          );
-        } else {
-          return Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  AppConstants.signUp,
-                  style: AppTextStyles.size24WeightBoldText(
-                    fontSize: settingsBloc.state.fontSize,
-                    color: AppColors.secondaryColor,
-                  ),
+        return Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'signUp'.tr(),
+                style: AppTextStyles.size24WeightBoldText(
+                  fontSize: settingsBloc.state.fontSize,
+                  color: AppColors.secondaryColor,
                 ),
-                CustomTextField(
-                  label: AppConstants.userName,
-                  textEditingController: _userNameController,
-                  validation: (String? name) => nameValidation(name),
-                  obscureText: false,
-                ),
-                CustomTextField(
-                  label: AppConstants.email,
-                  textEditingController: _emailController,
-                  validation: (String? email) => emailValidation(email),
-                  obscureText: false,
-                ),
-                CustomTextField(
-                  label: AppConstants.password,
-                  textEditingController: _passwordController,
-                  validation: (String? password) =>
-                      passwordValidation(password),
-                  obscureText: true,
-                ),
-                SizedBox(height: mediaQueryData.size.height * 0.044),
-                PrimaryButton(
-                  buttonTitle: AppConstants.signUp,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      authBloc.add(
-                        SignUpEvent(
-                          userName: _userNameController.text.trim(),
-                          email: _emailController.text.trim(),
-                          password: _passwordController.text.trim(),
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-          );
-        }
+              ),
+              CustomTextField(
+                label: 'userName'.tr(),
+                textEditingController: _userNameController,
+                validation: (String? name) {
+                  return nameValidation(name: name);
+                },
+                obscureText: false,
+              ),
+              CustomTextField(
+                label: 'email'.tr(),
+                textEditingController: _emailController,
+                validation: (String? email) {
+                  return emailValidation(email: email);
+                },
+                obscureText: false,
+              ),
+              CustomTextField(
+                label: 'password'.tr(),
+                textEditingController: _passwordController,
+                validation: (String? password) {
+                  return passwordValidation(password: password);
+                },
+                obscureText: obscurePassword,
+                onPressed: () {
+                  setState(
+                    () {
+                      obscurePassword = !obscurePassword;
+                    },
+                  );
+                },
+              ),
+              SizedBox(height: mediaQueryData.size.height * 0.044),
+              PrimaryButton(
+                buttonTitle: 'signUp'.tr(),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    authBloc.add(
+                      SignUpEvent(
+                        userName: _userNameController.text.trim(),
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim(),
+                      ),
+                    );
+                    _userNameController.clear();
+                    _emailController.clear();
+                    _passwordController.clear();
+                  }
+                },
+              ),
+            ],
+          ),
+        );
       },
     );
   }

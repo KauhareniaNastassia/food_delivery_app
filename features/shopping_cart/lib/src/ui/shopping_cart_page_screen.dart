@@ -28,7 +28,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
           if (state.shoppingCart.addCutlery) {
             NotificationToast.showNotification(
               context,
-              AppConstants.addCutleryToCart,
+              'addCutleryToCart'.tr(),
               mediaQueryData,
               settingsBloc,
               Icons.expand_circle_down_outlined,
@@ -61,7 +61,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
                   orderHistoryBloc.state.exception == ''
                       ? NotificationToast.showNotification(
                           context,
-                          AppConstants.successfulOrder,
+                          'successfulOrder'.tr(),
                           mediaQueryData,
                           settingsBloc,
                           Icons.check_circle_outline,
@@ -69,7 +69,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
                         )
                       : NotificationToast.showNotification(
                           context,
-                          AppConstants.unSuccessfulOrder,
+                          'unSuccessfulOrder'.tr(),
                           mediaQueryData,
                           settingsBloc,
                           Icons.error_outline_rounded,

@@ -12,7 +12,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (BuildContext context, SettingsState state) {
         return AppBar(
-          title: const Text('Food Delivery App'),
+          title: Text(
+            'appTitle'.tr(),
+          ),
           backgroundColor: theme.appBarTheme.backgroundColor,
           titleSpacing: theme.appBarTheme.titleSpacing,
           titleTextStyle: theme.appBarTheme.titleTextStyle,

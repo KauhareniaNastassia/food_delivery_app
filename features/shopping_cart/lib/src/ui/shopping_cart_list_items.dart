@@ -19,20 +19,32 @@ class ShoppingCartListItems extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: shoppingCart.shoppingCartItems.length,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: ShoppingCartItem(
-            key: ValueKey(shoppingCart.shoppingCartItems[index].menuItem.id),
-            shoppingCartItem: shoppingCart.shoppingCartItems[index],
-            onTap: () {
-              context.read<MenuBloc>().add(
-                    NavigateToMenuItemEvent(
-                      menuItem: shoppingCart.shoppingCartItems[index].menuItem,
-                    ),
-                  );
-            },
+      itemBuilder: (_, int index) {
+        return OpenContainer(
+          closedElevation: 0.0,
+          openElevation: 0.0,
+          transitionDuration: const Duration(milliseconds: 700),
+          transitionType: ContainerTransitionType.fade,
+          openColor: Colors.transparent,
+          closedColor: Colors.transparent,
+          middleColor: Colors.transparent,
+          closedShape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(50.0)),
           ),
+          closedBuilder: (_, void Function() action) {
+            return ShoppingCartItem(
+              key: ValueKey(
+                shoppingCart.shoppingCartItems[index].menuItem.id,
+              ),
+              shoppingCartItem: shoppingCart.shoppingCartItems[index],
+              onTap: action,
+            );
+          },
+          openBuilder: (_, __) {
+            return MenuItemDetailsScreen(
+              menuItem: shoppingCart.shoppingCartItems[index].menuItem,
+            );
+          },
         );
       },
     );

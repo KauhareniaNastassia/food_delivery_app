@@ -1,28 +1,36 @@
 import 'dart:core';
 
-String? emailValidation(String? email) {
+import 'package:core/core.dart';
+
+String? emailValidation({
+  required String? email,
+}) {
   if (email!.isEmpty) {
-    return 'Please enter an email';
+    return 'enterEmail'.tr();
   }
   if (!RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]').hasMatch(email)) {
-    return 'Please enter a valid email';
+    return 'enterValidEmail'.tr();
   }
   return null;
 }
 
-String? passwordValidation(String? password) {
+String? passwordValidation({
+  required String? password,
+}) {
   if (password!.isEmpty) {
-    return 'Please enter a password';
+    return 'enterPassword'.tr();
   }
   if (password.length < 6) {
-    return 'Too short password';
+    return 'shortPassword'.tr();
   }
   return null;
 }
 
-String? nameValidation(String? name) {
+String? nameValidation({
+  required String? name,
+}) {
   if (name!.isEmpty) {
-    return 'Please enter your name';
+    return 'enterName'.tr();
   }
   return null;
 }

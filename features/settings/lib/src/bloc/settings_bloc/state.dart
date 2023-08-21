@@ -11,7 +11,7 @@ class SettingsState {
     required this.fontSize,
   });
 
-   const SettingsState.empty({
+  const SettingsState.empty({
     this.isLight = true,
     this.isStandardColorScheme = true,
     this.fontSize = 1.0,
@@ -24,7 +24,8 @@ class SettingsState {
   }) {
     return SettingsState.empty(
       isLight: isLight ?? this.isLight,
-      isStandardColorScheme: isStandardColorScheme ?? this.isStandardColorScheme,
+      isStandardColorScheme:
+          isStandardColorScheme ?? this.isStandardColorScheme,
       fontSize: fontSize ?? this.fontSize,
     );
   }

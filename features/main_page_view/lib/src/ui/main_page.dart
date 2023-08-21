@@ -13,16 +13,32 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [
+      animationDuration: const Duration(milliseconds: 700),
+      routes: const <PageRouteInfo<dynamic>>[
         MainPageScreenRoute(),
         ShoppingCartPageScreenRoute(),
         OrderHistoryPageContentRoute(),
         SettingsPageContentRoute(),
       ],
-      appBarBuilder: (_, tabsRouter) {
+      appBarBuilder: (_, TabsRouter tabsRouter) {
         return const CustomAppBar();
       },
-      bottomNavigationBuilder: (_, tabsRouter) {
+      builder: (
+        _,
+        Widget? child,
+        Animation<double> animation,
+      ) {
+        return FadeTransition(
+          opacity: animation.drive(
+            Tween<double>(
+              begin: 0,
+              end: 1,
+            ).curved(Curves.easeIn),
+          ),
+          child: child,
+        );
+      },
+      bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
         return CustomBottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,

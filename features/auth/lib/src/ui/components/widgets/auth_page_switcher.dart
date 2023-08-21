@@ -19,15 +19,13 @@ class AuthPageSwitcher extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         Text(
-          isSignInPage
-              ? AppConstants.doNotHaveAnAccount
-              : AppConstants.haveAnAccount,
+          isSignInPage ? 'doNotHaveAnAccount'.tr() : 'haveAnAccount'.tr(),
           style: theme.textTheme.titleSmall,
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
-            isSignInPage ? AppConstants.signUp : AppConstants.signIn,
+            isSignInPage ? 'signUp'.tr() : 'signIn'.tr(),
             style: theme.textTheme.titleMedium,
           ),
         ),

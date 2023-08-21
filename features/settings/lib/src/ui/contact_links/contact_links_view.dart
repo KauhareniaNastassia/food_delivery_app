@@ -1,8 +1,6 @@
-
 import 'package:core/core.dart';
 import 'package:settings/settings.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ContactLinksView extends StatelessWidget {
   const ContactLinksView({super.key});
@@ -22,7 +20,7 @@ class ContactLinksView extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
-                  AppConstants.contactViaLinks,
+                  'contactViaLinks'.tr(),
                   style: theme.textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),

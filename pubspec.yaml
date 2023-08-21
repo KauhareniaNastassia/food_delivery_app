@@ -32,7 +32,6 @@ dependencies:
     path: ./features/order_history
 
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.14.0
 
 dev_dependencies:
   flutter_test:
@@ -47,10 +46,19 @@ flutter_icons:
   ios: true
 
 flutter:
+  generate: true
   uses-material-design: true
 
   assets:
+    - assets/translations/
     - assets/image/
+    - assets/image/rive_icons/home_icon.riv
+    - assets/image/rive_icons/shapes.riv
+    - assets/image/rive_icons/logo.riv
+    - assets/image/rive_icons/empty_shopping_cart.riv
+    - assets/image/rive_icons/empty_order_history.riv
+    - assets/image/rive_icons/shopping_cart_banner.riv
+    - assets/image/rive_icons/nothing_in_category.riv
 
   fonts:
     - family: Merriweather

@@ -16,22 +16,26 @@ class SignOutButton extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
-    return IconButton(
-      onPressed: onPressed,
-      icon: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Icon(
-            Icons.logout,
-            color: theme.canvasColor,
-            size:
-                mediaQueryData.size.height * 0.04 * settingsBloc.state.fontSize,
-          ),
-          Text(
-            AppConstants.signOut,
-            style: theme.textTheme.displaySmall,
-          ),
-        ],
+    return SizedBox(
+      width: mediaQueryData.size.width * 0.22,
+      child: IconButton(
+        onPressed: onPressed,
+        icon: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Icon(
+              Icons.logout,
+              color: theme.canvasColor,
+              size: mediaQueryData.size.height *
+                  0.04 *
+                  settingsBloc.state.fontSize,
+            ),
+            Text(
+             'signOut'.tr(),
+              style: theme.textTheme.displaySmall,
+            ),
+          ],
+        ),
       ),
     );
   }

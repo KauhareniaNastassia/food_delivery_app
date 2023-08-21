@@ -9,7 +9,7 @@ class HiveProvider {
 
   Future<List<MenuItemEntity>> getMenuItemsFromLocal() async {
     final Box<MenuItemEntity> menuItemsBox = await Hive.openBox('menuItems');
-    return  menuItemsBox.values.toList();
+    return menuItemsBox.values.toList();
   }
 
   ///shopping cart

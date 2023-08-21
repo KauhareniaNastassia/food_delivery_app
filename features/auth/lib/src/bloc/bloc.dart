@@ -3,6 +3,7 @@ import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -34,10 +35,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignOutEvent>(_onSignOut);
     on<ChangeAuthPageEvent>(_changeAuthPage);
     on<NavigateToSignInPageEvent>(_onNavigateToSignInPage);
-
-    add(
-      InitAuthEvent(),
-    );
   }
 
   Future<void> _onInitAuth(
@@ -45,9 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(
-      state.copyWith(
-        isDataProcessing: true,
-      ),
+      state.copyWith(isDataProcessing: true),
     );
     try {
       final UserInfoModel userFromLocal =
@@ -70,9 +65,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             );
     } catch (e) {
       emit(
-        state.copyWith(
-          exception: ErrorConstants.somethingWentWrongError,
-        ),
+        state.copyWith(exception: e.toString()),
       );
     }
   }
@@ -108,19 +101,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          signInFailedMessage:
-              e.toString() == ErrorConstants.userNotFoundResponseError
-                  ? ErrorConstants.userNotFoundError
-                  : e.toString() == ErrorConstants.wrongPasswordResponseError
-                      ? ErrorConstants.wrongPasswordError
-                      : ErrorConstants.somethingWentWrongError,
+          signInFailedMessage: e.toString(),
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          exception: ErrorConstants.somethingWentWrongError,
+          exception: e.toString(),
         ),
       );
     }
@@ -160,17 +148,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          signUpFailedMessage:
-              e.toString() == ErrorConstants.userAlreadyExistResponseError
-                  ? ErrorConstants.userAlreadyExistError
-                  : ErrorConstants.somethingWentWrongError,
+          signUpFailedMessage: e.toString(),
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          exception: ErrorConstants.somethingWentWrongError,
+          exception: e.toString(),
         ),
       );
     }
@@ -191,13 +176,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
 
       emit(
-          const AuthState.initial(),
+        const AuthState.initial(),
       );
     } catch (e) {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          exception: ErrorConstants.somethingWentWrongError,
+          exception: e.toString(),
         ),
       );
     }
@@ -208,9 +193,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(
-      state.copyWith(
-        isDataProcessing: true,
-      ),
+      state.copyWith(isDataProcessing: true),
     );
     try {
       final UserInfoModel userInfo = await _signInViaGoogleUseCase.execute(
@@ -229,7 +212,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          exception: ErrorConstants.somethingWentWrongError,
+          exception: e.toString(),
         ),
       );
     }

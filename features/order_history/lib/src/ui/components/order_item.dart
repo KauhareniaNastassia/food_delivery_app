@@ -31,7 +31,8 @@ class OrderItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  'Order #${orderItem.id}',
+                  '${'numberOfOrder'.tr()}'
+                  '${orderItem.id}',
                   style: theme.textTheme.bodyLarge,
                 ),
                 Text(
@@ -47,7 +48,8 @@ class OrderItem extends StatelessWidget {
             ),
             SizedBox(height: mediaQueryData.size.height * 0.01),
             Text(
-              'Ordered on ${DateFormatter().formatDateString(orderItem.date)}',
+              '${'orderedOn'.tr()} '
+              '${DateFormatter().formatDateString(orderItem.date)}',
               style: theme.textTheme.titleSmall,
             ),
           ],

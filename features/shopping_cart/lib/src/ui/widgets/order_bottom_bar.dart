@@ -1,5 +1,5 @@
-import 'package:core_ui/core_ui.dart';
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class OrderBottomBar extends StatelessWidget {
@@ -14,6 +14,8 @@ class OrderBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final AppLocalizations appLocalization = AppLocalizations.of(context)!;
+
     return IntrinsicHeight(
       child: Container(
         margin: const EdgeInsets.fromLTRB(20, 5, 20, 15),
@@ -30,7 +32,7 @@ class OrderBottomBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
-                        AppConstants.totalPrice,
+                        'totalPrice'.tr(),
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
@@ -45,7 +47,7 @@ class OrderBottomBar extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       child: PrimaryButton(
-                        buttonTitle: AppConstants.makeAnOrder,
+                        buttonTitle: 'makeAnOrder'.tr(),
                         onPressed: onPressed,
                       ),
                     ),

@@ -1,0 +1,48 @@
+import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
+import 'package:flutter/material.dart';
+
+class BannerBlock extends StatelessWidget {
+  const BannerBlock({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final ThemeData theme = Theme.of(context);
+
+    return Ink(
+      width: mediaQueryData.size.width * 0.95,
+      height: mediaQueryData.size.height * 0.14,
+      decoration: BoxDecoration(
+        borderRadius: AppStyles.defaultBorderRadius,
+        boxShadow: [AppStyles.boxShadow],
+        color: theme.cardColor,
+      ),
+      child: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              width: mediaQueryData.size.width * 0.5,
+              child: Text(
+                'delivery'.tr(),
+                style: theme.textTheme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Positioned(
+            right: mediaQueryData.size.width * 0.03,
+            bottom: -mediaQueryData.size.height * 0.03,
+            child: SizedBox(
+              height: mediaQueryData.size.height * 0.2,
+              width: mediaQueryData.size.width * 0.35,
+              child: RiveAnimation.asset(
+                  AnimationPathConstants.shoppingCartBannerPath),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
