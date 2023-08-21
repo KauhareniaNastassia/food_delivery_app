@@ -66,6 +66,10 @@ class AppTheme {
           fontSize: fontSize,
           color: AppColors.titleTextColor,
         ),
+        displayLarge: AppTextStyles.size14WeightBoldText(
+          fontSize: fontSize,
+          color: titleTextColor,
+        ),
       ),
 
       /// app bar styles
@@ -148,6 +152,10 @@ class AppTheme {
         displayMedium: AppTextStyles.size14WeightBoldText(
           fontSize: fontSize,
           color: AppColors.titleTextColor,
+        ),
+        displayLarge: AppTextStyles.size14WeightBoldText(
+          fontSize: fontSize,
+          color: titleTextColor,
         ),
       ),
 

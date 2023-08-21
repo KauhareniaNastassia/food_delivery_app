@@ -72,7 +72,7 @@ class CustomSwitcher extends StatelessWidget {
                 color: value.get(CustomSwitcherEnum.color),
               ),
             ),
-            width: mediaQueryData.size.width * 0.265,
+            width: mediaQueryData.size.width * 0.287,
             height: mediaQueryData.size.height * 0.055,
             padding: const EdgeInsets.all(4),
             child: Stack(
@@ -91,8 +91,8 @@ class CustomSwitcher extends StatelessWidget {
                           ),
                           color: value.get(CustomSwitcherEnum.color),
                         ),
-                        width: 31,
-                        height: 31,
+                        width: 30,
+                        height: 30,
                         child: Center(
                           child: SvgPicture.asset(
                             value.get(CustomSwitcherEnum.icon),
