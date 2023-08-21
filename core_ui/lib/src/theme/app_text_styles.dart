@@ -77,18 +77,6 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle size18WeightSemiBoldText({
-    required double fontSize,
-    required Color color,
-  }) {
-    return TextStyle(
-      fontFamily: _merriweatherFamily,
-      fontSize: 18 * fontSize,
-      fontWeight: FontWeight.w600,
-      color: color,
-    );
-  }
-
   static TextStyle size20WeightSemiBoldText({
     required double fontSize,
     required Color color,
@@ -101,25 +89,13 @@ class AppTextStyles {
     );
   }
 
-  static TextStyle size22WeightSemiBoldText({
+  static TextStyle size22WeightBoldText({
     required double fontSize,
     required Color color,
   }) {
     return TextStyle(
       fontFamily: _merriweatherFamily,
       fontSize: 22 * fontSize,
-      fontWeight: FontWeight.w600,
-      color: color,
-    );
-  }
-
-  static TextStyle size24WeightBoldText({
-    required double fontSize,
-    required Color color,
-  }) {
-    return TextStyle(
-      fontFamily: _merriweatherFamily,
-      fontSize: 24 * fontSize,
       fontWeight: FontWeight.w700,
       color: color,
     );
