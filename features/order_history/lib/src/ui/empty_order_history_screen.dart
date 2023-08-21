@@ -27,6 +27,7 @@ class EmptyOrderHistoryScreen extends StatelessWidget {
           Text(
             'noOrdersMessage'.tr(),
             style: theme.textTheme.titleMedium,
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           PrimaryButton(

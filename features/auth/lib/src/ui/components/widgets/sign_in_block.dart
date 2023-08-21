@@ -52,7 +52,7 @@ class _SignInBlockState extends State<SignInBlock> {
             children: <Widget>[
               Text(
                 'signIn'.tr(),
-                style: AppTextStyles.size24WeightBoldText(
+                style: AppTextStyles.size22WeightBoldText(
                   fontSize: settingsBloc.state.fontSize,
                   color: AppColors.secondaryColor,
                 ),

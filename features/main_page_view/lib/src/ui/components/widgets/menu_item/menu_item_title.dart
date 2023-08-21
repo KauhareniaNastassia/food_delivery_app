@@ -45,7 +45,7 @@ class MenuItemTitle extends StatelessWidget {
                 ),
                 Text(
                   '\$$cost',
-                  style: AppTextStyles.size22WeightSemiBoldText(
+                  style: AppTextStyles.size20WeightSemiBoldText(
                     fontSize: settingsBloc.state.fontSize,
                     color: theme.primaryColor,
                   ),

@@ -16,7 +16,7 @@ class NotificationToast {
       icon: icon,
       description: Text(
         message,
-        style: AppTextStyles.size18WeightSemiBoldText(
+        style: AppTextStyles.size16WeightSemiBoldText(
           fontSize: settingsBloc.state.fontSize,
           color: AppColors.primaryColor,
         ),

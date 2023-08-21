@@ -39,7 +39,7 @@ class AddToCartButton extends StatelessWidget {
               ? '$amount ${'inCart'.tr()}'
               :'addToCart'.tr(),
           textAlign: TextAlign.center,
-          style: AppTextStyles.size22WeightSemiBoldText(
+          style: AppTextStyles.size20WeightSemiBoldText(
             fontSize: settingsBloc.state.fontSize,
             color: AppColors.primaryButtonTextColor,
           ),

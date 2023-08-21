@@ -53,7 +53,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
             children: <Widget>[
               Text(
                 'signUp'.tr(),
-                style: AppTextStyles.size24WeightBoldText(
+                style: AppTextStyles.size22WeightBoldText(
                   fontSize: settingsBloc.state.fontSize,
                   color: AppColors.secondaryColor,
                 ),

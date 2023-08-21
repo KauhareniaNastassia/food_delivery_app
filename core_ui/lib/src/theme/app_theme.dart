@@ -34,11 +34,11 @@ class AppTheme {
 
       /// text styles
       textTheme: TextTheme(
-        titleLarge: AppTextStyles.size18WeightSemiBoldText(
+        titleLarge: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
           color: AppColors.titleTextColor,
         ),
-        titleMedium: AppTextStyles.size18WeightSemiBoldText(
+        titleMedium: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
           color: secondaryColor,
         ),
@@ -50,7 +50,7 @@ class AppTheme {
           fontSize: fontSize,
           color: secondaryColor,
         ),
-        bodyLarge: AppTextStyles.size18WeightSemiBoldText(
+        bodyLarge: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
           color: AppColors.primaryColor,
         ),
@@ -72,7 +72,7 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         titleSpacing: 30,
         backgroundColor: primaryColor,
-        titleTextStyle: AppTextStyles.size24WeightBoldText(
+        titleTextStyle: AppTextStyles.size22WeightBoldText(
           fontSize: fontSize,
           color: AppColors.primaryButtonTextColor,
         ),
@@ -117,11 +117,11 @@ class AppTheme {
 
       /// text styles
       textTheme: TextTheme(
-        titleLarge: AppTextStyles.size18WeightSemiBoldText(
+        titleLarge: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
           color: AppColors.titleLightTextColor,
         ),
-        titleMedium: AppTextStyles.size18WeightSemiBoldText(
+        titleMedium: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
           color: secondaryColor,
         ),
@@ -133,7 +133,7 @@ class AppTheme {
           fontSize: fontSize,
           color: secondaryColor,
         ),
-        bodyLarge: AppTextStyles.size18WeightSemiBoldText(
+        bodyLarge: AppTextStyles.size16WeightSemiBoldText(
           fontSize: fontSize,
           color: AppColors.titleLightTextColor,
         ),
@@ -155,7 +155,7 @@ class AppTheme {
       appBarTheme: AppBarTheme(
         titleSpacing: 30,
         backgroundColor: backgroundColor,
-        titleTextStyle: AppTextStyles.size24WeightBoldText(
+        titleTextStyle: AppTextStyles.size22WeightBoldText(
           fontSize: fontSize,
           color: AppColors.primaryButtonTextColor,
         ),
