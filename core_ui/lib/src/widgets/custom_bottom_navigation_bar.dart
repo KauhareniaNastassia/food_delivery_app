@@ -37,7 +37,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         padding: EdgeInsets.symmetric(
           horizontal: mediaQueryData.size.width * 0.024,
         ),
-        itemBuilder: (_, index) {
+        itemBuilder: (_, int index) {
           return InkWell(
             onTap: () => widget.onTap(index),
             child: Column(

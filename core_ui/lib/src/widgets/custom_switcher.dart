@@ -61,7 +61,7 @@ class CustomSwitcher extends StatelessWidget {
         duration: customTween.duration * 1.2,
         tween: customTween,
         curve: Curves.easeInOut,
-        builder: (_, value, __) {
+        builder: (_, Movie value, __) {
           return Container(
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(

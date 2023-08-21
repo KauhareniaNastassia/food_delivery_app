@@ -16,7 +16,7 @@ class EmptyShoppingCartScreen extends StatefulWidget {
 }
 
 class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _animation;
 

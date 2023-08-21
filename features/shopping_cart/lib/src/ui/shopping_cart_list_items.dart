@@ -19,7 +19,7 @@ class ShoppingCartListItems extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: shoppingCart.shoppingCartItems.length,
-      itemBuilder: (_, index) {
+      itemBuilder: (_, int index) {
         return OpenContainer(
           closedElevation: 0.0,
           openElevation: 0.0,
@@ -31,7 +31,7 @@ class ShoppingCartListItems extends StatelessWidget {
           closedShape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(50.0)),
           ),
-          closedBuilder: (_, action) {
+          closedBuilder: (_, void Function() action) {
             return ShoppingCartItem(
               key: ValueKey(
                 shoppingCart.shoppingCartItems[index].menuItem.id,

@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
         OrderHistoryPageContentRoute(),
         SettingsPageContentRoute(),
       ],
-      appBarBuilder: (_, tabsRouter) {
+      appBarBuilder: (_, TabsRouter tabsRouter) {
         return const CustomAppBar();
       },
       builder: (
@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
           child: child,
         );
       },
-      bottomNavigationBuilder: (_, tabsRouter) {
+      bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
         return CustomBottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,

@@ -21,7 +21,6 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final OrderHistoryBloc orderHistoryBloc = context.read<OrderHistoryBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    //final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return SafeArea(
       child: BlocConsumer<ShoppingCartBloc, ShoppingCartState>(

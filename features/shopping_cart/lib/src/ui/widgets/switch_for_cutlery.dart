@@ -17,7 +17,6 @@ class SwitchForCutlery extends StatelessWidget {
     final Size size = MediaQuery.sizeOf(context);
     final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
     final ThemeData theme = Theme.of(context);
-   // final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.only(left: 15),

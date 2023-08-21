@@ -11,7 +11,7 @@ class SignInPageScreen extends StatefulWidget {
 }
 
 class _SignInPageScreenState extends State<SignInPageScreen>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _animation;
 
