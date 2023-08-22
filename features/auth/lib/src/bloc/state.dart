@@ -25,8 +25,8 @@ class AuthState {
 
   const AuthState.initial({
     this.isUserLoggedIn = false,
-    this.isDataProcessing = false,
     this.isSignInPage = true,
+    this.isDataProcessing = false,
     this.userId = '',
     this.userName = '',
     this.email = '',

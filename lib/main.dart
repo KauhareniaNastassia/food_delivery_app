@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'food_app/food_app.dart';
 
@@ -13,6 +14,10 @@ Future<void> main() async {
 
   appDI.initDependencies();
   await EasyLocalization.ensureInitialized();
+
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   runApp(
     EasyLocalization(

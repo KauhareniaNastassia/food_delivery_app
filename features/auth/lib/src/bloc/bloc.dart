@@ -3,7 +3,6 @@ import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -100,8 +99,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on FirebaseAuthException catch (e) {
       emit(
         state.copyWith(
+          signInFailedMessage:
+              e.toString() == ErrorConstants.userNotFoundResponseError
+                  ? 'userNotFoundError'.tr()
+                  : e.toString() == ErrorConstants.wrongPasswordResponseError
+                      ? 'wrongPasswordError'.tr()
+                      : 'somethingWentWrongError'.tr(),
           isDataProcessing: false,
-          signInFailedMessage: e.toString(),
         ),
       );
     } catch (e) {
@@ -133,7 +137,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           email: event.email,
         ),
       );
-
       emit(
         state.copyWith(
           isUserLoggedIn: true,
@@ -173,6 +176,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       await _signOutUseCase.execute(
         const NoParams(),
+      );
+
+      _appRouter.navigate(
+        const SignInPageScreenRoute(),
       );
 
       emit(

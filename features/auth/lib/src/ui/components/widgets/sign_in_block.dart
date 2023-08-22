@@ -74,7 +74,7 @@ class _SignInBlockState extends State<SignInBlock> {
                 obscureText: obscurePassword,
                 onPressed: () {
                   setState(
-                        () {
+                    () {
                       obscurePassword = !obscurePassword;
                     },
                   );
@@ -86,11 +86,11 @@ class _SignInBlockState extends State<SignInBlock> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     context.read<AuthBloc>().add(
-                      SignInEvent(
-                        email: _emailController.text.trim(),
-                        password: _passwordController.text.trim(),
-                      ),
-                    );
+                          SignInEvent(
+                            email: _emailController.text.trim(),
+                            password: _passwordController.text.trim(),
+                          ),
+                        );
                     _emailController.clear();
                     _passwordController.clear();
                   }
@@ -101,8 +101,8 @@ class _SignInBlockState extends State<SignInBlock> {
                 buttonTitle: 'signInViaGoogle'.tr(),
                 onPressed: () {
                   context.read<AuthBloc>().add(
-                    SignInViaGoogleEvent(),
-                  );
+                        SignInViaGoogleEvent(),
+                      );
                 },
               ),
             ],
