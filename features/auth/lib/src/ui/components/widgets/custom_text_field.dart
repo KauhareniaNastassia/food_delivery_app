@@ -32,18 +32,28 @@ class CustomTextField extends StatelessWidget {
         child: TextFormField(
           controller: textEditingController,
           validator: validation,
+          cursorColor: theme.disabledColor,
           decoration: InputDecoration(
             labelText: label,
+            labelStyle: TextStyle(
+              color: theme.unselectedWidgetColor,
+            ),
+            contentPadding: const EdgeInsets.only(bottom: 2),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).primaryColor,
+              ),
+            ),
             suffixIcon: onPressed != null
                 ? IconButton(
                     onPressed: onPressed,
                     icon: SvgPicture.asset(
                       obscureText
-                          ? 'assets/image/close_eye_icon.svg'
-                          : 'assets/image/open_eye_icon.svg',
+                          ?'assets/image/open_eye_icon.svg'
+                          : 'assets/image/close_eye_icon.svg',
                       color: AppColors.unselectedItemColor,
                       alignment: Alignment.bottomRight,
-                      height: mediaQueryData.size.height * 0.026,
+                      height: mediaQueryData.size.height * 0.025,
                     ),
                   )
                 : null,

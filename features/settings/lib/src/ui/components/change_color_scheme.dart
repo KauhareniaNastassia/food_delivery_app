@@ -25,7 +25,7 @@ class ChangeColorScheme extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         SizedBox(
-          width: mediaQueryData.size.width * 0.55,
+          width: mediaQueryData.size.width * 0.52,
           child: Text(
               title,
             style: theme.textTheme.titleLarge,

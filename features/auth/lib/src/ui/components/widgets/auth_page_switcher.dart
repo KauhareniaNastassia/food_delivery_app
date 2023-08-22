@@ -17,16 +17,17 @@ class AuthPageSwitcher extends StatelessWidget {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(
           isSignInPage ? 'doNotHaveAnAccount'.tr() : 'haveAnAccount'.tr(),
-          style: theme.textTheme.titleSmall,
+          style: theme.textTheme.displayLarge,
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
             isSignInPage ? 'signUp'.tr() : 'signIn'.tr(),
-            style: theme.textTheme.titleMedium,
+            style: theme.textTheme.displaySmall,
           ),
         ),
       ],

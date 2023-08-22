@@ -3,7 +3,6 @@ import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -79,6 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         isDataProcessing: true,
         exception: '',
         signInFailedMessage: '',
+        signUpFailedMessage: '',
       ),
     );
     try {
@@ -100,15 +100,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } on FirebaseAuthException catch (e) {
       emit(
         state.copyWith(
+          signInFailedMessage:
+              e.toString() == ErrorConstants.userNotFoundResponseError
+                  ? 'userNotFoundError'.tr()
+                  : e.toString() == ErrorConstants.wrongPasswordResponseError
+                      ? 'wrongPasswordError'.tr()
+                      : 'somethingWentWrongError'.tr(),
           isDataProcessing: false,
-          signInFailedMessage: e.toString(),
         ),
       );
     } catch (e) {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          exception: e.toString(),
+          exception: 'somethingWentWrongError'.tr(),
         ),
       );
     }
@@ -123,6 +128,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         isDataProcessing: true,
         exception: '',
         signUpFailedMessage: '',
+        signInFailedMessage: '',
       ),
     );
     try {
@@ -133,7 +139,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           email: event.email,
         ),
       );
-
       emit(
         state.copyWith(
           isUserLoggedIn: true,
@@ -148,7 +153,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          signUpFailedMessage: e.toString(),
+          signUpFailedMessage:
+              e.toString() == ErrorConstants.userAlreadyExistResponseError
+                  ? 'userAlreadyExistError'.tr()
+                  : 'somethingWentWrongError'.tr(),
         ),
       );
     } catch (e) {
@@ -174,7 +182,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await _signOutUseCase.execute(
         const NoParams(),
       );
-
       emit(
         const AuthState.initial(),
       );
