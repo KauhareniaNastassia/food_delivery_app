@@ -50,8 +50,16 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<UserInfoModel> signInViaGoogle() async {
     final UserCredential userCredential =
         await _firebaseAuthProvider.signInWithGoogle();
-    final UserInfoEntity userInfoEntity = await _firebaseFireStoreProvider
-        .getUserInfoFromDB(userId: userCredential.user!.uid);
+
+    final UserInfoEntity userInfoEntity = UserInfoEntity(
+      userId: userCredential.user!.uid,
+      email: userCredential.user!.email!,
+      userName: userCredential.user!.displayName!,
+    );
+
+    await _firebaseFireStoreProvider.setUserToDB(
+        userInfoEntity: userInfoEntity);
+
     await _hiveProvider.setUserToLocal(userInfoEntity);
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     return userInfoModel;
@@ -69,8 +77,16 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
-    final UserInfoEntity userInfoEntity = await _firebaseFireStoreProvider
-        .getUserInfoFromDB(userId: userCredential.user!.uid);
+
+    final UserInfoEntity userInfoEntity = UserInfoEntity(
+      userId: userCredential.user!.uid,
+      email: userCredential.user!.email!,
+      userName: userName,
+    );
+
+    await _firebaseFireStoreProvider.setUserToDB(
+        userInfoEntity: userInfoEntity);
+
     await _hiveProvider.setUserToLocal(userInfoEntity);
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     return userInfoModel;

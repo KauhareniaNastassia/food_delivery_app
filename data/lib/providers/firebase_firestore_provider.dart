@@ -69,14 +69,12 @@ class FirebaseFireStoreProvider {
   }
 
   Future<void> setUserToDB({
-    required String userId,
-    required String userName,
-    required String email,
+    required UserInfoEntity userInfoEntity,
   }) async {
-    await fireStore.collection('userInfo').doc(userId).set({
-      'userId': userId,
-      'userName': userName,
-      'email': email,
+    await fireStore.collection('userInfo').doc(userInfoEntity.userId).set({
+      'userId': userInfoEntity.userId,
+      'userName': userInfoEntity.userName,
+      'email': userInfoEntity.email,
     });
   }
 }
