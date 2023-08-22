@@ -49,8 +49,8 @@ class CustomTextField extends StatelessWidget {
                     onPressed: onPressed,
                     icon: SvgPicture.asset(
                       obscureText
-                          ? 'assets/image/close_eye_icon.svg'
-                          : 'assets/image/open_eye_icon.svg',
+                          ?'assets/image/open_eye_icon.svg'
+                          : 'assets/image/close_eye_icon.svg',
                       color: AppColors.unselectedItemColor,
                       alignment: Alignment.bottomRight,
                       height: mediaQueryData.size.height * 0.025,

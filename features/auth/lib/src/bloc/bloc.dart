@@ -78,6 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         isDataProcessing: true,
         exception: '',
         signInFailedMessage: '',
+        signUpFailedMessage: '',
       ),
     );
     try {
@@ -112,7 +113,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          exception: e.toString(),
+          exception: 'somethingWentWrongError'.tr(),
         ),
       );
     }
@@ -127,6 +128,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         isDataProcessing: true,
         exception: '',
         signUpFailedMessage: '',
+        signInFailedMessage: '',
       ),
     );
     try {
@@ -151,7 +153,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(
         state.copyWith(
           isDataProcessing: false,
-          signUpFailedMessage: e.toString(),
+          signUpFailedMessage:
+              e.toString() == ErrorConstants.userAlreadyExistResponseError
+                  ? 'userAlreadyExistError'.tr()
+                  : 'somethingWentWrongError'.tr(),
         ),
       );
     } catch (e) {
@@ -177,11 +182,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await _signOutUseCase.execute(
         const NoParams(),
       );
-
-      _appRouter.navigate(
-        const SignInPageScreenRoute(),
-      );
-
       emit(
         const AuthState.initial(),
       );

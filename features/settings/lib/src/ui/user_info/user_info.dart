@@ -40,6 +40,9 @@ class UserInfoBlock extends StatelessWidget {
                 authBloc.add(
                   SignOutEvent(),
                 );
+                authBloc.add(
+                  NavigateToSignInPageEvent(),
+                );
               },
             ),
           ],
