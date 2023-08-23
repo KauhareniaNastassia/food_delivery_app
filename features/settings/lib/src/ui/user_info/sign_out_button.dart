@@ -33,6 +33,7 @@ class SignOutButton extends StatelessWidget {
             Text(
              'signOut'.tr(),
               style: theme.textTheme.displaySmall,
+              textAlign: TextAlign.center,
             ),
           ],
         ),

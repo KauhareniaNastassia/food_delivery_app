@@ -23,12 +23,20 @@ class UserNameBlock extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          userName,
+          settingsBloc.state.fontSize > 1 && userName.length > 19
+              ? '${userName.substring(0, 16)}...'
+              : settingsBloc.state.fontSize <= 1 && userName.length > 25
+                  ? '${userName.substring(0, 23)}...'
+                  : userName,
           style: theme.textTheme.titleLarge,
         ),
         SizedBox(height: 10 * settingsBloc.state.fontSize),
         Text(
-          email,
+          settingsBloc.state.fontSize > 1 && email.length > 21
+              ? '${email.substring(0, 19)}...'
+              : settingsBloc.state.fontSize <= 1 && email.length > 25
+                  ? '${email.substring(0, 22)}...'
+                  : email,
           style: settingsBloc.state.fontSize > 1
               ? AppTextStyles.size13WeightSemiBoldText(
                   color: AppColors.titleDarkGreyTextColor,
