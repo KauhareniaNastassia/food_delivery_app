@@ -7,6 +7,7 @@ class AuthState {
   final String userId;
   final String userName;
   final String email;
+  final String userRole;
   final String? exception;
   final String? signInFailedMessage;
   final String? signUpFailedMessage;
@@ -18,6 +19,7 @@ class AuthState {
     required this.userId,
     required this.userName,
     required this.email,
+    required this.userRole,
     this.exception,
     this.signInFailedMessage,
     this.signUpFailedMessage,
@@ -30,6 +32,7 @@ class AuthState {
     this.userId = '',
     this.userName = '',
     this.email = '',
+    this.userRole = '',
     this.exception = '',
     this.signInFailedMessage = '',
     this.signUpFailedMessage = '',
@@ -42,6 +45,7 @@ class AuthState {
     String? userId,
     String? userName,
     String? email,
+    String? userRole,
     String? exception,
     String? signInFailedMessage,
     String? signUpFailedMessage,
@@ -53,6 +57,7 @@ class AuthState {
       userId: userId ?? this.userId,
       userName: userName ?? this.userName,
       email: email ?? this.email,
+      userRole: userRole ?? this.userRole,
       exception: exception ?? this.exception,
       signInFailedMessage: signInFailedMessage ?? this.signInFailedMessage,
       signUpFailedMessage: signUpFailedMessage ?? this.signUpFailedMessage,

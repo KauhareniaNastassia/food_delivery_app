@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
@@ -49,6 +51,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         const NoParams(),
       );
 
+      log(userFromLocal.userRole);
+
       userFromLocal.userId.isEmpty
           ? emit(
               const AuthState.initial(),
@@ -60,6 +64,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 userId: userFromLocal.userId,
                 userName: userFromLocal.userName,
                 email: userFromLocal.email,
+                userRole: userFromLocal.userRole,
               ),
             );
     } catch (e) {
@@ -88,6 +93,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           password: event.password,
         ),
       );
+      log(userInfo.userRole);
       emit(
         state.copyWith(
           isDataProcessing: false,
@@ -95,6 +101,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userName: userInfo.userName,
           userId: userInfo.userId,
           email: userInfo.email,
+          userRole: userInfo.userRole,
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -147,6 +154,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
+          userRole: userInfo.userRole,
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -206,6 +214,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final UserInfoModel userInfo = await _signInViaGoogleUseCase.execute(
         const NoParams(),
       );
+      log(userInfo.userRole);
       emit(
         state.copyWith(
           isUserLoggedIn: true,
@@ -213,6 +222,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
+          userRole: userInfo.userRole,
         ),
       );
     } catch (e) {

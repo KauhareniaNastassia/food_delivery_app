@@ -58,12 +58,12 @@ class FirebaseFireStoreProvider {
   }) async {
     final DocumentSnapshot<Map<String, dynamic>> doc =
         await fireStore.collection('userInfo').doc(userId).get();
-
     final Map<String, dynamic>? userData = doc.data();
     final UserInfoEntity userEntity = UserInfoEntity(
       userId: userId,
       email: userData?['email'] ?? '',
       userName: userData?['userName'] ?? '',
+      userRole: userData?['userRole'] ?? '',
     );
     return userEntity;
   }
@@ -75,6 +75,7 @@ class FirebaseFireStoreProvider {
       'userId': userInfoEntity.userId,
       'userName': userInfoEntity.userName,
       'email': userInfoEntity.email,
+      'userRole': userInfoEntity.userRole,
     });
   }
 }

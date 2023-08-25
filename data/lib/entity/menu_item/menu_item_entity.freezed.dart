@@ -37,17 +37,17 @@ mixin _$MenuItemEntity {
 /// @nodoc
 abstract class $MenuItemEntityCopyWith<$Res> {
   factory $MenuItemEntityCopyWith(
-          MenuItemEntity value, $Res Function(MenuItemEntity) then) =
-      _$MenuItemEntityCopyWithImpl<$Res, MenuItemEntity>;
+      MenuItemEntity value, $Res Function(MenuItemEntity) then) =
+  _$MenuItemEntityCopyWithImpl<$Res, MenuItemEntity>;
   @useResult
   $Res call(
       {int id,
-      String title,
-      double cost,
-      String image,
-      String description,
-      List<String> ingredients,
-      String category});
+        String title,
+        double cost,
+        String image,
+        String description,
+        List<String> ingredients,
+        String category});
 }
 
 /// @nodoc
@@ -75,31 +75,31 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      as List<String>,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
     ) as $Val);
   }
 }
@@ -108,18 +108,18 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
 abstract class _$$_MenuItemEntityCopyWith<$Res>
     implements $MenuItemEntityCopyWith<$Res> {
   factory _$$_MenuItemEntityCopyWith(
-          _$_MenuItemEntity value, $Res Function(_$_MenuItemEntity) then) =
-      __$$_MenuItemEntityCopyWithImpl<$Res>;
+      _$_MenuItemEntity value, $Res Function(_$_MenuItemEntity) then) =
+  __$$_MenuItemEntityCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {int id,
-      String title,
-      double cost,
-      String image,
-      String description,
-      List<String> ingredients,
-      String category});
+        String title,
+        double cost,
+        String image,
+        String description,
+        List<String> ingredients,
+        String category});
 }
 
 /// @nodoc
@@ -145,31 +145,31 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+      as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
-              as double,
+      as double,
       image: null == image
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
       ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      as List<String>,
       category: null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as String,
+      as String,
     ));
   }
 }
@@ -179,12 +179,12 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
 class _$_MenuItemEntity implements _MenuItemEntity {
   _$_MenuItemEntity(
       {required this.id,
-      required this.title,
-      required this.cost,
-      required this.image,
-      required this.description,
-      required final List<String> ingredients,
-      required this.category})
+        required this.title,
+        required this.cost,
+        required this.image,
+        required this.description,
+        required final List<String> ingredients,
+        required this.category})
       : _ingredients = ingredients;
 
   factory _$_MenuItemEntity.fromJson(Map<String, dynamic> json) =>
@@ -261,15 +261,15 @@ class _$_MenuItemEntity implements _MenuItemEntity {
 abstract class _MenuItemEntity implements MenuItemEntity {
   factory _MenuItemEntity(
       {required final int id,
-      required final String title,
-      required final double cost,
-      required final String image,
-      required final String description,
-      required final List<String> ingredients,
-      required final String category}) = _$_MenuItemEntity;
+        required final String title,
+        required final double cost,
+        required final String image,
+        required final String description,
+        required final List<String> ingredients,
+        required final String category}) = _$_MenuItemEntity;
 
   factory _MenuItemEntity.fromJson(Map<String, dynamic> json) =
-      _$_MenuItemEntity.fromJson;
+  _$_MenuItemEntity.fromJson;
 
   @override
   int get id;

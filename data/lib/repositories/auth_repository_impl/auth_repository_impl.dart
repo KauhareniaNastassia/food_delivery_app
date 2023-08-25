@@ -46,24 +46,57 @@ class AuthRepositoryImpl implements AuthRepository {
     return userInfoModel;
   }
 
-  @override
+  /*@override
   Future<UserInfoModel> signInViaGoogle() async {
     final UserCredential userCredential =
         await _firebaseAuthProvider.signInWithGoogle();
 
-    final UserInfoEntity userInfoEntity = UserInfoEntity(
-      userId: userCredential.user!.uid,
-      email: userCredential.user!.email!,
-      userName: userCredential.user!.displayName!,
-    );
+    final UserInfoEntity userInfoEntity = await _firebaseFireStoreProvider
+        .getUserInfoFromDB(userId: userCredential.user!.uid);
 
-    await _firebaseFireStoreProvider.setUserToDB(
-        userInfoEntity: userInfoEntity);
+    if (userInfoEntity.userName == '') {
+      final UserInfoEntity userInfoEntity = UserInfoEntity(
+        userId: userCredential.user!.uid,
+        email: userCredential.user!.email!,
+        userName: userCredential.user!.displayName!,
+        userRole: 'customer',
+      );
+      await _firebaseFireStoreProvider.setUserToDB(
+          userInfoEntity: userInfoEntity);
+    }
 
     await _hiveProvider.setUserToLocal(userInfoEntity);
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     return userInfoModel;
+  }*/
+
+  @override
+  Future<UserInfoModel> signInViaGoogle() async {
+    final UserCredential userCredential =
+    await _firebaseAuthProvider.signInWithGoogle();
+
+    UserInfoEntity userInfoEntity = await _firebaseFireStoreProvider
+        .getUserInfoFromDB(userId: userCredential.user!.uid);
+
+    if (userInfoEntity.userName == '') {
+      userInfoEntity = UserInfoEntity(
+        userId: userCredential.user!.uid,
+        email: userCredential.user!.email!,
+        userName: userCredential.user!.displayName!,
+        userRole: 'customer',
+      );
+    }
+
+    await _firebaseFireStoreProvider.setUserToDB(
+      userInfoEntity: userInfoEntity,
+    );
+    await _hiveProvider.setUserToLocal(userInfoEntity);
+
+    final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
+    return userInfoModel;
   }
+
+
 
   @override
   Future<UserInfoModel> signUp({
@@ -82,6 +115,7 @@ class AuthRepositoryImpl implements AuthRepository {
       userId: userCredential.user!.uid,
       email: userCredential.user!.email!,
       userName: userName,
+      userRole: 'customer',
     );
 
     await _firebaseFireStoreProvider.setUserToDB(
