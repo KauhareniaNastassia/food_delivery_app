@@ -3,7 +3,8 @@
   "cart": "Carrito",
   "orders": "Pedidos",
   "settings": "Config",
-  "appTitle": "Entrega de comida",
+  "users": "Usuarios",
+  "appTitle": "EntregaComidas",
   "delivery": "La entrega más rápida de la ciudad",
 
   "changeColorScheme": "Cambiar de color",
@@ -56,5 +57,7 @@
   "userAlreadyExistError": "El usuario ya existe",
   "somethingWentWrongError": "Algo salió mal",
   "internetConnectionIsNotAvailable": "Se perdió la conexión a Internet. Se está utilizando datos en caché",
-  "errorLoadingDishes": "Error al cargar platos"
+  "errorLoadingDishes": "Error al cargar platos",
+
+  "userHasNoOrders": "El usuario no tiene pedidos"
 }

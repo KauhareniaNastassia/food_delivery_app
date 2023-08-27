@@ -18,7 +18,7 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 4),
-          () {
+      () {
         final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
         authBloc.add(
           InitAuthEvent(),
@@ -30,9 +30,10 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final ShoppingCartBloc shoppingCartBloc =
-    BlocProvider.of<ShoppingCartBloc>(context);
+        BlocProvider.of<ShoppingCartBloc>(context);
     final OrderHistoryBloc orderHistoryBloc =
-    BlocProvider.of<OrderHistoryBloc>(context);
+        BlocProvider.of<OrderHistoryBloc>(context);
+
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
 
@@ -40,19 +41,25 @@ class SplashScreenState extends State<SplashScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (BuildContext context, AuthState state) {
           if (state.isUserLoggedIn) {
-            shoppingCartBloc.add(
-              NavigateToMainPageEvent(),
-            );
-            shoppingCartBloc.add(
-              InitShoppingCartEvent(),
-            );
-            orderHistoryBloc.add(
-              InitOrderHistoryEvent(),
-            );
+            if (state.userRole == AppConstants.userRoles[0]) {
+              shoppingCartBloc.add(
+                NavigateToMainPageEvent(),
+              );
+              shoppingCartBloc.add(
+                InitShoppingCartEvent(),
+              );
+              orderHistoryBloc.add(
+                InitOrderHistoryEvent(),
+              );
+            } else {
+              context.read<AuthBloc>().add(
+                    NavigateToAdminPanelPageEvent(),
+                  );
+            }
           } else {
             context.read<AuthBloc>().add(
-              NavigateToSignInPageEvent(),
-            );
+                  NavigateToSignInPageEvent(),
+                );
           }
         },
         builder: (BuildContext context, AuthState state) {

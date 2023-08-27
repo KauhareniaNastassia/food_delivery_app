@@ -36,6 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignOutEvent>(_onSignOut);
     on<ChangeAuthPageEvent>(_changeAuthPage);
     on<NavigateToSignInPageEvent>(_onNavigateToSignInPage);
+    on<NavigateToAdminPanelPageEvent>(_onNavigateToAdminPanelPage);
   }
 
   Future<void> _onInitAuth(
@@ -50,9 +51,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           await _checkIsUserLoggedUseCase.execute(
         const NoParams(),
       );
-
-      log(userFromLocal.userRole);
-
       userFromLocal.userId.isEmpty
           ? emit(
               const AuthState.initial(),
@@ -61,10 +59,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               state.copyWith(
                 isDataProcessing: false,
                 isUserLoggedIn: true,
+                userRole: userFromLocal.userRole,
                 userId: userFromLocal.userId,
                 userName: userFromLocal.userName,
                 email: userFromLocal.email,
-                userRole: userFromLocal.userRole,
               ),
             );
     } catch (e) {
@@ -98,10 +96,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.copyWith(
           isDataProcessing: false,
           isUserLoggedIn: true,
+          userRole: userInfo.userRole,
           userName: userInfo.userName,
           userId: userInfo.userId,
           email: userInfo.email,
-          userRole: userInfo.userRole,
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -151,10 +149,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           isUserLoggedIn: true,
           isDataProcessing: false,
           isSignInPage: true,
+          userRole: userInfo.userRole,
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
-          userRole: userInfo.userRole,
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -219,10 +217,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.copyWith(
           isUserLoggedIn: true,
           isDataProcessing: false,
+          userRole: userInfo.userRole,
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
-          userRole: userInfo.userRole,
         ),
       );
     } catch (e) {
@@ -252,6 +250,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) {
     _appRouter.navigate(
       const SignInPageScreenRoute(),
+    );
+  }
+
+  void _onNavigateToAdminPanelPage(
+    NavigateToAdminPanelPageEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    _appRouter.navigate(
+      const AdminPanelPageRoute(),
     );
   }
 }

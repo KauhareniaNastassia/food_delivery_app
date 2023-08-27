@@ -24,3 +24,4 @@ export 'repositories/menu_repository_impl/menu_repository_impl.dart';
 export 'repositories/order_history_repository_impl/order_history_repository_impl.dart';
 export 'repositories/settings_repository_impl/settings_repository_impl.dart';
 export 'repositories/shopping_cart_repository_impl/shopping_cart_repository_impl.dart';
+export 'repositories/admin_panel_repository_impl/admin_panel_repository_impl.dart';

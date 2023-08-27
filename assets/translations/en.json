@@ -3,7 +3,8 @@
   "cart": "Cart",
   "orders": "Orders",
   "settings": "Settings",
-  "appTitle": "Food Delivery App",
+  "users": "Users",
+  "appTitle": "DeliverEats",
   "delivery": "The fastest delivery in the city",
 
   "changeColorScheme": "Change color scheme",
@@ -56,5 +57,7 @@
   "userAlreadyExistError": "User already exists",
   "somethingWentWrongError": "Something went wrong",
   "internetConnectionIsNotAvailable": "Internet connection lost. Cached data is being used",
-  "errorLoadingDishes": "Error loading dishes"
+  "errorLoadingDishes": "Error loading dishes",
+
+  "userHasNoOrders": "User has no orders"
 }

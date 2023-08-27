@@ -19,6 +19,7 @@ class DataDI {
     _initSettings();
     _initAuth();
     _initOrderHistory();
+    _initAdminPanel();
   }
 
   void _initFirebaseOptions() {
@@ -236,5 +237,27 @@ class DataDI {
         orderHistoryRepository: instance.get<OrderHistoryRepository>(),
       ),
     );
+  }
+
+  void _initAdminPanel() {
+    instance.registerLazySingleton<AdminPanelRepository>(
+          () => AdminPanelRepositoryImpl(
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
+      ),
+    );
+
+    instance.registerLazySingleton<FetchUsersUseCase>(
+          () => FetchUsersUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<ChangeUserRoleUseCase>(
+          () => ChangeUserRoleUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+
   }
 }

@@ -33,6 +33,7 @@ class UserInfoBlock extends StatelessWidget {
             UserNameBlock(
               userName: authBloc.state.userName,
               email: authBloc.state.email,
+              userRole: authBloc.state.userRole,
             ),
             const SizedBox(height: 4),
             SignOutButton(

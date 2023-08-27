@@ -78,4 +78,27 @@ class FirebaseFireStoreProvider {
       'userRole': userInfoEntity.userRole,
     });
   }
+
+  ///admin panel
+
+  Future<List<UserInfoEntity>> fetchUsers() async {
+    final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await fireStore.collection('userInfo').get();
+    return querySnapshot.docs
+        .map(
+          (doc) => UserInfoEntity.fromJson(doc.data()),
+        )
+        .toList();
+  }
+
+  Future<void> changeUserRole({
+    required String newUserRoleValue,
+    required String userId,
+  }) async {
+    final CollectionReference<Map<String, dynamic>> usersList =
+        fireStore.collection('userInfo');
+    await usersList.doc(userId).update({
+      'userRole': newUserRoleValue,
+    });
+  }
 }

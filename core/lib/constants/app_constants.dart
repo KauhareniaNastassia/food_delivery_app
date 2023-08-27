@@ -16,4 +16,12 @@ class AppConstants {
     'Lunch',
     'For a company',
   ];
+
+  ///admin panel
+  static List<String> userRoles = [
+    'customer',
+    'admin',
+    'super admin',
+  ];
+  static String allUsers = 'all users';
 }

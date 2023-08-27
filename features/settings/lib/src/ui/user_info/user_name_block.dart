@@ -6,11 +6,13 @@ import 'package:settings/settings.dart';
 class UserNameBlock extends StatelessWidget {
   final String userName;
   final String email;
+  final String userRole;
 
   const UserNameBlock({
     super.key,
     required this.userName,
     required this.email,
+    required this.userRole,
   });
 
   @override
@@ -30,7 +32,26 @@ class UserNameBlock extends StatelessWidget {
                   : userName,
           style: theme.textTheme.titleLarge,
         ),
-        SizedBox(height: 10 * settingsBloc.state.fontSize),
+        userRole == AppConstants.userRoles[0]
+            ? SizedBox(height: 10 * settingsBloc.state.fontSize)
+            : Column(
+                children: <Widget>[
+                  SizedBox(height: 3 * settingsBloc.state.fontSize),
+                  Text(
+                    userRole,
+                    style: settingsBloc.state.fontSize > 1
+                        ? AppTextStyles.size13WeightSemiBoldText(
+                            color: AppColors.titleDarkGreyTextColor,
+                            fontSize: settingsBloc.state.fontSize,
+                          )
+                        : AppTextStyles.size15WeightSemiBoldText(
+                            color: AppColors.titleDarkGreyTextColor,
+                            fontSize: settingsBloc.state.fontSize,
+                          ),
+                  ),
+                  SizedBox(height: 5 * settingsBloc.state.fontSize),
+                ],
+              ),
         Text(
           settingsBloc.state.fontSize > 1 && email.length > 21
               ? '${email.substring(0, 19)}...'

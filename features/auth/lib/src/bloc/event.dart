@@ -45,3 +45,7 @@ class ChangeAuthPageEvent extends AuthEvent {
 class NavigateToSignInPageEvent extends AuthEvent {
   NavigateToSignInPageEvent();
 }
+
+class NavigateToAdminPanelPageEvent extends AuthEvent {
+  NavigateToAdminPanelPageEvent();
+}

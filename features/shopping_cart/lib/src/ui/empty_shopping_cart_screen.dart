@@ -40,24 +40,14 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
 
   @override
   Widget build(BuildContext context) {
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final ThemeData theme = Theme.of(context);
-    //final AppLocalizations appLocalization = AppLocalizations.of(context)!;
-
     return FadeTransition(
       opacity: _animation,
       child: Center(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              width: mediaQueryData.size.width / 1.3,
-              height: mediaQueryData.size.height / 2.1,
-              child: RiveAnimation.asset(
-                  AnimationPathConstants.emptyShoppingCartPath),
-            ),
-            Text(
-              'nothingInCart'.tr(),
-              style: theme.textTheme.titleMedium,
+            NothingFindScreen(
+              riveAnimationPath: AnimationPathConstants.emptyShoppingCartPath,
+              title: 'nothingInCart'.tr(),
             ),
             const SizedBox(height: 20),
             PrimaryButton(

@@ -30,6 +30,8 @@ dependencies:
     path: ./features/auth
   order_history:
     path: ./features/order_history
+  admin_panel:
+    path: ./features/admin_panel
 
   cupertino_icons: ^1.0.2
 
@@ -59,6 +61,7 @@ flutter:
     - assets/image/rive_icons/empty_order_history.riv
     - assets/image/rive_icons/shopping_cart_banner.riv
     - assets/image/rive_icons/nothing_in_category.riv
+    - assets/image/rive_icons/nothing_in_user_filter.riv
 
   fonts:
     - family: Merriweather

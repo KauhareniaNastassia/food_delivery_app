@@ -1,3 +1,4 @@
+import 'package:admin_panel/admin_panel.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,13 @@ class FoodApp extends StatelessWidget {
             setColoSchemeUseCase: instance.get<SetColorSchemeUseCase>(),
             getFontSizeUseCase: instance.get<GetFontSizeUseCase>(),
             setFontSizeUseCase: instance.get<SetFontSizeUseCase>(),
+          ),
+        ),
+        BlocProvider<AdminPanelBloc>(
+          create: (_) => AdminPanelBloc(
+            fetchUsersUseCase: instance.get<FetchUsersUseCase>(),
+            changeUserRoleUseCase: instance.get<ChangeUserRoleUseCase>(),
+            fetchOrderHistoryUseCase: instance.get<FetchOrderHistoryUseCase>(),
           ),
         ),
         BlocProvider<MenuBloc>(

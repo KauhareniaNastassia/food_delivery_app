@@ -1,5 +1,5 @@
-name: auth
-description: Auth module
+name: admin_panel
+description: Admin panel module
 version: 0.0.1
 publish_to: 'none'
 
@@ -18,16 +18,12 @@ dependencies:
     path: ../../core_ui
   navigation:
     path: ../../navigation
-  main_page_view:
-    path: ../main_page_view
   settings:
     path: ../settings
-  shopping_cart:
-    path: ../shopping_cart
+  auth:
+    path: ../auth
   order_history:
     path: ../order_history
-  admin_panel:
-    path: ../admin_panel
 
 dev_dependencies:
   flutter_test:

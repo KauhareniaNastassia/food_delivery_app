@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _MainPageScreenState extends State<MainPageScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     )..forward();
     _animation = Tween<double>(
       begin: 0,
@@ -39,6 +40,7 @@ class _MainPageScreenState extends State<MainPageScreen>
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final AuthBloc authBloc = context.read<AuthBloc>();
 
     return Scaffold(
       body: SafeArea(
@@ -76,7 +78,9 @@ class _MainPageScreenState extends State<MainPageScreen>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           SizedBox(height: mediaQueryData.size.height * 0.01),
-                          const BannerBlock(),
+                          authBloc.state.userRole == AppConstants.userRoles[0]
+                              ? const BannerBlock()
+                              : const SizedBox(),
                           SizedBox(height: mediaQueryData.size.height * 0.02),
                           const CategoryFilter(),
                           SizedBox(height: mediaQueryData.size.height * 0.02),
@@ -88,7 +92,11 @@ class _MainPageScreenState extends State<MainPageScreen>
                                   ? state.menu
                                   : state.filteredMenu,
                             ),
-                            secondChild: const NothingFindInCategory(),
+                            secondChild: NothingFindScreen(
+                              riveAnimationPath:
+                                  AnimationPathConstants.nothingInCategoryPath,
+                              title: 'nothingInCategory'.tr(),
+                            ),
                             crossFadeState: (state.selectedCategory !=
                                         AppConstants.menuItemCategory[0]) &
                                     state.filteredMenu.isEmpty
