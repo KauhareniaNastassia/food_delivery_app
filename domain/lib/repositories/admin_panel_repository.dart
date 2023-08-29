@@ -7,4 +7,11 @@ abstract class AdminPanelRepository {
     required String newUserRoleValue,
     required String userId,
   });
+
+  Future<List<OrderItemForAdminModel>> fetchAllOrders();
+
+  Future<void> changeOrderStatus({
+    required String userId,
+    required int orderId,
+  });
 }

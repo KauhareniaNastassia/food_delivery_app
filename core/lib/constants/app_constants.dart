@@ -24,4 +24,9 @@ class AppConstants {
     'super admin',
   ];
   static String allUsers = 'all users';
+
+  static List<String> orderStatus = [
+    'new orders',
+    'completed orders',
+  ];
 }

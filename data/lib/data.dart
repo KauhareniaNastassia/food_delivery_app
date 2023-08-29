@@ -5,6 +5,7 @@ export 'package:dio/dio.dart';
 export 'entity/menu_item/menu_item_entity.dart';
 export 'entity/menu_item/menu_item_entity_adapter.dart';
 export 'entity/order_item_entity/order_item_entity.dart';
+export 'entity/order_item_entity/order_item_for_admin.dart';
 export 'entity/shopping_cart/shopping_cart_entity.dart';
 export 'entity/shopping_cart_item/shopping_cart_item_entity.dart';
 export 'entity/shopping_cart_item/shopping_cart_item_entity_adapter.dart';

@@ -19,6 +19,7 @@ mixin _$OrderItemModel {
   int get id => throw _privateConstructorUsedError;
   ShoppingCartModel get shoppingCart => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
+  bool get isCompleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $OrderItemModelCopyWith<OrderItemModel> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $OrderItemModelCopyWith<$Res> {
           OrderItemModel value, $Res Function(OrderItemModel) then) =
       _$OrderItemModelCopyWithImpl<$Res, OrderItemModel>;
   @useResult
-  $Res call({int id, ShoppingCartModel shoppingCart, String date});
+  $Res call(
+      {int id, ShoppingCartModel shoppingCart, String date, bool isCompleted});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$OrderItemModelCopyWithImpl<$Res, $Val extends OrderItemModel>
     Object? id = null,
     Object? shoppingCart = null,
     Object? date = null,
+    Object? isCompleted = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -64,6 +67,10 @@ class _$OrderItemModelCopyWithImpl<$Res, $Val extends OrderItemModel>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -76,7 +83,8 @@ abstract class _$$_OrderItemModelCopyWith<$Res>
       __$$_OrderItemModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, ShoppingCartModel shoppingCart, String date});
+  $Res call(
+      {int id, ShoppingCartModel shoppingCart, String date, bool isCompleted});
 }
 
 /// @nodoc
@@ -93,6 +101,7 @@ class __$$_OrderItemModelCopyWithImpl<$Res>
     Object? id = null,
     Object? shoppingCart = null,
     Object? date = null,
+    Object? isCompleted = null,
   }) {
     return _then(_$_OrderItemModel(
       id: null == id
@@ -107,6 +116,10 @@ class __$$_OrderItemModelCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      isCompleted: null == isCompleted
+          ? _value.isCompleted
+          : isCompleted // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -115,7 +128,10 @@ class __$$_OrderItemModelCopyWithImpl<$Res>
 
 class _$_OrderItemModel implements _OrderItemModel {
   _$_OrderItemModel(
-      {required this.id, required this.shoppingCart, required this.date});
+      {required this.id,
+      required this.shoppingCart,
+      required this.date,
+      required this.isCompleted});
 
   @override
   final int id;
@@ -123,10 +139,12 @@ class _$_OrderItemModel implements _OrderItemModel {
   final ShoppingCartModel shoppingCart;
   @override
   final String date;
+  @override
+  final bool isCompleted;
 
   @override
   String toString() {
-    return 'OrderItemModel(id: $id, shoppingCart: $shoppingCart, date: $date)';
+    return 'OrderItemModel(id: $id, shoppingCart: $shoppingCart, date: $date, isCompleted: $isCompleted)';
   }
 
   @override
@@ -137,11 +155,14 @@ class _$_OrderItemModel implements _OrderItemModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.shoppingCart, shoppingCart) ||
                 other.shoppingCart == shoppingCart) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.isCompleted, isCompleted) ||
+                other.isCompleted == isCompleted));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, shoppingCart, date);
+  int get hashCode =>
+      Object.hash(runtimeType, id, shoppingCart, date, isCompleted);
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +175,8 @@ abstract class _OrderItemModel implements OrderItemModel {
   factory _OrderItemModel(
       {required final int id,
       required final ShoppingCartModel shoppingCart,
-      required final String date}) = _$_OrderItemModel;
+      required final String date,
+      required final bool isCompleted}) = _$_OrderItemModel;
 
   @override
   int get id;
@@ -162,6 +184,8 @@ abstract class _OrderItemModel implements OrderItemModel {
   ShoppingCartModel get shoppingCart;
   @override
   String get date;
+  @override
+  bool get isCompleted;
   @override
   @JsonKey(ignore: true)
   _$$_OrderItemModelCopyWith<_$_OrderItemModel> get copyWith =>

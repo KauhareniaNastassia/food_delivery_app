@@ -82,9 +82,9 @@ class FirebaseFireStoreProvider {
   ///admin panel
 
   Future<List<UserInfoEntity>> fetchUsers() async {
-    final QuerySnapshot<Map<String, dynamic>> querySnapshot =
+    final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
         await fireStore.collection('userInfo').get();
-    return querySnapshot.docs
+    return userInfoQuerySnapshot.docs
         .map(
           (doc) => UserInfoEntity.fromJson(doc.data()),
         )
@@ -100,5 +100,60 @@ class FirebaseFireStoreProvider {
     await usersList.doc(userId).update({
       'userRole': newUserRoleValue,
     });
+  }
+
+  Future<List<OrderItemForAdminEntity>> fetchAllOrders() async {
+    final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
+        await fireStore.collection('userInfo').get();
+
+    List<OrderItemForAdminEntity> allOrders = [];
+
+    for (int i = 0; i < userInfoQuerySnapshot.docs.length; i++) {
+      final QuerySnapshot<Map<String, dynamic>> ordersQuerySnapshot =
+          await userInfoQuerySnapshot.docs[i].reference
+              .collection('ordersHistory')
+              .get();
+
+      for (int j = 0; j < ordersQuerySnapshot.docs.length; j++) {
+        final Map<String, dynamic> orderData =
+            ordersQuerySnapshot.docs[j].data();
+        final OrderItemEntity orderEntity = OrderItemEntity.fromJson(orderData);
+        final UserInfoEntity userInfoEntity =
+            UserInfoEntity.fromJson(userInfoQuerySnapshot.docs[i].data());
+
+        final OrderItemForAdminEntity orderItemForAdminEntity =
+            OrderItemForAdminEntity(
+          userId: userInfoEntity.userId,
+          email: userInfoEntity.email,
+          orderItem: orderEntity,
+        );
+
+        allOrders.add(orderItemForAdminEntity);
+      }
+    }
+    return allOrders;
+  }
+
+  Future<void> changeOrderStatus({
+    required String userId,
+    required int orderId,
+  }) async {
+    final QuerySnapshot<Map<String, dynamic>> orderItems = await fireStore
+        .collection('userInfo')
+        .doc(userId)
+        .collection('ordersHistory')
+        .get();
+
+    for (int i = 0; i < orderItems.docs.length; i++) {
+      final Map<String, dynamic> orderData = orderItems.docs[i].data();
+
+      final OrderItemEntity orderEntity = OrderItemEntity.fromJson(orderData);
+
+      if (orderEntity.id == orderId) {
+        orderItems.docs[i].reference.update({
+          'isCompleted': true,
+        });
+      }
+    }
   }
 }

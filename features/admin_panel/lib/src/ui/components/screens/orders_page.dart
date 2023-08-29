@@ -1,3 +1,6 @@
+import 'package:admin_panel/admin_panel.dart';
+import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class OrdersPageContent extends StatelessWidget {
@@ -5,24 +8,56 @@ class OrdersPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
-    final ThemeData theme = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final ScrollController _scrollController = ScrollController();
 
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.history_outlined,
-            size: size.width * 0.15,
-            color: Theme.of(context).primaryColor,
-          ),
-          Text(
-            'Orders list coming soon',
-            style: theme.textTheme.titleLarge,
-          ),
-        ],
-      ),
+    return BlocBuilder<AdminPanelBloc, AdminPanelState>(
+      builder: (BuildContext context, AdminPanelState state) {
+        if (state.isDataProcessing) {
+          return const LoadingIndicator();
+        } else {
+          return Scaffold(
+            bottomNavigationBar: OrderBottomBar(
+              buttonTitle: 'checkNewOrders'.tr(),
+              onPressed: () {
+                context.read<AdminPanelBloc>().add(
+                  InitOrdersEvent(),
+                );
+              },
+            ),
+            body: SafeArea(
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                padding: const EdgeInsets.all(10),
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      CustomFilter(
+                        filterItems: AppConstants.orderStatus,
+                        onTap: (String filterValue) {
+                          context.read<AdminPanelBloc>().add(
+                                FilterOrdersByCompleteEvent(
+                                  filterValue: filterValue,
+                                ),
+                              );
+                        },
+                        selectedFilter: state.selectedOrdersFilter,
+                      ),
+                      SizedBox(height: mediaQueryData.size.height * 0.01),
+                      OrderItemsList(
+                        orderItemsList: state.selectedOrdersFilter ==
+                                AppConstants.orderStatus[0]
+                            ? state.unCompletedOrdersList
+                            : state.completedOrdersList,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }

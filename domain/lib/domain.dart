@@ -2,6 +2,7 @@ library domain;
 
 export 'models/menu_item_model/menu_item_model.dart';
 export 'models/order_item_model/order_item_model.dart';
+export 'models/order_item_model/order_item_for_admin_model.dart';
 export 'models/shopping_cart_model/shopping_cart_item_model.dart';
 export 'models/shopping_cart_model/shopping_cart_model.dart';
 export 'models/user_info_model/user_info_model.dart';
@@ -27,4 +28,6 @@ export 'usecases/shopping_cart_use_cases/get_shopping_cart_items_usecase.dart';
 export 'usecases/shopping_cart_use_cases/remove_shopping_cart_item_use_case.dart';
 export 'usecases/admin_panel_use_cases/fetch_users_usecase.dart';
 export 'usecases/admin_panel_use_cases/change_user_role_use_case.dart';
+export 'usecases/admin_panel_use_cases/fetch_all_orders_use_case.dart';
+export 'usecases/admin_panel_use_cases/change_order_status_use_case.dart';
 export 'usecases/usecase.dart';

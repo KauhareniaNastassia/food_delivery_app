@@ -258,6 +258,16 @@ class DataDI {
       ),
     );
 
+    instance.registerLazySingleton<FetchAllOrdersUseCase>(
+          () => FetchAllOrdersUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
 
+    instance.registerLazySingleton<ChangeOrderStatusUseCase>(
+          () => ChangeOrderStatusUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
   }
 }

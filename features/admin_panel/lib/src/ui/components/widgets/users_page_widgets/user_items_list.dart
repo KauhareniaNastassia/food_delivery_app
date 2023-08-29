@@ -1,6 +1,5 @@
 import 'package:admin_panel/admin_panel.dart';
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:order_history/order_history.dart';
 
@@ -17,7 +16,7 @@ class UserItemsList extends StatefulWidget {
 }
 
 class _UserItemsListState extends State<UserItemsList>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<double> _animation;
 
@@ -51,7 +50,6 @@ class _UserItemsListState extends State<UserItemsList>
   @override
   Widget build(BuildContext context) {
     final AdminPanelBloc adminPanelBloc = context.read<AdminPanelBloc>();
-    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return ListenableBuilder(
       listenable: _animationController,
@@ -65,7 +63,7 @@ class _UserItemsListState extends State<UserItemsList>
             itemCount: widget.userItemsList.length,
             itemBuilder: (_, int index) {
               return ExpansionTile(
-                title: UserItem(
+                title: UserItemTitle(
                   userInfoItem: widget.userItemsList[index],
                 ),
                 onExpansionChanged: (bool expanded) {
@@ -77,16 +75,10 @@ class _UserItemsListState extends State<UserItemsList>
                   }
                 },
                 children: <Widget>[
-                  adminPanelBloc.state.isDataProcessing
-                      ? const LoadingIndicator()
-                      : adminPanelBloc.state.userOrderHistory.isEmpty
-                          ? SizedBox(
-                              height: mediaQueryData.size.height * 0.04,
-                              child: Text('userHasNoOrders'.tr()),
-                            )
-                          : ListOfOrderItems(
-                              orderItems: adminPanelBloc.state.userOrderHistory,
-                            )
+                  UserOrderHistory(
+                    userOrderHistory: adminPanelBloc.state.userOrderHistory,
+                    isDataProcessing: adminPanelBloc.state.isDataProcessing,
+                  ),
                 ],
               );
             },

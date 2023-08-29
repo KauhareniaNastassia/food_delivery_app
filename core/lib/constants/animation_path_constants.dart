@@ -13,4 +13,6 @@ class AnimationPathConstants {
       '${baseAnimationPath}shopping_cart_banner.riv';
   static String nothingInUserFilterPath =
       '${baseAnimationPath}nothing_in_user_filter.riv';
+  static String allOrdersAreCompletePath =
+      '${baseAnimationPath}all_orders_are_complete.riv';
 }

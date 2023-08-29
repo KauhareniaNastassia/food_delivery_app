@@ -25,7 +25,7 @@ class NothingFindScreen extends StatelessWidget {
             child: RiveAnimation.asset(riveAnimationPath),
           ),
           Text(
-            'nothingInCategory'.tr(),
+            title,
             style: theme.textTheme.titleMedium,
           ),
         ],

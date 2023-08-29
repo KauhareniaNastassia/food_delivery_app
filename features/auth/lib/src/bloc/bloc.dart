@@ -91,7 +91,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           password: event.password,
         ),
       );
-      log(userInfo.userRole);
       emit(
         state.copyWith(
           isDataProcessing: false,

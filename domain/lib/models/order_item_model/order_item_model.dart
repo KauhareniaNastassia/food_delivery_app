@@ -9,5 +9,6 @@ class OrderItemModel with _$OrderItemModel {
     required int id,
     required ShoppingCartModel shoppingCart,
     required String date,
+    required bool isCompleted,
   }) = _OrderItemModel;
 }

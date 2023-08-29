@@ -2,29 +2,40 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
 class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
   final FetchUsersUseCase _fetchUsersUseCase;
   final ChangeUserRoleUseCase _changeUserRoleUseCase;
   final FetchOrderHistoryUseCase _fetchOrderHistoryUseCase;
+  final FetchAllOrdersUseCase _fetchAllOrdersUseCase;
+  final ChangeOrderStatusUseCase _changeOrderStatusUseCase;
 
   AdminPanelBloc({
     required FetchUsersUseCase fetchUsersUseCase,
     required ChangeUserRoleUseCase changeUserRoleUseCase,
     required FetchOrderHistoryUseCase fetchOrderHistoryUseCase,
+    required FetchAllOrdersUseCase fetchAllOrdersUseCase,
+    required ChangeOrderStatusUseCase changeOrderStatusUseCase,
   })  : _fetchUsersUseCase = fetchUsersUseCase,
         _changeUserRoleUseCase = changeUserRoleUseCase,
         _fetchOrderHistoryUseCase = fetchOrderHistoryUseCase,
+        _fetchAllOrdersUseCase = fetchAllOrdersUseCase,
+        _changeOrderStatusUseCase = changeOrderStatusUseCase,
         super(const AdminPanelState.initial()) {
     on<InitUsersEvent>(_onInitUsers);
     on<FilterUsersByRoleEvent>(_filterUsersByRole);
     on<ChangeUserRoleEvent>(_changeUserRole);
     on<FetchUserOrderHistoryEvent>(_fetchUserOrderHistory);
+    on<InitOrdersEvent>(_onInitOrders);
+    on<FilterOrdersByCompleteEvent>(_onFilterOrdersByComplete);
+    on<ChangeOrderStatusEvent>(_changeOrderStatus);
 
     add(
       InitUsersEvent(),
+    );
+    add(
+      InitOrdersEvent(),
     );
   }
 
@@ -153,6 +164,121 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
                 isDataProcessing: false,
               ),
             );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          exception: e.toString(),
+          isDataProcessing: false,
+        ),
+      );
+    }
+  }
+
+  Future<void> _onInitOrders(
+    InitOrdersEvent event,
+    Emitter<AdminPanelState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isDataProcessing: true,
+        completedOrdersList: [],
+        unCompletedOrdersList: [],
+        exception: null,
+      ),
+    );
+    try {
+      final List<OrderItemForAdminModel> allOrders =
+          await _fetchAllOrdersUseCase.execute(
+        const NoParams(),
+      );
+
+      final List<OrderItemForAdminModel> completedOrdersList = [];
+      final List<OrderItemForAdminModel> unCompletedOrdersList = [];
+
+      for (int i = 0; i < allOrders.length; i++) {
+        allOrders[i].orderItem.isCompleted
+            ? completedOrdersList.add(allOrders[i])
+            : unCompletedOrdersList.add(allOrders[i]);
+      }
+
+      emit(
+        state.copyWith(
+          completedOrdersList: completedOrdersList,
+          unCompletedOrdersList: unCompletedOrdersList,
+          isDataProcessing: false,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          exception: e.toString(),
+          isDataProcessing: false,
+        ),
+      );
+    }
+  }
+
+  void _onFilterOrdersByComplete(
+    FilterOrdersByCompleteEvent event,
+    Emitter<AdminPanelState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        selectedOrdersFilter: event.filterValue,
+      ),
+    );
+  }
+
+  Future<void> _changeOrderStatus(
+    ChangeOrderStatusEvent event,
+    Emitter<AdminPanelState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isDataProcessing: true,
+        exception: null,
+      ),
+    );
+    try {
+      await _changeOrderStatusUseCase.changeOrderStatus(
+        userId: event.userId,
+        orderId: event.orderId,
+      );
+
+      late final int index;
+      for (int i = 0; i < state.unCompletedOrdersList.length; i++) {
+        if (state.unCompletedOrdersList[i].userId == event.userId &&
+            state.unCompletedOrdersList[i].orderItem.id == event.orderId) {
+          index = i;
+        }
+      }
+
+      OrderItemForAdminModel updatedOrderItem =
+          state.unCompletedOrdersList[index];
+
+      state.unCompletedOrdersList.removeAt(index);
+
+      updatedOrderItem = OrderItemForAdminModel(
+        orderItem: OrderItemModel(
+            isCompleted: !updatedOrderItem.orderItem.isCompleted,
+            id: updatedOrderItem.orderItem.id,
+            shoppingCart: updatedOrderItem.orderItem.shoppingCart,
+            date: updatedOrderItem.orderItem.date),
+        userId: updatedOrderItem.userId,
+        email: updatedOrderItem.email,
+      );
+
+      final List<OrderItemForAdminModel> updatedCompletedOrdersList = [
+        updatedOrderItem,
+        ...state.completedOrdersList,
+      ];
+
+      emit(
+        state.copyWith(
+          completedOrdersList: updatedCompletedOrdersList,
+          isDataProcessing: false,
+        ),
+      );
     } catch (e) {
       emit(
         state.copyWith(

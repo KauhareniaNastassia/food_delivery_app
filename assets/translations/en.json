@@ -59,5 +59,9 @@
   "internetConnectionIsNotAvailable": "Internet connection lost. Cached data is being used",
   "errorLoadingDishes": "Error loading dishes",
 
-  "userHasNoOrders": "User has no orders"
+  "userHasNoOrders": "User has no orders",
+  "completeOrder": "Complete this order",
+  "orderIsCompleted": "Order is completed",
+  "allOrdersAreCompleted": "All orders are completed",
+  "checkNewOrders": "Check new orders"
 }

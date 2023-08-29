@@ -10,29 +10,8 @@ class UsersPageContent extends StatefulWidget {
   State<UsersPageContent> createState() => _UsersPageContentState();
 }
 
-class _UsersPageContentState extends State<UsersPageContent>
-    with TickerProviderStateMixin {
+class _UsersPageContentState extends State<UsersPageContent> {
   final ScrollController _scrollController = ScrollController();
-  late final AnimationController _animationController;
-  late final Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )..forward();
-    _animation = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.linear,
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,51 +27,48 @@ class _UsersPageContentState extends State<UsersPageContent>
                   );
             },
             child: SafeArea(
-              child: FadeTransition(
-                opacity: _animation,
-                child: SingleChildScrollView(
-                  controller: _scrollController,
-                  padding: const EdgeInsets.all(10),
-                  child: Center(
-                    child: Column(
-                      children: <Widget>[
-                        CustomFilter(
-                          filterItems: <String>[
-                            AppConstants.allUsers,
-                            ...AppConstants.userRoles,
-                          ],
-                          onTap: (String filterValue) {
-                            context.read<AdminPanelBloc>().add(
-                                  FilterUsersByRoleEvent(
-                                    filterValue: filterValue,
-                                  ),
-                                );
-                          },
-                          selectedFilter: state.selectedFilter,
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                padding: const EdgeInsets.all(10),
+                child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      CustomFilter(
+                        filterItems: <String>[
+                          AppConstants.allUsers,
+                          ...AppConstants.userRoles,
+                        ],
+                        onTap: (String filterValue) {
+                          context.read<AdminPanelBloc>().add(
+                                FilterUsersByRoleEvent(
+                                  filterValue: filterValue,
+                                ),
+                              );
+                        },
+                        selectedFilter: state.selectedFilter,
+                      ),
+                      SizedBox(height: mediaQueryData.size.height * 0.01),
+                      AnimatedCrossFade(
+                        firstCurve: Curves.easeOutBack,
+                        secondCurve: Curves.easeInBack,
+                        firstChild: UserItemsList(
+                          userItemsList: state.filteredUserList.isEmpty
+                              ? state.usersList
+                              : state.filteredUserList,
                         ),
-                        SizedBox(height: mediaQueryData.size.height * 0.01),
-                        AnimatedCrossFade(
-                          firstCurve: Curves.easeOutBack,
-                          secondCurve: Curves.easeInBack,
-                          firstChild: UserItemsList(
-                            userItemsList: state.filteredUserList.isEmpty
-                                ? state.usersList
-                                : state.filteredUserList,
-                          ),
-                          secondChild: NothingFindScreen(
-                            riveAnimationPath:
-                                AnimationPathConstants.nothingInUserFilterPath,
-                            title: 'nothingInCategory'.tr(),
-                          ),
-                          crossFadeState:
-                              (state.selectedFilter != AppConstants.allUsers) &
-                                      state.filteredUserList.isEmpty
-                                  ? CrossFadeState.showSecond
-                                  : CrossFadeState.showFirst,
-                          duration: const Duration(milliseconds: 500),
+                        secondChild: NothingFindScreen(
+                          riveAnimationPath:
+                              AnimationPathConstants.nothingInUserFilterPath,
+                          title: 'nothingInCategory'.tr(),
                         ),
-                      ],
-                    ),
+                        crossFadeState:
+                            (state.selectedFilter != AppConstants.allUsers) &
+                                    state.filteredUserList.isEmpty
+                                ? CrossFadeState.showSecond
+                                : CrossFadeState.showFirst,
+                        duration: const Duration(milliseconds: 500),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -106,11 +82,5 @@ class _UsersPageContentState extends State<UsersPageContent>
         }
       },
     );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 }

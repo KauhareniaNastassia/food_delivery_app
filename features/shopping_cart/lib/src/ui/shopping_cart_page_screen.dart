@@ -45,6 +45,8 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
             return Scaffold(
               bottomNavigationBar: OrderBottomBar(
                 totalPrice: state.shoppingCart.totalPrice,
+                title: 'totalPrice'.tr(),
+                buttonTitle: 'makeAnOrder'.tr(),
                 onPressed: () {
                   orderHistoryBloc.add(
                     CreateOrderEvent(
@@ -52,6 +54,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
                         id: orderHistoryBloc.state.orderItems.length + 1,
                         shoppingCart: state.shoppingCart,
                         date: DateTime.now().toString(),
+                        isCompleted: false,
                       ),
                     ),
                   );

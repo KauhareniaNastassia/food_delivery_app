@@ -1,20 +1,22 @@
-import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class OrderBottomBar extends StatelessWidget {
-  final double totalPrice;
+  final double? totalPrice;
+  final String? title;
+  final String buttonTitle;
   final VoidCallback onPressed;
 
   const OrderBottomBar({
     super.key,
-    required this.totalPrice,
+    this.totalPrice,
+    this.title,
+    required this.buttonTitle,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    //final AppLocalizations appLocalization = AppLocalizations.of(context)!;
 
     return IntrinsicHeight(
       child: Container(
@@ -28,26 +30,28 @@ class OrderBottomBar extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'totalPrice'.tr(),
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Text(
-                        '\$${totalPrice.toStringAsFixed(2)}',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ],
-                  ),
+                  child: totalPrice != null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              title!,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              '\$${totalPrice?.toStringAsFixed(2)}',
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                          ],
+                        )
+                      : null,
                 ),
                 const SizedBox(height: 10),
                 Row(
                   children: <Widget>[
                     Expanded(
                       child: PrimaryButton(
-                        buttonTitle: 'makeAnOrder'.tr(),
+                        buttonTitle: buttonTitle,
                         onPressed: onPressed,
                       ),
                     ),

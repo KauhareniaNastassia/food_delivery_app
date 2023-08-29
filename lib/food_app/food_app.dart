@@ -39,6 +39,8 @@ class FoodApp extends StatelessWidget {
             fetchUsersUseCase: instance.get<FetchUsersUseCase>(),
             changeUserRoleUseCase: instance.get<ChangeUserRoleUseCase>(),
             fetchOrderHistoryUseCase: instance.get<FetchOrderHistoryUseCase>(),
+            fetchAllOrdersUseCase: instance.get<FetchAllOrdersUseCase>(),
+            changeOrderStatusUseCase: instance.get<ChangeOrderStatusUseCase>(),
           ),
         ),
         BlocProvider<MenuBloc>(

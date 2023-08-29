@@ -33,3 +33,25 @@ class FetchUserOrderHistoryEvent extends AdminPanelEvent {
     required this.userId,
   });
 }
+
+class InitOrdersEvent extends AdminPanelEvent {
+  InitOrdersEvent();
+}
+
+class FilterOrdersByCompleteEvent extends AdminPanelEvent {
+  final String filterValue;
+
+  FilterOrdersByCompleteEvent({
+    required this.filterValue,
+  });
+}
+
+class ChangeOrderStatusEvent extends AdminPanelEvent {
+  final String userId;
+  final int orderId;
+
+  ChangeOrderStatusEvent({
+    required this.userId,
+    required this.orderId,
+  });
+}

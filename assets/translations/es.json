@@ -59,5 +59,9 @@
   "internetConnectionIsNotAvailable": "Se perdió la conexión a Internet. Se está utilizando datos en caché",
   "errorLoadingDishes": "Error al cargar platos",
 
-  "userHasNoOrders": "El usuario no tiene pedidos"
+  "userHasNoOrders": "El usuario no tiene pedidos",
+  "completeOrder": "Completa este pedido",
+  "orderIsCompleted": "El pedido está completo",
+  "allOrdersAreCompleted": "Todos los pedidos están completados",
+  "checkNewOrders": "Consultar nuevos pedidos"
 }

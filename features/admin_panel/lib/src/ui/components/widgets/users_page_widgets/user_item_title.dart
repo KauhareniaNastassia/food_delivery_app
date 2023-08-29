@@ -5,10 +5,10 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-class UserItem extends StatelessWidget {
+class UserItemTitle extends StatelessWidget {
   final UserInfoModel userInfoItem;
 
-  const UserItem({
+  const UserItemTitle({
     super.key,
     required this.userInfoItem,
   });

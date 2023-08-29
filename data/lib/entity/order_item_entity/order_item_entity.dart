@@ -4,11 +4,13 @@ class OrderItemEntity {
   final int id;
   final ShoppingCartEntity shoppingCart;
   final String date;
+  final bool isCompleted;
 
   const OrderItemEntity({
     required this.id,
     required this.shoppingCart,
     required this.date,
+    required this.isCompleted,
   });
 
   factory OrderItemEntity.fromJson(Map<String, dynamic> json) {
@@ -16,6 +18,7 @@ class OrderItemEntity {
       id: json['id'],
       shoppingCart: ShoppingCartEntity.fromJson(json['shoppingCart']),
       date: json['date'],
+      isCompleted: json['isCompleted'],
     );
   }
 
@@ -24,6 +27,7 @@ class OrderItemEntity {
       'id': id,
       'shoppingCart': shoppingCart.toMap(),
       'date': date,
+      'isCompleted': isCompleted,
     };
   }
 }
