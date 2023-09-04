@@ -62,6 +62,7 @@ flutter:
     - assets/image/rive_icons/shopping_cart_banner.riv
     - assets/image/rive_icons/nothing_in_category.riv
     - assets/image/rive_icons/nothing_in_user_filter.riv
+    - assets/image/rive_icons/all_orders_are_complete.riv
 
   fonts:
     - family: Merriweather

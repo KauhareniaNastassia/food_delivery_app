@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:domain/domain.dart';
 
 abstract class AdminPanelRepository {
@@ -10,8 +12,24 @@ abstract class AdminPanelRepository {
 
   Future<List<OrderItemForAdminModel>> fetchAllOrders();
 
-  Future<void> changeOrderStatus({
+  Future<OrderItemForAdminModel> changeOrderStatus({
     required String userId,
     required int orderId,
+  });
+
+  Future<void> saveMenuItemChanges({
+    required MenuItemModel updatedMenuItem,
+  });
+
+  Future<void> addNewMenuItem({
+    required MenuItemModel newMenuItem,
+  });
+
+  Future<void> deleteMenuItem({
+    required String menuItemId,
+  });
+
+  Future<String> uploadNewImage({
+    required File uploadedMenuItemImage,
   });
 }

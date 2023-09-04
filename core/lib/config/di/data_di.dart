@@ -241,31 +241,55 @@ class DataDI {
 
   void _initAdminPanel() {
     instance.registerLazySingleton<AdminPanelRepository>(
-          () => AdminPanelRepositoryImpl(
+      () => AdminPanelRepositoryImpl(
         firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
       ),
     );
 
     instance.registerLazySingleton<FetchUsersUseCase>(
-          () => FetchUsersUseCase(
+      () => FetchUsersUseCase(
         adminPanelRepository: instance.get<AdminPanelRepository>(),
       ),
     );
 
     instance.registerLazySingleton<ChangeUserRoleUseCase>(
-          () => ChangeUserRoleUseCase(
+      () => ChangeUserRoleUseCase(
         adminPanelRepository: instance.get<AdminPanelRepository>(),
       ),
     );
 
     instance.registerLazySingleton<FetchAllOrdersUseCase>(
-          () => FetchAllOrdersUseCase(
+      () => FetchAllOrdersUseCase(
         adminPanelRepository: instance.get<AdminPanelRepository>(),
       ),
     );
 
     instance.registerLazySingleton<ChangeOrderStatusUseCase>(
-          () => ChangeOrderStatusUseCase(
+      () => ChangeOrderStatusUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SaveMenuItemChangesUseCase>(
+      () => SaveMenuItemChangesUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<AddNewMenuItemUseCase>(
+      () => AddNewMenuItemUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<DeleteMenuItemUseCase>(
+      () => DeleteMenuItemUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<UploadNewMenuItemImageUseCase>(
+      () => UploadNewMenuItemImageUseCase(
         adminPanelRepository: instance.get<AdminPanelRepository>(),
       ),
     );

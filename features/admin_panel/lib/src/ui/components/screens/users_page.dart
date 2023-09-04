@@ -33,7 +33,7 @@ class _UsersPageContentState extends State<UsersPageContent> {
                 child: Center(
                   child: Column(
                     children: <Widget>[
-                      CustomFilter(
+                      CategoryFilter(
                         filterItems: <String>[
                           AppConstants.allUsers,
                           ...AppConstants.userRoles,

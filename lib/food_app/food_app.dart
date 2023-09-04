@@ -41,6 +41,13 @@ class FoodApp extends StatelessWidget {
             fetchOrderHistoryUseCase: instance.get<FetchOrderHistoryUseCase>(),
             fetchAllOrdersUseCase: instance.get<FetchAllOrdersUseCase>(),
             changeOrderStatusUseCase: instance.get<ChangeOrderStatusUseCase>(),
+            saveMenuItemChangesUseCase:
+                instance.get<SaveMenuItemChangesUseCase>(),
+            addNewMenuItemChangesUseCase: instance.get<AddNewMenuItemUseCase>(),
+            deleteMenuItemChangesUseCase: instance.get<DeleteMenuItemUseCase>(),
+            uploadNewMenuItemImageUseCase:
+                instance.get<UploadNewMenuItemImageUseCase>(),
+            appRouter: instance.get<AppRouter>(),
           ),
         ),
         BlocProvider<MenuBloc>(

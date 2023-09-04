@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:navigation/navigation.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
@@ -10,6 +14,11 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
   final FetchOrderHistoryUseCase _fetchOrderHistoryUseCase;
   final FetchAllOrdersUseCase _fetchAllOrdersUseCase;
   final ChangeOrderStatusUseCase _changeOrderStatusUseCase;
+  final SaveMenuItemChangesUseCase _saveMenuItemChangesUseCase;
+  final AddNewMenuItemUseCase _addNewMenuItemChangesUseCase;
+  final DeleteMenuItemUseCase _deleteMenuItemChangesUseCase;
+  final UploadNewMenuItemImageUseCase _uploadNewMenuItemImageUseCase;
+  final AppRouter _appRouter;
 
   AdminPanelBloc({
     required FetchUsersUseCase fetchUsersUseCase,
@@ -17,12 +26,22 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     required FetchOrderHistoryUseCase fetchOrderHistoryUseCase,
     required FetchAllOrdersUseCase fetchAllOrdersUseCase,
     required ChangeOrderStatusUseCase changeOrderStatusUseCase,
+    required SaveMenuItemChangesUseCase saveMenuItemChangesUseCase,
+    required AddNewMenuItemUseCase addNewMenuItemChangesUseCase,
+    required DeleteMenuItemUseCase deleteMenuItemChangesUseCase,
+    required UploadNewMenuItemImageUseCase uploadNewMenuItemImageUseCase,
+    required AppRouter appRouter,
   })  : _fetchUsersUseCase = fetchUsersUseCase,
         _changeUserRoleUseCase = changeUserRoleUseCase,
         _fetchOrderHistoryUseCase = fetchOrderHistoryUseCase,
         _fetchAllOrdersUseCase = fetchAllOrdersUseCase,
         _changeOrderStatusUseCase = changeOrderStatusUseCase,
-        super(const AdminPanelState.initial()) {
+        _saveMenuItemChangesUseCase = saveMenuItemChangesUseCase,
+        _addNewMenuItemChangesUseCase = addNewMenuItemChangesUseCase,
+        _deleteMenuItemChangesUseCase = deleteMenuItemChangesUseCase,
+        _uploadNewMenuItemImageUseCase = uploadNewMenuItemImageUseCase,
+        _appRouter = appRouter,
+        super(AdminPanelState.initial()) {
     on<InitUsersEvent>(_onInitUsers);
     on<FilterUsersByRoleEvent>(_filterUsersByRole);
     on<ChangeUserRoleEvent>(_changeUserRole);
@@ -30,6 +49,13 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     on<InitOrdersEvent>(_onInitOrders);
     on<FilterOrdersByCompleteEvent>(_onFilterOrdersByComplete);
     on<ChangeOrderStatusEvent>(_changeOrderStatus);
+    on<EditModeEvent>(_onEditMode);
+    on<SaveMenuItemChangesEvent>(_onSaveMenuItemChanges);
+    on<NavigateToAddItemPageEvent>(_onNavigateToAddItemPage);
+    on<DeleteMenuItemEvent>(_onDeleteMenuItem);
+    on<SelectMenuItemImageEvent>(_onSelectMenuItemImage);
+    on<NavigateBackToAdminEvent>(_onNavigateBack);
+    on<InitMenuItem>(_onInitMenuItem);
 
     add(
       InitUsersEvent(),
@@ -117,7 +143,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
 
       if (state.filteredUserList.isNotEmpty) {
         final int index = state.filteredUserList.indexWhere(
-          (usersListItem) => usersListItem.userId == updatedUser.userId,
+          (usersItem) => usersItem.userId == updatedUser.userId,
         );
         state.filteredUserList.removeAt(index);
       }
@@ -145,7 +171,6 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       state.copyWith(
         isDataProcessing: true,
         exception: null,
-        userOrderHistory: [],
       ),
     );
     try {
@@ -191,7 +216,6 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
           await _fetchAllOrdersUseCase.execute(
         const NoParams(),
       );
-
       final List<OrderItemForAdminModel> completedOrdersList = [];
       final List<OrderItemForAdminModel> unCompletedOrdersList = [];
 
@@ -240,7 +264,8 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       ),
     );
     try {
-      await _changeOrderStatusUseCase.changeOrderStatus(
+      final OrderItemForAdminModel updatedOrderItem =
+          await _changeOrderStatusUseCase.changeOrderStatus(
         userId: event.userId,
         orderId: event.orderId,
       );
@@ -252,21 +277,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
           index = i;
         }
       }
-
-      OrderItemForAdminModel updatedOrderItem =
-          state.unCompletedOrdersList[index];
-
       state.unCompletedOrdersList.removeAt(index);
-
-      updatedOrderItem = OrderItemForAdminModel(
-        orderItem: OrderItemModel(
-            isCompleted: !updatedOrderItem.orderItem.isCompleted,
-            id: updatedOrderItem.orderItem.id,
-            shoppingCart: updatedOrderItem.orderItem.shoppingCart,
-            date: updatedOrderItem.orderItem.date),
-        userId: updatedOrderItem.userId,
-        email: updatedOrderItem.email,
-      );
 
       final List<OrderItemForAdminModel> updatedCompletedOrdersList = [
         updatedOrderItem,
@@ -287,5 +298,181 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
         ),
       );
     }
+  }
+
+  void _onEditMode(
+    EditModeEvent event,
+    Emitter<AdminPanelState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        isItemEditing: event.modeValue,
+      ),
+    );
+  }
+
+  Future<void> _onSelectMenuItemImage(
+    SelectMenuItemImageEvent event,
+    Emitter<AdminPanelState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        uploadedMenuItemImage: '',
+        isDataProcessing: true,
+        exception: null,
+      ),
+    );
+    try {
+      final XFile? pickedImage = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+      );
+      emit(
+        state.copyWith(
+          isDataProcessing: false,
+          uploadedMenuItemImage: pickedImage!.path,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          isDataProcessing: false,
+          exception: e.toString(),
+        ),
+      );
+    }
+  }
+
+  Future<void> _onSaveMenuItemChanges(
+    SaveMenuItemChangesEvent event,
+    Emitter<AdminPanelState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isDataProcessing: true,
+        exception: null,
+      ),
+    );
+    try {
+       String newMenuItemImage = '';
+
+      if (state.uploadedMenuItemImage != '') {
+        newMenuItemImage = await _uploadNewMenuItemImageUseCase.uploadNewImage(
+          uploadedMenuItemImage: File(state.uploadedMenuItemImage),
+        );
+      }
+
+      late final MenuItemModel menuItemUpdated;
+
+      if (newMenuItemImage == '') {
+        menuItemUpdated = event.menuItem;
+      } else {
+        menuItemUpdated = MenuItemModel(
+          id: event.menuItem.id,
+          title: event.menuItem.title,
+          cost: event.menuItem.cost,
+          image: newMenuItemImage,
+          category: event.menuItem.category,
+          description: event.menuItem.description,
+          ingredients: event.menuItem.ingredients,
+        );
+      }
+
+      event.menuItem.id == ''
+          ? await _addNewMenuItemChangesUseCase.addNewMenuItem(
+              newMenuItem: menuItemUpdated,
+            )
+          : await _saveMenuItemChangesUseCase.saveMenuItemChanges(
+              updatedMenuItem: menuItemUpdated,
+            );
+      event.onComplete();
+
+      add(
+        EditModeEvent(modeValue: false),
+      );
+
+      emit(
+        state.copyWith(
+          menuItem: menuItemUpdated,
+          uploadedMenuItemImage: '',
+          isDataProcessing: false,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          exception: e.toString(),
+          isDataProcessing: false,
+        ),
+      );
+    }
+  }
+
+  void _onNavigateToAddItemPage(
+    NavigateToAddItemPageEvent event,
+    Emitter<AdminPanelState> emit,
+  ) {
+    add(EditModeEvent(modeValue: true));
+    _appRouter.navigate(
+      MenuItemDetailsScreenForAdminRoute(
+        menuItem: MenuItemModel(
+          id: '',
+          title: '',
+          cost: 0.0,
+          image: '',
+          description: '',
+          ingredients: [],
+          category: AppConstants.menuItemCategory[0],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _onDeleteMenuItem(
+    DeleteMenuItemEvent event,
+    Emitter<AdminPanelState> emit,
+  ) async {
+    emit(
+      state.copyWith(
+        isDataProcessing: true,
+        exception: null,
+      ),
+    );
+    try {
+      await _deleteMenuItemChangesUseCase.deleteMenuItem(
+        menuItemId: event.menuItemId,
+      );
+
+      emit(
+        state.copyWith(
+          isDataProcessing: false,
+        ),
+      );
+    } catch (e) {
+      emit(
+        state.copyWith(
+          exception: e.toString(),
+          isDataProcessing: false,
+        ),
+      );
+    }
+  }
+
+  void _onNavigateBack(
+    NavigateBackToAdminEvent event,
+    Emitter<AdminPanelState> emit,
+  ) {
+    add(EditModeEvent(modeValue: false));
+    _appRouter.pop();
+  }
+
+  void _onInitMenuItem(
+    InitMenuItem event,
+    Emitter<AdminPanelState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        menuItem: event.menuItem,
+      ),
+    );
   }
 }

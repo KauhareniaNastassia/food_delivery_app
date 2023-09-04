@@ -1,16 +1,16 @@
-import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:settings/settings.dart';
 
 class ItemListButton extends StatefulWidget {
   final VoidCallback onPressed;
   final int? amount;
+  final bool isCustomer;
 
   const ItemListButton({
     Key? key,
     required this.onPressed,
     required this.amount,
+    required this.isCustomer,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class ItemListButtonState extends State<ItemListButton> {
       child: InkWell(
         child: CircleAvatar(
           minRadius: 13,
-          backgroundColor: widget.amount != null
+          backgroundColor: widget.amount != null && widget.isCustomer
               ? Theme.of(context).canvasColor
               : Theme.of(context).primaryColor,
           child: Container(
@@ -35,42 +35,40 @@ class ItemListButtonState extends State<ItemListButton> {
             ),
             child: IconButton(
               onPressed: widget.onPressed,
-              icon: Stack(
-                children: <Widget>[
-                  widget.amount != null
-                      ? Stack(
-                          children: <Widget>[
-                            Icon(
-                              Icons.shopping_cart,
-                              color: AppColors.primaryButtonTextColor,
-                              size: mediaQueryData.size.width / 12,
-                            ),
-                            Positioned(
-                              right: 6,
-                              top: 0.5,
-                              child: Container(
-                                width: mediaQueryData.size.width * 0.05,
-                                padding: const EdgeInsets.all(0),
-                                child: Center(
-                                  child: Text(
-                                    widget.amount.toString(),
-                                    style: AppTextStyles.size14WeightBoldText(
-                                      color: AppColors.descriptionTextColor,
-                                      fontSize: 1,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : Icon(
-                          Icons.shopping_cart_outlined,
+              icon: widget.amount != null && widget.isCustomer
+                  ? Stack(
+                      children: <Widget>[
+                        Icon(
+                          Icons.shopping_cart,
                           color: AppColors.primaryButtonTextColor,
                           size: mediaQueryData.size.width / 12,
                         ),
-                ],
-              ),
+                        Positioned(
+                          right: 6,
+                          top: 0.5,
+                          child: Container(
+                            width: mediaQueryData.size.width * 0.05,
+                            padding: const EdgeInsets.all(0),
+                            child: Center(
+                              child: Text(
+                                widget.amount.toString(),
+                                style: AppTextStyles.size14WeightBoldText(
+                                  color: AppColors.descriptionTextColor,
+                                  fontSize: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  : Icon(
+                      widget.isCustomer
+                          ? Icons.shopping_cart_outlined
+                          : Icons.delete_outline_rounded,
+                      color: AppColors.primaryButtonTextColor,
+                      size: mediaQueryData.size.width / 12,
+                    ),
             ),
           ),
         ),

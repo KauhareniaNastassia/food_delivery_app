@@ -55,3 +55,53 @@ class ChangeOrderStatusEvent extends AdminPanelEvent {
     required this.orderId,
   });
 }
+
+class EditModeEvent extends AdminPanelEvent {
+  final bool modeValue;
+
+  EditModeEvent({
+    required this.modeValue,
+  });
+}
+
+class NavigateToAddItemPageEvent extends AdminPanelEvent {
+  NavigateToAddItemPageEvent();
+}
+
+class SaveMenuItemChangesEvent extends AdminPanelEvent {
+  final MenuItemModel menuItem;
+  final Function() onComplete;
+
+  SaveMenuItemChangesEvent({
+    required this.menuItem,
+    required this.onComplete,
+  });
+}
+
+class InitMenuItem extends AdminPanelEvent {
+  final MenuItemModel menuItem;
+
+  InitMenuItem({
+    required this.menuItem,
+  });
+}
+
+class DeleteMenuItemEvent extends AdminPanelEvent {
+  final String menuItemId;
+
+  DeleteMenuItemEvent({
+    required this.menuItemId,
+  });
+}
+
+class UploadMenuItemImageEvent extends AdminPanelEvent {
+  UploadMenuItemImageEvent();
+}
+
+class SelectMenuItemImageEvent extends AdminPanelEvent {
+  SelectMenuItemImageEvent();
+}
+
+class NavigateBackToAdminEvent extends AdminPanelEvent {
+  NavigateBackToAdminEvent();
+}

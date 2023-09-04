@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:data/data.dart';
 
 class FirebaseFireStoreProvider {
@@ -49,6 +51,7 @@ class FirebaseFireStoreProvider {
       'id': orderItem.id,
       'shoppingCart': orderItem.shoppingCart.toJson(),
       'date': orderItem.date,
+      'isCompleted': orderItem.isCompleted,
     });
   }
 
@@ -80,7 +83,6 @@ class FirebaseFireStoreProvider {
   }
 
   ///admin panel
-
   Future<List<UserInfoEntity>> fetchUsers() async {
     final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
         await fireStore.collection('userInfo').get();
@@ -105,7 +107,6 @@ class FirebaseFireStoreProvider {
   Future<List<OrderItemForAdminEntity>> fetchAllOrders() async {
     final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
         await fireStore.collection('userInfo').get();
-
     List<OrderItemForAdminEntity> allOrders = [];
 
     for (int i = 0; i < userInfoQuerySnapshot.docs.length; i++) {
@@ -113,10 +114,10 @@ class FirebaseFireStoreProvider {
           await userInfoQuerySnapshot.docs[i].reference
               .collection('ordersHistory')
               .get();
-
       for (int j = 0; j < ordersQuerySnapshot.docs.length; j++) {
         final Map<String, dynamic> orderData =
             ordersQuerySnapshot.docs[j].data();
+
         final OrderItemEntity orderEntity = OrderItemEntity.fromJson(orderData);
         final UserInfoEntity userInfoEntity =
             UserInfoEntity.fromJson(userInfoQuerySnapshot.docs[i].data());
@@ -127,14 +128,13 @@ class FirebaseFireStoreProvider {
           email: userInfoEntity.email,
           orderItem: orderEntity,
         );
-
         allOrders.add(orderItemForAdminEntity);
       }
     }
     return allOrders;
   }
 
-  Future<void> changeOrderStatus({
+  Future<OrderItemForAdminEntity> changeOrderStatus({
     required String userId,
     required int orderId,
   }) async {
@@ -144,16 +144,83 @@ class FirebaseFireStoreProvider {
         .collection('ordersHistory')
         .get();
 
+    late final OrderItemForAdminEntity updatedOrderItemForAdminEntity;
+
     for (int i = 0; i < orderItems.docs.length; i++) {
       final Map<String, dynamic> orderData = orderItems.docs[i].data();
 
       final OrderItemEntity orderEntity = OrderItemEntity.fromJson(orderData);
 
       if (orderEntity.id == orderId) {
-        orderItems.docs[i].reference.update({
+        await orderItems.docs[i].reference.update({
           'isCompleted': true,
         });
+
+        final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
+            await fireStore.collection('userInfo').get();
+
+        final UserInfoEntity userInfoEntity =
+            UserInfoEntity.fromJson(userInfoQuerySnapshot.docs[i].data());
+
+        updatedOrderItemForAdminEntity = OrderItemForAdminEntity(
+          userId: userInfoEntity.userId,
+          email: userInfoEntity.email,
+          orderItem: orderEntity.copyWith(isCompleted: true),
+        );
       }
     }
+    return updatedOrderItemForAdminEntity;
+  }
+
+  Future<void> saveMenuItemChanges({
+    required MenuItemEntity updatedMenuItem,
+  }) async {
+    final DocumentSnapshot<Map<String, dynamic>> menuItemFromDB =
+        await fireStore.collection('menu').doc(updatedMenuItem.id).get();
+
+    menuItemFromDB.reference.update({
+      "title": updatedMenuItem.title,
+      "image": updatedMenuItem.image,
+      "cost": updatedMenuItem.cost,
+      "description": updatedMenuItem.description,
+      "ingredients": updatedMenuItem.ingredients,
+      "category": updatedMenuItem.category,
+    });
+  }
+
+  Future<String> uploadNewImage({
+    required File uploadedMenuItemImage,
+  }) async {
+    final Reference reference = FirebaseStorage.instance
+        .ref()
+        .child('menuImages')
+        .child('$uploadedMenuItemImage');
+    await reference.putFile(uploadedMenuItemImage);
+    return await reference.getDownloadURL();
+  }
+
+  Future<void> addNewMenuItem({
+    required MenuItemEntity newMenuItem,
+  }) async {
+    final DocumentReference<Map<String, dynamic>> menuDocumentRef =
+        fireStore.collection('menu').doc();
+
+    await menuDocumentRef.set({
+      "id": menuDocumentRef.id,
+      "title": newMenuItem.title,
+      "image": newMenuItem.image,
+      "cost": newMenuItem.cost,
+      "description": newMenuItem.description,
+      "ingredients": newMenuItem.ingredients,
+      "category": newMenuItem.category,
+    });
+  }
+
+  Future<void> deleteMenuItem({
+    required String menuItemId,
+  }) async {
+    final DocumentReference<Map<String, dynamic>> menuItemFromDB =
+        fireStore.collection('menu').doc(menuItemId);
+    await menuItemFromDB.delete();
   }
 }

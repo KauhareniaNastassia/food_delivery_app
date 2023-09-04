@@ -36,6 +36,8 @@ dependencies:
   rive: ^0.11.14
   easy_localization: ^3.0.2
   url_launcher: ^6.0.3
+  image_picker: ^1.0.4
+  firebase_storage: ^11.2.6
 
 dev_dependencies:
   flutter_test:

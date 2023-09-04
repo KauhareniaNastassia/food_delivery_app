@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:data/data.dart';
 import 'package:data/mappers/order_item_for_admin_mapper.dart';
 import 'package:domain/domain.dart';
@@ -18,6 +20,7 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
           (UserInfoEntity e) => UserInfoMapper.toModel(e),
         )
         .toList();
+
     return users;
   }
 
@@ -32,8 +35,8 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
     );
     final UserInfoEntity userInfoEntity =
         await _firebaseFireStoreProvider.getUserInfoFromDB(userId: userId);
-
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
+
     return userInfoModel;
   }
 
@@ -41,22 +44,72 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
   Future<List<OrderItemForAdminModel>> fetchAllOrders() async {
     final List<OrderItemForAdminEntity> allOrdersFromDB =
         await _firebaseFireStoreProvider.fetchAllOrders();
+
     final List<OrderItemForAdminModel> allOrders = allOrdersFromDB
         .map(
           (OrderItemForAdminEntity e) => OrderItemForAdminMapper.toModel(e),
         )
         .toList();
+
     return allOrders;
   }
 
   @override
-  Future<void> changeOrderStatus({
+  Future<OrderItemForAdminModel> changeOrderStatus({
     required String userId,
     required int orderId,
   }) async {
-    await _firebaseFireStoreProvider.changeOrderStatus(
+    final OrderItemForAdminEntity updatedOrderItem =
+        await _firebaseFireStoreProvider.changeOrderStatus(
       userId: userId,
       orderId: orderId,
     );
+
+    return OrderItemForAdminMapper.toModel(updatedOrderItem);
+  }
+
+  @override
+  Future<void> saveMenuItemChanges({
+    required MenuItemModel updatedMenuItem,
+  }) async {
+    final MenuItemEntity menuItemEntity =
+        MenuItemMapper.toEntity(updatedMenuItem);
+
+    await _firebaseFireStoreProvider.saveMenuItemChanges(
+      updatedMenuItem: menuItemEntity,
+    );
+  }
+
+  @override
+  Future<void> addNewMenuItem({
+    required MenuItemModel newMenuItem,
+  }) async {
+    final MenuItemEntity newMenuItemEntity =
+        MenuItemMapper.toEntity(newMenuItem);
+
+    await _firebaseFireStoreProvider.addNewMenuItem(
+      newMenuItem: newMenuItemEntity,
+    );
+  }
+
+  @override
+  Future<void> deleteMenuItem({
+    required String menuItemId,
+  }) async {
+    await _firebaseFireStoreProvider.deleteMenuItem(
+      menuItemId: menuItemId,
+    );
+  }
+
+  @override
+  Future<String> uploadNewImage({
+    required File uploadedMenuItemImage,
+  }) async {
+    final String newMenuItemImage =
+        await _firebaseFireStoreProvider.uploadNewImage(
+      uploadedMenuItemImage: uploadedMenuItemImage,
+    );
+
+    return newMenuItemImage;
   }
 }

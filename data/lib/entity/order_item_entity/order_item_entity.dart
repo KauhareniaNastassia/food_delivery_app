@@ -30,4 +30,18 @@ class OrderItemEntity {
       'isCompleted': isCompleted,
     };
   }
+
+  OrderItemEntity copyWith({
+    int? id,
+    ShoppingCartEntity? shoppingCart,
+    String? date,
+    bool? isCompleted,
+  }) {
+    return OrderItemEntity(
+      id: id ?? this.id,
+      shoppingCart: shoppingCart ?? this.shoppingCart,
+      date: date ?? this.date,
+      isCompleted: isCompleted ?? this.isCompleted,
+    );
+  }
 }

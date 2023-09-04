@@ -1,3 +1,4 @@
+import 'package:admin_panel/admin_panel.dart';
 import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
@@ -41,6 +42,7 @@ class _MainPageScreenState extends State<MainPageScreen>
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final AuthBloc authBloc = context.read<AuthBloc>();
+    final AdminPanelBloc adminPanelBloc = context.read<AdminPanelBloc>();
 
     return Scaffold(
       body: SafeArea(
@@ -75,19 +77,43 @@ class _MainPageScreenState extends State<MainPageScreen>
                     child: SingleChildScrollView(
                       controller: _scrollController,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           SizedBox(height: mediaQueryData.size.height * 0.01),
                           authBloc.state.userRole == AppConstants.userRoles[0]
                               ? const BannerBlock()
-                              : const SizedBox(),
+                              : SizedBox(
+                                  child: PrimaryButton(
+                                    buttonTitle: 'addNewItem'.tr(),
+                                    onPressed: () {
+                                      adminPanelBloc.add(
+                                        NavigateToAddItemPageEvent(),
+                                      );
+                                    },
+                                  ),
+                                ),
                           SizedBox(height: mediaQueryData.size.height * 0.02),
-                          const CategoryFilter(),
+                          CategoryFilter(
+                            filterItems: <String>[
+                              AppConstants.allFoods,
+                              ...AppConstants.menuItemCategory
+                            ],
+                            selectedFilter: state.selectedCategory,
+                            onTap: (String categoryValue) {
+                              context.read<MenuBloc>().add(
+                                    FilterMenuByCategoryEvent(
+                                      category: categoryValue,
+                                    ),
+                                  );
+                            },
+                          ),
                           SizedBox(height: mediaQueryData.size.height * 0.02),
                           AnimatedCrossFade(
                             firstCurve: Curves.easeOutBack,
                             secondCurve: Curves.easeInBack,
                             firstChild: MenuListItems(
+                              isCustomer: authBloc.state.userRole ==
+                                  AppConstants.userRoles[0],
                               menu: state.filteredMenu.isEmpty
                                   ? state.menu
                                   : state.filteredMenu,
@@ -98,7 +124,7 @@ class _MainPageScreenState extends State<MainPageScreen>
                               title: 'nothingInCategory'.tr(),
                             ),
                             crossFadeState: (state.selectedCategory !=
-                                        AppConstants.menuItemCategory[0]) &
+                                        AppConstants.allFoods) &
                                     state.filteredMenu.isEmpty
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,

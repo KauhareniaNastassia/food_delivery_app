@@ -3,12 +3,12 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
-class CustomFilter extends StatelessWidget {
+class CategoryFilter extends StatelessWidget {
   final List<String> filterItems;
   final String selectedFilter;
   final Function(String) onTap;
 
-  const CustomFilter({
+  const CategoryFilter({
     super.key,
     required this.filterItems,
     required this.selectedFilter,
@@ -30,15 +30,12 @@ class CustomFilter extends StatelessWidget {
           return GestureDetector(
             onTap: () => onTap(filterItems[index]),
             child: Container(
-              margin: const EdgeInsets.only(left: 6, right: 6),
+              margin: const EdgeInsets.only(left: 7, right: 7),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(70),
-                border: Border.all(
-                  color: selectedFilter == filterItems[index]
-                      ? theme.primaryColor
-                      : theme.canvasColor,
-                  width: 2,
-                ),
+                color: selectedFilter == filterItems[index]
+                    ? theme.primaryColor
+                    : theme.canvasColor,
               ),
               child: Padding(
                 padding: EdgeInsets.only(
@@ -50,9 +47,7 @@ class CustomFilter extends StatelessWidget {
                     filterItems[index],
                     style: AppTextStyles.size16WeightSemiBoldText(
                       fontSize: settingsBloc.state.fontSize,
-                      color: selectedFilter == filterItems[index]
-                          ? theme.primaryColor
-                          : theme.canvasColor,
+                      color: AppColors.primaryButtonTextColor,
                     ),
                   ),
                 ),

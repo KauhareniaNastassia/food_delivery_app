@@ -54,6 +54,9 @@ part 'app_router.gr.dart';
         ),
       ],
     ),
+    AutoRoute(
+      page: MenuItemDetailsScreenForAdmin,
+    ),
   ],
 )
 class AppRouter extends _$AppRouter {}

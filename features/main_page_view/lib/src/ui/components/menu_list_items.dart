@@ -7,10 +7,12 @@ import 'menu_item.dart';
 
 class MenuListItems extends StatefulWidget {
   final List<MenuItemModel> menu;
+  final bool isCustomer;
 
   const MenuListItems({
     Key? key,
     required this.menu,
+    required this.isCustomer,
   }) : super(key: key);
 
   @override
@@ -83,9 +85,13 @@ class _MenuListItemsState extends State<MenuListItems>
                   );
                 },
                 openBuilder: (_, __) {
-                  return MenuItemDetailsScreen(
-                    menuItem: widget.menu[index],
-                  );
+                  return widget.isCustomer
+                      ? MenuItemDetailsScreen(
+                          menuItem: widget.menu[index],
+                        )
+                      : MenuItemDetailsScreenForAdmin(
+                          menuItem: widget.menu[index],
+                        );
                 },
               );
             },

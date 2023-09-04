@@ -1,13 +1,14 @@
-import 'package:core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 
-class ChangeUserRoleField extends StatelessWidget {
-  final String userRole;
+class CustomDropDownField extends StatelessWidget {
+  final String value;
+  final List<String> listOfItems;
   final Function(String?) onChanged;
 
-  const ChangeUserRoleField({
+  const CustomDropDownField({
     super.key,
-    required this.userRole,
+    required this.value,
+    required this.listOfItems,
     required this.onChanged,
   });
 
@@ -17,8 +18,7 @@ class ChangeUserRoleField extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     return DropdownButton<String>(
-      value: AppConstants.userRoles
-          .firstWhere((element) => element == userRole),
+      value: listOfItems.firstWhere((element) => element == value),
       icon: Icon(
         Icons.arrow_drop_down_rounded,
         size: mediaQueryData.size.height * 0.05,
@@ -29,7 +29,7 @@ class ChangeUserRoleField extends StatelessWidget {
         color: theme.primaryColor,
       ),
       onChanged: (String? value) => onChanged(value!),
-      items: AppConstants.userRoles.map<DropdownMenuItem<String>>(
+      items: listOfItems.map<DropdownMenuItem<String>>(
         (String value) {
           return DropdownMenuItem<String>(
             value: value,

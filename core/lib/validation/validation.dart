@@ -34,3 +34,51 @@ String? nameValidation({
   }
   return null;
 }
+
+String? menuItemTitleValidation({
+  required String? title,
+}) {
+  if (title!.isEmpty) {
+    return 'titleIsRequired'.tr();
+  }
+  if (title.length > 25) {
+    return 'titleShouldBeShorter'.tr();
+  }
+  return null;
+}
+
+String? menuItemCostValidation({
+  required String? cost,
+}) {
+  if (cost!.isEmpty) {
+    return 'costIsRequired'.tr();
+  }
+  if (cost.split('.').last.length > 2) {
+    return 'numbersAfterDot'.tr();
+  }
+  return null;
+}
+
+String? menuItemDescriptionValidation({
+  required String? description,
+}) {
+  if (description!.isEmpty) {
+    return 'descriptionIsRequired'.tr();
+  }
+  if (description.length > 500) {
+    return 'longDescription'.tr();
+  }
+  return null;
+}
+
+String? menuItemIngredientValidation({
+  required String? ingredient,
+}) {
+  if (ingredient!.isEmpty) {
+    return 'ingredientIsRequired'.tr();
+  }
+  if (ingredient.length > 20) {
+    return 'longIngredient'.tr();
+  }
+  return null;
+}

@@ -9,7 +9,7 @@ class OrdersPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final ScrollController _scrollController = ScrollController();
+    final ScrollController scrollController = ScrollController();
 
     return BlocBuilder<AdminPanelBloc, AdminPanelState>(
       builder: (BuildContext context, AdminPanelState state) {
@@ -17,22 +17,22 @@ class OrdersPageContent extends StatelessWidget {
           return const LoadingIndicator();
         } else {
           return Scaffold(
-            bottomNavigationBar: OrderBottomBar(
+            bottomNavigationBar: BottomBar(
               buttonTitle: 'checkNewOrders'.tr(),
               onPressed: () {
                 context.read<AdminPanelBloc>().add(
-                  InitOrdersEvent(),
-                );
+                      InitOrdersEvent(),
+                    );
               },
             ),
             body: SafeArea(
               child: SingleChildScrollView(
-                controller: _scrollController,
+                controller: scrollController,
                 padding: const EdgeInsets.all(10),
                 child: Center(
                   child: Column(
                     children: <Widget>[
-                      CustomFilter(
+                      CategoryFilter(
                         filterItems: AppConstants.orderStatus,
                         onTap: (String filterValue) {
                           context.read<AdminPanelBloc>().add(

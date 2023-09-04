@@ -1,8 +1,11 @@
+import 'package:admin_panel/admin_panel.dart';
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
+import 'package:settings/settings.dart';
 import 'package:shopping_cart/shopping_cart.dart';
 
 class MenuItem extends StatefulWidget {
@@ -23,6 +26,12 @@ class _MenuItemState extends State<MenuItem> {
   @override
   Widget build(BuildContext context) {
     final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
+    final AuthBloc authBloc = context.read<AuthBloc>();
+    final AdminPanelBloc adminPanelBloc = context.read<AdminPanelBloc>();
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final ThemeData theme = Theme.of(context);
+    final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final MenuBloc menuBloc = context.read<MenuBloc>();
 
     ShoppingCartItemModel? findItemInShoppingCart(MenuItemModel menuItem) {
       for (final item
@@ -55,13 +64,34 @@ class _MenuItemState extends State<MenuItem> {
                     right: 5,
                     bottom: 0,
                     child: ItemListButton(
+                      isCustomer:
+                          authBloc.state.userRole == AppConstants.userRoles[0],
                       amount: findItemInShoppingCart(widget.menuItem)?.amount,
                       onPressed: () {
-                        shoppingCartBloc.add(
-                          AddShoppingCartItemEvent(
-                            menuItem: widget.menuItem,
-                          ),
-                        );
+                        authBloc.state.userRole == AppConstants.userRoles[0]
+                            ? shoppingCartBloc.add(
+                                AddShoppingCartItemEvent(
+                                  menuItem: widget.menuItem,
+                                ),
+                              )
+                            : {
+                                adminPanelBloc.add(
+                                  DeleteMenuItemEvent(
+                                    menuItemId: widget.menuItem.id,
+                                  ),
+                                ),
+                                NotificationToast.showNotification(
+                                  context,
+                                  'menuItemWasDeleted'.tr(),
+                                  mediaQueryData,
+                                  settingsBloc,
+                                  Icons.expand_circle_down_outlined,
+                                  theme.canvasColor,
+                                ),
+                                menuBloc.add(
+                                  InitEvent(),
+                                ),
+                              };
                       },
                     ),
                   )

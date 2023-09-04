@@ -8,6 +8,9 @@ class AdminPanelState {
   final List<OrderItemForAdminModel> completedOrdersList;
   final List<OrderItemForAdminModel> unCompletedOrdersList;
   final String selectedOrdersFilter;
+  final MenuItemModel menuItem;
+  final String uploadedMenuItemImage;
+  final bool isItemEditing;
   final bool isDataProcessing;
   final String? exception;
 
@@ -19,21 +22,34 @@ class AdminPanelState {
     required this.completedOrdersList,
     required this.unCompletedOrdersList,
     required this.selectedOrdersFilter,
+    required this.uploadedMenuItemImage,
+    required this.isItemEditing,
     required this.isDataProcessing,
+    required this.menuItem,
     this.exception,
   });
 
-  const AdminPanelState.initial({
-    this.usersList = const [],
-    this.filteredUserList = const [],
-    this.selectedFilter = 'all users',
-    this.userOrderHistory = const [],
-    this.completedOrdersList = const [],
-    this.unCompletedOrdersList = const [],
-    this.selectedOrdersFilter = 'new orders',
-    this.isDataProcessing = false,
-    this.exception,
-  });
+  AdminPanelState.initial()
+      : usersList = [],
+        filteredUserList = [],
+        selectedFilter = AppConstants.allUsers,
+        userOrderHistory = [],
+        completedOrdersList = [],
+        unCompletedOrdersList = [],
+        selectedOrdersFilter = AppConstants.orderStatus[0],
+        uploadedMenuItemImage = '',
+        isItemEditing = false,
+        isDataProcessing = false,
+        exception = '',
+        menuItem = MenuItemModel(
+          id: '',
+          title: '',
+          cost: 0.0,
+          image: '',
+          description: '',
+          ingredients: [],
+          category: AppConstants.menuItemCategory[0],
+        );
 
   AdminPanelState copyWith({
     List<UserInfoModel>? usersList,
@@ -43,6 +59,9 @@ class AdminPanelState {
     List<OrderItemForAdminModel>? completedOrdersList,
     List<OrderItemForAdminModel>? unCompletedOrdersList,
     String? selectedOrdersFilter,
+    MenuItemModel? menuItem,
+    String? uploadedMenuItemImage,
+    bool? isItemEditing,
     bool? isDataProcessing,
     String? exception,
   }) {
@@ -52,10 +71,15 @@ class AdminPanelState {
       selectedFilter: selectedFilter ?? this.selectedFilter,
       userOrderHistory: userOrderHistory ?? this.userOrderHistory,
       completedOrdersList: completedOrdersList ?? this.completedOrdersList,
-      unCompletedOrdersList: unCompletedOrdersList ?? this.unCompletedOrdersList,
+      unCompletedOrdersList:
+          unCompletedOrdersList ?? this.unCompletedOrdersList,
       selectedOrdersFilter: selectedOrdersFilter ?? this.selectedOrdersFilter,
+      uploadedMenuItemImage:
+          uploadedMenuItemImage ?? this.uploadedMenuItemImage,
+      isItemEditing: isItemEditing ?? this.isItemEditing,
       isDataProcessing: isDataProcessing ?? this.isDataProcessing,
       exception: exception ?? this.exception,
+      menuItem: menuItem ?? this.menuItem,
     );
   }
 }

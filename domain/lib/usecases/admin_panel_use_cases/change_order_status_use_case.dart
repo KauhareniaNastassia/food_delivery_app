@@ -7,7 +7,7 @@ class ChangeOrderStatusUseCase {
     required AdminPanelRepository adminPanelRepository,
   }) : _adminPanelRepository = adminPanelRepository;
 
-  Future<void> changeOrderStatus({
+  Future<OrderItemForAdminModel> changeOrderStatus({
     required String userId,
     required int orderId,
   }) async {
