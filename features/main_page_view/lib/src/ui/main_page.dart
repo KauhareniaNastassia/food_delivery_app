@@ -44,7 +44,7 @@ class _MainPageState extends State<MainPage> {
       },
       bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
         return CustomBottomNavigationBar(
-          isAdmin: authBloc.state.userRole == 'customer',
+          isCustomer: authBloc.state.userRole == 'customer',
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
         );

@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final int currentIndex;
-  final bool isAdmin;
+  final bool isCustomer;
   final void Function(int) onTap;
 
   const CustomBottomNavigationBar({
     Key? key,
     required this.currentIndex,
     required this.onTap,
-    required this.isAdmin,
+    required this.isCustomer,
   }) : super(key: key);
 
   @override
@@ -67,7 +67,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   ),
                 ),
                 Icon(
-                  widget.isAdmin
+                  widget.isCustomer
                       ? CustomBottomNavigationBarItems.listOfIcons[index]
                       : CustomBottomNavigationBarItems
                           .listOfAdminPanelIcons[index],
@@ -77,7 +77,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                       : theme.bottomNavigationBarTheme.unselectedItemColor,
                 ),
                 Text(
-                  widget.isAdmin
+                  widget.isCustomer
                       ? CustomBottomNavigationBarItems.listOfLabels[index].tr()
                       : CustomBottomNavigationBarItems
                           .listOfAdminPanelLabels[index]

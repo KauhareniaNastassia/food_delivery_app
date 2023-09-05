@@ -44,7 +44,7 @@ class _AdminPanelPageState extends State<AdminPanelPage> {
       },
       bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
         return CustomBottomNavigationBar(
-          isAdmin: authBloc.state.userRole == AppConstants.userRoles[0],
+          isCustomer: authBloc.state.userRole == AppConstants.userRoles[0],
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
         );

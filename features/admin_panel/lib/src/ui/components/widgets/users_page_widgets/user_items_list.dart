@@ -70,7 +70,8 @@ class _UserItemsListState extends State<UserItemsList>
                   if (expanded) {
                     adminPanelBloc.add(
                       FetchUserOrderHistoryEvent(
-                          userId: widget.userItemsList[index].userId),
+                        userId: widget.userItemsList[index].userId,
+                      ),
                     );
                   }
                 },

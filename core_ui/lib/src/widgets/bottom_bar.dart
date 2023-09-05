@@ -27,35 +27,39 @@ class BottomBar extends StatelessWidget {
         ),
         child: Stack(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: totalPrice != null
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
-                          title!,
-                          style: theme.textTheme.titleMedium,
-                        ),
-                        Text(
-                          '\$${totalPrice?.toStringAsFixed(2)}',
-                          style: theme.textTheme.titleLarge,
-                        ),
-                      ],
-                    )
-                  : null,
-            ),
-            const SizedBox(height: 10),
-            Row(
+            Column(
               children: <Widget>[
-                Expanded(
-                  child: PrimaryButton(
-                    buttonTitle: buttonTitle,
-                    onPressed: onPressed,
-                  ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                  child: totalPrice == null
+                      ? const SizedBox()
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              title!,
+                              style: theme.textTheme.titleMedium,
+                            ),
+                            Text(
+                              '\$${totalPrice?.toStringAsFixed(2)}',
+                              style: theme.textTheme.titleLarge,
+                            ),
+                          ],
+                        ),
                 ),
+                const SizedBox(height: 10),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: PrimaryButton(
+                        buttonTitle: buttonTitle,
+                        onPressed: onPressed,
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
+            ),
           ],
         ),
       ),

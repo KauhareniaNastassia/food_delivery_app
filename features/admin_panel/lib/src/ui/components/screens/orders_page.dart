@@ -10,6 +10,7 @@ class OrdersPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ScrollController scrollController = ScrollController();
+    final AdminPanelBloc adminPanelBloc = context.read<AdminPanelBloc>();
 
     return BlocBuilder<AdminPanelBloc, AdminPanelState>(
       builder: (BuildContext context, AdminPanelState state) {
@@ -20,9 +21,9 @@ class OrdersPageContent extends StatelessWidget {
             bottomNavigationBar: BottomBar(
               buttonTitle: 'checkNewOrders'.tr(),
               onPressed: () {
-                context.read<AdminPanelBloc>().add(
-                      InitOrdersEvent(),
-                    );
+                adminPanelBloc.add(
+                  InitOrdersEvent(),
+                );
               },
             ),
             body: SafeArea(
@@ -35,11 +36,11 @@ class OrdersPageContent extends StatelessWidget {
                       CategoryFilter(
                         filterItems: AppConstants.orderStatus,
                         onTap: (String filterValue) {
-                          context.read<AdminPanelBloc>().add(
-                                FilterOrdersByCompleteEvent(
-                                  filterValue: filterValue,
-                                ),
-                              );
+                          adminPanelBloc.add(
+                            FilterOrdersByCompleteEvent(
+                              filterValue: filterValue,
+                            ),
+                          );
                         },
                         selectedFilter: state.selectedOrdersFilter,
                       ),

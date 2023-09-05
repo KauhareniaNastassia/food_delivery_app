@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
@@ -211,7 +209,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final UserInfoModel userInfo = await _signInViaGoogleUseCase.execute(
         const NoParams(),
       );
-      log(userInfo.userRole);
+
       emit(
         state.copyWith(
           isUserLoggedIn: true,

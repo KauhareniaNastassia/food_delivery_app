@@ -18,6 +18,7 @@ class FirebaseAuthProvider {
       email: email,
       password: password,
     );
+
     return userCredential.user!.uid;
   }
 

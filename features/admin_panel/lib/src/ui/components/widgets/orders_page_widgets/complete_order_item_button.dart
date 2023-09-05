@@ -21,7 +21,6 @@ class CompleteOrderItemButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-
         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         backgroundColor: theme.canvasColor,
         shape: const RoundedRectangleBorder(

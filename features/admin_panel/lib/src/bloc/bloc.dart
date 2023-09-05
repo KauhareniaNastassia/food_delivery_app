@@ -386,15 +386,12 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
             );
       event.onComplete();
 
-      add(
-        EditModeEvent(modeValue: false),
-      );
-
       emit(
         state.copyWith(
           menuItem: menuItemUpdated,
           uploadedMenuItemImage: '',
           isDataProcessing: false,
+          isItemEditing: false,
         ),
       );
     } catch (e) {
@@ -411,7 +408,11 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     NavigateToAddItemPageEvent event,
     Emitter<AdminPanelState> emit,
   ) {
-    add(EditModeEvent(modeValue: true));
+    emit(
+      state.copyWith(
+        isItemEditing: true,
+      ),
+    );
     _appRouter.navigate(
       MenuItemDetailsScreenForAdminRoute(
         menuItem: MenuItemModel(

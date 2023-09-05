@@ -32,6 +32,8 @@ class _MenuItemState extends State<MenuItem> {
     final ThemeData theme = Theme.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final MenuBloc menuBloc = context.read<MenuBloc>();
+    final bool isCustomer =
+        authBloc.state.userRole == AppConstants.userRoles[0];
 
     ShoppingCartItemModel? findItemInShoppingCart(MenuItemModel menuItem) {
       for (final item
@@ -64,11 +66,10 @@ class _MenuItemState extends State<MenuItem> {
                     right: 5,
                     bottom: 0,
                     child: ItemListButton(
-                      isCustomer:
-                          authBloc.state.userRole == AppConstants.userRoles[0],
+                      isCustomer: isCustomer,
                       amount: findItemInShoppingCart(widget.menuItem)?.amount,
                       onPressed: () {
-                        authBloc.state.userRole == AppConstants.userRoles[0]
+                        isCustomer
                             ? shoppingCartBloc.add(
                                 AddShoppingCartItemEvent(
                                   menuItem: widget.menuItem,
