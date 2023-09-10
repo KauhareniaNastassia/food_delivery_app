@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
+import 'package:admin_panel/admin_panel.dart';
 
 class MenuItemDetailsIngredientsForAdmin extends StatelessWidget {
   final List<String> ingredients;
@@ -22,6 +22,7 @@ class MenuItemDetailsIngredientsForAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +31,7 @@ class MenuItemDetailsIngredientsForAdmin extends StatelessWidget {
           'ingredients'.tr(),
           style: theme.textTheme.bodyMedium,
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: mediaQueryData.size.height * 0.01),
         isEditMode
             ? AddIngredientTextField(
                 addIngredientController: addIngredientController,
@@ -47,9 +48,9 @@ class MenuItemDetailsIngredientsForAdmin extends StatelessWidget {
                 itemBuilder: (_, index) {
                   return Row(
                     children: <Widget>[
-                      const SizedBox(width: 15),
+                      SizedBox(width: mediaQueryData.size.width * 0.03),
                       const CustomDotPoint(),
-                      const SizedBox(width: 10),
+                      SizedBox(width: mediaQueryData.size.width * 0.03),
                       isEditMode
                           ? RemoveIngredientTextField(
                               textEditingController:

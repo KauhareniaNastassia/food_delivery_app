@@ -7,11 +7,7 @@ class AddNewMenuItemUseCase {
     required AdminPanelRepository adminPanelRepository,
   }) : _adminPanelRepository = adminPanelRepository;
 
-  Future<void> addNewMenuItem({
-    required MenuItemModel newMenuItem,
-  }) async {
-    return _adminPanelRepository.addNewMenuItem(
-      newMenuItem: newMenuItem,
-    );
+  Future<void> addNewMenuItem(MenuItemModel newMenuItem) async {
+    return _adminPanelRepository.addNewMenuItem(newMenuItem);
   }
 }

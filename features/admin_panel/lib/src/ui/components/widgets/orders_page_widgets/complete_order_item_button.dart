@@ -16,12 +16,16 @@ class CompleteOrderItemButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
 
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+        padding: EdgeInsets.only(
+          left: mediaQueryData.size.width * 0.023,
+          right: mediaQueryData.size.width * 0.023,
+        ),
         backgroundColor: theme.canvasColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(

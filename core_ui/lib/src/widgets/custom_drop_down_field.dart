@@ -25,7 +25,7 @@ class CustomDropDownField extends StatelessWidget {
       ),
       style: theme.textTheme.displayMedium,
       underline: Container(
-        height: 2,
+        height: mediaQueryData.size.height * 0.002,
         color: theme.primaryColor,
       ),
       onChanged: (String? value) => onChanged(value!),

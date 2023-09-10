@@ -19,11 +19,16 @@ class MenuItemDetailsBottomBarForAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Material(
       color: theme.cardColor,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+        padding: EdgeInsets.only(
+          left: mediaQueryData.size.width * 0.04,
+          right: mediaQueryData.size.width * 0.04,
+          bottom: mediaQueryData.size.height * 0.02,
+        ),
         child: isEditingMode
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

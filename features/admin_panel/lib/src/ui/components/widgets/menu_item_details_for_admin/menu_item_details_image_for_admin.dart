@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
 
@@ -38,19 +39,19 @@ class MenuItemDetailsImageForAdmin extends StatelessWidget {
           ),
           isEditMode
               ? Padding(
-                  padding: const EdgeInsets.only(
-                    right: 10,
-                    bottom: 20,
+                  padding: EdgeInsets.only(
+                    right: mediaQueryData.size.width * 0.02,
+                    bottom: mediaQueryData.size.height * 0.03,
                   ),
                   child: ElevatedButton(
                     onPressed: onPressedAddNewImage,
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: AppStyles.defaultBorderRadius,
                           side: BorderSide(
                             color: theme.canvasColor,
-                            width: 2.0,
+                            width: mediaQueryData.size.width * 0.005,
                           ),
                         ),
                       ),

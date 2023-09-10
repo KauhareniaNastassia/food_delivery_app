@@ -1,9 +1,8 @@
+import 'package:admin_panel/admin_panel.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:main_page_view/main_page.dart';
-
-import 'menu_item.dart';
 
 class MenuListItems extends StatefulWidget {
   final List<MenuItemModel> menu;

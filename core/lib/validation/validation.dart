@@ -35,7 +35,7 @@ String? nameValidation({
   return null;
 }
 
-String? menuItemTitleValidation({required String? title}) {
+String? menuItemTitleValidation(String? title) {
   if (title!.isEmpty) {
     return 'titleIsRequired'.tr();
   }
@@ -45,7 +45,7 @@ String? menuItemTitleValidation({required String? title}) {
   return null;
 }
 
-String? menuItemCostValidation({required String? cost}) {
+String? menuItemCostValidation(String? cost) {
   if (cost!.isEmpty) {
     return 'costIsRequired'.tr();
   }
@@ -55,7 +55,7 @@ String? menuItemCostValidation({required String? cost}) {
   return null;
 }
 
-String? menuItemDescriptionValidation({required String? description}) {
+String? menuItemDescriptionValidation(String? description) {
   if (description!.isEmpty) {
     return 'descriptionIsRequired'.tr();
   }
@@ -65,7 +65,7 @@ String? menuItemDescriptionValidation({required String? description}) {
   return null;
 }
 
-String? menuItemIngredientValidation({required String? ingredient}) {
+String? menuItemIngredientValidation(String? ingredient) {
   if (ingredient!.isEmpty) {
     return 'ingredientIsRequired'.tr();
   }

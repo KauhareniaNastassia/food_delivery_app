@@ -7,11 +7,7 @@ class DeleteMenuItemUseCase {
     required AdminPanelRepository adminPanelRepository,
   }) : _adminPanelRepository = adminPanelRepository;
 
-  Future<void> deleteMenuItem({
-    required String menuItemId,
-  }) async {
-    return _adminPanelRepository.deleteMenuItem(
-      menuItemId: menuItemId,
-    );
+  Future<void> deleteMenuItem(String menuItemId) async {
+    return _adminPanelRepository.deleteMenuItem(menuItemId);
   }
 }

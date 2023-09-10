@@ -9,10 +9,10 @@ class PrimaryButton extends StatelessWidget {
   final bool? isEditingMode;
 
   const PrimaryButton({
+    super.key,
+    this.isEditingMode,
     required this.onPressed,
     required this.buttonTitle,
-    this.isEditingMode,
-    super.key,
   });
 
   @override

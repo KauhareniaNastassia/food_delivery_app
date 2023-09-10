@@ -1,6 +1,6 @@
+import 'package:admin_panel/admin_panel.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
 
 class RemoveIngredientTextField extends StatelessWidget {
   final TextEditingController textEditingController;
@@ -23,7 +23,7 @@ class RemoveIngredientTextField extends StatelessWidget {
           textEditingController: textEditingController,
           width: mediaQueryData.size.width * 0.5,
           validation: (String? ingredient) {
-            return menuItemIngredientValidation(ingredient: ingredient);
+            return menuItemIngredientValidation(ingredient);
           },
         ),
         IconButton(

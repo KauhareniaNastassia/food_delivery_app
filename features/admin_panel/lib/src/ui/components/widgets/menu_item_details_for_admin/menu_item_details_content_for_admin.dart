@@ -2,7 +2,6 @@ import 'package:admin_panel/admin_panel.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
 
 class MenuItemDetailsContentForAdmin extends StatelessWidget {
   final TextEditingController titleController;
@@ -35,7 +34,11 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         alignment: Alignment.center,
-        padding: const EdgeInsets.fromLTRB(30, 0, 30, 40),
+        padding: EdgeInsets.only(
+          left: mediaQueryData.size.width * 0.06,
+          right: mediaQueryData.size.width * 0.06,
+          bottom: mediaQueryData.size.height * 0.02,
+        ),
         color: theme.cardColor,
         child: adminPanelBloc.state.isDataProcessing
             ? SizedBox(
@@ -45,7 +48,7 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
             : Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  const SizedBox(height: 20),
+                  SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsTitleForAdmin(
                     titleController: titleController,
                     costController: costController,
@@ -53,19 +56,19 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
                     title: titleController.text,
                     cost: costController.text,
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsCategoryForAdmin(
                     category: selectedCategory,
                     isEditMode: adminPanelBloc.state.isItemEditing,
                     onChange: onChangeCategory,
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsDescriptionForAdmin(
                     descriptionController: descriptionController,
                     description: descriptionController.text,
                     isEditMode: adminPanelBloc.state.isItemEditing,
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsIngredientsForAdmin(
                     ingredients: listOfIngredientControllers
                         .map(

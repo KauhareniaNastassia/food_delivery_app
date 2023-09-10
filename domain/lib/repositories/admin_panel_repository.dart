@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:domain/domain.dart';
 
 abstract class AdminPanelRepository {
@@ -17,19 +16,11 @@ abstract class AdminPanelRepository {
     required int orderId,
   });
 
-  Future<void> saveMenuItemChanges({
-    required MenuItemModel updatedMenuItem,
-  });
+  Future<void> saveMenuItemChanges(MenuItemModel updatedMenuItem);
 
-  Future<void> addNewMenuItem({
-    required MenuItemModel newMenuItem,
-  });
+  Future<void> addNewMenuItem(MenuItemModel newMenuItem);
 
-  Future<void> deleteMenuItem({
-    required String menuItemId,
-  });
+  Future<void> deleteMenuItem(String menuItemId);
 
-  Future<String> uploadNewImage({
-    required File uploadedMenuItemImage,
-  });
+  Future<String> uploadNewImage(File uploadedMenuItemImage);
 }

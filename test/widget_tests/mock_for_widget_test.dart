@@ -7,17 +7,18 @@ final OrderItemModel orderItem = OrderItemModel(
   id: 1,
   isCompleted: false,
   shoppingCart: ShoppingCartModel(
-    shoppingCartItems: [
+    shoppingCartItems: <ShoppingCartItemModel>[
       ShoppingCartItemModel(
-          menuItem: MenuItemModel(
-              id: '1',
-              title: 'scallop',
-              cost: 9.5,
-              image: '',
-              category: 'Fish',
-              description: 'Lorem ipsum',
-              ingredients: ['scallop', 'sauce']),
-          amount: 1)
+        menuItem: MenuItemModel(
+            id: '1',
+            title: 'scallop',
+            cost: 9.5,
+            image: '',
+            category: 'Fish',
+            description: 'Lorem ipsum',
+            ingredients: ['scallop', 'sauce']),
+        amount: 1,
+      )
     ],
     totalPrice: 10,
     addCutlery: true,

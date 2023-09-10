@@ -153,7 +153,6 @@ class HiveProvider {
         userName: '',
         email: '',
         userId: '',
-        userRole: '',
       );
     } else {
       return userInfoBox.values.first;

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:data/data.dart';
 import 'package:data/mappers/order_item_for_admin_mapper.dart';
 import 'package:domain/domain.dart';
@@ -69,46 +68,30 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
   }
 
   @override
-  Future<void> saveMenuItemChanges({
-    required MenuItemModel updatedMenuItem,
-  }) async {
+  Future<void> saveMenuItemChanges(MenuItemModel updatedMenuItem) async {
     final MenuItemEntity menuItemEntity =
         MenuItemMapper.toEntity(updatedMenuItem);
 
-    await _firebaseFireStoreProvider.saveMenuItemChanges(
-      updatedMenuItem: menuItemEntity,
-    );
+    await _firebaseFireStoreProvider.saveMenuItemChanges(menuItemEntity);
   }
 
   @override
-  Future<void> addNewMenuItem({
-    required MenuItemModel newMenuItem,
-  }) async {
+  Future<void> addNewMenuItem(MenuItemModel newMenuItem) async {
     final MenuItemEntity newMenuItemEntity =
         MenuItemMapper.toEntity(newMenuItem);
 
-    await _firebaseFireStoreProvider.addNewMenuItem(
-      newMenuItem: newMenuItemEntity,
-    );
+    await _firebaseFireStoreProvider.addNewMenuItem(newMenuItemEntity);
   }
 
   @override
-  Future<void> deleteMenuItem({
-    required String menuItemId,
-  }) async {
-    await _firebaseFireStoreProvider.deleteMenuItem(
-      menuItemId: menuItemId,
-    );
+  Future<void> deleteMenuItem(String menuItemId) async {
+    await _firebaseFireStoreProvider.deleteMenuItem(menuItemId);
   }
 
   @override
-  Future<String> uploadNewImage({
-    required File uploadedMenuItemImage,
-  }) async {
+  Future<String> uploadNewImage(File uploadedMenuItemImage) async {
     final String newMenuItemImage =
-        await _firebaseFireStoreProvider.uploadNewImage(
-      uploadedMenuItemImage: uploadedMenuItemImage,
-    );
+        await _firebaseFireStoreProvider.uploadNewImage(uploadedMenuItemImage);
 
     return newMenuItemImage;
   }

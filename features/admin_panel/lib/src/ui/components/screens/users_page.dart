@@ -16,15 +16,16 @@ class _UsersPageContentState extends State<UsersPageContent> {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
+    final AdminPanelBloc adminPanelBloc = context.read<AdminPanelBloc>();
 
     return BlocBuilder<AdminPanelBloc, AdminPanelState>(
-      builder: (BuildContext context, AdminPanelState state) {
+      builder: (_, AdminPanelState state) {
         if (state.usersList.isNotEmpty) {
           return PageRefresher(
             onRefresh: () async {
-              context.read<AdminPanelBloc>().add(
-                    InitUsersEvent(),
-                  );
+              adminPanelBloc.add(
+                InitUsersEvent(),
+              );
             },
             child: SafeArea(
               child: SingleChildScrollView(
@@ -39,11 +40,11 @@ class _UsersPageContentState extends State<UsersPageContent> {
                           ...AppConstants.userRoles,
                         ],
                         onTap: (String filterValue) {
-                          context.read<AdminPanelBloc>().add(
-                                FilterUsersByRoleEvent(
-                                  filterValue: filterValue,
-                                ),
-                              );
+                          adminPanelBloc.add(
+                            FilterUsersByRoleEvent(
+                              filterValue: filterValue,
+                            ),
+                          );
                         },
                         selectedFilter: state.selectedFilter,
                       ),

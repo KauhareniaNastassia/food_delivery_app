@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
+import 'package:admin_panel/admin_panel.dart';
 
 class AddIngredientTextField extends StatefulWidget {
   final void Function(TextEditingController) addIngredientController;
@@ -34,7 +34,7 @@ class _AddIngredientTextFieldState extends State<AddIngredientTextField> {
                   textEditingController: newIngredientController,
                   width: mediaQueryData.size.width * 0.57,
                   validation: (String? ingredient) {
-                    return menuItemIngredientValidation(ingredient: ingredient);
+                    return menuItemIngredientValidation(ingredient);
                   },
                 ),
               ),

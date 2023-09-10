@@ -40,7 +40,7 @@ void main() {
   group('OrdersPageContent test', () {
     testWidgets('OrdersPageContent test', (WidgetTester tester) async {
       await tester.pumpWidget(MultiBlocProvider(
-        providers: [
+        providers: <BlocProvider>[
           BlocProvider<AdminPanelBloc>(
             create: (_) => adminPanelBloc,
           ),
@@ -61,7 +61,7 @@ void main() {
 
     testWidgets('OrdersPageContent test', (WidgetTester tester) async {
       await tester.pumpWidget(MultiBlocProvider(
-        providers: [
+        providers: <BlocProvider>[
           BlocProvider<AdminPanelBloc>(
             create: (_) => adminPanelBloc,
           ),

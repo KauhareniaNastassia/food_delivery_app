@@ -19,7 +19,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<UserInfoModel> checkIsUserLogged() async {
     final UserInfoEntity userInfoEntity =
-        await _hiveProvider.checkIsUserInLocal();
+    await _hiveProvider.checkIsUserInLocal();
     return UserInfoMapper.toModel(userInfoEntity);
   }
 
@@ -35,12 +35,12 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     final String authUserId =
-        await _firebaseAuthProvider.signInWithEmailAndPassword(
+    await _firebaseAuthProvider.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
     final UserInfoEntity userInfoEntity =
-        await _firebaseFireStoreProvider.getUserInfoFromDB(userId: authUserId);
+    await _firebaseFireStoreProvider.getUserInfoFromDB(userId: authUserId);
     await _hiveProvider.setUserToLocal(userInfoEntity);
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     return userInfoModel;
@@ -49,25 +49,18 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<UserInfoModel> signInViaGoogle() async {
     final UserCredential userCredential =
-        await _firebaseAuthProvider.signInWithGoogle();
+    await _firebaseAuthProvider.signInWithGoogle();
 
-    UserInfoEntity userInfoEntity = await _firebaseFireStoreProvider
-        .getUserInfoFromDB(userId: userCredential.user!.uid);
-
-    if (userInfoEntity.userName == '') {
-      userInfoEntity = UserInfoEntity(
-        userId: userCredential.user!.uid,
-        email: userCredential.user!.email!,
-        userName: userCredential.user!.displayName!,
-        userRole: AppConstants.userRoles[0],
-      );
-    }
+    final UserInfoEntity userInfoEntity = UserInfoEntity(
+      userId: userCredential.user!.uid,
+      email: userCredential.user!.email!,
+      userName: userCredential.user!.displayName!,
+    );
 
     await _firebaseFireStoreProvider.setUserToDB(
-      userInfoEntity: userInfoEntity,
-    );
-    await _hiveProvider.setUserToLocal(userInfoEntity);
+        userInfoEntity: userInfoEntity);
 
+    await _hiveProvider.setUserToLocal(userInfoEntity);
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     return userInfoModel;
   }
@@ -79,19 +72,21 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
   }) async {
     final UserCredential userCredential =
-        await _firebaseAuthProvider.createUserWithEmailAndPassword(
+    await _firebaseAuthProvider.createUserWithEmailAndPassword(
       userName: userName,
       email: email,
       password: password,
     );
+
     final UserInfoEntity userInfoEntity = UserInfoEntity(
       userId: userCredential.user!.uid,
       email: userCredential.user!.email!,
       userName: userName,
-      userRole: AppConstants.userRoles[0],
     );
+
     await _firebaseFireStoreProvider.setUserToDB(
         userInfoEntity: userInfoEntity);
+
     await _hiveProvider.setUserToLocal(userInfoEntity);
     final UserInfoModel userInfoModel = UserInfoMapper.toModel(userInfoEntity);
     return userInfoModel;

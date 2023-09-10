@@ -30,9 +30,12 @@ class CategoryFilter extends StatelessWidget {
           return GestureDetector(
             onTap: () => onTap(filterItems[index]),
             child: Container(
-              margin: const EdgeInsets.only(left: 7, right: 7),
+              margin: EdgeInsets.only(
+                left: mediaQueryData.size.width * 0.015,
+                right: mediaQueryData.size.width * 0.015,
+              ),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(70),
+                borderRadius: AppStyles.mediumBorderRadius,
                 color: selectedFilter == filterItems[index]
                     ? theme.primaryColor
                     : theme.canvasColor,

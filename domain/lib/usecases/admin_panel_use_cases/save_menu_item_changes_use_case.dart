@@ -7,11 +7,7 @@ class SaveMenuItemChangesUseCase {
     required AdminPanelRepository adminPanelRepository,
   }) : _adminPanelRepository = adminPanelRepository;
 
-  Future<void> saveMenuItemChanges({
-    required MenuItemModel updatedMenuItem,
-  }) async {
-    return _adminPanelRepository.saveMenuItemChanges(
-      updatedMenuItem: updatedMenuItem,
-    );
+  Future<void> saveMenuItemChanges(MenuItemModel updatedMenuItem) async {
+    return _adminPanelRepository.saveMenuItemChanges(updatedMenuItem);
   }
 }

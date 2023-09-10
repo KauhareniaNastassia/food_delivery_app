@@ -86,6 +86,7 @@ class FirebaseFireStoreProvider {
   Future<List<UserInfoEntity>> fetchUsers() async {
     final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
         await fireStore.collection('userInfo').get();
+
     return userInfoQuerySnapshot.docs
         .map(
           (doc) => UserInfoEntity.fromJson(doc.data()),
@@ -99,6 +100,7 @@ class FirebaseFireStoreProvider {
   }) async {
     final CollectionReference<Map<String, dynamic>> usersList =
         fireStore.collection('userInfo');
+
     await usersList.doc(userId).update({
       'userRole': newUserRoleValue,
     });
@@ -131,6 +133,7 @@ class FirebaseFireStoreProvider {
         allOrders.add(orderItemForAdminEntity);
       }
     }
+
     return allOrders;
   }
 
@@ -169,12 +172,11 @@ class FirebaseFireStoreProvider {
         );
       }
     }
+
     return updatedOrderItemForAdminEntity;
   }
 
-  Future<void> saveMenuItemChanges({
-    required MenuItemEntity updatedMenuItem,
-  }) async {
+  Future<void> saveMenuItemChanges(MenuItemEntity updatedMenuItem) async {
     final DocumentSnapshot<Map<String, dynamic>> menuItemFromDB =
         await fireStore.collection('menu').doc(updatedMenuItem.id).get();
 
@@ -188,20 +190,17 @@ class FirebaseFireStoreProvider {
     });
   }
 
-  Future<String> uploadNewImage({
-    required File uploadedMenuItemImage,
-  }) async {
-    final Reference reference = FirebaseStorage.instance
+  Future<String> uploadNewImage(File uploadedMenuItemImage) async {
+    final Reference imageReference = FirebaseStorage.instance
         .ref()
         .child('menuImages')
         .child('$uploadedMenuItemImage');
-    await reference.putFile(uploadedMenuItemImage);
-    return await reference.getDownloadURL();
+    await imageReference.putFile(uploadedMenuItemImage);
+
+    return await imageReference.getDownloadURL();
   }
 
-  Future<void> addNewMenuItem({
-    required MenuItemEntity newMenuItem,
-  }) async {
+  Future<void> addNewMenuItem(MenuItemEntity newMenuItem) async {
     final DocumentReference<Map<String, dynamic>> menuDocumentRef =
         fireStore.collection('menu').doc();
 
@@ -216,11 +215,10 @@ class FirebaseFireStoreProvider {
     });
   }
 
-  Future<void> deleteMenuItem({
-    required String menuItemId,
-  }) async {
+  Future<void> deleteMenuItem(String menuItemId) async {
     final DocumentReference<Map<String, dynamic>> menuItemFromDB =
         fireStore.collection('menu').doc(menuItemId);
+
     await menuItemFromDB.delete();
   }
 }

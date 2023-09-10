@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:domain/domain.dart';
 
 class UploadNewMenuItemImageUseCase {
@@ -9,11 +8,7 @@ class UploadNewMenuItemImageUseCase {
     required AdminPanelRepository adminPanelRepository,
   }) : _adminPanelRepository = adminPanelRepository;
 
-  Future<String> uploadNewImage({
-    required File uploadedMenuItemImage,
-  }) async {
-    return _adminPanelRepository.uploadNewImage(
-      uploadedMenuItemImage: uploadedMenuItemImage,
-    );
+  Future<String> uploadNewImage(File uploadedMenuItemImage) async {
+    return _adminPanelRepository.uploadNewImage(uploadedMenuItemImage);
   }
 }

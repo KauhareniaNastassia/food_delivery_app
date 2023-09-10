@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 
 class MenuItemTextField extends StatelessWidget {
   final String label;
+  final double width;
   final TextEditingController? textEditingController;
   final String? Function(String?) validation;
-  final double width;
   final int? maxLines;
   final TextInputType? keyboardType;
 
   const MenuItemTextField({
     super.key,
     required this.label,
-    this.textEditingController,
     required this.validation,
     required this.width,
+    this.textEditingController,
     this.maxLines,
     this.keyboardType,
   });
@@ -21,6 +21,7 @@ class MenuItemTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return SizedBox(
       width: width,
@@ -35,7 +36,8 @@ class MenuItemTextField extends StatelessWidget {
           labelStyle: TextStyle(
             color: theme.unselectedWidgetColor,
           ),
-          contentPadding: const EdgeInsets.only(bottom: 2),
+          contentPadding:
+              EdgeInsets.only(bottom: mediaQueryData.size.height * 0.001),
           focusedBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: theme.primaryColor,

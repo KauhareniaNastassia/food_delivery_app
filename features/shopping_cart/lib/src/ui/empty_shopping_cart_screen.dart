@@ -40,6 +40,8 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
 
   @override
   Widget build(BuildContext context) {
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
+
     return FadeTransition(
       opacity: _animation,
       child: Center(
@@ -49,7 +51,7 @@ class _EmptyShoppingCartScreenState extends State<EmptyShoppingCartScreen>
               riveAnimationPath: AnimationPathConstants.emptyShoppingCartPath,
               title: 'nothingInCart'.tr(),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: mediaQueryData.size.height * 0.025),
             PrimaryButton(
               buttonTitle: 'goToMenu'.tr(),
               onPressed: widget.onPressed,

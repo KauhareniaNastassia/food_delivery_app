@@ -33,13 +33,14 @@ class SplashScreenState extends State<SplashScreen> {
         BlocProvider.of<ShoppingCartBloc>(context);
     final OrderHistoryBloc orderHistoryBloc =
         BlocProvider.of<OrderHistoryBloc>(context);
+    final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
 
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
 
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (BuildContext context, AuthState state) {
+        listener: (_, AuthState state) {
           if (state.isUserLoggedIn) {
             if (state.userRole == AppConstants.userRoles[0]) {
               shoppingCartBloc.add(
@@ -52,14 +53,14 @@ class SplashScreenState extends State<SplashScreen> {
                 InitOrderHistoryEvent(),
               );
             } else {
-              context.read<AuthBloc>().add(
-                    NavigateToAdminPanelPageEvent(),
-                  );
+              authBloc.add(
+                NavigateToAdminPanelPageEvent(),
+              );
             }
           } else {
-            context.read<AuthBloc>().add(
-                  NavigateToSignInPageEvent(),
-                );
+            authBloc.add(
+              NavigateToSignInPageEvent(),
+            );
           }
         },
         builder: (BuildContext context, AuthState state) {

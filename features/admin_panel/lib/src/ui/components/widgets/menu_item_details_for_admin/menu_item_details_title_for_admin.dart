@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:main_page_view/main_page.dart';
+import 'package:admin_panel/admin_panel.dart';
 
 class MenuItemDetailsTitleForAdmin extends StatelessWidget {
   final String title;
@@ -33,7 +33,7 @@ class MenuItemDetailsTitleForAdmin extends StatelessWidget {
                 textEditingController: titleController,
                 width: mediaQueryData.size.width * 0.5,
                 validation: (String? title) {
-                  return menuItemTitleValidation(title: title);
+                  return menuItemTitleValidation(title);
                 },
               )
             : Expanded(
@@ -49,7 +49,7 @@ class MenuItemDetailsTitleForAdmin extends StatelessWidget {
                 textEditingController: costController,
                 keyboardType: TextInputType.number,
                 validation: (String? cost) {
-                  return menuItemCostValidation(cost: cost);
+                  return menuItemCostValidation(cost);
                 },
               )
             : Text(
