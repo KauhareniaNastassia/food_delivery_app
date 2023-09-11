@@ -12,8 +12,10 @@ class OrdersPageContent extends StatelessWidget {
     final ScrollController scrollController = ScrollController();
     final AdminPanelBloc adminPanelBloc = context.read<AdminPanelBloc>();
 
+    adminPanelBloc.add(InitOrdersEvent());
+
     return BlocBuilder<AdminPanelBloc, AdminPanelState>(
-      builder: (BuildContext context, AdminPanelState state) {
+      builder: (_, AdminPanelState state) {
         if (state.isDataProcessing) {
           return const LoadingIndicator();
         } else {

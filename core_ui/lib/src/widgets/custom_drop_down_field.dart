@@ -18,7 +18,7 @@ class CustomDropDownField extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
 
     return DropdownButton<String>(
-      value: listOfItems.firstWhere((element) => element == value),
+      value: listOfItems.firstWhere((String element) => element == value),
       icon: Icon(
         Icons.arrow_drop_down_rounded,
         size: mediaQueryData.size.height * 0.05,

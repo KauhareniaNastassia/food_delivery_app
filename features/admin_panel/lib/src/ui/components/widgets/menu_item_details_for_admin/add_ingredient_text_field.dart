@@ -16,7 +16,7 @@ class AddIngredientTextField extends StatefulWidget {
 
 class _AddIngredientTextFieldState extends State<AddIngredientTextField> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final TextEditingController newIngredientController = TextEditingController();
+  final TextEditingController ingredientController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _AddIngredientTextFieldState extends State<AddIngredientTextField> {
               Expanded(
                 child: MenuItemTextField(
                   label: 'addIngredient'.tr(),
-                  textEditingController: newIngredientController,
+                  textEditingController: ingredientController,
                   width: mediaQueryData.size.width * 0.57,
                   validation: (String? ingredient) {
                     return menuItemIngredientValidation(ingredient);
@@ -41,12 +41,12 @@ class _AddIngredientTextFieldState extends State<AddIngredientTextField> {
               IconButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    final TextEditingController newOneIngredientController =
+                    final TextEditingController newIngredientController =
                         TextEditingController(
-                      text: newIngredientController.text,
+                      text: ingredientController.text,
                     );
-                    widget.addIngredientController(newOneIngredientController);
-                    newIngredientController.clear();
+                    widget.addIngredientController(newIngredientController);
+                    ingredientController.clear();
                   }
                 },
                 icon: const Icon(Icons.add),
@@ -61,7 +61,7 @@ class _AddIngredientTextFieldState extends State<AddIngredientTextField> {
 
   @override
   void dispose() {
-    newIngredientController.dispose();
+    ingredientController.dispose();
     super.dispose();
   }
 }

@@ -39,9 +39,7 @@ class MenuItemTextField extends StatelessWidget {
           contentPadding:
               EdgeInsets.only(bottom: mediaQueryData.size.height * 0.001),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: theme.primaryColor,
-            ),
+            borderSide: BorderSide(color: theme.primaryColor),
           ),
         ),
         style: theme.textTheme.titleLarge,

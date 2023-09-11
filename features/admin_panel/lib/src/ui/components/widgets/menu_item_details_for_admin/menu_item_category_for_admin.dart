@@ -33,7 +33,8 @@ class MenuItemDetailsCategoryForAdmin extends StatelessWidget {
                 value: category,
                 onChanged: (String? value) {
                   onChange(value);
-                })
+                },
+              )
             : Text(
                 category,
                 style: theme.textTheme.titleLarge,

@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 
 part 'event.dart';
-
 part 'state.dart';
 
 class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
@@ -60,9 +58,6 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     add(
       InitUsersEvent(),
     );
-    add(
-      InitOrdersEvent(),
-    );
   }
 
   Future<void> _onInitUsers(
@@ -108,7 +103,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       );
     } else {
       final List<UserInfoModel> filteredUsersList = state.usersList
-          .where((item) => item.userRole == event.filterValue)
+          .where((UserInfoModel item) => item.userRole == event.filterValue)
           .toList();
 
       emit(
@@ -137,13 +132,14 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
         userId: event.userId,
       );
       final int index = state.usersList.indexWhere(
-        (usersListItem) => usersListItem.userId == updatedUser.userId,
+        (UserInfoModel usersListItem) =>
+            usersListItem.userId == updatedUser.userId,
       );
       state.usersList[index] = updatedUser;
 
       if (state.filteredUserList.isNotEmpty) {
         final int index = state.filteredUserList.indexWhere(
-          (usersItem) => usersItem.userId == updatedUser.userId,
+          (UserInfoModel usersItem) => usersItem.userId == updatedUser.userId,
         );
         state.filteredUserList.removeAt(index);
       }
@@ -353,11 +349,11 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       ),
     );
     try {
-       String newMenuItemImage = '';
+      String newMenuItemImage = '';
 
       if (state.uploadedMenuItemImage != '') {
         newMenuItemImage = await _uploadNewMenuItemImageUseCase.uploadNewImage(
-          uploadedMenuItemImage: File(state.uploadedMenuItemImage),
+          File(state.uploadedMenuItemImage),
         );
       }
 
@@ -378,12 +374,9 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       }
 
       event.menuItem.id == ''
-          ? await _addNewMenuItemChangesUseCase.addNewMenuItem(
-              newMenuItem: menuItemUpdated,
-            )
-          : await _saveMenuItemChangesUseCase.saveMenuItemChanges(
-              updatedMenuItem: menuItemUpdated,
-            );
+          ? await _addNewMenuItemChangesUseCase.addNewMenuItem(menuItemUpdated)
+          : await _saveMenuItemChangesUseCase
+              .saveMenuItemChanges(menuItemUpdated);
       event.onComplete();
 
       emit(
@@ -415,15 +408,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     );
     _appRouter.navigate(
       MenuItemDetailsScreenForAdminRoute(
-        menuItem: MenuItemModel(
-          id: '',
-          title: '',
-          cost: 0.0,
-          image: '',
-          description: '',
-          ingredients: [],
-          category: AppConstants.menuItemCategory[0],
-        ),
+        menuItem: AdminPanelState.initial().menuItem,
       ),
     );
   }
@@ -439,9 +424,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
       ),
     );
     try {
-      await _deleteMenuItemChangesUseCase.deleteMenuItem(
-        menuItemId: event.menuItemId,
-      );
+      await _deleteMenuItemChangesUseCase.deleteMenuItem(event.menuItemId);
 
       emit(
         state.copyWith(

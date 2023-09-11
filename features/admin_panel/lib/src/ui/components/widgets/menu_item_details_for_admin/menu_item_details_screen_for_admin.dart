@@ -42,7 +42,7 @@ class _MenuItemDetailsScreenForAdminState
     descriptionController.text = widget.menuItem.description;
     listOfIngredientControllers.addAll(
       widget.menuItem.ingredients.map(
-        (ingredient) => TextEditingController(text: ingredient),
+        (String ingredient) => TextEditingController(text: ingredient),
       ),
     );
   }
@@ -111,8 +111,8 @@ class _MenuItemDetailsScreenForAdminState
                     title: titleController.text,
                     description: descriptionController.text,
                     ingredients: listOfIngredientControllers
-                        .map(
-                            (ingredientController) => ingredientController.text)
+                        .map((TextEditingController ingredientController) =>
+                            ingredientController.text)
                         .toList(),
                   );
                   adminPanelBloc.add(

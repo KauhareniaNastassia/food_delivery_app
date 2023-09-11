@@ -71,8 +71,8 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
                   SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsIngredientsForAdmin(
                     ingredients: listOfIngredientControllers
-                        .map(
-                            (ingredientController) => ingredientController.text)
+                        .map((TextEditingController ingredientController) =>
+                            ingredientController.text)
                         .toList(),
                     isEditMode: adminPanelBloc.state.isItemEditing,
                     listOfIngredientControllers: listOfIngredientControllers,
