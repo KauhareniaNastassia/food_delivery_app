@@ -5,6 +5,7 @@ import 'package:domain/domain.dart';
 import 'package:navigation/navigation.dart';
 
 part 'event.dart';
+
 part 'state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
@@ -46,15 +47,21 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         const NoParams(),
       );
 
+      Set<String> menuItemCategories = {};
+      for (int i = 0; i < menu.length; i++) {
+        menuItemCategories.add(menu[i].category);
+      }
+
       emit(
         state.copyWith(
           menu: menu,
-          selectedCategory: AppConstants.menuItemCategory[0],
+          menuItemCategories: menuItemCategories.toList(),
+          selectedCategory: AppConstants.allFoods,
           filteredMenu: [],
           isLoading: false,
         ),
       );
-    } catch (e, _) {
+    } catch (e) {
       emit(
         state.copyWith(
           exception: e.toString(),
@@ -82,16 +89,17 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     FilterMenuByCategoryEvent event,
     Emitter<MenuState> emit,
   ) {
-    if (event.category == AppConstants.menuItemCategory[0]) {
+    if (event.category == AppConstants.allFoods) {
       emit(
         state.copyWith(
           filteredMenu: [],
-          selectedCategory: AppConstants.menuItemCategory[0],
+          selectedCategory: AppConstants.allFoods,
         ),
       );
     } else {
-      final List<MenuItemModel> filteredMenu =
-          state.menu.where((item) => item.category == event.category).toList();
+      final List<MenuItemModel> filteredMenu = state.menu
+          .where((MenuItemModel item) => item.category == event.category)
+          .toList();
 
       emit(
         state.copyWith(

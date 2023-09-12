@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
 import 'package:domain/models/shopping_cart_model/shopping_cart_item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_cart/src/ui/widgets/update_count_button.dart';
 
 import '../../../shopping_cart.dart';
 
@@ -32,9 +31,9 @@ class ItemAmount extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(width: 15),
+        const SizedBox(width: 10),
         SizedBox(
-          width: size.width / 16,
+          width: size.width / 12.2,
           child: Align(
             alignment: Alignment.center,
             child: Text(
@@ -43,7 +42,7 @@ class ItemAmount extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 15),
+        const SizedBox(width: 10),
         UpdateCountButton(
           icon: Icons.add,
           onPressed: () {

@@ -18,7 +18,7 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(
       const Duration(seconds: 4),
-          () {
+      () {
         final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
         authBloc.add(
           InitAuthEvent(),
@@ -29,33 +29,39 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ShoppingCartBloc shoppingCartBloc =
-    BlocProvider.of<ShoppingCartBloc>(context);
-    final OrderHistoryBloc orderHistoryBloc =
-    BlocProvider.of<OrderHistoryBloc>(context);
+    final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
+    final OrderHistoryBloc orderHistoryBloc = context.read<OrderHistoryBloc>();
+    final AuthBloc authBloc = context.read<AuthBloc>();
+
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
 
     return Scaffold(
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (BuildContext context, AuthState state) {
+        listener: (_, AuthState state) {
           if (state.isUserLoggedIn) {
-            shoppingCartBloc.add(
-              NavigateToMainPageEvent(),
-            );
-            shoppingCartBloc.add(
-              InitShoppingCartEvent(),
-            );
-            orderHistoryBloc.add(
-              InitOrderHistoryEvent(),
-            );
+            if (state.userRole == AppConstants.userRoles[0]) {
+              shoppingCartBloc.add(
+                NavigateToMainPageEvent(),
+              );
+              shoppingCartBloc.add(
+                InitShoppingCartEvent(),
+              );
+              orderHistoryBloc.add(
+                InitOrderHistoryEvent(),
+              );
+            } else {
+              authBloc.add(
+                NavigateToAdminPanelPageEvent(),
+              );
+            }
           } else {
-            context.read<AuthBloc>().add(
+            authBloc.add(
               NavigateToSignInPageEvent(),
             );
           }
         },
-        builder: (BuildContext context, AuthState state) {
+        builder: (_, __) {
           return Scaffold(
             backgroundColor: theme.cardColor,
             body: Stack(

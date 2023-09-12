@@ -34,6 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SignOutEvent>(_onSignOut);
     on<ChangeAuthPageEvent>(_changeAuthPage);
     on<NavigateToSignInPageEvent>(_onNavigateToSignInPage);
+    on<NavigateToAdminPanelPageEvent>(_onNavigateToAdminPanelPage);
   }
 
   Future<void> _onInitAuth(
@@ -48,7 +49,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           await _checkIsUserLoggedUseCase.execute(
         const NoParams(),
       );
-
       userFromLocal.userId.isEmpty
           ? emit(
               const AuthState.initial(),
@@ -57,6 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               state.copyWith(
                 isDataProcessing: false,
                 isUserLoggedIn: true,
+                userRole: userFromLocal.userRole,
                 userId: userFromLocal.userId,
                 userName: userFromLocal.userName,
                 email: userFromLocal.email,
@@ -92,6 +93,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         state.copyWith(
           isDataProcessing: false,
           isUserLoggedIn: true,
+          userRole: userInfo.userRole,
           userName: userInfo.userName,
           userId: userInfo.userId,
           email: userInfo.email,
@@ -144,6 +146,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           isUserLoggedIn: true,
           isDataProcessing: false,
           isSignInPage: true,
+          userRole: userInfo.userRole,
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
@@ -206,10 +209,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final UserInfoModel userInfo = await _signInViaGoogleUseCase.execute(
         const NoParams(),
       );
+
       emit(
         state.copyWith(
           isUserLoggedIn: true,
           isDataProcessing: false,
+          userRole: userInfo.userRole,
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
@@ -242,6 +247,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) {
     _appRouter.navigate(
       const SignInPageScreenRoute(),
+    );
+  }
+
+  void _onNavigateToAdminPanelPage(
+    NavigateToAdminPanelPageEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    _appRouter.navigate(
+      const AdminPanelPageRoute(),
     );
   }
 }

@@ -6,11 +6,13 @@ import 'package:settings/settings.dart';
 class PrimaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String buttonTitle;
+  final bool? isEditingMode;
 
   const PrimaryButton({
+    super.key,
+    this.isEditingMode,
     required this.onPressed,
     required this.buttonTitle,
-    super.key,
   });
 
   @override
@@ -21,7 +23,9 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: theme.primaryColor,
+        backgroundColor: buttonTitle == 'cancel'.tr()
+            ? theme.canvasColor
+            : theme.primaryColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(15),

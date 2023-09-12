@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MenuItemModel {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   double get cost => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $MenuItemModelCopyWith<$Res> {
       _$MenuItemModelCopyWithImpl<$Res, MenuItemModel>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String title,
       double cost,
       String image,
@@ -70,7 +70,7 @@ class _$MenuItemModelCopyWithImpl<$Res, $Val extends MenuItemModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -108,7 +108,7 @@ abstract class _$$_MenuItemModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
       String title,
       double cost,
       String image,
@@ -140,7 +140,7 @@ class __$$_MenuItemModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -183,7 +183,7 @@ class _$_MenuItemModel implements _MenuItemModel {
       : _ingredients = ingredients;
 
   @override
-  final int id;
+  final String id;
   @override
   final String title;
   @override
@@ -238,7 +238,7 @@ class _$_MenuItemModel implements _MenuItemModel {
 
 abstract class _MenuItemModel implements MenuItemModel {
   factory _MenuItemModel(
-      {required final int id,
+      {required final String id,
       required final String title,
       required final double cost,
       required final String image,
@@ -247,7 +247,7 @@ abstract class _MenuItemModel implements MenuItemModel {
       required final String category}) = _$_MenuItemModel;
 
   @override
-  int get id;
+  String get id;
   @override
   String get title;
   @override

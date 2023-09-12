@@ -42,7 +42,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
             label: 'userName'.tr(),
             textEditingController: _userNameController,
             validation: (String? name) {
-              return nameValidation(name: name);
+              return nameValidation(name ?? '');
             },
             obscureText: false,
           ),
@@ -50,7 +50,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
             label: 'email'.tr(),
             textEditingController: _emailController,
             validation: (String? email) {
-              return emailValidation(email: email);
+              return emailValidation(email ?? '');
             },
             obscureText: false,
           ),
@@ -58,7 +58,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
             label: 'password'.tr(),
             textEditingController: _passwordController,
             validation: (String? password) {
-              return passwordValidation(password: password);
+              return passwordValidation(password ?? '');
             },
             obscureText: obscurePassword,
             onPressed: () {

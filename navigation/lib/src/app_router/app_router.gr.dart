@@ -45,6 +45,22 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    AdminPanelPageRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const AdminPanelPage(),
+      );
+    },
+    MenuItemDetailsScreenForAdminRoute.name: (routeData) {
+      final args = routeData.argsAs<MenuItemDetailsScreenForAdminRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: MenuItemDetailsScreenForAdmin(
+          key: args.key,
+          menuItem: args.menuItem,
+        ),
+      );
+    },
     MainPageScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -67,6 +83,18 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
         routeData: routeData,
         child: const SettingsPageContent(),
+      );
+    },
+    OrdersPageContentRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const OrdersPageContent(),
+      );
+    },
+    UsersPageContentRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const UsersPageContent(),
       );
     },
   };
@@ -110,6 +138,36 @@ class _$AppRouter extends RootStackRouter {
         RouteConfig(
           MenuItemDetailsScreenRoute.name,
           path: '/menu-item-details-screen',
+        ),
+        RouteConfig(
+          AdminPanelPageRoute.name,
+          path: '/admin-panel-page',
+          children: [
+            RouteConfig(
+              MainPageScreenRoute.name,
+              path: 'main-page-screen',
+              parent: AdminPanelPageRoute.name,
+            ),
+            RouteConfig(
+              OrdersPageContentRoute.name,
+              path: 'orders-page-content',
+              parent: AdminPanelPageRoute.name,
+            ),
+            RouteConfig(
+              UsersPageContentRoute.name,
+              path: 'users-page-content',
+              parent: AdminPanelPageRoute.name,
+            ),
+            RouteConfig(
+              SettingsPageContentRoute.name,
+              path: 'settings-page-content',
+              parent: AdminPanelPageRoute.name,
+            ),
+          ],
+        ),
+        RouteConfig(
+          MenuItemDetailsScreenForAdminRoute.name,
+          path: '/menu-item-details-screen-for-admin',
         ),
       ];
 }
@@ -187,6 +245,54 @@ class MenuItemDetailsScreenRouteArgs {
 }
 
 /// generated route for
+/// [AdminPanelPage]
+class AdminPanelPageRoute extends PageRouteInfo<void> {
+  const AdminPanelPageRoute({List<PageRouteInfo>? children})
+      : super(
+          AdminPanelPageRoute.name,
+          path: '/admin-panel-page',
+          initialChildren: children,
+        );
+
+  static const String name = 'AdminPanelPageRoute';
+}
+
+/// generated route for
+/// [MenuItemDetailsScreenForAdmin]
+class MenuItemDetailsScreenForAdminRoute
+    extends PageRouteInfo<MenuItemDetailsScreenForAdminRouteArgs> {
+  MenuItemDetailsScreenForAdminRoute({
+    Key? key,
+    required MenuItemModel menuItem,
+  }) : super(
+          MenuItemDetailsScreenForAdminRoute.name,
+          path: '/menu-item-details-screen-for-admin',
+          args: MenuItemDetailsScreenForAdminRouteArgs(
+            key: key,
+            menuItem: menuItem,
+          ),
+        );
+
+  static const String name = 'MenuItemDetailsScreenForAdminRoute';
+}
+
+class MenuItemDetailsScreenForAdminRouteArgs {
+  const MenuItemDetailsScreenForAdminRouteArgs({
+    this.key,
+    required this.menuItem,
+  });
+
+  final Key? key;
+
+  final MenuItemModel menuItem;
+
+  @override
+  String toString() {
+    return 'MenuItemDetailsScreenForAdminRouteArgs{key: $key, menuItem: $menuItem}';
+  }
+}
+
+/// generated route for
 /// [MainPageScreen]
 class MainPageScreenRoute extends PageRouteInfo<void> {
   const MainPageScreenRoute()
@@ -232,4 +338,28 @@ class SettingsPageContentRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SettingsPageContentRoute';
+}
+
+/// generated route for
+/// [OrdersPageContent]
+class OrdersPageContentRoute extends PageRouteInfo<void> {
+  const OrdersPageContentRoute()
+      : super(
+          OrdersPageContentRoute.name,
+          path: 'orders-page-content',
+        );
+
+  static const String name = 'OrdersPageContentRoute';
+}
+
+/// generated route for
+/// [UsersPageContent]
+class UsersPageContentRoute extends PageRouteInfo<void> {
+  const UsersPageContentRoute()
+      : super(
+          UsersPageContentRoute.name,
+          path: 'users-page-content',
+        );
+
+  static const String name = 'UsersPageContentRoute';
 }

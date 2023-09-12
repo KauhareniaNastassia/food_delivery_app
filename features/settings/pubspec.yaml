@@ -18,6 +18,8 @@ dependencies:
     path: ../../domain
   main_page_view:
     path: ../main_page_view
+  shopping_cart:
+    path: ../shopping_cart
   auth:
     path: ../auth
 

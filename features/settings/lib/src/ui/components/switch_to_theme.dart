@@ -1,12 +1,13 @@
-import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class SwitchToTheme extends StatelessWidget {
+  final String title;
   final bool isLight;
   final VoidCallback onTap;
 
   const SwitchToTheme({
     super.key,
+    required this.title,
     required this.isLight,
     required this.onTap,
   });
@@ -20,7 +21,7 @@ class SwitchToTheme extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          isLight ? 'toDarkTheme'.tr() : 'toLightTheme'.tr(),
+          title,
           style: theme.textTheme.titleLarge,
         ),
         InkWell(

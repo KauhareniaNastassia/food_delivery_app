@@ -8,7 +8,7 @@ part of 'menu_item_entity.dart';
 
 _$_MenuItemEntity _$$_MenuItemEntityFromJson(Map<String, dynamic> json) =>
     _$_MenuItemEntity(
-      id: json['id'] as int,
+      id: json['id'] as String,
       title: json['title'] as String,
       cost: (json['cost'] as num).toDouble(),
       image: json['image'] as String,

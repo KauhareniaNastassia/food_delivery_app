@@ -38,7 +38,7 @@ class _SignInBlockState extends State<SignInBlock> {
             label: 'email'.tr(),
             textEditingController: _emailController,
             validation: (String? email) {
-              return emailValidation(email: email);
+              return emailValidation(email ?? '');
             },
             obscureText: false,
           ),
@@ -46,7 +46,7 @@ class _SignInBlockState extends State<SignInBlock> {
             label: 'password'.tr(),
             textEditingController: _passwordController,
             validation: (String? password) {
-              return passwordValidation(password: password);
+              return passwordValidation(password ?? '');
             },
             obscureText: obscurePassword,
             onPressed: () {

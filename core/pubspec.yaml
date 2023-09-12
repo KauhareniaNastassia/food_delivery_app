@@ -18,7 +18,7 @@ dependencies:
   navigation:
     path: ../navigation
 
-  cloud_firestore: ^4.8.4
+  cloud_firestore: ^4.9.0
   firebase_core: ^2.14.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -36,6 +36,8 @@ dependencies:
   rive: ^0.11.14
   easy_localization: ^3.0.2
   url_launcher: ^6.0.3
+  image_picker: ^1.0.4
+  firebase_storage: ^11.2.6
 
 dev_dependencies:
   flutter_test:

@@ -26,6 +26,8 @@ dependencies:
     path: ../shopping_cart
   order_history:
     path: ../order_history
+  admin_panel:
+    path: ../admin_panel
 
 dev_dependencies:
   flutter_test:

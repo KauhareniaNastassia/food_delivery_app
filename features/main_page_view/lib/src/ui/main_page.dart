@@ -1,6 +1,8 @@
+import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
+import 'package:auth/auth.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
+    final AuthBloc authBloc = context.read<AuthBloc>();
+
     return AutoTabsScaffold(
       animationDuration: const Duration(milliseconds: 700),
       routes: const <PageRouteInfo<dynamic>>[
@@ -40,6 +44,7 @@ class _MainPageState extends State<MainPage> {
       },
       bottomNavigationBuilder: (_, TabsRouter tabsRouter) {
         return CustomBottomNavigationBar(
+          isCustomer: authBloc.state.userRole == 'customer',
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
         );

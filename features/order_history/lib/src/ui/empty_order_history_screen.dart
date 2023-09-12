@@ -13,23 +13,15 @@ class EmptyOrderHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
-    final ThemeData theme = Theme.of(context);
 
     return Center(
       child: Column(
         children: <Widget>[
-          SizedBox(
-            width: mediaQueryData.size.width / 1.3,
-            height: mediaQueryData.size.height / 2.1,
-            child: RiveAnimation.asset(
-                AnimationPathConstants.emptyOrderHistoryPath),
+          NothingFindScreen(
+            riveAnimationPath: AnimationPathConstants.emptyOrderHistoryPath,
+            title: 'noOrdersMessage'.tr(),
           ),
-          Text(
-            'noOrdersMessage'.tr(),
-            style: theme.textTheme.titleMedium,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20),
+          SizedBox(height: mediaQueryData.size.height * 0.025),
           PrimaryButton(
             buttonTitle: 'goToCart'.tr(),
             onPressed: onPressed,

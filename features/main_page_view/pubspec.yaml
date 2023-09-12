@@ -24,6 +24,10 @@ dependencies:
     path: ../shopping_cart
   settings:
     path: ../settings
+  auth:
+    path: ../auth
+  admin_panel:
+    path: ../admin_panel
 
 dev_dependencies:
   flutter_test:

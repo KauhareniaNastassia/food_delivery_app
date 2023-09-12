@@ -8,5 +8,6 @@ class UserInfoModel with _$UserInfoModel {
     required String userId,
     required String userName,
     required String email,
+    required String userRole,
   }) = _UserInfoModel;
 }

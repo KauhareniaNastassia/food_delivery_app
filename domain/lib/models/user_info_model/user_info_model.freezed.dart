@@ -19,6 +19,7 @@ mixin _$UserInfoModel {
   String get userId => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get userRole => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserInfoModelCopyWith<UserInfoModel> get copyWith =>
@@ -31,7 +32,7 @@ abstract class $UserInfoModelCopyWith<$Res> {
           UserInfoModel value, $Res Function(UserInfoModel) then) =
       _$UserInfoModelCopyWithImpl<$Res, UserInfoModel>;
   @useResult
-  $Res call({String userId, String userName, String email});
+  $Res call({String userId, String userName, String email, String userRole});
 }
 
 /// @nodoc
@@ -50,6 +51,7 @@ class _$UserInfoModelCopyWithImpl<$Res, $Val extends UserInfoModel>
     Object? userId = null,
     Object? userName = null,
     Object? email = null,
+    Object? userRole = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -64,6 +66,10 @@ class _$UserInfoModelCopyWithImpl<$Res, $Val extends UserInfoModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      userRole: null == userRole
+          ? _value.userRole
+          : userRole // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -76,7 +82,7 @@ abstract class _$$_UserInfoModelCopyWith<$Res>
       __$$_UserInfoModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String userName, String email});
+  $Res call({String userId, String userName, String email, String userRole});
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class __$$_UserInfoModelCopyWithImpl<$Res>
     Object? userId = null,
     Object? userName = null,
     Object? email = null,
+    Object? userRole = null,
   }) {
     return _then(_$_UserInfoModel(
       userId: null == userId
@@ -107,6 +114,10 @@ class __$$_UserInfoModelCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      userRole: null == userRole
+          ? _value.userRole
+          : userRole // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -115,7 +126,10 @@ class __$$_UserInfoModelCopyWithImpl<$Res>
 
 class _$_UserInfoModel implements _UserInfoModel {
   _$_UserInfoModel(
-      {required this.userId, required this.userName, required this.email});
+      {required this.userId,
+      required this.userName,
+      required this.email,
+      required this.userRole});
 
   @override
   final String userId;
@@ -123,10 +137,12 @@ class _$_UserInfoModel implements _UserInfoModel {
   final String userName;
   @override
   final String email;
+  @override
+  final String userRole;
 
   @override
   String toString() {
-    return 'UserInfoModel(userId: $userId, userName: $userName, email: $email)';
+    return 'UserInfoModel(userId: $userId, userName: $userName, email: $email, userRole: $userRole)';
   }
 
   @override
@@ -137,11 +153,14 @@ class _$_UserInfoModel implements _UserInfoModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.userRole, userRole) ||
+                other.userRole == userRole));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId, userName, email);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, userName, email, userRole);
 
   @JsonKey(ignore: true)
   @override
@@ -154,7 +173,8 @@ abstract class _UserInfoModel implements UserInfoModel {
   factory _UserInfoModel(
       {required final String userId,
       required final String userName,
-      required final String email}) = _$_UserInfoModel;
+      required final String email,
+      required final String userRole}) = _$_UserInfoModel;
 
   @override
   String get userId;
@@ -162,6 +182,8 @@ abstract class _UserInfoModel implements UserInfoModel {
   String get userName;
   @override
   String get email;
+  @override
+  String get userRole;
   @override
   @JsonKey(ignore: true)
   _$$_UserInfoModelCopyWith<_$_UserInfoModel> get copyWith =>

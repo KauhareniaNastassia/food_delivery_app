@@ -19,6 +19,7 @@ class DataDI {
     _initSettings();
     _initAuth();
     _initOrderHistory();
+    _initAdminPanel();
   }
 
   void _initFirebaseOptions() {
@@ -234,6 +235,62 @@ class DataDI {
     instance.registerLazySingleton<CreateOrderUseCase>(
       () => CreateOrderUseCase(
         orderHistoryRepository: instance.get<OrderHistoryRepository>(),
+      ),
+    );
+  }
+
+  void _initAdminPanel() {
+    instance.registerLazySingleton<AdminPanelRepository>(
+      () => AdminPanelRepositoryImpl(
+        firebaseFireStoreProvider: instance.get<FirebaseFireStoreProvider>(),
+      ),
+    );
+
+    instance.registerLazySingleton<FetchUsersUseCase>(
+      () => FetchUsersUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<ChangeUserRoleUseCase>(
+      () => ChangeUserRoleUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<FetchAllOrdersUseCase>(
+      () => FetchAllOrdersUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<ChangeOrderStatusUseCase>(
+      () => ChangeOrderStatusUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<SaveMenuItemChangesUseCase>(
+      () => SaveMenuItemChangesUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<AddNewMenuItemUseCase>(
+      () => AddNewMenuItemUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<DeleteMenuItemUseCase>(
+      () => DeleteMenuItemUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
+      ),
+    );
+
+    instance.registerLazySingleton<UploadNewMenuItemImageUseCase>(
+      () => UploadNewMenuItemImageUseCase(
+        adminPanelRepository: instance.get<AdminPanelRepository>(),
       ),
     );
   }

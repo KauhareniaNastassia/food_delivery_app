@@ -9,6 +9,7 @@ abstract class OrderItemMapper {
       shoppingCart: ShoppingCartMapper.toEntity(
         model.shoppingCart,
       ),
+      isCompleted: model.isCompleted,
     );
   }
 
@@ -19,6 +20,7 @@ abstract class OrderItemMapper {
       shoppingCart: ShoppingCartMapper.toModel(
         entity.shoppingCart,
       ),
+      isCompleted: entity.isCompleted,
     );
   }
 }

@@ -10,6 +10,7 @@ class UserInfoEntityAdapter extends TypeAdapter<UserInfoEntity> {
       userName: reader.read(),
       userId: reader.read(),
       email: reader.read(),
+      userRole: reader.read(),
     );
   }
 
@@ -18,5 +19,6 @@ class UserInfoEntityAdapter extends TypeAdapter<UserInfoEntity> {
     writer.write(obj.userName);
     writer.write(obj.userId);
     writer.write(obj.email);
+    writer.write(obj.userRole);
   }
 }

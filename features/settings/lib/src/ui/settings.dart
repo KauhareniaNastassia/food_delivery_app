@@ -1,3 +1,4 @@
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
@@ -9,6 +10,7 @@ class SettingsPageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final ThemeData theme = Theme.of(context);
+    final AuthBloc authBloc = context.read<AuthBloc>();
 
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (BuildContext context, SettingsState state) {
@@ -21,6 +23,8 @@ class SettingsPageContent extends StatelessWidget {
                 const UserInfoBlock(),
                 const SizedBox(height: 30),
                 SwitchToTheme(
+                  title:
+                      state.isLight ? 'toDarkTheme'.tr() : 'toLightTheme'.tr(),
                   isLight: state.isLight,
                   onTap: () {
                     settingsBloc.add(
@@ -47,10 +51,13 @@ class SettingsPageContent extends StatelessWidget {
               ],
             ),
           ),
-          bottomNavigationBar: Material(
-            color: theme.scaffoldBackgroundColor,
-            child: const ContactLinksView(),
-          ),
+          bottomNavigationBar:
+              authBloc.state.userRole == AppConstants.userRoles[0]
+                  ? Material(
+                      color: theme.scaffoldBackgroundColor,
+                      child: const ContactLinksView(),
+                    )
+                  : null,
         );
       },
     );

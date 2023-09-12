@@ -9,6 +9,7 @@ class UserInfoEntity with _$UserInfoEntity {
     required String userId,
     required String userName,
     required String email,
+    required String userRole,
   }) = _UserInfoEntity;
 
   factory UserInfoEntity.fromJson(Map<String, Object?> json) =>

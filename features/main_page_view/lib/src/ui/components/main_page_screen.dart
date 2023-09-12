@@ -1,3 +1,5 @@
+import 'package:admin_panel/admin_panel.dart';
+import 'package:auth/auth.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +24,7 @@ class _MainPageScreenState extends State<MainPageScreen>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     )..forward();
     _animation = Tween<double>(
       begin: 0,
@@ -39,6 +41,8 @@ class _MainPageScreenState extends State<MainPageScreen>
   Widget build(BuildContext context) {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final AuthBloc authBloc = context.read<AuthBloc>();
+    final AdminPanelBloc adminPanelBloc = context.read<AdminPanelBloc>();
 
     return Scaffold(
       body: SafeArea(
@@ -73,24 +77,54 @@ class _MainPageScreenState extends State<MainPageScreen>
                     child: SingleChildScrollView(
                       controller: _scrollController,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
                           SizedBox(height: mediaQueryData.size.height * 0.01),
-                          const BannerBlock(),
+                          authBloc.state.userRole == AppConstants.userRoles[0]
+                              ? const BannerBlock()
+                              : SizedBox(
+                                  child: PrimaryButton(
+                                    buttonTitle: 'addNewItem'.tr(),
+                                    onPressed: () {
+                                      adminPanelBloc.add(
+                                        const NavigateToAddItemPageEvent(),
+                                      );
+                                    },
+                                  ),
+                                ),
                           SizedBox(height: mediaQueryData.size.height * 0.02),
-                          const CategoryFilter(),
+                          CategoryFilter(
+                            filterItems: <String>[
+                              AppConstants.allFoods,
+                              ...state.menuItemCategories
+                            ],
+                            selectedFilter: state.selectedCategory,
+                            onTap: (String categoryValue) {
+                              context.read<MenuBloc>().add(
+                                    FilterMenuByCategoryEvent(
+                                      category: categoryValue,
+                                    ),
+                                  );
+                            },
+                          ),
                           SizedBox(height: mediaQueryData.size.height * 0.02),
                           AnimatedCrossFade(
                             firstCurve: Curves.easeOutBack,
                             secondCurve: Curves.easeInBack,
                             firstChild: MenuListItems(
+                              isCustomer: authBloc.state.userRole ==
+                                  AppConstants.userRoles[0],
                               menu: state.filteredMenu.isEmpty
                                   ? state.menu
                                   : state.filteredMenu,
                             ),
-                            secondChild: const NothingFindInCategory(),
+                            secondChild: NothingFindScreen(
+                              riveAnimationPath:
+                                  AnimationPathConstants.nothingInCategoryPath,
+                              title: 'nothingInCategory'.tr(),
+                            ),
                             crossFadeState: (state.selectedCategory !=
-                                        AppConstants.menuItemCategory[0]) &
+                                        AppConstants.allFoods) &
                                     state.filteredMenu.isEmpty
                                 ? CrossFadeState.showSecond
                                 : CrossFadeState.showFirst,

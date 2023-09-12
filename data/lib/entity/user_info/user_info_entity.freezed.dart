@@ -23,6 +23,7 @@ mixin _$UserInfoEntity {
   String get userId => throw _privateConstructorUsedError;
   String get userName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
+  String get userRole => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $UserInfoEntityCopyWith<$Res> {
           UserInfoEntity value, $Res Function(UserInfoEntity) then) =
       _$UserInfoEntityCopyWithImpl<$Res, UserInfoEntity>;
   @useResult
-  $Res call({String userId, String userName, String email});
+  $Res call({String userId, String userName, String email, String userRole});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$UserInfoEntityCopyWithImpl<$Res, $Val extends UserInfoEntity>
     Object? userId = null,
     Object? userName = null,
     Object? email = null,
+    Object? userRole = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -69,6 +71,10 @@ class _$UserInfoEntityCopyWithImpl<$Res, $Val extends UserInfoEntity>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      userRole: null == userRole
+          ? _value.userRole
+          : userRole // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -81,7 +87,7 @@ abstract class _$$_UserInfoEntityCopyWith<$Res>
       __$$_UserInfoEntityCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, String userName, String email});
+  $Res call({String userId, String userName, String email, String userRole});
 }
 
 /// @nodoc
@@ -98,6 +104,7 @@ class __$$_UserInfoEntityCopyWithImpl<$Res>
     Object? userId = null,
     Object? userName = null,
     Object? email = null,
+    Object? userRole = null,
   }) {
     return _then(_$_UserInfoEntity(
       userId: null == userId
@@ -112,6 +119,10 @@ class __$$_UserInfoEntityCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
+      userRole: null == userRole
+          ? _value.userRole
+          : userRole // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -120,7 +131,10 @@ class __$$_UserInfoEntityCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserInfoEntity implements _UserInfoEntity {
   _$_UserInfoEntity(
-      {required this.userId, required this.userName, required this.email});
+      {required this.userId,
+      required this.userName,
+      required this.email,
+      required this.userRole});
 
   factory _$_UserInfoEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserInfoEntityFromJson(json);
@@ -131,10 +145,12 @@ class _$_UserInfoEntity implements _UserInfoEntity {
   final String userName;
   @override
   final String email;
+  @override
+  final String userRole;
 
   @override
   String toString() {
-    return 'UserInfoEntity(userId: $userId, userName: $userName, email: $email)';
+    return 'UserInfoEntity(userId: $userId, userName: $userName, email: $email, userRole: $userRole)';
   }
 
   @override
@@ -145,12 +161,15 @@ class _$_UserInfoEntity implements _UserInfoEntity {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
-            (identical(other.email, email) || other.email == email));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.userRole, userRole) ||
+                other.userRole == userRole));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, userName, email);
+  int get hashCode =>
+      Object.hash(runtimeType, userId, userName, email, userRole);
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +189,8 @@ abstract class _UserInfoEntity implements UserInfoEntity {
   factory _UserInfoEntity(
       {required final String userId,
       required final String userName,
-      required final String email}) = _$_UserInfoEntity;
+      required final String email,
+      required final String userRole}) = _$_UserInfoEntity;
 
   factory _UserInfoEntity.fromJson(Map<String, dynamic> json) =
       _$_UserInfoEntity.fromJson;
@@ -181,6 +201,8 @@ abstract class _UserInfoEntity implements UserInfoEntity {
   String get userName;
   @override
   String get email;
+  @override
+  String get userRole;
   @override
   @JsonKey(ignore: true)
   _$$_UserInfoEntityCopyWith<_$_UserInfoEntity> get copyWith =>
