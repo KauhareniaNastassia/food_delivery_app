@@ -7,15 +7,7 @@ class AppConstants {
 
   ///orders
   static String allFoods = 'All Foods';
-  static List<String> menuItemCategory = [
-    'Meet',
-    'Fish',
-    'Dessert',
-    'Vegetables',
-    'Breakfast',
-    'Lunch',
-    'For a company',
-  ];
+  static String noCategory = '-';
 
   ///admin panel
   static List<String> userRoles = [
@@ -28,5 +20,12 @@ class AppConstants {
     'new orders',
     'completed orders',
   ];
-  static String chooseCategory = 'Choose';
+
+  ///validation
+  static int passwordLength = 6;
+  static int menuItemTitleLength = 25;
+  static int numbersAfterDot = 2;
+  static int descriptionLength = 500;
+  static int ingredientLength = 20;
+  static int categoryLength = 15;
 }

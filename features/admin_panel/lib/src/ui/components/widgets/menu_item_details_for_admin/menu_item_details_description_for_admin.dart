@@ -28,7 +28,7 @@ class MenuItemDetailsDescriptionForAdmin extends StatelessWidget {
                 width: mediaQueryData.size.width * 0.9,
                 maxLines: null,
                 validation: (String? description) {
-                  return menuItemDescriptionValidation(description);
+                  return menuItemDescriptionValidation(description ?? '');
                 },
               )
             : description.isNotEmpty

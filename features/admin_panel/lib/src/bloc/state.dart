@@ -41,15 +41,7 @@ class AdminPanelState {
         isItemEditing = false,
         isDataProcessing = false,
         exception = '',
-        menuItem = MenuItemModel(
-          id: '',
-          title: '',
-          cost: 0.0,
-          image: '',
-          description: '',
-          ingredients: [],
-          category: AppConstants.menuItemCategory[0],
-        );
+        menuItem = MenuItemModel.empty();
 
   AdminPanelState copyWith({
     List<UserInfoModel>? usersList,

@@ -8,7 +8,10 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
   final TextEditingController costController;
   final String selectedCategory;
   final TextEditingController descriptionController;
+  final TextEditingController categoryController;
+  final TextEditingController newCategoryController;
   final List<TextEditingController> listOfIngredientControllers;
+  final List<String> menuItemCategories;
   final Function(String?) onChangeCategory;
   final void Function(TextEditingController) addIngredientController;
   final void Function(int) removeIngredientController;
@@ -20,9 +23,12 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
     required this.selectedCategory,
     required this.onChangeCategory,
     required this.descriptionController,
+    required this.categoryController,
+    required this.newCategoryController,
     required this.listOfIngredientControllers,
     required this.addIngredientController,
     required this.removeIngredientController,
+    required this.menuItemCategories,
   });
 
   @override
@@ -58,9 +64,11 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
                   ),
                   SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsCategoryForAdmin(
-                    category: selectedCategory,
+                    categoryController: categoryController,
                     isEditMode: adminPanelBloc.state.isItemEditing,
                     onChange: onChangeCategory,
+                    menuItemCategories: menuItemCategories,
+                    newCategoryController: newCategoryController,
                   ),
                   SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsDescriptionForAdmin(
@@ -71,8 +79,10 @@ class MenuItemDetailsContentForAdmin extends StatelessWidget {
                   SizedBox(height: mediaQueryData.size.height * 0.03),
                   MenuItemDetailsIngredientsForAdmin(
                     ingredients: listOfIngredientControllers
-                        .map((TextEditingController ingredientController) =>
-                            ingredientController.text)
+                        .map(
+                          (TextEditingController ingredientController) =>
+                              ingredientController.text,
+                        )
                         .toList(),
                     isEditMode: adminPanelBloc.state.isItemEditing,
                     listOfIngredientControllers: listOfIngredientControllers,

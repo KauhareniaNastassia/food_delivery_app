@@ -3,6 +3,7 @@ part of 'bloc.dart';
 class MenuState {
   final List<MenuItemModel> menu;
   final List<MenuItemModel> filteredMenu;
+  final List<String> menuItemCategories;
   final String selectedCategory;
   final String exception;
   final bool isInternetConnectionAvailable;
@@ -11,6 +12,7 @@ class MenuState {
   MenuState({
     required this.menu,
     required this.filteredMenu,
+    required this.menuItemCategories,
     required this.exception,
     required this.isInternetConnectionAvailable,
     required this.selectedCategory,
@@ -20,6 +22,7 @@ class MenuState {
   MenuState.empty({
     this.menu = const [],
     this.filteredMenu = const [],
+    this.menuItemCategories = const [],
     this.exception = '',
     this.isInternetConnectionAvailable = true,
     this.selectedCategory = 'All foods',
@@ -29,6 +32,7 @@ class MenuState {
   MenuState copyWith({
     List<MenuItemModel>? menu,
     List<MenuItemModel>? filteredMenu,
+    List<String>? menuItemCategories,
     String? exception,
     bool? isInternetConnectionAvailable,
     String? selectedCategory,
@@ -37,6 +41,7 @@ class MenuState {
     return MenuState(
       menu: menu ?? this.menu,
       filteredMenu: filteredMenu ?? this.filteredMenu,
+      menuItemCategories: menuItemCategories ?? this.menuItemCategories,
       exception: exception ?? this.exception,
       isInternetConnectionAvailable:
           isInternetConnectionAvailable ?? this.isInternetConnectionAvailable,

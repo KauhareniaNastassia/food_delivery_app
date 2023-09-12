@@ -87,5 +87,10 @@
   "userRoleChanged": "User role is changed",
   "cancel": "Cancel",
   "addNewImage": "Add new image",
-  "newImageIsAdded": "New image is added"
+  "newImageIsAdded": "New image is added",
+  "newCategory": "New category",
+  "orWrite": "or write",
+  "longCategory": "Only 15 letters",
+  "enterOrChooseCategory": "Enter or choose category"
+
 }

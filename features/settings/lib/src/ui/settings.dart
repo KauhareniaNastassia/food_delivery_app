@@ -23,6 +23,8 @@ class SettingsPageContent extends StatelessWidget {
                 const UserInfoBlock(),
                 const SizedBox(height: 30),
                 SwitchToTheme(
+                  title:
+                      state.isLight ? 'toDarkTheme'.tr() : 'toLightTheme'.tr(),
                   isLight: state.isLight,
                   onTap: () {
                     settingsBloc.add(
@@ -49,12 +51,13 @@ class SettingsPageContent extends StatelessWidget {
               ],
             ),
           ),
-          bottomNavigationBar: authBloc.state.userRole == AppConstants.userRoles[0]
-              ? Material(
-                  color: theme.scaffoldBackgroundColor,
-                  child: const ContactLinksView(),
-                )
-              : null,
+          bottomNavigationBar:
+              authBloc.state.userRole == AppConstants.userRoles[0]
+                  ? Material(
+                      color: theme.scaffoldBackgroundColor,
+                      child: const ContactLinksView(),
+                    )
+                  : null,
         );
       },
     );

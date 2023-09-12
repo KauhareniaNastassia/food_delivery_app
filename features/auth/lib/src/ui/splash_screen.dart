@@ -29,11 +29,9 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ShoppingCartBloc shoppingCartBloc =
-        BlocProvider.of<ShoppingCartBloc>(context);
-    final OrderHistoryBloc orderHistoryBloc =
-        BlocProvider.of<OrderHistoryBloc>(context);
-    final AuthBloc authBloc = BlocProvider.of<AuthBloc>(context);
+    final ShoppingCartBloc shoppingCartBloc = context.read<ShoppingCartBloc>();
+    final OrderHistoryBloc orderHistoryBloc = context.read<OrderHistoryBloc>();
+    final AuthBloc authBloc = context.read<AuthBloc>();
 
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
@@ -63,7 +61,7 @@ class SplashScreenState extends State<SplashScreen> {
             );
           }
         },
-        builder: (BuildContext context, AuthState state) {
+        builder: (_, __) {
           return Scaffold(
             backgroundColor: theme.cardColor,
             body: Stack(

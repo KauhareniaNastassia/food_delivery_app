@@ -43,7 +43,7 @@ class _ShoppingCartPageScreenState extends State<ShoppingCartPageScreen> {
         builder: (BuildContext context, ShoppingCartState state) {
           if (state.shoppingCart.shoppingCartItems.isNotEmpty) {
             return Scaffold(
-              bottomNavigationBar: OrderBottomBar(
+              bottomNavigationBar: BottomBar(
                 totalPrice: state.shoppingCart.totalPrice,
                 title: 'totalPrice'.tr(),
                 buttonTitle: 'makeAnOrder'.tr(),

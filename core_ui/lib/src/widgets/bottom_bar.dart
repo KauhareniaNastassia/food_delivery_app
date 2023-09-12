@@ -37,7 +37,7 @@ class BottomBar extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              title!,
+                              title ?? '',
                               style: theme.textTheme.titleMedium,
                             ),
                             Text(

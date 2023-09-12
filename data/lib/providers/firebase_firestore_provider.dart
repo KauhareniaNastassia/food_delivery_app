@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:data/data.dart';
 
 class FirebaseFireStoreProvider {
@@ -83,10 +84,10 @@ class FirebaseFireStoreProvider {
 
   ///admin panel
   Future<List<UserInfoEntity>> fetchUsers() async {
-    final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
+    final QuerySnapshot<Map<String, dynamic>> userInfo =
         await fireStore.collection('userInfo').get();
 
-    return userInfoQuerySnapshot.docs
+    return userInfo.docs
         .map(
           (doc) => UserInfoEntity.fromJson(doc.data()),
         )
@@ -106,22 +107,19 @@ class FirebaseFireStoreProvider {
   }
 
   Future<List<OrderItemForAdminEntity>> fetchAllOrders() async {
-    final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
+    final QuerySnapshot<Map<String, dynamic>> userInfo =
         await fireStore.collection('userInfo').get();
     List<OrderItemForAdminEntity> allOrders = [];
 
-    for (int i = 0; i < userInfoQuerySnapshot.docs.length; i++) {
-      final QuerySnapshot<Map<String, dynamic>> ordersQuerySnapshot =
-          await userInfoQuerySnapshot.docs[i].reference
-              .collection('ordersHistory')
-              .get();
-      for (int j = 0; j < ordersQuerySnapshot.docs.length; j++) {
-        final Map<String, dynamic> orderData =
-            ordersQuerySnapshot.docs[j].data();
+    for (int i = 0; i < userInfo.docs.length; i++) {
+      final QuerySnapshot<Map<String, dynamic>> orders =
+          await userInfo.docs[i].reference.collection('ordersHistory').get();
+      for (int j = 0; j < orders.docs.length; j++) {
+        final Map<String, dynamic> orderData = orders.docs[j].data();
 
         final OrderItemEntity orderEntity = OrderItemEntity.fromJson(orderData);
         final UserInfoEntity userInfoEntity =
-            UserInfoEntity.fromJson(userInfoQuerySnapshot.docs[i].data());
+            UserInfoEntity.fromJson(userInfo.docs[i].data());
 
         final OrderItemForAdminEntity orderItemForAdminEntity =
             OrderItemForAdminEntity(
@@ -158,11 +156,11 @@ class FirebaseFireStoreProvider {
           'isCompleted': true,
         });
 
-        final QuerySnapshot<Map<String, dynamic>> userInfoQuerySnapshot =
+        final QuerySnapshot<Map<String, dynamic>> userInfo =
             await fireStore.collection('userInfo').get();
 
         final UserInfoEntity userInfoEntity =
-            UserInfoEntity.fromJson(userInfoQuerySnapshot.docs[i].data());
+            UserInfoEntity.fromJson(userInfo.docs[i].data());
 
         updatedOrderItemForAdminEntity = OrderItemForAdminEntity(
           userId: userInfoEntity.userId,
@@ -200,11 +198,11 @@ class FirebaseFireStoreProvider {
   }
 
   Future<void> addNewMenuItem(MenuItemEntity newMenuItem) async {
-    final DocumentReference<Map<String, dynamic>> menuDocumentRef =
+    final DocumentReference<Map<String, dynamic>> menu =
         fireStore.collection('menu').doc();
 
-    await menuDocumentRef.set({
-      "id": menuDocumentRef.id,
+    await menu.set({
+      "id": menu.id,
       "title": newMenuItem.title,
       "image": newMenuItem.image,
       "cost": newMenuItem.cost,

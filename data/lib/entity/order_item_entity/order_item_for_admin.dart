@@ -18,12 +18,4 @@ class OrderItemForAdminEntity {
       orderItem: OrderItemEntity.fromJson(json['orderItem']),
     );
   }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'userId': userId,
-      'email': email,
-      'orderItem': orderItem.toMap(),
-    };
-  }
 }

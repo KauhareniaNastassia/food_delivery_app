@@ -34,7 +34,7 @@ class _AddIngredientTextFieldState extends State<AddIngredientTextField> {
                   textEditingController: ingredientController,
                   width: mediaQueryData.size.width * 0.57,
                   validation: (String? ingredient) {
-                    return menuItemIngredientValidation(ingredient);
+                    return menuItemIngredientValidation(ingredient ?? '');
                   },
                 ),
               ),

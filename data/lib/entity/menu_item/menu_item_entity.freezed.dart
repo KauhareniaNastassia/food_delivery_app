@@ -20,7 +20,7 @@ MenuItemEntity _$MenuItemEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MenuItemEntity {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   double get cost => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
@@ -41,7 +41,7 @@ abstract class $MenuItemEntityCopyWith<$Res> {
   _$MenuItemEntityCopyWithImpl<$Res, MenuItemEntity>;
   @useResult
   $Res call(
-      {int id,
+      {String id,
         String title,
         double cost,
         String image,
@@ -75,7 +75,7 @@ class _$MenuItemEntityCopyWithImpl<$Res, $Val extends MenuItemEntity>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-      as int,
+      as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -113,7 +113,7 @@ abstract class _$$_MenuItemEntityCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {String id,
         String title,
         double cost,
         String image,
@@ -145,7 +145,7 @@ class __$$_MenuItemEntityCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-      as int,
+      as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -191,7 +191,7 @@ class _$_MenuItemEntity implements _MenuItemEntity {
       _$$_MenuItemEntityFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String title;
   @override
@@ -260,7 +260,7 @@ class _$_MenuItemEntity implements _MenuItemEntity {
 
 abstract class _MenuItemEntity implements MenuItemEntity {
   factory _MenuItemEntity(
-      {required final int id,
+      {required final String id,
         required final String title,
         required final double cost,
         required final String image,
@@ -272,7 +272,7 @@ abstract class _MenuItemEntity implements MenuItemEntity {
   _$_MenuItemEntity.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String get title;
   @override

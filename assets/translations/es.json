@@ -88,5 +88,9 @@
   "userRoleChanged": "Se cambió el rol del usuario",
   "cancel": "Cancelar",
   "addNewImage": "Agregar nueva imagen",
-  "newImageIsAdded": "Se agregó una nueva imagen"
+  "newImageIsAdded": "Se agregó una nueva imagen",
+  "newCategory": "Nueva categoría",
+  "oEscribir": "o escribir",
+  "longCategory": "Sólo 15 letras",
+  "enterOrChooseCategory": "Ingrese o elija una categoría"
 }

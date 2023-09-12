@@ -50,7 +50,7 @@ class UserItemTitle extends StatelessWidget {
                           adminPanelBloc.add(
                             ChangeUserRoleEvent(
                               userId: userInfoItem.userId,
-                              newUserRoleValue: value!,
+                              newUserRoleValue: value ?? '',
                             ),
                           );
                           NotificationToast.showNotification(

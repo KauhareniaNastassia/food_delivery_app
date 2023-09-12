@@ -33,7 +33,7 @@ class MenuItemDetailsTitleForAdmin extends StatelessWidget {
                 textEditingController: titleController,
                 width: mediaQueryData.size.width * 0.5,
                 validation: (String? title) {
-                  return menuItemTitleValidation(title);
+                  return menuItemTitleValidation(title ?? '');
                 },
               )
             : Expanded(
@@ -49,7 +49,7 @@ class MenuItemDetailsTitleForAdmin extends StatelessWidget {
                 textEditingController: costController,
                 keyboardType: TextInputType.number,
                 validation: (String? cost) {
-                  return menuItemCostValidation(cost);
+                  return menuItemCostValidation(cost ?? '');
                 },
               )
             : Text(

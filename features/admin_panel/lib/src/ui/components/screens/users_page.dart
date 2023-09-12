@@ -24,7 +24,7 @@ class _UsersPageContentState extends State<UsersPageContent> {
           return PageRefresher(
             onRefresh: () async {
               adminPanelBloc.add(
-                InitUsersEvent(),
+                const InitUsersEvent(),
               );
             },
             child: SafeArea(

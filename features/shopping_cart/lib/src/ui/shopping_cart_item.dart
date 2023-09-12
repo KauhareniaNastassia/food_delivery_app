@@ -15,7 +15,7 @@ class ShoppingCartItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.sizeOf(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
 
     return Ink(
@@ -29,8 +29,8 @@ class ShoppingCartItem extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: Container(
-                  height: size.height / 8,
-                  width: size.width / 1.2,
+                  height: mediaQueryData.size.height / 8,
+                  width: mediaQueryData.size.width / 1.2,
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
                     borderRadius: AppStyles.largeBorderRadius,
@@ -39,7 +39,7 @@ class ShoppingCartItem extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.center,
                     child: Container(
-                      width: size.width / 1.7,
+                      width: mediaQueryData.size.width / 1.7,
                       padding: const EdgeInsets.only(left: 10),
                       alignment: Alignment.centerLeft,
                       child: ShoppingCartItemInfo(
@@ -52,8 +52,8 @@ class ShoppingCartItem extends StatelessWidget {
                 ),
               ),
               Container(
-                height: size.height / 8,
-                width: size.width / 3.8,
+                height: mediaQueryData.size.height / 8,
+                width: mediaQueryData.size.width / 3.8,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   boxShadow: [AppStyles.boxShadow],

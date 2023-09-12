@@ -51,6 +51,16 @@ class _$AppRouter extends RootStackRouter {
         child: const AdminPanelPage(),
       );
     },
+    MenuItemDetailsScreenForAdminRoute.name: (routeData) {
+      final args = routeData.argsAs<MenuItemDetailsScreenForAdminRouteArgs>();
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: MenuItemDetailsScreenForAdmin(
+          key: args.key,
+          menuItem: args.menuItem,
+        ),
+      );
+    },
     MainPageScreenRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
@@ -155,6 +165,10 @@ class _$AppRouter extends RootStackRouter {
             ),
           ],
         ),
+        RouteConfig(
+          MenuItemDetailsScreenForAdminRoute.name,
+          path: '/menu-item-details-screen-for-admin',
+        ),
       ];
 }
 
@@ -241,6 +255,41 @@ class AdminPanelPageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'AdminPanelPageRoute';
+}
+
+/// generated route for
+/// [MenuItemDetailsScreenForAdmin]
+class MenuItemDetailsScreenForAdminRoute
+    extends PageRouteInfo<MenuItemDetailsScreenForAdminRouteArgs> {
+  MenuItemDetailsScreenForAdminRoute({
+    Key? key,
+    required MenuItemModel menuItem,
+  }) : super(
+          MenuItemDetailsScreenForAdminRoute.name,
+          path: '/menu-item-details-screen-for-admin',
+          args: MenuItemDetailsScreenForAdminRouteArgs(
+            key: key,
+            menuItem: menuItem,
+          ),
+        );
+
+  static const String name = 'MenuItemDetailsScreenForAdminRoute';
+}
+
+class MenuItemDetailsScreenForAdminRouteArgs {
+  const MenuItemDetailsScreenForAdminRouteArgs({
+    this.key,
+    required this.menuItem,
+  });
+
+  final Key? key;
+
+  final MenuItemModel menuItem;
+
+  @override
+  String toString() {
+    return 'MenuItemDetailsScreenForAdminRouteArgs{key: $key, menuItem: $menuItem}';
+  }
 }
 
 /// generated route for

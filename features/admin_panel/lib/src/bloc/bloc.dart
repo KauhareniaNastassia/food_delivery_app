@@ -56,7 +56,7 @@ class AdminPanelBloc extends Bloc<AdminPanelEvent, AdminPanelState> {
     on<InitMenuItem>(_onInitMenuItem);
 
     add(
-      InitUsersEvent(),
+      const InitUsersEvent(),
     );
   }
 

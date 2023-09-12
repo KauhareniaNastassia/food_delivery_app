@@ -19,6 +19,7 @@ class ShoppingCartItemInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
     final ThemeData theme = Theme.of(context);
+    final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,13 +28,17 @@ class ShoppingCartItemInfo extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(
-              settingsBloc.state.fontSize > 1 && title.length > 16
-                  ? '${title.substring(0, 13)}...'
-                  : settingsBloc.state.fontSize <= 1 && title.length > 19
-                      ? '${title.substring(0, 17)}...'
-                      : title,
-              style: theme.textTheme.bodySmall,
+            SizedBox(
+              width: mediaQueryData.size.width / 2.5,
+              child: SizedOverflowBox(
+                alignment: Alignment.topLeft,
+                size: mediaQueryData.size * 0.025,
+                child: Text(
+                  title,
+                  style: theme.textTheme.titleLarge,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
             ),
             Text(
               '\$$cost',

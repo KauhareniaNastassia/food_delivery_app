@@ -44,8 +44,8 @@ class ItemListButtonState extends State<ItemListButton> {
                           size: mediaQueryData.size.width / 12,
                         ),
                         Positioned(
-                          right: mediaQueryData.size.width * 0.01,
-                          top: mediaQueryData.size.height * 0.01,
+                          right: mediaQueryData.size.width * 0.015,
+                          top: mediaQueryData.size.height * 0.001,
                           child: Container(
                             width: mediaQueryData.size.width * 0.05,
                             padding: const EdgeInsets.all(0),

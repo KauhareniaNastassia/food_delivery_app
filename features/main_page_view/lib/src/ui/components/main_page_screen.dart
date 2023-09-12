@@ -87,7 +87,7 @@ class _MainPageScreenState extends State<MainPageScreen>
                                     buttonTitle: 'addNewItem'.tr(),
                                     onPressed: () {
                                       adminPanelBloc.add(
-                                        NavigateToAddItemPageEvent(),
+                                        const NavigateToAddItemPageEvent(),
                                       );
                                     },
                                   ),
@@ -96,7 +96,7 @@ class _MainPageScreenState extends State<MainPageScreen>
                           CategoryFilter(
                             filterItems: <String>[
                               AppConstants.allFoods,
-                              ...AppConstants.menuItemCategory
+                              ...state.menuItemCategories
                             ],
                             selectedFilter: state.selectedCategory,
                             onTap: (String categoryValue) {

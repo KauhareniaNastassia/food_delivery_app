@@ -45,7 +45,7 @@ class MenuItemDetailsIngredientsForAdmin extends StatelessWidget {
                     ? listOfIngredientControllers.length
                     : ingredients.length,
                 padding: const EdgeInsets.all(0),
-                itemBuilder: (_, index) {
+                itemBuilder: (_, int index) {
                   return Row(
                     children: <Widget>[
                       SizedBox(width: mediaQueryData.size.width * 0.03),

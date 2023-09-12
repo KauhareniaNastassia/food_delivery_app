@@ -27,7 +27,8 @@ class _MenuItemDetailsScreenForAdminState
   final TextEditingController descriptionController = TextEditingController();
   final TextEditingController imageController = TextEditingController();
   final List<TextEditingController> listOfIngredientControllers = [];
-  late String selectedCategory;
+  final TextEditingController newCategoryController = TextEditingController();
+  final TextEditingController categoryController = TextEditingController();
 
   @override
   void initState() {
@@ -36,8 +37,9 @@ class _MenuItemDetailsScreenForAdminState
   }
 
   void initTextControllers() {
+    listOfIngredientControllers.clear();
     titleController.text = widget.menuItem.title;
-    selectedCategory = widget.menuItem.category;
+    categoryController.text = widget.menuItem.category;
     costController.text = widget.menuItem.cost.toString();
     descriptionController.text = widget.menuItem.description;
     listOfIngredientControllers.addAll(
@@ -63,7 +65,7 @@ class _MenuItemDetailsScreenForAdminState
 
   void onChangeCategory(String? value) {
     setState(() {
-      selectedCategory = value!;
+      categoryController.text = value ?? '';
     });
   }
 
@@ -85,27 +87,29 @@ class _MenuItemDetailsScreenForAdminState
             bottomNavigationBar: MenuItemDetailsBottomBarForAdmin(
               isEditingMode: adminPanelBloc.state.isItemEditing,
               onPressCancel: () {
-                if (state.menuItem.id == '') {
+                if (state.menuItem.id.isEmpty) {
                   adminPanelBloc.add(
-                    NavigateBackToAdminEvent(),
+                    const NavigateBackToAdminEvent(),
                   );
                 } else {
                   initTextControllers();
                   adminPanelBloc.add(
-                    EditModeEvent(modeValue: false),
+                    const EditModeEvent(modeValue: false),
                   );
                 }
               },
               onPressedEditMode: () {
                 adminPanelBloc.add(
-                  EditModeEvent(modeValue: true),
+                  const EditModeEvent(modeValue: true),
                 );
               },
               onPressedSave: () {
                 if (_formKey.currentState!.validate()) {
                   final MenuItemModel menuItem = MenuItemModel(
                     id: state.menuItem.id,
-                    category: selectedCategory,
+                    category: newCategoryController.text.isEmpty
+                        ? categoryController.text
+                        : newCategoryController.text,
                     cost: double.parse(costController.text),
                     image: state.menuItem.image,
                     title: titleController.text,
@@ -145,19 +149,25 @@ class _MenuItemDetailsScreenForAdminState
                   isEditMode: adminPanelBloc.state.isItemEditing,
                   onPressed: () {
                     adminPanelBloc.add(
-                      NavigateBackToAdminEvent(),
+                      const NavigateBackToAdminEvent(),
                     );
                   },
                   onPressedAddNewImage: () {
                     adminPanelBloc.add(
-                      SelectMenuItemImageEvent(),
+                      const SelectMenuItemImageEvent(),
                     );
                   },
                 ),
                 MenuItemDetailsContentForAdmin(
                   titleController: titleController,
                   costController: costController,
-                  selectedCategory: selectedCategory,
+                  selectedCategory: categoryController.text,
+                  menuItemCategories: [
+                    AppConstants.noCategory,
+                    ...menuBloc.state.menuItemCategories
+                  ],
+                  newCategoryController: newCategoryController,
+                  categoryController: categoryController,
                   descriptionController: descriptionController,
                   listOfIngredientControllers: listOfIngredientControllers,
                   onChangeCategory: onChangeCategory,
@@ -177,6 +187,8 @@ class _MenuItemDetailsScreenForAdminState
     titleController.dispose();
     costController.dispose();
     descriptionController.dispose();
+    newCategoryController.dispose();
+    categoryController.dispose();
 
     for (TextEditingController controller in listOfIngredientControllers) {
       controller.dispose();

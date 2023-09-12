@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class CustomBottomNavigationBar extends StatefulWidget {
+class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final bool isCustomer;
   final void Function(int) onTap;
@@ -14,12 +14,6 @@ class CustomBottomNavigationBar extends StatefulWidget {
     required this.isCustomer,
   }) : super(key: key);
 
-  @override
-  State<CustomBottomNavigationBar> createState() =>
-      CustomBottomNavigationBarState();
-}
-
-class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -41,7 +35,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         ),
         itemBuilder: (_, int index) {
           return InkWell(
-            onTap: () => widget.onTap(index),
+            onTap: () => onTap(index),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -49,14 +43,14 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   duration: const Duration(milliseconds: 700),
                   curve: Curves.decelerate,
                   margin: EdgeInsets.only(
-                    bottom: index == widget.currentIndex
+                    bottom: index == currentIndex
                         ? 0
                         : mediaQueryData.size.width * 0.029,
                     right: mediaQueryData.size.width * 0.045,
                     left: mediaQueryData.size.width * 0.05,
                   ),
                   width: mediaQueryData.size.width * 0.128,
-                  height: index == widget.currentIndex
+                  height: index == currentIndex
                       ? mediaQueryData.size.width * 0.014
                       : 0,
                   decoration: BoxDecoration(
@@ -67,23 +61,23 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   ),
                 ),
                 Icon(
-                  widget.isCustomer
+                  isCustomer
                       ? CustomBottomNavigationBarItems.listOfIcons[index]
                       : CustomBottomNavigationBarItems
                           .listOfAdminPanelIcons[index],
                   size: mediaQueryData.size.width * 0.07,
-                  color: index == widget.currentIndex
+                  color: index == currentIndex
                       ? theme.bottomNavigationBarTheme.selectedItemColor
                       : theme.bottomNavigationBarTheme.unselectedItemColor,
                 ),
                 Text(
-                  widget.isCustomer
+                  isCustomer
                       ? CustomBottomNavigationBarItems.listOfLabels[index].tr()
                       : CustomBottomNavigationBarItems
                           .listOfAdminPanelLabels[index]
                           .tr(),
                   style: AppTextStyles.size12WeightSemiBoldText(
-                    index == widget.currentIndex
+                    index == currentIndex
                         ? theme.bottomNavigationBarTheme.selectedItemColor!
                         : theme.bottomNavigationBarTheme.unselectedItemColor!,
                   ),

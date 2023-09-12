@@ -23,7 +23,7 @@ class RemoveIngredientTextField extends StatelessWidget {
           textEditingController: textEditingController,
           width: mediaQueryData.size.width * 0.5,
           validation: (String? ingredient) {
-            return menuItemIngredientValidation(ingredient);
+            return menuItemIngredientValidation(ingredient ?? '');
           },
         ),
         IconButton(

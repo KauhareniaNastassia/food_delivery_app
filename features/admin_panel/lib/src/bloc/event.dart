@@ -5,13 +5,13 @@ abstract class AdminPanelEvent {
 }
 
 class InitUsersEvent extends AdminPanelEvent {
-  InitUsersEvent();
+  const InitUsersEvent();
 }
 
 class FilterUsersByRoleEvent extends AdminPanelEvent {
   final String filterValue;
 
-  FilterUsersByRoleEvent({
+  const FilterUsersByRoleEvent({
     required this.filterValue,
   });
 }
@@ -20,7 +20,7 @@ class ChangeUserRoleEvent extends AdminPanelEvent {
   final String newUserRoleValue;
   final String userId;
 
-  ChangeUserRoleEvent({
+  const ChangeUserRoleEvent({
     required this.newUserRoleValue,
     required this.userId,
   });
@@ -29,19 +29,19 @@ class ChangeUserRoleEvent extends AdminPanelEvent {
 class FetchUserOrderHistoryEvent extends AdminPanelEvent {
   final String userId;
 
-  FetchUserOrderHistoryEvent({
+  const FetchUserOrderHistoryEvent({
     required this.userId,
   });
 }
 
 class InitOrdersEvent extends AdminPanelEvent {
-  InitOrdersEvent();
+  const InitOrdersEvent();
 }
 
 class FilterOrdersByCompleteEvent extends AdminPanelEvent {
   final String filterValue;
 
-  FilterOrdersByCompleteEvent({
+  const FilterOrdersByCompleteEvent({
     required this.filterValue,
   });
 }
@@ -50,7 +50,7 @@ class ChangeOrderStatusEvent extends AdminPanelEvent {
   final String userId;
   final int orderId;
 
-  ChangeOrderStatusEvent({
+  const ChangeOrderStatusEvent({
     required this.userId,
     required this.orderId,
   });
@@ -59,20 +59,20 @@ class ChangeOrderStatusEvent extends AdminPanelEvent {
 class EditModeEvent extends AdminPanelEvent {
   final bool modeValue;
 
-  EditModeEvent({
+  const EditModeEvent({
     required this.modeValue,
   });
 }
 
 class NavigateToAddItemPageEvent extends AdminPanelEvent {
-  NavigateToAddItemPageEvent();
+  const NavigateToAddItemPageEvent();
 }
 
 class SaveMenuItemChangesEvent extends AdminPanelEvent {
   final MenuItemModel menuItem;
   final Function() onComplete;
 
-  SaveMenuItemChangesEvent({
+  const SaveMenuItemChangesEvent({
     required this.menuItem,
     required this.onComplete,
   });
@@ -81,7 +81,7 @@ class SaveMenuItemChangesEvent extends AdminPanelEvent {
 class InitMenuItem extends AdminPanelEvent {
   final MenuItemModel menuItem;
 
-  InitMenuItem({
+  const InitMenuItem({
     required this.menuItem,
   });
 }
@@ -89,19 +89,19 @@ class InitMenuItem extends AdminPanelEvent {
 class DeleteMenuItemEvent extends AdminPanelEvent {
   final String menuItemId;
 
-  DeleteMenuItemEvent({
+  const DeleteMenuItemEvent({
     required this.menuItemId,
   });
 }
 
 class UploadMenuItemImageEvent extends AdminPanelEvent {
-  UploadMenuItemImageEvent();
+  const UploadMenuItemImageEvent();
 }
 
 class SelectMenuItemImageEvent extends AdminPanelEvent {
-  SelectMenuItemImageEvent();
+  const SelectMenuItemImageEvent();
 }
 
 class NavigateBackToAdminEvent extends AdminPanelEvent {
-  NavigateBackToAdminEvent();
+  const NavigateBackToAdminEvent();
 }

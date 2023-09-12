@@ -17,6 +17,16 @@ class CustomDropDownField extends StatelessWidget {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
     final ThemeData theme = Theme.of(context);
 
+    final List<DropdownMenuItem<String>> dropDownListOfItems =
+        listOfItems.map<DropdownMenuItem<String>>(
+      (String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      },
+    ).toList();
+
     return DropdownButton<String>(
       value: listOfItems.firstWhere((String element) => element == value),
       icon: Icon(
@@ -28,15 +38,8 @@ class CustomDropDownField extends StatelessWidget {
         height: mediaQueryData.size.height * 0.002,
         color: theme.primaryColor,
       ),
-      onChanged: (String? value) => onChanged(value!),
-      items: listOfItems.map<DropdownMenuItem<String>>(
-        (String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        },
-      ).toList(),
+      onChanged: (String? value) => onChanged(value ?? ''),
+      items: dropDownListOfItems,
     );
   }
 }

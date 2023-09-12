@@ -46,7 +46,8 @@ class AdminPanelRepositoryImpl implements AdminPanelRepository {
 
     final List<OrderItemForAdminModel> allOrders = allOrdersFromDB
         .map(
-          (OrderItemForAdminEntity e) => OrderItemForAdminMapper.toModel(e),
+          (OrderItemForAdminEntity entity) =>
+              OrderItemForAdminMapper.toModel(entity),
         )
         .toList();
 
