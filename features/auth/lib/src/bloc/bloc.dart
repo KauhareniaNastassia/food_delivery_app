@@ -35,6 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<ChangeAuthPageEvent>(_changeAuthPage);
     on<NavigateToSignInPageEvent>(_onNavigateToSignInPage);
     on<NavigateToAdminPanelPageEvent>(_onNavigateToAdminPanelPage);
+    on<ObscurePasswordEvent>(obscurePassword);
   }
 
   Future<void> _onInitAuth(
@@ -97,6 +98,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userName: userInfo.userName,
           userId: userInfo.userId,
           email: userInfo.email,
+          password: '',
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -150,6 +152,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
+          password: '',
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -218,6 +221,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           userName: userInfo.userName,
           email: userInfo.email,
           userId: userInfo.userId,
+          password: '',
         ),
       );
     } catch (e) {
@@ -237,6 +241,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(
       state.copyWith(
         isSignInPage: !state.isSignInPage,
+        password: '',
       ),
     );
   }
@@ -256,6 +261,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) {
     _appRouter.navigate(
       const AdminPanelPageRoute(),
+    );
+  }
+
+  void obscurePassword(
+      ObscurePasswordEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        isTextObscured: !state.isTextObscured,
+      ),
     );
   }
 }

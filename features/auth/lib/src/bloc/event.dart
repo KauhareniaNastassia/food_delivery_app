@@ -49,3 +49,7 @@ class NavigateToSignInPageEvent extends AuthEvent {
 class NavigateToAdminPanelPageEvent extends AuthEvent {
   NavigateToAdminPanelPageEvent();
 }
+
+class ObscurePasswordEvent extends AuthEvent {
+  ObscurePasswordEvent();
+}

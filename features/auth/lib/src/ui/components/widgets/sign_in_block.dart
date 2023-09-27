@@ -5,25 +5,38 @@ import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
 class SignInBlock extends StatefulWidget {
-  const SignInBlock({super.key});
+  final String email;
+  final String password;
+
+  const SignInBlock({
+    super.key,
+    required this.email,
+    required this.password,
+  });
 
   @override
   State<SignInBlock> createState() => _SignInBlockState();
 }
 
 class _SignInBlockState extends State<SignInBlock> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool obscurePassword = true;
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController.text = widget.password;
+  }
 
   @override
   Widget build(BuildContext context) {
     final SettingsBloc settingsBloc = context.read<SettingsBloc>();
+    final AuthBloc authBloc = context.read<AuthBloc>();
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -36,7 +49,7 @@ class _SignInBlockState extends State<SignInBlock> {
           ),
           CustomTextField(
             label: 'email'.tr(),
-            textEditingController: _emailController,
+            textEditingController: emailController,
             validation: (String? email) {
               return emailValidation(email ?? '');
             },
@@ -44,16 +57,14 @@ class _SignInBlockState extends State<SignInBlock> {
           ),
           CustomTextField(
             label: 'password'.tr(),
-            textEditingController: _passwordController,
+            textEditingController: passwordController,
             validation: (String? password) {
               return passwordValidation(password ?? '');
             },
-            obscureText: obscurePassword,
+            obscureText: authBloc.state.isTextObscured,
             onPressed: () {
-              setState(
-                () {
-                  obscurePassword = !obscurePassword;
-                },
+              authBloc.add(
+                ObscurePasswordEvent(),
               );
             },
           ),
@@ -61,15 +72,15 @@ class _SignInBlockState extends State<SignInBlock> {
           PrimaryButton(
             buttonTitle: 'signIn'.tr(),
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                context.read<AuthBloc>().add(
-                      SignInEvent(
-                        email: _emailController.text.trim(),
-                        password: _passwordController.text.trim(),
-                      ),
-                    );
-                _emailController.clear();
-                _passwordController.clear();
+              if (formKey.currentState!.validate()) {
+                authBloc.add(
+                  SignInEvent(
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim(),
+                  ),
+                );
+                emailController.clear();
+                passwordController.clear();
               }
             },
           ),
@@ -77,9 +88,9 @@ class _SignInBlockState extends State<SignInBlock> {
           PrimaryButton(
             buttonTitle: 'signInViaGoogle'.tr(),
             onPressed: () {
-              context.read<AuthBloc>().add(
-                    SignInViaGoogleEvent(),
-                  );
+              authBloc.add(
+                SignInViaGoogleEvent(),
+              );
             },
           ),
         ],

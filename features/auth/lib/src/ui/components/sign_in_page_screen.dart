@@ -92,8 +92,14 @@ class _SignInPageScreenState extends State<SignInPageScreen>
                                 AnimatedCrossFade(
                                   firstCurve: Curves.easeOutBack,
                                   secondCurve: Curves.easeInBack,
-                                  firstChild: const SignInBlock(),
-                                  secondChild: const SignUpBlock(),
+                                  firstChild:  SignInBlock(
+                                    email: state.email,
+                                    password: state.password,
+                                  ),
+                                  secondChild:  SignUpBlock(
+                                    email: state.email,
+                                    password: state.password,
+                                  ),
                                   crossFadeState: state.isSignInPage
                                       ? CrossFadeState.showFirst
                                       : CrossFadeState.showSecond,

@@ -5,8 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
 class SignUpBlock extends StatefulWidget {
+  final String email;
+  final String password;
+
   const SignUpBlock({
     super.key,
+    required this.email,
+    required this.password,
   });
 
   @override
@@ -14,11 +19,16 @@ class SignUpBlock extends StatefulWidget {
 }
 
 class _SignUpBlockState extends State<SignUpBlock> {
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool obscurePassword = true;
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    passwordController.text = widget.password;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
     final MediaQueryData mediaQueryData = MediaQuery.of(context);
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -40,7 +50,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
           ),
           CustomTextField(
             label: 'userName'.tr(),
-            textEditingController: _userNameController,
+            textEditingController: userNameController,
             validation: (String? name) {
               return nameValidation(name ?? '');
             },
@@ -48,7 +58,7 @@ class _SignUpBlockState extends State<SignUpBlock> {
           ),
           CustomTextField(
             label: 'email'.tr(),
-            textEditingController: _emailController,
+            textEditingController: emailController,
             validation: (String? email) {
               return emailValidation(email ?? '');
             },
@@ -56,16 +66,14 @@ class _SignUpBlockState extends State<SignUpBlock> {
           ),
           CustomTextField(
             label: 'password'.tr(),
-            textEditingController: _passwordController,
+            textEditingController: passwordController,
             validation: (String? password) {
               return passwordValidation(password ?? '');
             },
-            obscureText: obscurePassword,
+            obscureText: authBloc.state.isTextObscured,
             onPressed: () {
-              setState(
-                () {
-                  obscurePassword = !obscurePassword;
-                },
+              authBloc.add(
+                ObscurePasswordEvent(),
               );
             },
           ),
@@ -73,17 +81,17 @@ class _SignUpBlockState extends State<SignUpBlock> {
           PrimaryButton(
             buttonTitle: 'signUp'.tr(),
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
+              if (formKey.currentState!.validate()) {
                 authBloc.add(
                   SignUpEvent(
-                    userName: _userNameController.text.trim(),
-                    email: _emailController.text.trim(),
-                    password: _passwordController.text.trim(),
+                    userName: userNameController.text.trim(),
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim(),
                   ),
                 );
-                _userNameController.clear();
-                _emailController.clear();
-                _passwordController.clear();
+                userNameController.clear();
+                emailController.clear();
+                passwordController.clear();
               }
             },
           ),
