@@ -99,4 +99,12 @@ class _SignUpBlockState extends State<SignUpBlock> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    userNameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 }
