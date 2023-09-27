@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
 class SignUpBlock extends StatefulWidget {
-  final String email;
   final String password;
 
   const SignUpBlock({
     super.key,
-    required this.email,
     required this.password,
   });
 

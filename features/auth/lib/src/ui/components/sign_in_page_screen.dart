@@ -93,11 +93,9 @@ class _SignInPageScreenState extends State<SignInPageScreen>
                                   firstCurve: Curves.easeOutBack,
                                   secondCurve: Curves.easeInBack,
                                   firstChild:  SignInBlock(
-                                    email: state.email,
                                     password: state.password,
                                   ),
                                   secondChild:  SignUpBlock(
-                                    email: state.email,
                                     password: state.password,
                                   ),
                                   crossFadeState: state.isSignInPage

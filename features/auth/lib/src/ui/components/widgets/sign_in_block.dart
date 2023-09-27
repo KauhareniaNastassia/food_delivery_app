@@ -5,12 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:settings/settings.dart';
 
 class SignInBlock extends StatefulWidget {
-  final String email;
   final String password;
 
   const SignInBlock({
     super.key,
-    required this.email,
     required this.password,
   });
 
@@ -84,7 +82,6 @@ class _SignInBlockState extends State<SignInBlock> {
               }
             },
           ),
-          //SizedBox(height: mediaQueryData.size.height * 0.05),
           SizedBox(height: mediaQueryData.size.height * 0.05),
           PrimaryButton(
             buttonTitle: 'signInViaGoogle'.tr(),
