@@ -84,6 +84,7 @@ class _SignInBlockState extends State<SignInBlock> {
               }
             },
           ),
+          //SizedBox(height: mediaQueryData.size.height * 0.05),
           SizedBox(height: mediaQueryData.size.height * 0.05),
           PrimaryButton(
             buttonTitle: 'signInViaGoogle'.tr(),
